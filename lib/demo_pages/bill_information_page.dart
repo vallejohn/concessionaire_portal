@@ -17,6 +17,7 @@ class _BillInformationPageState extends State<BillInformationPage> {
       physics:
           const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
       children: [
+        const SizedBox(height: 20,),
         Row(children: [
           const CircleAvatar(radius: 20,),
           const SizedBox(width: 15,),
