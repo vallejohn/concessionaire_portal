@@ -11,7 +11,7 @@ _$BillingInformationImpl _$$BillingInformationImplFromJson(
     _$BillingInformationImpl(
       billNo: json['billNo'] as String? ?? '',
       billMonth: json['billMonth'] as String? ?? '',
-      amountDue: json['amountDue'] as String? ?? '',
+      amountDue: (json['amountDue'] as num?)?.toDouble() ?? 0,
       paymentDate: json['paymentDate'] as String? ?? '',
       status: json['status'] as String? ?? '',
     );

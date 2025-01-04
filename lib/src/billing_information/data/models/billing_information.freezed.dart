@@ -22,7 +22,7 @@ BillingInformation _$BillingInformationFromJson(Map<String, dynamic> json) {
 mixin _$BillingInformation {
   String get billNo => throw _privateConstructorUsedError;
   String get billMonth => throw _privateConstructorUsedError;
-  String get amountDue => throw _privateConstructorUsedError;
+  double get amountDue => throw _privateConstructorUsedError;
   String get paymentDate => throw _privateConstructorUsedError;
   String get status => throw _privateConstructorUsedError;
 
@@ -45,7 +45,7 @@ abstract class $BillingInformationCopyWith<$Res> {
   $Res call(
       {String billNo,
       String billMonth,
-      String amountDue,
+      double amountDue,
       String paymentDate,
       String status});
 }
@@ -83,7 +83,7 @@ class _$BillingInformationCopyWithImpl<$Res, $Val extends BillingInformation>
       amountDue: null == amountDue
           ? _value.amountDue
           : amountDue // ignore: cast_nullable_to_non_nullable
-              as String,
+              as double,
       paymentDate: null == paymentDate
           ? _value.paymentDate
           : paymentDate // ignore: cast_nullable_to_non_nullable
@@ -107,7 +107,7 @@ abstract class _$$BillingInformationImplCopyWith<$Res>
   $Res call(
       {String billNo,
       String billMonth,
-      String amountDue,
+      double amountDue,
       String paymentDate,
       String status});
 }
@@ -143,7 +143,7 @@ class __$$BillingInformationImplCopyWithImpl<$Res>
       amountDue: null == amountDue
           ? _value.amountDue
           : amountDue // ignore: cast_nullable_to_non_nullable
-              as String,
+              as double,
       paymentDate: null == paymentDate
           ? _value.paymentDate
           : paymentDate // ignore: cast_nullable_to_non_nullable
@@ -162,7 +162,7 @@ class _$BillingInformationImpl implements _BillingInformation {
   const _$BillingInformationImpl(
       {this.billNo = '',
       this.billMonth = '',
-      this.amountDue = '',
+      this.amountDue = 0,
       this.paymentDate = '',
       this.status = ''});
 
@@ -177,7 +177,7 @@ class _$BillingInformationImpl implements _BillingInformation {
   final String billMonth;
   @override
   @JsonKey()
-  final String amountDue;
+  final double amountDue;
   @override
   @JsonKey()
   final String paymentDate;
@@ -231,7 +231,7 @@ abstract class _BillingInformation implements BillingInformation {
   const factory _BillingInformation(
       {final String billNo,
       final String billMonth,
-      final String amountDue,
+      final double amountDue,
       final String paymentDate,
       final String status}) = _$BillingInformationImpl;
 
@@ -243,7 +243,7 @@ abstract class _BillingInformation implements BillingInformation {
   @override
   String get billMonth;
   @override
-  String get amountDue;
+  double get amountDue;
   @override
   String get paymentDate;
   @override

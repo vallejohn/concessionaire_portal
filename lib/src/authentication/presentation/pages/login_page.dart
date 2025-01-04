@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:mwd_concessionaire_portal/demo_pages/home_page.dart';
 import 'package:mwd_concessionaire_portal/demo_pages/register_page.dart';
 
-class LoginDemoPage extends StatefulWidget {
-  const LoginDemoPage({super.key});
+class LoginPage extends StatefulWidget {
+  const LoginPage({super.key});
 
   @override
-  State<LoginDemoPage> createState() => _LoginDemoPageState();
+  State<LoginPage> createState() => _LoginPageState();
 }
 
-class _LoginDemoPageState extends State<LoginDemoPage> {
+class _LoginPageState extends State<LoginPage> {
   final _formKey = GlobalKey<FormState>();
 
   bool _loggingIn = false;

@@ -8,7 +8,7 @@ class BillingInformation with _$BillingInformation {
   const factory BillingInformation({
     @Default('') String billNo,
     @Default('') String billMonth,
-    @Default('') String amountDue,
+    @Default(0) double amountDue,
     @Default('') String paymentDate,
     @Default('') String status,
   }) = _BillingInformation;

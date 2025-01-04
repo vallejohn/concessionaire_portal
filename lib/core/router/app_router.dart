@@ -1,5 +1,8 @@
 import 'package:go_router/go_router.dart';
 import 'package:mwd_concessionaire_portal/demo_pages/home_page.dart';
+import 'package:mwd_concessionaire_portal/src/authentication/presentation/pages/startup_page.dart';
+
+import '../../src/authentication/presentation/pages/login_page.dart';
 
 class AppRouter {
 
@@ -27,7 +30,11 @@ class _RouteConfiguration {
       routes: [
         GoRoute(
           path: '/',
-          builder: (context, state) => const HomePage(),
+          builder: (context, state) => const StartupPage(),
+        ),
+        GoRoute(
+          path: '/login',
+          builder: (context, state) => const LoginPage(),
         ),
       ]
   );
