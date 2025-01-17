@@ -19,16 +19,19 @@ mixin _$LoginEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() onRequestAuthenticationStatus,
+    required TResult Function(LoginParams param) doLogin,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? onRequestAuthenticationStatus,
+    TResult? Function(LoginParams param)? doLogin,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? onRequestAuthenticationStatus,
+    TResult Function(LoginParams param)? doLogin,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -36,18 +39,21 @@ mixin _$LoginEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(_OnRequestAuthenticationStatus value)
         onRequestAuthenticationStatus,
+    required TResult Function(_DoLogin value) doLogin,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_OnRequestAuthenticationStatus value)?
         onRequestAuthenticationStatus,
+    TResult? Function(_DoLogin value)? doLogin,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_OnRequestAuthenticationStatus value)?
         onRequestAuthenticationStatus,
+    TResult Function(_DoLogin value)? doLogin,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -120,6 +126,7 @@ class _$OnRequestAuthenticationStatusImpl
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() onRequestAuthenticationStatus,
+    required TResult Function(LoginParams param) doLogin,
   }) {
     return onRequestAuthenticationStatus();
   }
@@ -128,6 +135,7 @@ class _$OnRequestAuthenticationStatusImpl
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? onRequestAuthenticationStatus,
+    TResult? Function(LoginParams param)? doLogin,
   }) {
     return onRequestAuthenticationStatus?.call();
   }
@@ -136,6 +144,7 @@ class _$OnRequestAuthenticationStatusImpl
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? onRequestAuthenticationStatus,
+    TResult Function(LoginParams param)? doLogin,
     required TResult orElse(),
   }) {
     if (onRequestAuthenticationStatus != null) {
@@ -149,6 +158,7 @@ class _$OnRequestAuthenticationStatusImpl
   TResult map<TResult extends Object?>({
     required TResult Function(_OnRequestAuthenticationStatus value)
         onRequestAuthenticationStatus,
+    required TResult Function(_DoLogin value) doLogin,
   }) {
     return onRequestAuthenticationStatus(this);
   }
@@ -158,6 +168,7 @@ class _$OnRequestAuthenticationStatusImpl
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_OnRequestAuthenticationStatus value)?
         onRequestAuthenticationStatus,
+    TResult? Function(_DoLogin value)? doLogin,
   }) {
     return onRequestAuthenticationStatus?.call(this);
   }
@@ -167,6 +178,7 @@ class _$OnRequestAuthenticationStatusImpl
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_OnRequestAuthenticationStatus value)?
         onRequestAuthenticationStatus,
+    TResult Function(_DoLogin value)? doLogin,
     required TResult orElse(),
   }) {
     if (onRequestAuthenticationStatus != null) {
@@ -182,8 +194,152 @@ abstract class _OnRequestAuthenticationStatus implements LoginEvent {
 }
 
 /// @nodoc
+abstract class _$$DoLoginImplCopyWith<$Res> {
+  factory _$$DoLoginImplCopyWith(
+          _$DoLoginImpl value, $Res Function(_$DoLoginImpl) then) =
+      __$$DoLoginImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({LoginParams param});
+}
+
+/// @nodoc
+class __$$DoLoginImplCopyWithImpl<$Res>
+    extends _$LoginEventCopyWithImpl<$Res, _$DoLoginImpl>
+    implements _$$DoLoginImplCopyWith<$Res> {
+  __$$DoLoginImplCopyWithImpl(
+      _$DoLoginImpl _value, $Res Function(_$DoLoginImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of LoginEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? param = null,
+  }) {
+    return _then(_$DoLoginImpl(
+      null == param
+          ? _value.param
+          : param // ignore: cast_nullable_to_non_nullable
+              as LoginParams,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$DoLoginImpl implements _DoLogin {
+  const _$DoLoginImpl(this.param);
+
+  @override
+  final LoginParams param;
+
+  @override
+  String toString() {
+    return 'LoginEvent.doLogin(param: $param)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$DoLoginImpl &&
+            (identical(other.param, param) || other.param == param));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, param);
+
+  /// Create a copy of LoginEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$DoLoginImplCopyWith<_$DoLoginImpl> get copyWith =>
+      __$$DoLoginImplCopyWithImpl<_$DoLoginImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() onRequestAuthenticationStatus,
+    required TResult Function(LoginParams param) doLogin,
+  }) {
+    return doLogin(param);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? onRequestAuthenticationStatus,
+    TResult? Function(LoginParams param)? doLogin,
+  }) {
+    return doLogin?.call(param);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? onRequestAuthenticationStatus,
+    TResult Function(LoginParams param)? doLogin,
+    required TResult orElse(),
+  }) {
+    if (doLogin != null) {
+      return doLogin(param);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_OnRequestAuthenticationStatus value)
+        onRequestAuthenticationStatus,
+    required TResult Function(_DoLogin value) doLogin,
+  }) {
+    return doLogin(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_OnRequestAuthenticationStatus value)?
+        onRequestAuthenticationStatus,
+    TResult? Function(_DoLogin value)? doLogin,
+  }) {
+    return doLogin?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_OnRequestAuthenticationStatus value)?
+        onRequestAuthenticationStatus,
+    TResult Function(_DoLogin value)? doLogin,
+    required TResult orElse(),
+  }) {
+    if (doLogin != null) {
+      return doLogin(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _DoLogin implements LoginEvent {
+  const factory _DoLogin(final LoginParams param) = _$DoLoginImpl;
+
+  LoginParams get param;
+
+  /// Create a copy of LoginEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$DoLoginImplCopyWith<_$DoLoginImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
 mixin _$LoginState {
   LoginStatus get loginStatus => throw _privateConstructorUsedError;
+  CheckAuthStatus get checkAuthStatus => throw _privateConstructorUsedError;
   String get message => throw _privateConstructorUsedError;
   User get user => throw _privateConstructorUsedError;
 
@@ -200,7 +356,11 @@ abstract class $LoginStateCopyWith<$Res> {
           LoginState value, $Res Function(LoginState) then) =
       _$LoginStateCopyWithImpl<$Res, LoginState>;
   @useResult
-  $Res call({LoginStatus loginStatus, String message, User user});
+  $Res call(
+      {LoginStatus loginStatus,
+      CheckAuthStatus checkAuthStatus,
+      String message,
+      User user});
 
   $UserCopyWith<$Res> get user;
 }
@@ -221,6 +381,7 @@ class _$LoginStateCopyWithImpl<$Res, $Val extends LoginState>
   @override
   $Res call({
     Object? loginStatus = null,
+    Object? checkAuthStatus = null,
     Object? message = null,
     Object? user = null,
   }) {
@@ -229,6 +390,10 @@ class _$LoginStateCopyWithImpl<$Res, $Val extends LoginState>
           ? _value.loginStatus
           : loginStatus // ignore: cast_nullable_to_non_nullable
               as LoginStatus,
+      checkAuthStatus: null == checkAuthStatus
+          ? _value.checkAuthStatus
+          : checkAuthStatus // ignore: cast_nullable_to_non_nullable
+              as CheckAuthStatus,
       message: null == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -259,7 +424,11 @@ abstract class _$$LoginStateImplCopyWith<$Res>
       __$$LoginStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({LoginStatus loginStatus, String message, User user});
+  $Res call(
+      {LoginStatus loginStatus,
+      CheckAuthStatus checkAuthStatus,
+      String message,
+      User user});
 
   @override
   $UserCopyWith<$Res> get user;
@@ -279,6 +448,7 @@ class __$$LoginStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? loginStatus = null,
+    Object? checkAuthStatus = null,
     Object? message = null,
     Object? user = null,
   }) {
@@ -287,6 +457,10 @@ class __$$LoginStateImplCopyWithImpl<$Res>
           ? _value.loginStatus
           : loginStatus // ignore: cast_nullable_to_non_nullable
               as LoginStatus,
+      checkAuthStatus: null == checkAuthStatus
+          ? _value.checkAuthStatus
+          : checkAuthStatus // ignore: cast_nullable_to_non_nullable
+              as CheckAuthStatus,
       message: null == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -304,12 +478,16 @@ class __$$LoginStateImplCopyWithImpl<$Res>
 class _$LoginStateImpl implements _LoginState {
   const _$LoginStateImpl(
       {this.loginStatus = LoginStatus.initial,
+      this.checkAuthStatus = CheckAuthStatus.initial,
       this.message = '',
       this.user = const User()});
 
   @override
   @JsonKey()
   final LoginStatus loginStatus;
+  @override
+  @JsonKey()
+  final CheckAuthStatus checkAuthStatus;
   @override
   @JsonKey()
   final String message;
@@ -319,7 +497,7 @@ class _$LoginStateImpl implements _LoginState {
 
   @override
   String toString() {
-    return 'LoginState(loginStatus: $loginStatus, message: $message, user: $user)';
+    return 'LoginState(loginStatus: $loginStatus, checkAuthStatus: $checkAuthStatus, message: $message, user: $user)';
   }
 
   @override
@@ -329,12 +507,15 @@ class _$LoginStateImpl implements _LoginState {
             other is _$LoginStateImpl &&
             (identical(other.loginStatus, loginStatus) ||
                 other.loginStatus == loginStatus) &&
+            (identical(other.checkAuthStatus, checkAuthStatus) ||
+                other.checkAuthStatus == checkAuthStatus) &&
             (identical(other.message, message) || other.message == message) &&
             (identical(other.user, user) || other.user == user));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, loginStatus, message, user);
+  int get hashCode =>
+      Object.hash(runtimeType, loginStatus, checkAuthStatus, message, user);
 
   /// Create a copy of LoginState
   /// with the given fields replaced by the non-null parameter values.
@@ -348,11 +529,14 @@ class _$LoginStateImpl implements _LoginState {
 abstract class _LoginState implements LoginState {
   const factory _LoginState(
       {final LoginStatus loginStatus,
+      final CheckAuthStatus checkAuthStatus,
       final String message,
       final User user}) = _$LoginStateImpl;
 
   @override
   LoginStatus get loginStatus;
+  @override
+  CheckAuthStatus get checkAuthStatus;
   @override
   String get message;
   @override

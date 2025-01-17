@@ -17,10 +17,10 @@ class _StartupPageState extends State<StartupPage> {
   }) {
     return BlocListener<LoginBloc, LoginState>(
       listener: (context, state) {
-        final status = state.loginStatus;
+        final status = state.checkAuthStatus;
         final user = state.user;
 
-        if (status == LoginStatus.success) {
+        if (status == CheckAuthStatus.success) {
           if (user.authStatus == AuthenticationStatus.unauthenticated) {
             context.go('/login');
           }

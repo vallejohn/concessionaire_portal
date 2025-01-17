@@ -1,5 +1,5 @@
 import 'package:go_router/go_router.dart';
-import 'package:mwd_concessionaire_portal/demo_pages/home_page.dart';
+import 'package:mwd_concessionaire_portal/src/authentication/presentation/pages/register_page.dart';
 import 'package:mwd_concessionaire_portal/src/authentication/presentation/pages/startup_page.dart';
 
 import '../../src/authentication/presentation/pages/login_page.dart';
@@ -35,6 +35,12 @@ class _RouteConfiguration {
         GoRoute(
           path: '/login',
           builder: (context, state) => const LoginPage(),
+          routes: [
+            GoRoute(
+              path: '/register',
+              builder: (context, state) => const RegisterPage(),
+            ),
+          ]
         ),
       ]
   );

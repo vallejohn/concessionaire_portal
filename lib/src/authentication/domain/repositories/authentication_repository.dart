@@ -1,3 +1,4 @@
+import 'package:mwd_concessionaire_portal/src/authentication/core/params.dart';
 import 'package:mwd_concessionaire_portal/src/authentication/data/models/user.dart';
 
 import '../../../../core/exceptions/failure.dart';
@@ -10,4 +11,5 @@ abstract class AuthenticationRepository {
   AuthenticationRepository({required this.dataSource});
 
   Future<Either<Failure, User>> requestAuthenticationStatus();
+  Future<Either<Failure, User>> doLogin(LoginParams params);
 }

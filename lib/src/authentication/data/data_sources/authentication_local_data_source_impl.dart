@@ -1,6 +1,7 @@
 import 'package:get_it/get_it.dart';
 
 import '../../../../core/db/hive/collections/authentication_collection.dart';
+import '../../core/params.dart';
 import '../models/user.dart';
 import 'authentication_data_source.dart';
 
@@ -14,5 +15,11 @@ class AuthenticationLocalDataSourceImpl extends AuthenticationDataSource{
     final auth = await _authenticationCollection.read();
     if(auth == null) return User.unauthenticated();
     return auth.user;
+  }
+
+  @override
+  Future<User> doLogin(LoginParams params) {
+    // TODO: implement doLogin
+    throw UnimplementedError();
   }
 }
