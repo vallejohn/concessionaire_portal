@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mwd_concessionaire_portal/core/form_validator/form_validators.dart';
 import 'package:mwd_concessionaire_portal/demo_pages/otp_page.dart';
 
 class RegisterPage extends StatefulWidget {
@@ -55,21 +56,27 @@ class _RegisterPageState extends State<RegisterPage> {
                     )),
                 const SizedBox(height: 30),
                 TextFormField(
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
                   decoration: const InputDecoration(
-                    hintText: 'Account number',
+                    hintText: 'Phone Number',
                   ),
+                  validator: (value) => PhoneNumberValidator.dirty(value).error,
                 ),
                 const SizedBox(height: 10),
                 TextFormField(
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
                   decoration: const InputDecoration(
-                    hintText: 'First name',
+                    hintText: 'First Name',
                   ),
+                  validator: (value) => EmptyFieldValidator.dirty(value).error,
                 ),
                 const SizedBox(height: 10),
                 TextFormField(
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
                   decoration: const InputDecoration(
-                    hintText: 'Last name',
+                    hintText: 'Last Name',
                   ),
+                  validator: (value) => EmptyFieldValidator.dirty(value).error,
                 ),
                 const SizedBox(height: 10),
                 TextFormField(
@@ -86,7 +93,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 TextFormField(
                   obscureText: true,
                   decoration: InputDecoration(
-                    hintText: 'Confirm password',
+                    hintText: 'Confirm Password',
                     suffixIcon: IconButton(
                       onPressed: () {},
                       icon: const Icon(Icons.visibility_off),

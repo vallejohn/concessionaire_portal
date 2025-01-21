@@ -34,7 +34,7 @@ class _LoginPageState extends State<LoginPage> {
       decoration: const InputDecoration(
         hintText: 'Email address',
       ),
-      validator: (value) => EmailValidator.dirty(value?? '').error,
+      validator: (value) => EmailValidator.dirty(value).error,
     );
 
     final passwordField = TextFormField(
@@ -53,7 +53,7 @@ class _LoginPageState extends State<LoginPage> {
               !_passwordVisibility ? Icons.visibility_off : Icons.visibility),
         ),
       ),
-      validator: (value) => PasswordValidator.dirty(value?? '').error,
+      validator: (value) => PasswordValidator.dirty(value).error,
     );
 
     loginButton(LoginBloc loginBloc) => SizedBox(
