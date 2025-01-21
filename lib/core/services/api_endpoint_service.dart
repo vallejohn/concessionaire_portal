@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter_flavor/flutter_flavor.dart';
 import 'package:mwd_concessionaire_portal/core/exceptions/authentication_exception.dart';
 
-enum AuthenticationEndpoint { login }
+enum AuthenticationEndpoint { login, register }
 
 class EndpointResponse {
   final int? statusCode;
@@ -46,6 +46,12 @@ class APIEndpointService {
         case AuthenticationEndpoint.login:
           final response = await _dio.post(
             '$_baseUrl/api/login',
+            data: data,
+          );
+          return EndpointResponse(body: response.data);
+        case AuthenticationEndpoint.register:
+          final response = await _dio.post(
+            '$_baseUrl/api/register',
             data: data,
           );
           return EndpointResponse(body: response.data);

@@ -8,6 +8,8 @@ import 'package:mwd_concessionaire_portal/demo_pages/register_page.dart';
 import 'package:mwd_concessionaire_portal/src/authentication/core/params.dart';
 import 'package:mwd_concessionaire_portal/src/authentication/presentation/blocs/login/login_bloc.dart';
 
+import '../../../../core/util/cubit/widget_cubit.dart';
+
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
 
@@ -18,10 +20,10 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   final _formKey = GlobalKey<FormState>();
 
-  bool _passwordVisibility = false;
-
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+
+  final WidgetCubit<bool> _passwordVisibilityCubit = WidgetCubit<bool>(false);
 
   @override
   Widget build(BuildContext context) {
@@ -37,23 +39,25 @@ class _LoginPageState extends State<LoginPage> {
       validator: (value) => EmailValidator.dirty(value).error,
     );
 
-    final passwordField = TextFormField(
-      controller: _passwordController,
-      autovalidateMode: AutovalidateMode.onUserInteraction,
-      obscureText: !_passwordVisibility,
-      decoration: InputDecoration(
-        hintText: 'Password',
-        suffixIcon: IconButton(
-          onPressed: () {
-            setState(() {
-              _passwordVisibility = !_passwordVisibility;
-            });
-          },
-          icon: Icon(
-              !_passwordVisibility ? Icons.visibility_off : Icons.visibility),
-        ),
-      ),
-      validator: (value) => PasswordValidator.dirty(value).error,
+    final passwordField =  BlocBuilder<WidgetCubit<bool>, bool>(
+      bloc: _passwordVisibilityCubit,
+      builder: (context, visible) {
+        return TextFormField(
+          controller: _passwordController,
+          autovalidateMode: AutovalidateMode.onUserInteraction,
+          obscureText: !visible,
+          decoration: InputDecoration(
+            hintText: 'Password',
+            suffixIcon: IconButton(
+              onPressed: () {
+                _passwordVisibilityCubit.onUpdateState(!visible);
+              },
+              icon: Icon(visible? Icons.visibility : Icons.visibility_off),
+            ),
+          ),
+          validator: (value) => PasswordValidator.dirty(value).error,
+        );
+      }
     );
 
     loginButton(LoginBloc loginBloc) => SizedBox(

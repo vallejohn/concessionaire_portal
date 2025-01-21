@@ -41,6 +41,22 @@ class PasswordValidator extends FormzInput<String?, String> {
   }
 }
 
+class ConfirmPasswordValidator extends FormzInput<String?, String> {
+  const ConfirmPasswordValidator.pure(this.matchTo) : super.pure('');
+
+  const ConfirmPasswordValidator.dirty(this.matchTo, [super.value = ''])
+      : super.dirty();
+
+  final String matchTo;
+
+  @override
+  String? validator(String? value) {
+    if (value == null || value.isEmpty) return 'Please re-enter your password';
+    if (value != matchTo) return 'Password does not match';
+    return null;
+  }
+}
+
 class PhoneNumberValidator extends FormzInput<String?, String> {
   const PhoneNumberValidator.pure() : super.pure('');
 

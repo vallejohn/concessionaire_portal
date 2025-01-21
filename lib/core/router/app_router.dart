@@ -48,6 +48,10 @@ class _RouteConfiguration {
             ),
           ]
         ),
+        GoRoute(
+          path: '/otp',
+          builder: (context, state) => const OtpPage(),
+        ),
       ]
   );
 }

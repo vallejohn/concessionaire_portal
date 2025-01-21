@@ -8,6 +8,7 @@ import 'package:mwd_concessionaire_portal/src/authentication/data/repositories/a
 import 'package:mwd_concessionaire_portal/src/authentication/domain/repositories/authentication_repository.dart';
 import 'package:mwd_concessionaire_portal/src/authentication/domain/usecases/login_usecase.dart';
 import 'package:mwd_concessionaire_portal/src/authentication/domain/usecases/request_auth_status_usecase.dart';
+import 'package:mwd_concessionaire_portal/src/authentication/domain/usecases/sign_up_usecase.dart';
 
 final getIt = GetIt.instance;
 
@@ -36,4 +37,5 @@ void _setupAuth(AuthenticationCollection collection) {
 
   getIt.registerLazySingleton(() => RequestAuthStatusUsecase(getIt()));
   getIt.registerLazySingleton(() => LoginUsecase(getIt()));
+  getIt.registerLazySingleton(() => SignUpUsecase(getIt()));
 }

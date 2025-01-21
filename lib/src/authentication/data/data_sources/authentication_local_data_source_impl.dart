@@ -22,4 +22,10 @@ class AuthenticationLocalDataSourceImpl extends AuthenticationDataSource{
     // TODO: implement doLogin
     throw UnimplementedError();
   }
+
+  @override
+  Future<User> doSignUp(SignUpParams params) {
+    // TODO: implement soSignUp
+    throw UnimplementedError();
+  }
 }

@@ -46,4 +46,26 @@ class AuthenticationRemoteDataSourceImpl extends AuthenticationDataSource {
       throw AuthenticationException.invalidLogin();
     }
   }
+
+  @override
+  Future<User> doSignUp(SignUpParams params)async {
+    final response = await APIEndpointService.authentication(
+      AuthenticationEndpoint.register,
+      {
+        'username': 'testUser',
+        'first_name': params.firstName,
+        'last_name': params.lastName,
+        'password': params.password,
+        'confirm_password': params.confirmPassword,
+        'phone': params.phone,
+      },
+    );
+
+    return const User(
+      id: '01292',
+      email: 'valjohn.teruel@gmail.com',
+      name: 'Valle John Teruel',
+      authStatus: AuthenticationStatus.unauthenticated,
+    );
+  }
 }

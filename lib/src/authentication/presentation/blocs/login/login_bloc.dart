@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:get_it/get_it.dart';
 import 'package:mwd_concessionaire_portal/core/exceptions/failure.dart';
+import 'package:mwd_concessionaire_portal/core/util/extensions.dart';
 import 'package:mwd_concessionaire_portal/src/authentication/core/params.dart';
 import 'package:mwd_concessionaire_portal/src/authentication/data/models/user.dart';
 import 'package:mwd_concessionaire_portal/src/authentication/domain/usecases/login_usecase.dart';
@@ -23,13 +24,6 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     on<_DoLogin>(_doLogin);
   }
 
-  String _getErrorMessage(Failure failure) {
-    return failure.when(
-      authentication: (authError) => authError.message,
-      hiveCollectionException: (hiveError) => hiveError.message,
-    );
-  }
-
   FutureOr<void> _onRequestAuthenticationStatus(
     _OnRequestAuthenticationStatus event,
     Emitter<LoginState> emit,
@@ -41,10 +35,10 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     final dataOrError = await _requestAuthentication();
 
     dataOrError.fold(
-      (error) {
+      (failure) {
         emit(state.copyWith(
           checkAuthStatus: CheckAuthStatus.failed,
-          message: _getErrorMessage(error),
+          message: failure.decodeError(),
         ));
       },
       (user) {
@@ -67,10 +61,10 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     final dataOrError = await _doLoginUsecase(event.param);
 
     dataOrError.fold(
-      (error) {
+      (failure) {
         emit(state.copyWith(
           loginStatus: LoginStatus.failed,
-          message: _getErrorMessage(error),
+          message: failure.decodeError(),
         ));
       },
       (user) {
