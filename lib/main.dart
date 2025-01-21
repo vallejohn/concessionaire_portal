@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mwd_concessionaire_portal/concessionaire_portal.dart';
 import 'package:mwd_concessionaire_portal/core/router/app_router.dart';
@@ -58,6 +59,11 @@ class AppBlocObserver extends BlocObserver {
 
 void main()async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+    statusBarColor: Colors.transparent, // Make the status bar transparent
+    statusBarIconBrightness: Brightness.dark, // Adjust icons to dark or light
+  ));
 
   Bloc.observer = AppBlocObserver();
 

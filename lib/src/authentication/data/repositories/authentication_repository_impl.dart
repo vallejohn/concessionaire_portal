@@ -1,4 +1,6 @@
 import 'package:dartz/dartz.dart';
+import 'package:dio/dio.dart';
+import 'package:mwd_concessionaire_portal/core/exceptions/authentication_exception.dart';
 
 import 'package:mwd_concessionaire_portal/core/exceptions/failure.dart';
 import 'package:mwd_concessionaire_portal/src/authentication/core/params.dart';
@@ -27,6 +29,8 @@ class AuthenticationRepositoryImpl extends AuthenticationRepository{
       return Right(data);
     }on HiveCollectionException catch(e){
       return Left(Failure.hiveCollectionException(e));
+    }on AuthenticationException catch(authError){
+      return Left(Failure.authentication(authError));
     }
   }
 }

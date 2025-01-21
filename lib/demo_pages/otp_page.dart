@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_svg/svg.dart';
 
 import 'home_page.dart';
 
@@ -51,62 +52,62 @@ class _OtpPageState extends State<OtpPage> {
     final textStyle = Theme.of(context).textTheme;
 
     return Scaffold(
-      body: SafeArea(
-        child: ListView(
-          padding: const EdgeInsets.symmetric(vertical: 40, horizontal: 40),
-          physics: const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
-          children: [
-            const SizedBox(
-              height: 40,
-            ),
-            Center(child: Text('Enter confirmation code'.toUpperCase(), style: textStyle.titleLarge?.copyWith(
-              fontWeight: FontWeight.w600,
-              color: Theme.of(context).primaryColor,
-            ),)),
-            const SizedBox(
-              height: 10,
-            ),
-            Center(child: Text('Enter the 6-digit code sent to your registered phone number or email. '
-                'If you didn\'t receive the code, you can request a new one after 60 seconds.',
-              textAlign: TextAlign.center,
-              style: textStyle.bodyMedium?.copyWith(
-            ),)),
-            const SizedBox(
-              height: 60,
-            ),
-            Form(child: Row(
-              children: List.generate(6, (index){
-                return Expanded(child: Padding(
-                  padding: const EdgeInsets.all(2),
-                  child: RawKeyboardListener(
-                    focusNode: FocusNode(),
-                    onKey: (event) => _moveToPreviousField(event, index),
-                    child: TextFormField(
-                      style: textStyle.titleLarge?.copyWith(fontWeight: FontWeight.w700),
-                      controller: _controllers[index],
-                      focusNode: _focusNodes[index],
-                      textAlign: TextAlign.center,
-                      inputFormatters: [
-                        LengthLimitingTextInputFormatter(1),
-                        FilteringTextInputFormatter.digitsOnly,
-                      ],
-                      onChanged: (value) => _moveToNextField(value, index),
-                    ),
+      body: ListView(
+        padding: const EdgeInsets.symmetric(vertical: 40, horizontal: 40),
+        physics: const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
+        children: [
+          const SizedBox(
+            height: 150,
+          ),
+          SvgPicture.asset('assets/illustrations/otp_illustration.svg'),
+          const SizedBox(
+            height: 40,
+          ),
+          Center(child: Text('Enter confirmation code'.toUpperCase(), style: textStyle.bodyLarge?.copyWith(
+              fontWeight: FontWeight.w700,
+              color: Theme.of(context).primaryColor),)),
+          const SizedBox(
+            height: 10,
+          ),
+          Center(child: Text('Enter the 6-digit code sent to your registered phone number or email. '
+              'If you didn\'t receive the code, you can request a new one after 60 seconds.',
+            textAlign: TextAlign.center,
+            style: textStyle.bodySmall,)),
+          const SizedBox(
+            height: 60,
+          ),
+          Form(child: Row(
+            children: List.generate(6, (index){
+              return Expanded(child: Padding(
+                padding: const EdgeInsets.all(2),
+                child: RawKeyboardListener(
+                  focusNode: FocusNode(),
+                  onKey: (event) => _moveToPreviousField(event, index),
+                  child: TextFormField(
+                    style: textStyle.titleLarge?.copyWith(fontWeight: FontWeight.w700),
+                    controller: _controllers[index],
+                    focusNode: _focusNodes[index],
+                    textAlign: TextAlign.center,
+                    inputFormatters: [
+                      LengthLimitingTextInputFormatter(1),
+                      FilteringTextInputFormatter.digitsOnly,
+                    ],
+                    onChanged: (value) => _moveToNextField(value, index),
                   ),
-                ));
-              }))
+                ),
+              ));
+            }))
+          ),
+          const SizedBox(height: 20,),
+          SizedBox(
+            width: MediaQuery.of(context).size.width,
+            child: FilledButton(
+              onPressed: () {
+                _confirmOtp();
+              }, child: _confirmingOtp? const SizedBox(width: 20, height: 20, child: CircularProgressIndicator(backgroundColor: Colors.white, strokeWidth: 2,)) :  const Text('Confirm OTP'),
             ),
-            const SizedBox(height: 20,),
-            SizedBox(
-              width: MediaQuery.of(context).size.width,
-              child: FilledButton(
-                onPressed: () {
-                  _confirmOtp();
-                }, child: _confirmingOtp? const SizedBox(width: 20, height: 20, child: CircularProgressIndicator(backgroundColor: Colors.white, strokeWidth: 2,)) :  const Text('Confirm OTP'),
-              ),
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

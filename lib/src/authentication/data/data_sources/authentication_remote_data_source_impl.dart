@@ -26,7 +26,12 @@ class AuthenticationRemoteDataSourceImpl extends AuthenticationDataSource {
       {'username': params.username, 'password': params.password},
     );
 
-    return _testLogin(params);
+    return const User(
+      id: '01292',
+      email: 'valjohn.teruel@gmail.com',
+      name: 'Valle John Teruel',
+      authStatus: AuthenticationStatus.unauthenticated,
+    );
   }
 
   User _testLogin(LoginParams params) {
