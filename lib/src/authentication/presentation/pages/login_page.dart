@@ -31,12 +31,12 @@ class _LoginPageState extends State<LoginPage> {
 
     final emailField = TextFormField(
       controller: _usernameController,
-      keyboardType: TextInputType.emailAddress,
+      //keyboardType: TextInputType.emailAddress,
       autovalidateMode: AutovalidateMode.onUserInteraction,
       decoration: const InputDecoration(
         hintText: 'Email address',
       ),
-      validator: (value) => EmailValidator.dirty(value).error,
+      //validator: (value) => EmailValidator.dirty(value).error,
     );
 
     final passwordField =  BlocBuilder<WidgetCubit<bool>, bool>(

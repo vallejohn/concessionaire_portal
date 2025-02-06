@@ -9,7 +9,7 @@ enum AuthenticationStatus {authenticated, unauthenticated, unknown}
 @freezed
 class UserAuth with _$UserAuth {
   const factory UserAuth({
-    @Default(User()) User user,
+    User? user,
   }) = _UserAuth;
 
   factory UserAuth.fromJson(Map<String, dynamic> json) => _$UserAuthFromJson(json);

@@ -9,7 +9,7 @@ part of 'user_auth.dart';
 _$UserAuthImpl _$$UserAuthImplFromJson(Map<String, dynamic> json) =>
     _$UserAuthImpl(
       user: json['user'] == null
-          ? const User()
+          ? null
           : User.fromJson(json['user'] as Map<String, dynamic>),
     );
 

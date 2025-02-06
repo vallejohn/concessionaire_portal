@@ -20,7 +20,7 @@ UserAuth _$UserAuthFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$UserAuth {
-  User get user => throw _privateConstructorUsedError;
+  User? get user => throw _privateConstructorUsedError;
 
   /// Serializes this UserAuth to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -37,9 +37,9 @@ abstract class $UserAuthCopyWith<$Res> {
   factory $UserAuthCopyWith(UserAuth value, $Res Function(UserAuth) then) =
       _$UserAuthCopyWithImpl<$Res, UserAuth>;
   @useResult
-  $Res call({User user});
+  $Res call({User? user});
 
-  $UserCopyWith<$Res> get user;
+  $UserCopyWith<$Res>? get user;
 }
 
 /// @nodoc
@@ -57,13 +57,13 @@ class _$UserAuthCopyWithImpl<$Res, $Val extends UserAuth>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? user = null,
+    Object? user = freezed,
   }) {
     return _then(_value.copyWith(
-      user: null == user
+      user: freezed == user
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
-              as User,
+              as User?,
     ) as $Val);
   }
 
@@ -71,8 +71,12 @@ class _$UserAuthCopyWithImpl<$Res, $Val extends UserAuth>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $UserCopyWith<$Res> get user {
-    return $UserCopyWith<$Res>(_value.user, (value) {
+  $UserCopyWith<$Res>? get user {
+    if (_value.user == null) {
+      return null;
+    }
+
+    return $UserCopyWith<$Res>(_value.user!, (value) {
       return _then(_value.copyWith(user: value) as $Val);
     });
   }
@@ -86,10 +90,10 @@ abstract class _$$UserAuthImplCopyWith<$Res>
       __$$UserAuthImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({User user});
+  $Res call({User? user});
 
   @override
-  $UserCopyWith<$Res> get user;
+  $UserCopyWith<$Res>? get user;
 }
 
 /// @nodoc
@@ -105,13 +109,13 @@ class __$$UserAuthImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? user = null,
+    Object? user = freezed,
   }) {
     return _then(_$UserAuthImpl(
-      user: null == user
+      user: freezed == user
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
-              as User,
+              as User?,
     ));
   }
 }
@@ -119,14 +123,13 @@ class __$$UserAuthImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$UserAuthImpl implements _UserAuth {
-  const _$UserAuthImpl({this.user = const User()});
+  const _$UserAuthImpl({this.user});
 
   factory _$UserAuthImpl.fromJson(Map<String, dynamic> json) =>
       _$$UserAuthImplFromJson(json);
 
   @override
-  @JsonKey()
-  final User user;
+  final User? user;
 
   @override
   String toString() {
@@ -162,13 +165,13 @@ class _$UserAuthImpl implements _UserAuth {
 }
 
 abstract class _UserAuth implements UserAuth {
-  const factory _UserAuth({final User user}) = _$UserAuthImpl;
+  const factory _UserAuth({final User? user}) = _$UserAuthImpl;
 
   factory _UserAuth.fromJson(Map<String, dynamic> json) =
       _$UserAuthImpl.fromJson;
 
   @override
-  User get user;
+  User? get user;
 
   /// Create a copy of UserAuth
   /// with the given fields replaced by the non-null parameter values.

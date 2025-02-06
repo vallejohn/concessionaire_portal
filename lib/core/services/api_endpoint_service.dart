@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_flavor/flutter_flavor.dart';
+import 'package:logger/logger.dart';
 import 'package:mwd_concessionaire_portal/core/exceptions/authentication_exception.dart';
 
 enum AuthenticationEndpoint { login, register }
@@ -32,32 +33,45 @@ class APIEndpointService {
         logPrint: (Object obj) {},
       ))
       ..options.headers = {
-        'content-type': 'application/json',
-        //'Authorization': 'Bearer ',
+        'Accept': 'application/json',
       };
   }
 
   static Future<EndpointResponse> authentication(
     AuthenticationEndpoint endpoint,
-      Map<String, dynamic> data,
-  )async {
-    try{
+    Map<String, dynamic> data,
+  ) async {
+    try {
+      late EndpointResponse endpointResponse;
       switch (endpoint) {
         case AuthenticationEndpoint.login:
-          final response = await _dio.post(
+          endpointResponse= await _doPostRequest(
             '$_baseUrl/api/login',
-            data: data,
+            params: data,
           );
-          return EndpointResponse(body: response.data);
+          break;
         case AuthenticationEndpoint.register:
-          final response = await _dio.post(
+          endpointResponse = await _doPostRequest(
             '$_baseUrl/api/register',
-            data: data,
+            params: data,
           );
-          return EndpointResponse(body: response.data);
+          break;
       }
-    }on DioException catch(dioError){
-      throw AuthenticationException(dioError.message?? 'Unknown Error');
+      return endpointResponse;
+    } on DioException catch (dioError) {
+      throw AuthenticationException(dioError.message ?? 'Unknown Error');
     }
+  }
+
+  static Future<EndpointResponse> _doPostRequest(
+    String url, {Map<String, dynamic>? params,}
+  ) async {
+    Logger().d({'Path': url, 'Parameters': params});
+    final response = await _dio.post(
+      url,
+      data: params,
+    );
+    Logger().d({'Path': url, 'Parameters': params, 'Endpoint Response': response.data});
+    return EndpointResponse(body: response.data);
   }
 }

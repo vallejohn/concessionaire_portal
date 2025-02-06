@@ -5,13 +5,13 @@ import 'package:mwd_concessionaire_portal/src/authentication/domain/repositories
 
 import '../../data/models/user.dart';
 
-class RequestAuthStatusUsecase extends UseCaseWithNoParams<User>{
+class RequestAuthStatusUsecase extends UseCaseWithNoParams<User?>{
   final AuthenticationRepository _authenticationRepository;
 
   RequestAuthStatusUsecase(this._authenticationRepository);
 
   @override
-  Future<Either<Failure, User>> call() {
+  Future<Either<Failure, User?>> call() {
     return _authenticationRepository.requestAuthenticationStatus();
   }
 }

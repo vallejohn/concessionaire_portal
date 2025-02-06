@@ -11,7 +11,7 @@ void main(){
   FlavorConfig(
     name: Environment.staging,
     variables: {
-      'baseUrl': 'http://mwd-bi.test'
+      'baseUrl': 'http://sg.talisaywaterdistrict.gov.ph'
     }
   );
 

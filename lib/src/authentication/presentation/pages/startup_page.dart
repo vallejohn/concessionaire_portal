@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:mwd_concessionaire_portal/src/authentication/data/models/user.dart';
 import 'package:mwd_concessionaire_portal/src/authentication/presentation/blocs/login/login_bloc.dart';
 
 class StartupPage extends StatefulWidget {
@@ -21,11 +20,9 @@ class _StartupPageState extends State<StartupPage> {
         final user = state.user;
 
         if (status == CheckAuthStatus.success) {
-          if (user.authStatus == AuthenticationStatus.unauthenticated) {
+          if (user == null) {
             context.go('/login');
-          }
-
-          if (user.authStatus == AuthenticationStatus.authenticated) {
+          }else{
             context.go('/home');
           }
         }

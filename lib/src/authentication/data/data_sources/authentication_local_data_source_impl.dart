@@ -11,10 +11,9 @@ class AuthenticationLocalDataSourceImpl extends AuthenticationDataSource{
   final _authenticationCollection = GetIt.instance<AuthenticationCollection>();
 
   @override
-  Future<User> requestAuthenticationStatus()async {
+  Future<User?> requestAuthenticationStatus()async {
     final auth = await _authenticationCollection.read();
-    if(auth == null) return User.unauthenticated();
-    return auth.user;
+    return auth?.user;
   }
 
   @override

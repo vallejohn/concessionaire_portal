@@ -20,10 +20,29 @@ User _$UserFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$User {
-  String get id => throw _privateConstructorUsedError;
+  int? get id => throw _privateConstructorUsedError;
+  String get username => throw _privateConstructorUsedError;
   String get email => throw _privateConstructorUsedError;
-  String get name => throw _privateConstructorUsedError; // Optional
-  AuthenticationStatus get authStatus => throw _privateConstructorUsedError;
+  @JsonKey(name: 'first_name')
+  String get firstName => throw _privateConstructorUsedError;
+  @JsonKey(name: 'last_name')
+  String get lastName => throw _privateConstructorUsedError;
+  @JsonKey(name: 'is_password_reset')
+  int get isPasswordReset => throw _privateConstructorUsedError;
+  @JsonKey(name: 'phone_verified_at')
+  String get phoneVerifiedAt => throw _privateConstructorUsedError;
+  @JsonKey(name: 'user_type_id')
+  int get userTypeId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'deleted_at')
+  String get deletedAt => throw _privateConstructorUsedError;
+  @JsonKey(name: 'created_at')
+  String get createdAt => throw _privateConstructorUsedError;
+  @JsonKey(name: 'updated_at')
+  String get updatedAt => throw _privateConstructorUsedError;
+  @JsonKey(name: 'access_token')
+  String get accessToken => throw _privateConstructorUsedError;
+  @JsonKey(name: 'token_type')
+  String get tokenType => throw _privateConstructorUsedError;
 
   /// Serializes this User to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -40,7 +59,19 @@ abstract class $UserCopyWith<$Res> {
       _$UserCopyWithImpl<$Res, User>;
   @useResult
   $Res call(
-      {String id, String email, String name, AuthenticationStatus authStatus});
+      {int? id,
+      String username,
+      String email,
+      @JsonKey(name: 'first_name') String firstName,
+      @JsonKey(name: 'last_name') String lastName,
+      @JsonKey(name: 'is_password_reset') int isPasswordReset,
+      @JsonKey(name: 'phone_verified_at') String phoneVerifiedAt,
+      @JsonKey(name: 'user_type_id') int userTypeId,
+      @JsonKey(name: 'deleted_at') String deletedAt,
+      @JsonKey(name: 'created_at') String createdAt,
+      @JsonKey(name: 'updated_at') String updatedAt,
+      @JsonKey(name: 'access_token') String accessToken,
+      @JsonKey(name: 'token_type') String tokenType});
 }
 
 /// @nodoc
@@ -58,28 +89,73 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
+    Object? id = freezed,
+    Object? username = null,
     Object? email = null,
-    Object? name = null,
-    Object? authStatus = null,
+    Object? firstName = null,
+    Object? lastName = null,
+    Object? isPasswordReset = null,
+    Object? phoneVerifiedAt = null,
+    Object? userTypeId = null,
+    Object? deletedAt = null,
+    Object? createdAt = null,
+    Object? updatedAt = null,
+    Object? accessToken = null,
+    Object? tokenType = null,
   }) {
     return _then(_value.copyWith(
-      id: null == id
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      username: null == username
+          ? _value.username
+          : username // ignore: cast_nullable_to_non_nullable
               as String,
       email: null == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
               as String,
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
+      firstName: null == firstName
+          ? _value.firstName
+          : firstName // ignore: cast_nullable_to_non_nullable
               as String,
-      authStatus: null == authStatus
-          ? _value.authStatus
-          : authStatus // ignore: cast_nullable_to_non_nullable
-              as AuthenticationStatus,
+      lastName: null == lastName
+          ? _value.lastName
+          : lastName // ignore: cast_nullable_to_non_nullable
+              as String,
+      isPasswordReset: null == isPasswordReset
+          ? _value.isPasswordReset
+          : isPasswordReset // ignore: cast_nullable_to_non_nullable
+              as int,
+      phoneVerifiedAt: null == phoneVerifiedAt
+          ? _value.phoneVerifiedAt
+          : phoneVerifiedAt // ignore: cast_nullable_to_non_nullable
+              as String,
+      userTypeId: null == userTypeId
+          ? _value.userTypeId
+          : userTypeId // ignore: cast_nullable_to_non_nullable
+              as int,
+      deletedAt: null == deletedAt
+          ? _value.deletedAt
+          : deletedAt // ignore: cast_nullable_to_non_nullable
+              as String,
+      createdAt: null == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as String,
+      updatedAt: null == updatedAt
+          ? _value.updatedAt
+          : updatedAt // ignore: cast_nullable_to_non_nullable
+              as String,
+      accessToken: null == accessToken
+          ? _value.accessToken
+          : accessToken // ignore: cast_nullable_to_non_nullable
+              as String,
+      tokenType: null == tokenType
+          ? _value.tokenType
+          : tokenType // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 }
@@ -92,7 +168,19 @@ abstract class _$$UserImplCopyWith<$Res> implements $UserCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {String id, String email, String name, AuthenticationStatus authStatus});
+      {int? id,
+      String username,
+      String email,
+      @JsonKey(name: 'first_name') String firstName,
+      @JsonKey(name: 'last_name') String lastName,
+      @JsonKey(name: 'is_password_reset') int isPasswordReset,
+      @JsonKey(name: 'phone_verified_at') String phoneVerifiedAt,
+      @JsonKey(name: 'user_type_id') int userTypeId,
+      @JsonKey(name: 'deleted_at') String deletedAt,
+      @JsonKey(name: 'created_at') String createdAt,
+      @JsonKey(name: 'updated_at') String updatedAt,
+      @JsonKey(name: 'access_token') String accessToken,
+      @JsonKey(name: 'token_type') String tokenType});
 }
 
 /// @nodoc
@@ -107,61 +195,141 @@ class __$$UserImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
+    Object? id = freezed,
+    Object? username = null,
     Object? email = null,
-    Object? name = null,
-    Object? authStatus = null,
+    Object? firstName = null,
+    Object? lastName = null,
+    Object? isPasswordReset = null,
+    Object? phoneVerifiedAt = null,
+    Object? userTypeId = null,
+    Object? deletedAt = null,
+    Object? createdAt = null,
+    Object? updatedAt = null,
+    Object? accessToken = null,
+    Object? tokenType = null,
   }) {
     return _then(_$UserImpl(
-      id: null == id
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      username: null == username
+          ? _value.username
+          : username // ignore: cast_nullable_to_non_nullable
               as String,
       email: null == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
               as String,
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
+      firstName: null == firstName
+          ? _value.firstName
+          : firstName // ignore: cast_nullable_to_non_nullable
               as String,
-      authStatus: null == authStatus
-          ? _value.authStatus
-          : authStatus // ignore: cast_nullable_to_non_nullable
-              as AuthenticationStatus,
+      lastName: null == lastName
+          ? _value.lastName
+          : lastName // ignore: cast_nullable_to_non_nullable
+              as String,
+      isPasswordReset: null == isPasswordReset
+          ? _value.isPasswordReset
+          : isPasswordReset // ignore: cast_nullable_to_non_nullable
+              as int,
+      phoneVerifiedAt: null == phoneVerifiedAt
+          ? _value.phoneVerifiedAt
+          : phoneVerifiedAt // ignore: cast_nullable_to_non_nullable
+              as String,
+      userTypeId: null == userTypeId
+          ? _value.userTypeId
+          : userTypeId // ignore: cast_nullable_to_non_nullable
+              as int,
+      deletedAt: null == deletedAt
+          ? _value.deletedAt
+          : deletedAt // ignore: cast_nullable_to_non_nullable
+              as String,
+      createdAt: null == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as String,
+      updatedAt: null == updatedAt
+          ? _value.updatedAt
+          : updatedAt // ignore: cast_nullable_to_non_nullable
+              as String,
+      accessToken: null == accessToken
+          ? _value.accessToken
+          : accessToken // ignore: cast_nullable_to_non_nullable
+              as String,
+      tokenType: null == tokenType
+          ? _value.tokenType
+          : tokenType // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(explicitToJson: true)
 class _$UserImpl implements _User {
   const _$UserImpl(
-      {this.id = '',
+      {this.id,
+      this.username = '',
       this.email = '',
-      this.name = '',
-      this.authStatus = AuthenticationStatus.unknown});
+      @JsonKey(name: 'first_name') this.firstName = '',
+      @JsonKey(name: 'last_name') this.lastName = '',
+      @JsonKey(name: 'is_password_reset') this.isPasswordReset = 0,
+      @JsonKey(name: 'phone_verified_at') this.phoneVerifiedAt = '',
+      @JsonKey(name: 'user_type_id') this.userTypeId = 0,
+      @JsonKey(name: 'deleted_at') this.deletedAt = '',
+      @JsonKey(name: 'created_at') this.createdAt = '',
+      @JsonKey(name: 'updated_at') this.updatedAt = '',
+      @JsonKey(name: 'access_token') this.accessToken = '',
+      @JsonKey(name: 'token_type') this.tokenType = ''});
 
   factory _$UserImpl.fromJson(Map<String, dynamic> json) =>
       _$$UserImplFromJson(json);
 
   @override
+  final int? id;
+  @override
   @JsonKey()
-  final String id;
+  final String username;
   @override
   @JsonKey()
   final String email;
   @override
-  @JsonKey()
-  final String name;
-// Optional
+  @JsonKey(name: 'first_name')
+  final String firstName;
   @override
-  @JsonKey()
-  final AuthenticationStatus authStatus;
+  @JsonKey(name: 'last_name')
+  final String lastName;
+  @override
+  @JsonKey(name: 'is_password_reset')
+  final int isPasswordReset;
+  @override
+  @JsonKey(name: 'phone_verified_at')
+  final String phoneVerifiedAt;
+  @override
+  @JsonKey(name: 'user_type_id')
+  final int userTypeId;
+  @override
+  @JsonKey(name: 'deleted_at')
+  final String deletedAt;
+  @override
+  @JsonKey(name: 'created_at')
+  final String createdAt;
+  @override
+  @JsonKey(name: 'updated_at')
+  final String updatedAt;
+  @override
+  @JsonKey(name: 'access_token')
+  final String accessToken;
+  @override
+  @JsonKey(name: 'token_type')
+  final String tokenType;
 
   @override
   String toString() {
-    return 'User(id: $id, email: $email, name: $name, authStatus: $authStatus)';
+    return 'User(id: $id, username: $username, email: $email, firstName: $firstName, lastName: $lastName, isPasswordReset: $isPasswordReset, phoneVerifiedAt: $phoneVerifiedAt, userTypeId: $userTypeId, deletedAt: $deletedAt, createdAt: $createdAt, updatedAt: $updatedAt, accessToken: $accessToken, tokenType: $tokenType)';
   }
 
   @override
@@ -170,15 +338,48 @@ class _$UserImpl implements _User {
         (other.runtimeType == runtimeType &&
             other is _$UserImpl &&
             (identical(other.id, id) || other.id == id) &&
+            (identical(other.username, username) ||
+                other.username == username) &&
             (identical(other.email, email) || other.email == email) &&
-            (identical(other.name, name) || other.name == name) &&
-            (identical(other.authStatus, authStatus) ||
-                other.authStatus == authStatus));
+            (identical(other.firstName, firstName) ||
+                other.firstName == firstName) &&
+            (identical(other.lastName, lastName) ||
+                other.lastName == lastName) &&
+            (identical(other.isPasswordReset, isPasswordReset) ||
+                other.isPasswordReset == isPasswordReset) &&
+            (identical(other.phoneVerifiedAt, phoneVerifiedAt) ||
+                other.phoneVerifiedAt == phoneVerifiedAt) &&
+            (identical(other.userTypeId, userTypeId) ||
+                other.userTypeId == userTypeId) &&
+            (identical(other.deletedAt, deletedAt) ||
+                other.deletedAt == deletedAt) &&
+            (identical(other.createdAt, createdAt) ||
+                other.createdAt == createdAt) &&
+            (identical(other.updatedAt, updatedAt) ||
+                other.updatedAt == updatedAt) &&
+            (identical(other.accessToken, accessToken) ||
+                other.accessToken == accessToken) &&
+            (identical(other.tokenType, tokenType) ||
+                other.tokenType == tokenType));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, id, email, name, authStatus);
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      username,
+      email,
+      firstName,
+      lastName,
+      isPasswordReset,
+      phoneVerifiedAt,
+      userTypeId,
+      deletedAt,
+      createdAt,
+      updatedAt,
+      accessToken,
+      tokenType);
 
   /// Create a copy of User
   /// with the given fields replaced by the non-null parameter values.
@@ -198,21 +399,58 @@ class _$UserImpl implements _User {
 
 abstract class _User implements User {
   const factory _User(
-      {final String id,
+      {final int? id,
+      final String username,
       final String email,
-      final String name,
-      final AuthenticationStatus authStatus}) = _$UserImpl;
+      @JsonKey(name: 'first_name') final String firstName,
+      @JsonKey(name: 'last_name') final String lastName,
+      @JsonKey(name: 'is_password_reset') final int isPasswordReset,
+      @JsonKey(name: 'phone_verified_at') final String phoneVerifiedAt,
+      @JsonKey(name: 'user_type_id') final int userTypeId,
+      @JsonKey(name: 'deleted_at') final String deletedAt,
+      @JsonKey(name: 'created_at') final String createdAt,
+      @JsonKey(name: 'updated_at') final String updatedAt,
+      @JsonKey(name: 'access_token') final String accessToken,
+      @JsonKey(name: 'token_type') final String tokenType}) = _$UserImpl;
 
   factory _User.fromJson(Map<String, dynamic> json) = _$UserImpl.fromJson;
 
   @override
-  String get id;
+  int? get id;
+  @override
+  String get username;
   @override
   String get email;
   @override
-  String get name; // Optional
+  @JsonKey(name: 'first_name')
+  String get firstName;
   @override
-  AuthenticationStatus get authStatus;
+  @JsonKey(name: 'last_name')
+  String get lastName;
+  @override
+  @JsonKey(name: 'is_password_reset')
+  int get isPasswordReset;
+  @override
+  @JsonKey(name: 'phone_verified_at')
+  String get phoneVerifiedAt;
+  @override
+  @JsonKey(name: 'user_type_id')
+  int get userTypeId;
+  @override
+  @JsonKey(name: 'deleted_at')
+  String get deletedAt;
+  @override
+  @JsonKey(name: 'created_at')
+  String get createdAt;
+  @override
+  @JsonKey(name: 'updated_at')
+  String get updatedAt;
+  @override
+  @JsonKey(name: 'access_token')
+  String get accessToken;
+  @override
+  @JsonKey(name: 'token_type')
+  String get tokenType;
 
   /// Create a copy of User
   /// with the given fields replaced by the non-null parameter values.

@@ -9,6 +9,6 @@ class LoginState with _$LoginState {
     @Default(LoginStatus.initial) LoginStatus loginStatus,
     @Default(CheckAuthStatus.initial) CheckAuthStatus checkAuthStatus,
     @Default('') String message,
-    @Default(User()) User user,
+    User? user,
   }) = _LoginState;
 }

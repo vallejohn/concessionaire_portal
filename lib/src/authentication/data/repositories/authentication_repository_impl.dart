@@ -13,7 +13,7 @@ class AuthenticationRepositoryImpl extends AuthenticationRepository{
   AuthenticationRepositoryImpl({required super.dataSource});
 
   @override
-  Future<Either<Failure, User>> requestAuthenticationStatus()async {
+  Future<Either<Failure, User?>> requestAuthenticationStatus()async {
     try{
       final data = await dataSource.requestAuthenticationStatus();
       return Right(data);

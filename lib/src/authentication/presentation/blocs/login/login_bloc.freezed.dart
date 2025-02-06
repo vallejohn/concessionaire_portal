@@ -341,7 +341,7 @@ mixin _$LoginState {
   LoginStatus get loginStatus => throw _privateConstructorUsedError;
   CheckAuthStatus get checkAuthStatus => throw _privateConstructorUsedError;
   String get message => throw _privateConstructorUsedError;
-  User get user => throw _privateConstructorUsedError;
+  User? get user => throw _privateConstructorUsedError;
 
   /// Create a copy of LoginState
   /// with the given fields replaced by the non-null parameter values.
@@ -360,9 +360,9 @@ abstract class $LoginStateCopyWith<$Res> {
       {LoginStatus loginStatus,
       CheckAuthStatus checkAuthStatus,
       String message,
-      User user});
+      User? user});
 
-  $UserCopyWith<$Res> get user;
+  $UserCopyWith<$Res>? get user;
 }
 
 /// @nodoc
@@ -383,7 +383,7 @@ class _$LoginStateCopyWithImpl<$Res, $Val extends LoginState>
     Object? loginStatus = null,
     Object? checkAuthStatus = null,
     Object? message = null,
-    Object? user = null,
+    Object? user = freezed,
   }) {
     return _then(_value.copyWith(
       loginStatus: null == loginStatus
@@ -398,10 +398,10 @@ class _$LoginStateCopyWithImpl<$Res, $Val extends LoginState>
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
               as String,
-      user: null == user
+      user: freezed == user
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
-              as User,
+              as User?,
     ) as $Val);
   }
 
@@ -409,8 +409,12 @@ class _$LoginStateCopyWithImpl<$Res, $Val extends LoginState>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $UserCopyWith<$Res> get user {
-    return $UserCopyWith<$Res>(_value.user, (value) {
+  $UserCopyWith<$Res>? get user {
+    if (_value.user == null) {
+      return null;
+    }
+
+    return $UserCopyWith<$Res>(_value.user!, (value) {
       return _then(_value.copyWith(user: value) as $Val);
     });
   }
@@ -428,10 +432,10 @@ abstract class _$$LoginStateImplCopyWith<$Res>
       {LoginStatus loginStatus,
       CheckAuthStatus checkAuthStatus,
       String message,
-      User user});
+      User? user});
 
   @override
-  $UserCopyWith<$Res> get user;
+  $UserCopyWith<$Res>? get user;
 }
 
 /// @nodoc
@@ -450,7 +454,7 @@ class __$$LoginStateImplCopyWithImpl<$Res>
     Object? loginStatus = null,
     Object? checkAuthStatus = null,
     Object? message = null,
-    Object? user = null,
+    Object? user = freezed,
   }) {
     return _then(_$LoginStateImpl(
       loginStatus: null == loginStatus
@@ -465,10 +469,10 @@ class __$$LoginStateImplCopyWithImpl<$Res>
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
               as String,
-      user: null == user
+      user: freezed == user
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
-              as User,
+              as User?,
     ));
   }
 }
@@ -480,7 +484,7 @@ class _$LoginStateImpl implements _LoginState {
       {this.loginStatus = LoginStatus.initial,
       this.checkAuthStatus = CheckAuthStatus.initial,
       this.message = '',
-      this.user = const User()});
+      this.user});
 
   @override
   @JsonKey()
@@ -492,8 +496,7 @@ class _$LoginStateImpl implements _LoginState {
   @JsonKey()
   final String message;
   @override
-  @JsonKey()
-  final User user;
+  final User? user;
 
   @override
   String toString() {
@@ -531,7 +534,7 @@ abstract class _LoginState implements LoginState {
       {final LoginStatus loginStatus,
       final CheckAuthStatus checkAuthStatus,
       final String message,
-      final User user}) = _$LoginStateImpl;
+      final User? user}) = _$LoginStateImpl;
 
   @override
   LoginStatus get loginStatus;
@@ -540,7 +543,7 @@ abstract class _LoginState implements LoginState {
   @override
   String get message;
   @override
-  User get user;
+  User? get user;
 
   /// Create a copy of LoginState
   /// with the given fields replaced by the non-null parameter values.
