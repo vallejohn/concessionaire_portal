@@ -35,7 +35,7 @@ class AuthenticationRepositoryImpl extends AuthenticationRepository{
   }
 
   @override
-  Future<Either<Failure, User>> doSignUp(SignUpParams params)async {
+  Future<Either<Failure, User>> doSignUp(SignupParams params)async {
     try{
       final data = await dataSource.doSignUp(params);
       return Right(data);

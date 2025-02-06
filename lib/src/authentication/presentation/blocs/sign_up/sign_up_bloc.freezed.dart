@@ -16,20 +16,20 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$SignUpEvent {
-  SignUpParams get params => throw _privateConstructorUsedError;
+  SignupParams get params => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(SignUpParams params) doSignUp,
+    required TResult Function(SignupParams params) doSignUp,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(SignUpParams params)? doSignUp,
+    TResult? Function(SignupParams params)? doSignUp,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(SignUpParams params)? doSignUp,
+    TResult Function(SignupParams params)? doSignUp,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -63,7 +63,9 @@ abstract class $SignUpEventCopyWith<$Res> {
           SignUpEvent value, $Res Function(SignUpEvent) then) =
       _$SignUpEventCopyWithImpl<$Res, SignUpEvent>;
   @useResult
-  $Res call({SignUpParams params});
+  $Res call({SignupParams params});
+
+  $SignupParamsCopyWith<$Res> get params;
 }
 
 /// @nodoc
@@ -87,8 +89,18 @@ class _$SignUpEventCopyWithImpl<$Res, $Val extends SignUpEvent>
       params: null == params
           ? _value.params
           : params // ignore: cast_nullable_to_non_nullable
-              as SignUpParams,
+              as SignupParams,
     ) as $Val);
+  }
+
+  /// Create a copy of SignUpEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $SignupParamsCopyWith<$Res> get params {
+    return $SignupParamsCopyWith<$Res>(_value.params, (value) {
+      return _then(_value.copyWith(params: value) as $Val);
+    });
   }
 }
 
@@ -100,7 +112,10 @@ abstract class _$$DoSignUpImplCopyWith<$Res>
       __$$DoSignUpImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({SignUpParams params});
+  $Res call({SignupParams params});
+
+  @override
+  $SignupParamsCopyWith<$Res> get params;
 }
 
 /// @nodoc
@@ -122,7 +137,7 @@ class __$$DoSignUpImplCopyWithImpl<$Res>
       null == params
           ? _value.params
           : params // ignore: cast_nullable_to_non_nullable
-              as SignUpParams,
+              as SignupParams,
     ));
   }
 }
@@ -133,7 +148,7 @@ class _$DoSignUpImpl implements _DoSignUp {
   const _$DoSignUpImpl(this.params);
 
   @override
-  final SignUpParams params;
+  final SignupParams params;
 
   @override
   String toString() {
@@ -162,7 +177,7 @@ class _$DoSignUpImpl implements _DoSignUp {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(SignUpParams params) doSignUp,
+    required TResult Function(SignupParams params) doSignUp,
   }) {
     return doSignUp(params);
   }
@@ -170,7 +185,7 @@ class _$DoSignUpImpl implements _DoSignUp {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(SignUpParams params)? doSignUp,
+    TResult? Function(SignupParams params)? doSignUp,
   }) {
     return doSignUp?.call(params);
   }
@@ -178,7 +193,7 @@ class _$DoSignUpImpl implements _DoSignUp {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(SignUpParams params)? doSignUp,
+    TResult Function(SignupParams params)? doSignUp,
     required TResult orElse(),
   }) {
     if (doSignUp != null) {
@@ -217,10 +232,10 @@ class _$DoSignUpImpl implements _DoSignUp {
 }
 
 abstract class _DoSignUp implements SignUpEvent {
-  const factory _DoSignUp(final SignUpParams params) = _$DoSignUpImpl;
+  const factory _DoSignUp(final SignupParams params) = _$DoSignUpImpl;
 
   @override
-  SignUpParams get params;
+  SignupParams get params;
 
   /// Create a copy of SignUpEvent
   /// with the given fields replaced by the non-null parameter values.

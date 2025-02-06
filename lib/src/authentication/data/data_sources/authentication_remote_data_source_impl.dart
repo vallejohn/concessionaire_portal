@@ -31,9 +31,8 @@ class AuthenticationRemoteDataSourceImpl extends AuthenticationDataSource {
     final body = response.body;
     User user = User.fromJson(body['user']);
     user = user.copyWith(
-      accessToken: response.body['access_token'],
-      tokenType: response.body['token_type']
-    );
+        accessToken: response.body['access_token'],
+        tokenType: response.body['token_type']);
 
     await _authenticationCollection.create(UserAuth(user: user));
 
@@ -41,23 +40,23 @@ class AuthenticationRemoteDataSourceImpl extends AuthenticationDataSource {
   }
 
   @override
-  Future<User> doSignUp(SignUpParams params)async {
+  Future<User> doSignUp(SignupParams params) async {
     final response = await APIEndpointService.authentication(
       AuthenticationEndpoint.register,
-      {
-        'username': 'testUser',
-        'first_name': params.firstName,
-        'last_name': params.lastName,
-        'password': params.password,
-        'confirm_password': params.confirmPassword,
-        'phone': params.phone,
-      },
+      params.toJson(),
     );
 
-    return User(
-      id: 0,
-      email: 'valjohn.teruel@gmail.com',
-      firstName: 'Valle John Teruel',
-    );
+    final body = response.body;
+    final userRaw = body['user'];
+    User? user = userRaw == null? null : User.fromJson(userRaw);
+
+    if(user != null){
+      user = await doLogin(LoginParams(
+        username: params.username,
+        password: params.password,
+      ));
+    }
+
+    return user!;
   }
 }

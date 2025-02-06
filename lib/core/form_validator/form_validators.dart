@@ -75,6 +75,24 @@ class PhoneNumberValidator extends FormzInput<String?, String> {
   }
 }
 
+class SpecialCharacterValidator extends FormzInput<String?, String> {
+  const SpecialCharacterValidator.pure() : super.pure('');
+
+  const SpecialCharacterValidator.dirty([super.value = '']) : super.dirty();
+
+  @override
+  String? validator(String? value) {
+    final regex = RegExp(r'[!@#$%^&*(),.?":{}|<>]');
+
+    if (value == null || value.isEmpty) {
+      return 'Field is empty';
+    } else if (regex.hasMatch(value)) {
+      return 'Special characters are not allowed';
+    }
+    return null;
+  }
+}
+
 class EmptyFieldValidator extends FormzInput<String?, String> {
   const EmptyFieldValidator.pure() : super.pure('');
 

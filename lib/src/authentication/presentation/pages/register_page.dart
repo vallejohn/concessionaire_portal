@@ -22,6 +22,7 @@ class _RegisterPageState extends State<RegisterPage> {
   final GlobalKey<FormFieldState> _confirmPasswordFormKey =
       GlobalKey<FormFieldState>();
 
+  final TextEditingController _usernameFieldController = TextEditingController();
   final TextEditingController _phoneNumberController = TextEditingController();
   final TextEditingController _firstNameController = TextEditingController();
   final TextEditingController _lastNameController = TextEditingController();
@@ -36,6 +37,15 @@ class _RegisterPageState extends State<RegisterPage> {
   @override
   Widget build(BuildContext context) {
     final textStyle = Theme.of(context).textTheme;
+
+    final usernameField = TextFormField(
+      controller: _usernameFieldController,
+      autovalidateMode: AutovalidateMode.onUserInteraction,
+      decoration: const InputDecoration(
+        hintText: 'Username',
+      ),
+      validator: (value) => SpecialCharacterValidator.dirty(value).error,
+    );
 
     final phoneNumberField = TextFormField(
       controller: _phoneNumberController,
@@ -138,7 +148,8 @@ class _RegisterPageState extends State<RegisterPage> {
           void doSignUp() {
             if (_formKey.currentState!.validate()) {
               signUpBloc.add(SignUpEvent.doSignUp(
-                SignUpParams(
+                SignupParams(
+                  username: _usernameFieldController.text,
                   phone: _phoneNumberController.text,
                   firstName: _firstNameController.text,
                   lastName: _lastNameController.text,
@@ -182,6 +193,8 @@ class _RegisterPageState extends State<RegisterPage> {
                             style: textStyle.bodyMedium,
                           )),
                       const SizedBox(height: 30),
+                      usernameField,
+                      const SizedBox(height: 10),
                       phoneNumberField,
                       const SizedBox(height: 10),
                       firstNameField,

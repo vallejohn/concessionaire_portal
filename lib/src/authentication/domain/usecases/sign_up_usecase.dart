@@ -6,13 +6,13 @@ import 'package:mwd_concessionaire_portal/src/authentication/domain/repositories
 
 import '../../data/models/user.dart';
 
-class SignUpUsecase extends UseCaseWithParams<User, SignUpParams>{
+class SignUpUsecase extends UseCaseWithParams<User, SignupParams>{
   final AuthenticationRepository _authenticationRepository;
 
   SignUpUsecase(this._authenticationRepository);
 
   @override
-  Future<Either<Failure, User>> call(SignUpParams params) {
+  Future<Either<Failure, User>> call(SignupParams params) {
     return _authenticationRepository.doSignUp(params);
   }
 }

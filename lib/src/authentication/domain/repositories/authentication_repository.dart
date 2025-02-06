@@ -12,5 +12,5 @@ abstract class AuthenticationRepository {
 
   Future<Either<Failure, User?>> requestAuthenticationStatus();
   Future<Either<Failure, User>> doLogin(LoginParams params);
-  Future<Either<Failure, User>> doSignUp(SignUpParams params);
+  Future<Either<Failure, User>> doSignUp(SignupParams params);
 }
