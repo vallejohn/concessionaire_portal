@@ -3,14 +3,14 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'params.freezed.dart';
 part 'params.g.dart';
 
-class LoginParams {
-  final String username;
-  final String password;
+@freezed
+class LoginParams with _$LoginParams {
+  const factory LoginParams({
+    required String username,
+    required String password,
+  }) = _LoginParams;
 
-  LoginParams({
-    required this.username,
-    required this.password,
-  });
+  factory LoginParams.fromJson(Map<String, dynamic> json) => _$LoginParamsFromJson(json);
 }
 
 @freezed
@@ -30,4 +30,14 @@ class SignupParams with _$SignupParams {
   }) = _SignupParams;
 
   factory SignupParams.fromJson(Map<String, dynamic> json) => _$SignupParamsFromJson(json);
+}
+
+@freezed
+class OTPParams with _$OTPParams {
+  const factory OTPParams({
+    required String phone,
+    required String otp,
+  }) = _OTPParams;
+
+  factory OTPParams.fromJson(Map<String, dynamic> json) => _$OTPParamsFromJson(json);
 }

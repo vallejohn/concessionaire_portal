@@ -200,6 +200,8 @@ abstract class _$$DoLoginImplCopyWith<$Res> {
       __$$DoLoginImplCopyWithImpl<$Res>;
   @useResult
   $Res call({LoginParams param});
+
+  $LoginParamsCopyWith<$Res> get param;
 }
 
 /// @nodoc
@@ -223,6 +225,16 @@ class __$$DoLoginImplCopyWithImpl<$Res>
           : param // ignore: cast_nullable_to_non_nullable
               as LoginParams,
     ));
+  }
+
+  /// Create a copy of LoginEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $LoginParamsCopyWith<$Res> get param {
+    return $LoginParamsCopyWith<$Res>(_value.param, (value) {
+      return _then(_value.copyWith(param: value));
+    });
   }
 }
 

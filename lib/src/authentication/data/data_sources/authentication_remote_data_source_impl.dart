@@ -25,7 +25,7 @@ class AuthenticationRemoteDataSourceImpl extends AuthenticationDataSource {
   Future<User> doLogin(LoginParams params) async {
     final response = await APIEndpointService.authentication(
       AuthenticationEndpoint.login,
-      {'username': params.username, 'password': params.password},
+      params.toJson(),
     );
 
     final body = response.body;
@@ -58,5 +58,15 @@ class AuthenticationRemoteDataSourceImpl extends AuthenticationDataSource {
     }
 
     return user!;
+  }
+
+  @override
+  Future<bool> onConfirmOTP(OTPParams params)async {
+    final response = await APIEndpointService.authentication(
+      AuthenticationEndpoint.confirmOTP,
+      params.toJson(),
+    );
+
+    return true;
   }
 }

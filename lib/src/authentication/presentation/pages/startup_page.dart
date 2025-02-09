@@ -23,7 +23,11 @@ class _StartupPageState extends State<StartupPage> {
           if (user == null) {
             context.go('/login');
           }else{
-            context.go('/home');
+            if(user.phoneVerifiedAt.isEmpty){
+              context.go('/otp');
+            }else{
+              context.go('/home');
+            }
           }
         }
       },

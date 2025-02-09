@@ -6,6 +6,18 @@ part of 'params.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
+_$LoginParamsImpl _$$LoginParamsImplFromJson(Map<String, dynamic> json) =>
+    _$LoginParamsImpl(
+      username: json['username'] as String,
+      password: json['password'] as String,
+    );
+
+Map<String, dynamic> _$$LoginParamsImplToJson(_$LoginParamsImpl instance) =>
+    <String, dynamic>{
+      'username': instance.username,
+      'password': instance.password,
+    };
+
 _$SignupParamsImpl _$$SignupParamsImplFromJson(Map<String, dynamic> json) =>
     _$SignupParamsImpl(
       username: json['username'] as String,
@@ -26,4 +38,16 @@ Map<String, dynamic> _$$SignupParamsImplToJson(_$SignupParamsImpl instance) =>
       'password': instance.password,
       'confirm_password': instance.confirmPassword,
       'address': instance.address,
+    };
+
+_$OTPParamsImpl _$$OTPParamsImplFromJson(Map<String, dynamic> json) =>
+    _$OTPParamsImpl(
+      phone: json['phone'] as String,
+      otp: json['otp'] as String,
+    );
+
+Map<String, dynamic> _$$OTPParamsImplToJson(_$OTPParamsImpl instance) =>
+    <String, dynamic>{
+      'phone': instance.phone,
+      'otp': instance.otp,
     };

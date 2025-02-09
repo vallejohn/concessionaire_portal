@@ -13,4 +13,5 @@ abstract class AuthenticationRepository {
   Future<Either<Failure, User?>> requestAuthenticationStatus();
   Future<Either<Failure, User>> doLogin(LoginParams params);
   Future<Either<Failure, User>> doSignUp(SignupParams params);
+  Future<Either<Failure, bool>> onConfirmOTP(OTPParams params);
 }

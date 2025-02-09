@@ -1,6 +1,6 @@
 import 'package:go_router/go_router.dart';
-import 'package:mwd_concessionaire_portal/demo_pages/otp_page.dart';
 import 'package:mwd_concessionaire_portal/src/authentication/presentation/pages/forgot_password/forgot_password_page.dart';
+import 'package:mwd_concessionaire_portal/src/authentication/presentation/pages/otp_page.dart';
 import 'package:mwd_concessionaire_portal/src/authentication/presentation/pages/register_page.dart';
 import 'package:mwd_concessionaire_portal/src/authentication/presentation/pages/startup_page.dart';
 

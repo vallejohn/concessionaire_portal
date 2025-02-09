@@ -3,7 +3,7 @@ import 'package:flutter_flavor/flutter_flavor.dart';
 import 'package:logger/logger.dart';
 import 'package:mwd_concessionaire_portal/core/exceptions/authentication_exception.dart';
 
-enum AuthenticationEndpoint { login, register }
+enum AuthenticationEndpoint { login, register, confirmOTP }
 
 class EndpointResponse {
   final int? statusCode;
@@ -45,7 +45,7 @@ class APIEndpointService {
       late EndpointResponse endpointResponse;
       switch (endpoint) {
         case AuthenticationEndpoint.login:
-          endpointResponse= await _doPostRequest(
+          endpointResponse = await _doPostRequest(
             '$_baseUrl/api/login',
             params: data,
           );
@@ -56,22 +56,39 @@ class APIEndpointService {
             params: data,
           );
           break;
+        case AuthenticationEndpoint.confirmOTP:
+          endpointResponse = await _doPostRequest(
+            '$_baseUrl/api/register-send-otp',
+            params: data,
+          );
+          break;
       }
       return endpointResponse;
-    } on DioException catch (dioError) {
-      throw AuthenticationException(dioError.message ?? 'Unknown Error');
+    } on DioException catch (_) {
+      throw AuthenticationException(
+        'Something went wrong while processing '
+            'your request. Please try again later.',
+      );
     }
   }
 
   static Future<EndpointResponse> _doPostRequest(
-    String url, {Map<String, dynamic>? params,}
-  ) async {
-    Logger().d({'Path': url, 'Parameters': params});
+    String url, {
+    Map<String, dynamic>? params,
+  }) async {
+    Logger().d({
+      'Path': url,
+      'Parameters': params,
+    });
     final response = await _dio.post(
       url,
       data: params,
     );
-    Logger().d({'Path': url, 'Parameters': params, 'Endpoint Response': response.data});
+    Logger().d({
+      'Path': url,
+      'Parameters': params,
+      'Endpoint Response': response.data,
+    });
     return EndpointResponse(body: response.data);
   }
 }

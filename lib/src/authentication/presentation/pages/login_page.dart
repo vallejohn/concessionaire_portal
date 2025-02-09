@@ -39,26 +39,25 @@ class _LoginPageState extends State<LoginPage> {
       //validator: (value) => EmailValidator.dirty(value).error,
     );
 
-    final passwordField =  BlocBuilder<WidgetCubit<bool>, bool>(
-      bloc: _passwordVisibilityCubit,
-      builder: (context, visible) {
-        return TextFormField(
-          controller: _passwordController,
-          autovalidateMode: AutovalidateMode.onUserInteraction,
-          obscureText: !visible,
-          decoration: InputDecoration(
-            hintText: 'Password',
-            suffixIcon: IconButton(
-              onPressed: () {
-                _passwordVisibilityCubit.onUpdateState(!visible);
-              },
-              icon: Icon(visible? Icons.visibility : Icons.visibility_off),
+    final passwordField = BlocBuilder<WidgetCubit<bool>, bool>(
+        bloc: _passwordVisibilityCubit,
+        builder: (context, visible) {
+          return TextFormField(
+            controller: _passwordController,
+            autovalidateMode: AutovalidateMode.onUserInteraction,
+            obscureText: !visible,
+            decoration: InputDecoration(
+              hintText: 'Password',
+              suffixIcon: IconButton(
+                onPressed: () {
+                  _passwordVisibilityCubit.onUpdateState(!visible);
+                },
+                icon: Icon(visible ? Icons.visibility : Icons.visibility_off),
+              ),
             ),
-          ),
-          validator: (value) => PasswordValidator.dirty(value).error,
-        );
-      }
-    );
+            validator: (value) => PasswordValidator.dirty(value).error,
+          );
+        });
 
     loginButton(LoginBloc loginBloc) => SizedBox(
           width: MediaQuery.of(context).size.width,
@@ -111,12 +110,19 @@ class _LoginPageState extends State<LoginPage> {
     return Scaffold(
       body: BlocListener<LoginBloc, LoginState>(
         listener: (context, state) {
-          if(state.loginStatus == LoginStatus.success){
-            context.go('/home');
+          if (state.loginStatus == LoginStatus.success) {
+            if (state.user!.phoneVerifiedAt.isEmpty) {
+              context.go('/otp');
+            } else {
+              context.go('/home');
+            }
           }
 
-          if(state.loginStatus == LoginStatus.failed){
-            ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(state.message), backgroundColor: Theme.of(context).colorScheme.error,));
+          if (state.loginStatus == LoginStatus.failed) {
+            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+              content: Text(state.message),
+              backgroundColor: Theme.of(context).colorScheme.error,
+            ));
           }
         },
         child: BlocBuilder<LoginBloc, LoginState>(

@@ -27,4 +27,10 @@ class AuthenticationLocalDataSourceImpl extends AuthenticationDataSource{
     // TODO: implement soSignUp
     throw UnimplementedError();
   }
+
+  @override
+  Future<bool> onConfirmOTP(OTPParams params) {
+    // TODO: implement onConfirmOTP
+    throw UnimplementedError();
+  }
 }

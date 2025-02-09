@@ -45,4 +45,16 @@ class AuthenticationRepositoryImpl extends AuthenticationRepository{
       return Left(Failure.authentication(authError));
     }
   }
+
+  @override
+  Future<Either<Failure, bool>> onConfirmOTP(OTPParams params)async {
+    try{
+      final data = await dataSource.onConfirmOTP(params);
+      return Right(data);
+    }on HiveCollectionException catch(e){
+      return Left(Failure.hiveCollectionException(e));
+    }on AuthenticationException catch(authError){
+      return Left(Failure.authentication(authError));
+    }
+  }
 }
