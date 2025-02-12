@@ -44,10 +44,30 @@ _$OTPParamsImpl _$$OTPParamsImplFromJson(Map<String, dynamic> json) =>
     _$OTPParamsImpl(
       phone: json['phone'] as String,
       otp: json['otp'] as String,
+      loginParam: json['loginParam'] == null
+          ? null
+          : LoginParams.fromJson(json['loginParam'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$OTPParamsImplToJson(_$OTPParamsImpl instance) =>
     <String, dynamic>{
       'phone': instance.phone,
       'otp': instance.otp,
+      'loginParam': instance.loginParam,
+    };
+
+_$ForgotPasswordParamsImpl _$$ForgotPasswordParamsImplFromJson(
+        Map<String, dynamic> json) =>
+    _$ForgotPasswordParamsImpl(
+      password: json['password'] as String,
+      confirmPassword: json['confirmPassword'] as String,
+      phone: json['phone'] as String,
+    );
+
+Map<String, dynamic> _$$ForgotPasswordParamsImplToJson(
+        _$ForgotPasswordParamsImpl instance) =>
+    <String, dynamic>{
+      'password': instance.password,
+      'confirmPassword': instance.confirmPassword,
+      'phone': instance.phone,
     };

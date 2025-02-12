@@ -1,4 +1,5 @@
 import 'package:go_router/go_router.dart';
+import 'package:mwd_concessionaire_portal/src/authentication/core/params.dart';
 import 'package:mwd_concessionaire_portal/src/authentication/presentation/pages/forgot_password/forgot_password_page.dart';
 import 'package:mwd_concessionaire_portal/src/authentication/presentation/pages/otp_page.dart';
 import 'package:mwd_concessionaire_portal/src/authentication/presentation/pages/register_page.dart';
@@ -7,7 +8,6 @@ import 'package:mwd_concessionaire_portal/src/authentication/presentation/pages/
 import '../../src/authentication/presentation/pages/login_page.dart';
 
 class AppRouter {
-
   late GoRouter _router;
 
   GoRouter get router => _router;
@@ -26,32 +26,45 @@ class AppRouter {
 }
 
 class _RouteConfiguration {
-  GoRouter get configuredRouter => GoRouter(
-      observers: [
-      ],
-      routes: [
+  GoRouter get configuredRouter => GoRouter(observers: [], routes: [
         GoRoute(
           path: '/',
           builder: (context, state) => const StartupPage(),
         ),
         GoRoute(
-          path: '/login',
-          builder: (context, state) => const LoginPage(),
-          routes: [
-            GoRoute(
-              path: '/register',
-              builder: (context, state) => const RegisterPage(),
-            ),
-            GoRoute(
-              path: '/forgotPassword',
-              builder: (context, state) => const ForgotPasswordPage(),
-            ),
-          ]
-        ),
+            path: '/login',
+            builder: (context, state) => const LoginPage(),
+            routes: [
+              GoRoute(
+                path: '/register',
+                builder: (context, state) => const RegisterPage(),
+              ),
+              GoRoute(
+                path: '/forgotPassword',
+                builder: (context, state) => const ForgotPasswordPage(),
+              ),
+            ]),
         GoRoute(
           path: '/otp',
-          builder: (context, state) => const OtpPage(),
+          builder: (context, state) {
+            final queryParams = state.uri.queryParameters;
+
+            final phone = queryParams['phone'] as String;
+            LoginParams? loginParams;
+
+            if (queryParams['username'] != null &&
+                queryParams['password'] != null) {
+              loginParams = LoginParams(
+                username: queryParams['username'] as String,
+                password: queryParams['password'] as String,
+              );
+            }
+
+            return OtpPage(
+              phone: phone,
+              loginParams: loginParams,
+            );
+          },
         ),
-      ]
-  );
+      ]);
 }

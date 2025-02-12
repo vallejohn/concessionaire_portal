@@ -63,6 +63,7 @@ class _LoginPageState extends State<LoginPage> {
           width: MediaQuery.of(context).size.width,
           child: FilledButton(
             onPressed: () async {
+              FocusManager.instance.primaryFocus?.unfocus();
               loginBloc.add(LoginEvent.doLogin(
                 LoginParams(
                   username: _usernameController.text,
@@ -112,7 +113,7 @@ class _LoginPageState extends State<LoginPage> {
         listener: (context, state) {
           if (state.loginStatus == LoginStatus.success) {
             if (state.user!.phoneVerifiedAt.isEmpty) {
-              context.go('/otp');
+              context.go('/otp?phone=${state.user!.phone}');
             } else {
               context.go('/home');
             }

@@ -43,6 +43,7 @@ mixin _$User {
   String get accessToken => throw _privateConstructorUsedError;
   @JsonKey(name: 'token_type')
   String get tokenType => throw _privateConstructorUsedError;
+  String get phone => throw _privateConstructorUsedError;
 
   /// Serializes this User to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -71,7 +72,8 @@ abstract class $UserCopyWith<$Res> {
       @JsonKey(name: 'created_at') String createdAt,
       @JsonKey(name: 'updated_at') String updatedAt,
       @JsonKey(name: 'access_token') String accessToken,
-      @JsonKey(name: 'token_type') String tokenType});
+      @JsonKey(name: 'token_type') String tokenType,
+      String phone});
 }
 
 /// @nodoc
@@ -102,6 +104,7 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
     Object? updatedAt = null,
     Object? accessToken = null,
     Object? tokenType = null,
+    Object? phone = null,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
@@ -156,6 +159,10 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
           ? _value.tokenType
           : tokenType // ignore: cast_nullable_to_non_nullable
               as String,
+      phone: null == phone
+          ? _value.phone
+          : phone // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 }
@@ -180,7 +187,8 @@ abstract class _$$UserImplCopyWith<$Res> implements $UserCopyWith<$Res> {
       @JsonKey(name: 'created_at') String createdAt,
       @JsonKey(name: 'updated_at') String updatedAt,
       @JsonKey(name: 'access_token') String accessToken,
-      @JsonKey(name: 'token_type') String tokenType});
+      @JsonKey(name: 'token_type') String tokenType,
+      String phone});
 }
 
 /// @nodoc
@@ -208,6 +216,7 @@ class __$$UserImplCopyWithImpl<$Res>
     Object? updatedAt = null,
     Object? accessToken = null,
     Object? tokenType = null,
+    Object? phone = null,
   }) {
     return _then(_$UserImpl(
       id: freezed == id
@@ -262,6 +271,10 @@ class __$$UserImplCopyWithImpl<$Res>
           ? _value.tokenType
           : tokenType // ignore: cast_nullable_to_non_nullable
               as String,
+      phone: null == phone
+          ? _value.phone
+          : phone // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -283,7 +296,8 @@ class _$UserImpl implements _User {
       @JsonKey(name: 'created_at') this.createdAt = '',
       @JsonKey(name: 'updated_at') this.updatedAt = '',
       @JsonKey(name: 'access_token') this.accessToken = '',
-      @JsonKey(name: 'token_type') this.tokenType = ''});
+      @JsonKey(name: 'token_type') this.tokenType = '',
+      this.phone = ''});
 
   factory _$UserImpl.fromJson(Map<String, dynamic> json) =>
       _$$UserImplFromJson(json);
@@ -326,10 +340,13 @@ class _$UserImpl implements _User {
   @override
   @JsonKey(name: 'token_type')
   final String tokenType;
+  @override
+  @JsonKey()
+  final String phone;
 
   @override
   String toString() {
-    return 'User(id: $id, username: $username, email: $email, firstName: $firstName, lastName: $lastName, isPasswordReset: $isPasswordReset, phoneVerifiedAt: $phoneVerifiedAt, userTypeId: $userTypeId, deletedAt: $deletedAt, createdAt: $createdAt, updatedAt: $updatedAt, accessToken: $accessToken, tokenType: $tokenType)';
+    return 'User(id: $id, username: $username, email: $email, firstName: $firstName, lastName: $lastName, isPasswordReset: $isPasswordReset, phoneVerifiedAt: $phoneVerifiedAt, userTypeId: $userTypeId, deletedAt: $deletedAt, createdAt: $createdAt, updatedAt: $updatedAt, accessToken: $accessToken, tokenType: $tokenType, phone: $phone)';
   }
 
   @override
@@ -360,7 +377,8 @@ class _$UserImpl implements _User {
             (identical(other.accessToken, accessToken) ||
                 other.accessToken == accessToken) &&
             (identical(other.tokenType, tokenType) ||
-                other.tokenType == tokenType));
+                other.tokenType == tokenType) &&
+            (identical(other.phone, phone) || other.phone == phone));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -379,7 +397,8 @@ class _$UserImpl implements _User {
       createdAt,
       updatedAt,
       accessToken,
-      tokenType);
+      tokenType,
+      phone);
 
   /// Create a copy of User
   /// with the given fields replaced by the non-null parameter values.
@@ -411,7 +430,8 @@ abstract class _User implements User {
       @JsonKey(name: 'created_at') final String createdAt,
       @JsonKey(name: 'updated_at') final String updatedAt,
       @JsonKey(name: 'access_token') final String accessToken,
-      @JsonKey(name: 'token_type') final String tokenType}) = _$UserImpl;
+      @JsonKey(name: 'token_type') final String tokenType,
+      final String phone}) = _$UserImpl;
 
   factory _User.fromJson(Map<String, dynamic> json) = _$UserImpl.fromJson;
 
@@ -451,6 +471,8 @@ abstract class _User implements User {
   @override
   @JsonKey(name: 'token_type')
   String get tokenType;
+  @override
+  String get phone;
 
   /// Create a copy of User
   /// with the given fields replaced by the non-null parameter values.

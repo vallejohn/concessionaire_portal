@@ -37,7 +37,19 @@ class OTPParams with _$OTPParams {
   const factory OTPParams({
     required String phone,
     required String otp,
+    LoginParams? loginParam,
   }) = _OTPParams;
 
   factory OTPParams.fromJson(Map<String, dynamic> json) => _$OTPParamsFromJson(json);
+}
+
+@freezed
+class ForgotPasswordParams with _$ForgotPasswordParams {
+  const factory ForgotPasswordParams({
+    required String password,
+    required String confirmPassword,
+    required String phone,
+  }) = _ForgotPasswordParams;
+
+  factory ForgotPasswordParams.fromJson(Map<String, dynamic> json) => _$ForgotPasswordParamsFromJson(json);
 }

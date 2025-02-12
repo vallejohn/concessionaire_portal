@@ -28,9 +28,11 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
           parent: AlwaysScrollableScrollPhysics(),
         ),
         children: [
-          const SizedBox(height: 170,),
-          SvgPicture.asset('assets/illustrations/forgot_password_illustration.svg'),
-          const SizedBox(height: 50,),
+          const SizedBox(height: 170),
+          SvgPicture.asset(
+            'assets/illustrations/forgot_password_illustration.svg',
+          ),
+          const SizedBox(height: 50),
           Center(
             child: Text(
               'RESET PASSWORD',
@@ -44,19 +46,18 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
             child: Column(
               children: [
                 Text(
-                  'Enter your registered phone number below, and we’ll send you a verification code to reset your password.',
+                  'Enter your registered phone number below, and we’ll '
+                  'send you a verification code to reset your password.',
                   style: textStyle.bodySmall,
                   textAlign: TextAlign.center,
                 ),
-                const SizedBox(height: 30,),
+                const SizedBox(height: 30),
                 usernameField,
-                const SizedBox(height: 15,),
+                const SizedBox(height: 15),
                 SizedBox(
                   width: MediaQuery.of(context).size.width,
                   child: FilledButton(
-                    onPressed: () async {
-
-                    },
+                    onPressed: () async {},
                     child: const Text('Send Verification Code'),
                   ),
                 )

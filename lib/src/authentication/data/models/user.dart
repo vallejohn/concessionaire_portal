@@ -22,6 +22,7 @@ class User with _$User {
     @JsonKey(name: 'updated_at') @Default('') String updatedAt,
     @JsonKey(name: 'access_token') @Default('') String accessToken,
     @JsonKey(name: 'token_type') @Default('') String tokenType,
+    @Default('') String phone,
   }) = _User;
 
   factory User.unauthenticated() => const User(

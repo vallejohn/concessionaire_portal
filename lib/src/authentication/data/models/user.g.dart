@@ -20,6 +20,7 @@ _$UserImpl _$$UserImplFromJson(Map<String, dynamic> json) => _$UserImpl(
       updatedAt: json['updated_at'] as String? ?? '',
       accessToken: json['access_token'] as String? ?? '',
       tokenType: json['token_type'] as String? ?? '',
+      phone: json['phone'] as String? ?? '',
     );
 
 Map<String, dynamic> _$$UserImplToJson(_$UserImpl instance) =>
@@ -37,4 +38,5 @@ Map<String, dynamic> _$$UserImplToJson(_$UserImpl instance) =>
       'updated_at': instance.updatedAt,
       'access_token': instance.accessToken,
       'token_type': instance.tokenType,
+      'phone': instance.phone,
     };

@@ -1,5 +1,6 @@
 import 'package:get_it/get_it.dart';
 import 'package:logger/logger.dart';
+import 'package:mwd_concessionaire_portal/core/exceptions/authentication_exception.dart';
 import 'package:mwd_concessionaire_portal/core/services/api_endpoint_service.dart';
 import 'package:mwd_concessionaire_portal/src/authentication/data/models/user.dart';
 import 'package:mwd_concessionaire_portal/src/authentication/data/models/user_auth.dart';
@@ -34,6 +35,13 @@ class AuthenticationRemoteDataSourceImpl extends AuthenticationDataSource {
         accessToken: response.body['access_token'],
         tokenType: response.body['token_type']);
 
+    if(user.phoneVerifiedAt.isEmpty){
+      await APIEndpointService.authentication(
+        AuthenticationEndpoint.registerSendOTP,
+        {'phone': user.phone},
+      );
+    }
+    
     await _authenticationCollection.create(UserAuth(user: user));
 
     return user;
@@ -47,24 +55,38 @@ class AuthenticationRemoteDataSourceImpl extends AuthenticationDataSource {
     );
 
     final body = response.body;
-    final userRaw = body['user'];
-    User? user = userRaw == null? null : User.fromJson(userRaw);
 
-    if(user != null){
-      user = await doLogin(LoginParams(
-        username: params.username,
-        password: params.password,
-      ));
+    if(body['status'] == 'error'){
+      throw AuthenticationException('Error signup');
+    }else{
+      final userRaw = body['user'];
+      User? user = userRaw == null? null : User.fromJson(userRaw);
+
+      return user!;
     }
-
-    return user!;
   }
 
   @override
   Future<bool> onConfirmOTP(OTPParams params)async {
-    final response = await APIEndpointService.authentication(
+    await APIEndpointService.authentication(
       AuthenticationEndpoint.confirmOTP,
       params.toJson(),
+    );
+
+    if(params.loginParam != null){
+      await doLogin(LoginParams(
+        username: params.loginParam!.username,
+        password: params.loginParam!.password,
+      ));
+    }
+    return true;
+  }
+
+  @override
+  Future<bool> onForgotPasswordSendOTP(ForgotPasswordParams params)async {
+    await APIEndpointService.authentication(
+      AuthenticationEndpoint.forgotPasswordSendOTP,
+      {'phone': params.phone},
     );
 
     return true;

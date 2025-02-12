@@ -24,7 +24,7 @@ class _StartupPageState extends State<StartupPage> {
             context.go('/login');
           }else{
             if(user.phoneVerifiedAt.isEmpty){
-              context.go('/otp');
+              context.go('/otp?phone=${user.phone}');
             }else{
               context.go('/home');
             }

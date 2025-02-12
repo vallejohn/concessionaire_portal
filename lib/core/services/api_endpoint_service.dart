@@ -3,7 +3,13 @@ import 'package:flutter_flavor/flutter_flavor.dart';
 import 'package:logger/logger.dart';
 import 'package:mwd_concessionaire_portal/core/exceptions/authentication_exception.dart';
 
-enum AuthenticationEndpoint { login, register, confirmOTP }
+enum AuthenticationEndpoint {
+  login,
+  register,
+  confirmOTP,
+  forgotPasswordSendOTP,
+  registerSendOTP,
+}
 
 class EndpointResponse {
   final int? statusCode;
@@ -56,18 +62,31 @@ class APIEndpointService {
             params: data,
           );
           break;
-        case AuthenticationEndpoint.confirmOTP:
+        case AuthenticationEndpoint.registerSendOTP:
           endpointResponse = await _doPostRequest(
             '$_baseUrl/api/register-send-otp',
             params: data,
           );
           break;
+        case AuthenticationEndpoint.confirmOTP:
+          endpointResponse = await _doPostRequest(
+            '$_baseUrl/api/verify-phone',
+            params: data,
+          );
+          break;
+        case AuthenticationEndpoint.forgotPasswordSendOTP:
+          endpointResponse = await _doPostRequest(
+            '$_baseUrl/api/forgot-password-otp',
+            params: data,
+          );
+          break;
       }
       return endpointResponse;
-    } on DioException catch (_) {
+    } on DioException catch (e) {
+      Logger().e(e.message);
       throw AuthenticationException(
         'Something went wrong while processing '
-            'your request. Please try again later.',
+        'your request. Please try again later.',
       );
     }
   }

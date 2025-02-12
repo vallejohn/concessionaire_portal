@@ -3,9 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mwd_concessionaire_portal/core/form_validator/form_validators.dart';
 import 'package:mwd_concessionaire_portal/core/util/cubit/widget_cubit.dart';
-import 'package:mwd_concessionaire_portal/demo_pages/otp_page.dart';
 import 'package:mwd_concessionaire_portal/src/authentication/core/params.dart';
 
+import '../../core/local_route.dart';
 import '../blocs/sign_up/sign_up_bloc.dart';
 
 class RegisterPage extends StatefulWidget {
@@ -131,7 +131,11 @@ class _RegisterPageState extends State<RegisterPage> {
       body: BlocConsumer<SignUpBloc, SignUpState>(
         listener: (context, state) {
           if (state.signUpStatus == SignUpStatus.success) {
-            context.go('/otp');
+            context.go(LocalRoute.otp(
+              _phoneNumberController.text,
+              username: _usernameFieldController.text,
+              password: _passwordController.text,
+            ).path);
           }
 
           if (state.signUpStatus == SignUpStatus.failed) {

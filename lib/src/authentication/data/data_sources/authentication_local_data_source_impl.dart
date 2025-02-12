@@ -33,4 +33,10 @@ class AuthenticationLocalDataSourceImpl extends AuthenticationDataSource{
     // TODO: implement onConfirmOTP
     throw UnimplementedError();
   }
+
+  @override
+  Future<bool> onForgotPasswordSendOTP(ForgotPasswordParams params) {
+    // TODO: implement onForgotPasswordSendOTP
+    throw UnimplementedError();
+  }
 }

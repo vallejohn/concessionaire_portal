@@ -19,6 +19,7 @@ class UserAdapter extends TypeAdapter<User>{
       updatedAt: reader.read(),
       accessToken: reader.read(),
       tokenType: reader.read(),
+      phone: reader.read(),
     );
   }
 
@@ -40,5 +41,6 @@ class UserAdapter extends TypeAdapter<User>{
     writer.write(obj.updatedAt);
     writer.write(obj.accessToken);
     writer.write(obj.tokenType);
+    writer.write(obj.phone);
   }
 }

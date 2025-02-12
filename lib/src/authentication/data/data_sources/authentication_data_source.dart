@@ -6,4 +6,5 @@ abstract class AuthenticationDataSource {
   Future<User> doLogin(LoginParams params);
   Future<User> doSignUp(SignupParams params);
   Future<bool> onConfirmOTP(OTPParams params);
+  Future<bool> onForgotPasswordSendOTP(ForgotPasswordParams params);
 }
