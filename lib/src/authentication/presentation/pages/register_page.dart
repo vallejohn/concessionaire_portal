@@ -6,6 +6,7 @@ import 'package:mwd_concessionaire_portal/core/util/cubit/widget_cubit.dart';
 import 'package:mwd_concessionaire_portal/src/authentication/core/params.dart';
 
 import '../../core/local_route.dart';
+import '../blocs/otp/otp_bloc.dart';
 import '../blocs/sign_up/sign_up_bloc.dart';
 
 class RegisterPage extends StatefulWidget {
@@ -22,7 +23,8 @@ class _RegisterPageState extends State<RegisterPage> {
   final GlobalKey<FormFieldState> _confirmPasswordFormKey =
       GlobalKey<FormFieldState>();
 
-  final TextEditingController _usernameFieldController = TextEditingController();
+  final TextEditingController _usernameFieldController =
+      TextEditingController();
   final TextEditingController _phoneNumberController = TextEditingController();
   final TextEditingController _firstNameController = TextEditingController();
   final TextEditingController _lastNameController = TextEditingController();
@@ -75,51 +77,49 @@ class _RegisterPageState extends State<RegisterPage> {
     );
 
     final passwordField = BlocBuilder<WidgetCubit<bool>, bool>(
-      bloc: _passwordVisibilityCubit,
-      builder: (context, visible) {
-        return TextFormField(
-          key: _passwordFormKey,
-          controller: _passwordController,
-          autovalidateMode: AutovalidateMode.onUserInteraction,
-          obscureText: !visible,
-          decoration: InputDecoration(
-            hintText: 'Password',
-            suffixIcon: IconButton(
-              onPressed: () {
-                _passwordVisibilityCubit.onUpdateState(!visible);
-              },
-              icon: Icon(visible? Icons.visibility : Icons.visibility_off),
+        bloc: _passwordVisibilityCubit,
+        builder: (context, visible) {
+          return TextFormField(
+            key: _passwordFormKey,
+            controller: _passwordController,
+            autovalidateMode: AutovalidateMode.onUserInteraction,
+            obscureText: !visible,
+            decoration: InputDecoration(
+              hintText: 'Password',
+              suffixIcon: IconButton(
+                onPressed: () {
+                  _passwordVisibilityCubit.onUpdateState(!visible);
+                },
+                icon: Icon(visible ? Icons.visibility : Icons.visibility_off),
+              ),
             ),
-          ),
-          validator: (value) => PasswordValidator.dirty(value).error,
-        );
-      }
-    );
+            validator: (value) => PasswordValidator.dirty(value).error,
+          );
+        });
 
     final confirmPasswordField = BlocBuilder<WidgetCubit<bool>, bool>(
-      bloc: _confirmPassVisibilityCubit,
-      builder: (context, visible) {
-        return TextFormField(
-          key: _confirmPasswordFormKey,
-          controller: _confirmPassController,
-          autovalidateMode: AutovalidateMode.onUserInteraction,
-          obscureText: !visible,
-          decoration: InputDecoration(
-            hintText: 'Confirm Password',
-            suffixIcon: IconButton(
-              onPressed: () {
-                _confirmPassVisibilityCubit.onUpdateState(!visible);
-              },
-              icon: Icon(visible? Icons.visibility : Icons.visibility_off),
+        bloc: _confirmPassVisibilityCubit,
+        builder: (context, visible) {
+          return TextFormField(
+            key: _confirmPasswordFormKey,
+            controller: _confirmPassController,
+            autovalidateMode: AutovalidateMode.onUserInteraction,
+            obscureText: !visible,
+            decoration: InputDecoration(
+              hintText: 'Confirm Password',
+              suffixIcon: IconButton(
+                onPressed: () {
+                  _confirmPassVisibilityCubit.onUpdateState(!visible);
+                },
+                icon: Icon(visible ? Icons.visibility : Icons.visibility_off),
+              ),
             ),
-          ),
-          validator: (value) => ConfirmPasswordValidator.dirty(
-            _passwordFormKey.currentState!.value,
-            value,
-          ).error,
-        );
-      }
-    );
+            validator: (value) => ConfirmPasswordValidator.dirty(
+              _passwordFormKey.currentState!.value,
+              value,
+            ).error,
+          );
+        });
 
     final addressField = TextFormField(
       controller: _addressController,
@@ -132,6 +132,7 @@ class _RegisterPageState extends State<RegisterPage> {
         listener: (context, state) {
           if (state.signUpStatus == SignUpStatus.success) {
             context.go(LocalRoute.otp(
+              OTPPurpose.registration,
               _phoneNumberController.text,
               username: _usernameFieldController.text,
               password: _passwordController.text,
@@ -139,10 +140,74 @@ class _RegisterPageState extends State<RegisterPage> {
           }
 
           if (state.signUpStatus == SignUpStatus.failed) {
-            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-              content: Text(state.message),
+            showDialog(
+              context: context,
+              builder: (BuildContext context) {
+                return Dialog(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                      vertical: 20,
+                      horizontal: 30,
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Text(
+                          'Please Fix the Following Errors',
+                          style: textStyle.bodyLarge?.copyWith(
+                            fontWeight: FontWeight.w700,
+                            color: Theme.of(context).primaryColor,
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
+                        Text(
+                          'Some fields have errors. Please review '
+                          'and correct them before proceeding.',
+                          style: textStyle.bodySmall,
+                          textAlign: TextAlign.center,
+                        ),
+                        const SizedBox(height: 20),
+                        ...state.errors.map((e) {
+                          return Padding(
+                            padding: const EdgeInsets.only(bottom: 10),
+                            child: Row(
+                              children: [
+                                CircleAvatar(
+                                  radius: 4,
+                                  backgroundColor: Theme.of(context).colorScheme.error,
+                                ),
+                                const SizedBox(width: 15,),
+                                Text(
+                                  e.message,
+                                  style: textStyle.bodySmall,
+                                  textAlign: TextAlign.center,
+                                ),
+                              ],
+                            ),
+                          );
+                        }),
+                        const SizedBox(height: 20),
+                        SizedBox(
+                          width: MediaQuery.of(context).size.width,
+                          child: FilledButton(
+                              onPressed: (){
+                                context.pop();
+                              },
+                              child: const Text('Close')),
+                        ),
+                      ],
+                    ),
+                  ),
+                );
+              },
+            );
+
+            /*ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+              content: Text(state.errors.toString()),
               backgroundColor: Theme.of(context).colorScheme.error,
-            ));
+            ));*/
           }
         },
         builder: (context, state) {

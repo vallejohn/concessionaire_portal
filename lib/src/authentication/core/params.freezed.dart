@@ -479,6 +479,7 @@ OTPParams _$OTPParamsFromJson(Map<String, dynamic> json) {
 mixin _$OTPParams {
   String get phone => throw _privateConstructorUsedError;
   String get otp => throw _privateConstructorUsedError;
+  OTPPurpose get purpose => throw _privateConstructorUsedError;
   LoginParams? get loginParam => throw _privateConstructorUsedError;
 
   /// Serializes this OTPParams to a JSON map.
@@ -496,7 +497,8 @@ abstract class $OTPParamsCopyWith<$Res> {
   factory $OTPParamsCopyWith(OTPParams value, $Res Function(OTPParams) then) =
       _$OTPParamsCopyWithImpl<$Res, OTPParams>;
   @useResult
-  $Res call({String phone, String otp, LoginParams? loginParam});
+  $Res call(
+      {String phone, String otp, OTPPurpose purpose, LoginParams? loginParam});
 
   $LoginParamsCopyWith<$Res>? get loginParam;
 }
@@ -518,6 +520,7 @@ class _$OTPParamsCopyWithImpl<$Res, $Val extends OTPParams>
   $Res call({
     Object? phone = null,
     Object? otp = null,
+    Object? purpose = null,
     Object? loginParam = freezed,
   }) {
     return _then(_value.copyWith(
@@ -529,6 +532,10 @@ class _$OTPParamsCopyWithImpl<$Res, $Val extends OTPParams>
           ? _value.otp
           : otp // ignore: cast_nullable_to_non_nullable
               as String,
+      purpose: null == purpose
+          ? _value.purpose
+          : purpose // ignore: cast_nullable_to_non_nullable
+              as OTPPurpose,
       loginParam: freezed == loginParam
           ? _value.loginParam
           : loginParam // ignore: cast_nullable_to_non_nullable
@@ -559,7 +566,8 @@ abstract class _$$OTPParamsImplCopyWith<$Res>
       __$$OTPParamsImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String phone, String otp, LoginParams? loginParam});
+  $Res call(
+      {String phone, String otp, OTPPurpose purpose, LoginParams? loginParam});
 
   @override
   $LoginParamsCopyWith<$Res>? get loginParam;
@@ -580,6 +588,7 @@ class __$$OTPParamsImplCopyWithImpl<$Res>
   $Res call({
     Object? phone = null,
     Object? otp = null,
+    Object? purpose = null,
     Object? loginParam = freezed,
   }) {
     return _then(_$OTPParamsImpl(
@@ -591,6 +600,10 @@ class __$$OTPParamsImplCopyWithImpl<$Res>
           ? _value.otp
           : otp // ignore: cast_nullable_to_non_nullable
               as String,
+      purpose: null == purpose
+          ? _value.purpose
+          : purpose // ignore: cast_nullable_to_non_nullable
+              as OTPPurpose,
       loginParam: freezed == loginParam
           ? _value.loginParam
           : loginParam // ignore: cast_nullable_to_non_nullable
@@ -603,7 +616,10 @@ class __$$OTPParamsImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$OTPParamsImpl implements _OTPParams {
   const _$OTPParamsImpl(
-      {required this.phone, required this.otp, this.loginParam});
+      {required this.phone,
+      required this.otp,
+      required this.purpose,
+      this.loginParam});
 
   factory _$OTPParamsImpl.fromJson(Map<String, dynamic> json) =>
       _$$OTPParamsImplFromJson(json);
@@ -613,11 +629,13 @@ class _$OTPParamsImpl implements _OTPParams {
   @override
   final String otp;
   @override
+  final OTPPurpose purpose;
+  @override
   final LoginParams? loginParam;
 
   @override
   String toString() {
-    return 'OTPParams(phone: $phone, otp: $otp, loginParam: $loginParam)';
+    return 'OTPParams(phone: $phone, otp: $otp, purpose: $purpose, loginParam: $loginParam)';
   }
 
   @override
@@ -627,13 +645,14 @@ class _$OTPParamsImpl implements _OTPParams {
             other is _$OTPParamsImpl &&
             (identical(other.phone, phone) || other.phone == phone) &&
             (identical(other.otp, otp) || other.otp == otp) &&
+            (identical(other.purpose, purpose) || other.purpose == purpose) &&
             (identical(other.loginParam, loginParam) ||
                 other.loginParam == loginParam));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, phone, otp, loginParam);
+  int get hashCode => Object.hash(runtimeType, phone, otp, purpose, loginParam);
 
   /// Create a copy of OTPParams
   /// with the given fields replaced by the non-null parameter values.
@@ -655,6 +674,7 @@ abstract class _OTPParams implements OTPParams {
   const factory _OTPParams(
       {required final String phone,
       required final String otp,
+      required final OTPPurpose purpose,
       final LoginParams? loginParam}) = _$OTPParamsImpl;
 
   factory _OTPParams.fromJson(Map<String, dynamic> json) =
@@ -664,6 +684,8 @@ abstract class _OTPParams implements OTPParams {
   String get phone;
   @override
   String get otp;
+  @override
+  OTPPurpose get purpose;
   @override
   LoginParams? get loginParam;
 
@@ -683,6 +705,7 @@ ForgotPasswordParams _$ForgotPasswordParamsFromJson(Map<String, dynamic> json) {
 mixin _$ForgotPasswordParams {
   String get password => throw _privateConstructorUsedError;
   String get confirmPassword => throw _privateConstructorUsedError;
+  String get username => throw _privateConstructorUsedError;
   String get phone => throw _privateConstructorUsedError;
 
   /// Serializes this ForgotPasswordParams to a JSON map.
@@ -701,7 +724,8 @@ abstract class $ForgotPasswordParamsCopyWith<$Res> {
           $Res Function(ForgotPasswordParams) then) =
       _$ForgotPasswordParamsCopyWithImpl<$Res, ForgotPasswordParams>;
   @useResult
-  $Res call({String password, String confirmPassword, String phone});
+  $Res call(
+      {String password, String confirmPassword, String username, String phone});
 }
 
 /// @nodoc
@@ -722,6 +746,7 @@ class _$ForgotPasswordParamsCopyWithImpl<$Res,
   $Res call({
     Object? password = null,
     Object? confirmPassword = null,
+    Object? username = null,
     Object? phone = null,
   }) {
     return _then(_value.copyWith(
@@ -732,6 +757,10 @@ class _$ForgotPasswordParamsCopyWithImpl<$Res,
       confirmPassword: null == confirmPassword
           ? _value.confirmPassword
           : confirmPassword // ignore: cast_nullable_to_non_nullable
+              as String,
+      username: null == username
+          ? _value.username
+          : username // ignore: cast_nullable_to_non_nullable
               as String,
       phone: null == phone
           ? _value.phone
@@ -749,7 +778,8 @@ abstract class _$$ForgotPasswordParamsImplCopyWith<$Res>
       __$$ForgotPasswordParamsImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String password, String confirmPassword, String phone});
+  $Res call(
+      {String password, String confirmPassword, String username, String phone});
 }
 
 /// @nodoc
@@ -767,6 +797,7 @@ class __$$ForgotPasswordParamsImplCopyWithImpl<$Res>
   $Res call({
     Object? password = null,
     Object? confirmPassword = null,
+    Object? username = null,
     Object? phone = null,
   }) {
     return _then(_$ForgotPasswordParamsImpl(
@@ -777,6 +808,10 @@ class __$$ForgotPasswordParamsImplCopyWithImpl<$Res>
       confirmPassword: null == confirmPassword
           ? _value.confirmPassword
           : confirmPassword // ignore: cast_nullable_to_non_nullable
+              as String,
+      username: null == username
+          ? _value.username
+          : username // ignore: cast_nullable_to_non_nullable
               as String,
       phone: null == phone
           ? _value.phone
@@ -790,23 +825,30 @@ class __$$ForgotPasswordParamsImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ForgotPasswordParamsImpl implements _ForgotPasswordParams {
   const _$ForgotPasswordParamsImpl(
-      {required this.password,
-      required this.confirmPassword,
-      required this.phone});
+      {this.password = '',
+      this.confirmPassword = '',
+      this.username = '',
+      this.phone = ''});
 
   factory _$ForgotPasswordParamsImpl.fromJson(Map<String, dynamic> json) =>
       _$$ForgotPasswordParamsImplFromJson(json);
 
   @override
+  @JsonKey()
   final String password;
   @override
+  @JsonKey()
   final String confirmPassword;
   @override
+  @JsonKey()
+  final String username;
+  @override
+  @JsonKey()
   final String phone;
 
   @override
   String toString() {
-    return 'ForgotPasswordParams(password: $password, confirmPassword: $confirmPassword, phone: $phone)';
+    return 'ForgotPasswordParams(password: $password, confirmPassword: $confirmPassword, username: $username, phone: $phone)';
   }
 
   @override
@@ -818,13 +860,15 @@ class _$ForgotPasswordParamsImpl implements _ForgotPasswordParams {
                 other.password == password) &&
             (identical(other.confirmPassword, confirmPassword) ||
                 other.confirmPassword == confirmPassword) &&
+            (identical(other.username, username) ||
+                other.username == username) &&
             (identical(other.phone, phone) || other.phone == phone));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode =>
-      Object.hash(runtimeType, password, confirmPassword, phone);
+      Object.hash(runtimeType, password, confirmPassword, username, phone);
 
   /// Create a copy of ForgotPasswordParams
   /// with the given fields replaced by the non-null parameter values.
@@ -846,9 +890,10 @@ class _$ForgotPasswordParamsImpl implements _ForgotPasswordParams {
 
 abstract class _ForgotPasswordParams implements ForgotPasswordParams {
   const factory _ForgotPasswordParams(
-      {required final String password,
-      required final String confirmPassword,
-      required final String phone}) = _$ForgotPasswordParamsImpl;
+      {final String password,
+      final String confirmPassword,
+      final String username,
+      final String phone}) = _$ForgotPasswordParamsImpl;
 
   factory _ForgotPasswordParams.fromJson(Map<String, dynamic> json) =
       _$ForgotPasswordParamsImpl.fromJson;
@@ -857,6 +902,8 @@ abstract class _ForgotPasswordParams implements ForgotPasswordParams {
   String get password;
   @override
   String get confirmPassword;
+  @override
+  String get username;
   @override
   String get phone;
 

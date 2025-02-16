@@ -44,6 +44,7 @@ _$OTPParamsImpl _$$OTPParamsImplFromJson(Map<String, dynamic> json) =>
     _$OTPParamsImpl(
       phone: json['phone'] as String,
       otp: json['otp'] as String,
+      purpose: $enumDecode(_$OTPPurposeEnumMap, json['purpose']),
       loginParam: json['loginParam'] == null
           ? null
           : LoginParams.fromJson(json['loginParam'] as Map<String, dynamic>),
@@ -53,15 +54,22 @@ Map<String, dynamic> _$$OTPParamsImplToJson(_$OTPParamsImpl instance) =>
     <String, dynamic>{
       'phone': instance.phone,
       'otp': instance.otp,
+      'purpose': _$OTPPurposeEnumMap[instance.purpose]!,
       'loginParam': instance.loginParam,
     };
+
+const _$OTPPurposeEnumMap = {
+  OTPPurpose.registration: 'registration',
+  OTPPurpose.forgotPassword: 'forgotPassword',
+};
 
 _$ForgotPasswordParamsImpl _$$ForgotPasswordParamsImplFromJson(
         Map<String, dynamic> json) =>
     _$ForgotPasswordParamsImpl(
-      password: json['password'] as String,
-      confirmPassword: json['confirmPassword'] as String,
-      phone: json['phone'] as String,
+      password: json['password'] as String? ?? '',
+      confirmPassword: json['confirmPassword'] as String? ?? '',
+      username: json['username'] as String? ?? '',
+      phone: json['phone'] as String? ?? '',
     );
 
 Map<String, dynamic> _$$ForgotPasswordParamsImplToJson(
@@ -69,5 +77,6 @@ Map<String, dynamic> _$$ForgotPasswordParamsImplToJson(
     <String, dynamic>{
       'password': instance.password,
       'confirmPassword': instance.confirmPassword,
+      'username': instance.username,
       'phone': instance.phone,
     };

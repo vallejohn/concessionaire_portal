@@ -249,6 +249,7 @@ abstract class _DoSignUp implements SignUpEvent {
 mixin _$SignUpState {
   SignUpStatus get signUpStatus => throw _privateConstructorUsedError;
   String get message => throw _privateConstructorUsedError;
+  List<SignUpErrors> get errors => throw _privateConstructorUsedError;
 
   /// Create a copy of SignUpState
   /// with the given fields replaced by the non-null parameter values.
@@ -263,7 +264,8 @@ abstract class $SignUpStateCopyWith<$Res> {
           SignUpState value, $Res Function(SignUpState) then) =
       _$SignUpStateCopyWithImpl<$Res, SignUpState>;
   @useResult
-  $Res call({SignUpStatus signUpStatus, String message});
+  $Res call(
+      {SignUpStatus signUpStatus, String message, List<SignUpErrors> errors});
 }
 
 /// @nodoc
@@ -283,6 +285,7 @@ class _$SignUpStateCopyWithImpl<$Res, $Val extends SignUpState>
   $Res call({
     Object? signUpStatus = null,
     Object? message = null,
+    Object? errors = null,
   }) {
     return _then(_value.copyWith(
       signUpStatus: null == signUpStatus
@@ -293,6 +296,10 @@ class _$SignUpStateCopyWithImpl<$Res, $Val extends SignUpState>
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
               as String,
+      errors: null == errors
+          ? _value.errors
+          : errors // ignore: cast_nullable_to_non_nullable
+              as List<SignUpErrors>,
     ) as $Val);
   }
 }
@@ -305,7 +312,8 @@ abstract class _$$SignUpStateImplCopyWith<$Res>
       __$$SignUpStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({SignUpStatus signUpStatus, String message});
+  $Res call(
+      {SignUpStatus signUpStatus, String message, List<SignUpErrors> errors});
 }
 
 /// @nodoc
@@ -323,6 +331,7 @@ class __$$SignUpStateImplCopyWithImpl<$Res>
   $Res call({
     Object? signUpStatus = null,
     Object? message = null,
+    Object? errors = null,
   }) {
     return _then(_$SignUpStateImpl(
       signUpStatus: null == signUpStatus
@@ -333,6 +342,10 @@ class __$$SignUpStateImplCopyWithImpl<$Res>
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
               as String,
+      errors: null == errors
+          ? _value._errors
+          : errors // ignore: cast_nullable_to_non_nullable
+              as List<SignUpErrors>,
     ));
   }
 }
@@ -341,7 +354,10 @@ class __$$SignUpStateImplCopyWithImpl<$Res>
 
 class _$SignUpStateImpl implements _SignUpState {
   const _$SignUpStateImpl(
-      {this.signUpStatus = SignUpStatus.initial, this.message = ''});
+      {this.signUpStatus = SignUpStatus.initial,
+      this.message = '',
+      final List<SignUpErrors> errors = const []})
+      : _errors = errors;
 
   @override
   @JsonKey()
@@ -349,10 +365,18 @@ class _$SignUpStateImpl implements _SignUpState {
   @override
   @JsonKey()
   final String message;
+  final List<SignUpErrors> _errors;
+  @override
+  @JsonKey()
+  List<SignUpErrors> get errors {
+    if (_errors is EqualUnmodifiableListView) return _errors;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_errors);
+  }
 
   @override
   String toString() {
-    return 'SignUpState(signUpStatus: $signUpStatus, message: $message)';
+    return 'SignUpState(signUpStatus: $signUpStatus, message: $message, errors: $errors)';
   }
 
   @override
@@ -362,11 +386,13 @@ class _$SignUpStateImpl implements _SignUpState {
             other is _$SignUpStateImpl &&
             (identical(other.signUpStatus, signUpStatus) ||
                 other.signUpStatus == signUpStatus) &&
-            (identical(other.message, message) || other.message == message));
+            (identical(other.message, message) || other.message == message) &&
+            const DeepCollectionEquality().equals(other._errors, _errors));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, signUpStatus, message);
+  int get hashCode => Object.hash(runtimeType, signUpStatus, message,
+      const DeepCollectionEquality().hash(_errors));
 
   /// Create a copy of SignUpState
   /// with the given fields replaced by the non-null parameter values.
@@ -380,12 +406,15 @@ class _$SignUpStateImpl implements _SignUpState {
 abstract class _SignUpState implements SignUpState {
   const factory _SignUpState(
       {final SignUpStatus signUpStatus,
-      final String message}) = _$SignUpStateImpl;
+      final String message,
+      final List<SignUpErrors> errors}) = _$SignUpStateImpl;
 
   @override
   SignUpStatus get signUpStatus;
   @override
   String get message;
+  @override
+  List<SignUpErrors> get errors;
 
   /// Create a copy of SignUpState
   /// with the given fields replaced by the non-null parameter values.

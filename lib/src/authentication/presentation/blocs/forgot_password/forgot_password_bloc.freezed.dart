@@ -252,6 +252,7 @@ mixin _$ForgotPasswordState {
   ForgotPasswordStatus get status => throw _privateConstructorUsedError;
   ForgotPasswordPageStatus get pageStatus => throw _privateConstructorUsedError;
   String get message => throw _privateConstructorUsedError;
+  String get phone => throw _privateConstructorUsedError;
 
   /// Create a copy of ForgotPasswordState
   /// with the given fields replaced by the non-null parameter values.
@@ -269,7 +270,8 @@ abstract class $ForgotPasswordStateCopyWith<$Res> {
   $Res call(
       {ForgotPasswordStatus status,
       ForgotPasswordPageStatus pageStatus,
-      String message});
+      String message,
+      String phone});
 }
 
 /// @nodoc
@@ -290,6 +292,7 @@ class _$ForgotPasswordStateCopyWithImpl<$Res, $Val extends ForgotPasswordState>
     Object? status = null,
     Object? pageStatus = null,
     Object? message = null,
+    Object? phone = null,
   }) {
     return _then(_value.copyWith(
       status: null == status
@@ -303,6 +306,10 @@ class _$ForgotPasswordStateCopyWithImpl<$Res, $Val extends ForgotPasswordState>
       message: null == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
+              as String,
+      phone: null == phone
+          ? _value.phone
+          : phone // ignore: cast_nullable_to_non_nullable
               as String,
     ) as $Val);
   }
@@ -319,7 +326,8 @@ abstract class _$$ForgotPasswordStateImplCopyWith<$Res>
   $Res call(
       {ForgotPasswordStatus status,
       ForgotPasswordPageStatus pageStatus,
-      String message});
+      String message,
+      String phone});
 }
 
 /// @nodoc
@@ -338,6 +346,7 @@ class __$$ForgotPasswordStateImplCopyWithImpl<$Res>
     Object? status = null,
     Object? pageStatus = null,
     Object? message = null,
+    Object? phone = null,
   }) {
     return _then(_$ForgotPasswordStateImpl(
       status: null == status
@@ -352,6 +361,10 @@ class __$$ForgotPasswordStateImplCopyWithImpl<$Res>
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
               as String,
+      phone: null == phone
+          ? _value.phone
+          : phone // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -362,7 +375,8 @@ class _$ForgotPasswordStateImpl implements _ForgotPasswordState {
   const _$ForgotPasswordStateImpl(
       {this.status = ForgotPasswordStatus.initial,
       this.pageStatus = ForgotPasswordPageStatus.numberEntry,
-      this.message = ''});
+      this.message = '',
+      this.phone = ''});
 
   @override
   @JsonKey()
@@ -373,10 +387,13 @@ class _$ForgotPasswordStateImpl implements _ForgotPasswordState {
   @override
   @JsonKey()
   final String message;
+  @override
+  @JsonKey()
+  final String phone;
 
   @override
   String toString() {
-    return 'ForgotPasswordState(status: $status, pageStatus: $pageStatus, message: $message)';
+    return 'ForgotPasswordState(status: $status, pageStatus: $pageStatus, message: $message, phone: $phone)';
   }
 
   @override
@@ -387,11 +404,13 @@ class _$ForgotPasswordStateImpl implements _ForgotPasswordState {
             (identical(other.status, status) || other.status == status) &&
             (identical(other.pageStatus, pageStatus) ||
                 other.pageStatus == pageStatus) &&
-            (identical(other.message, message) || other.message == message));
+            (identical(other.message, message) || other.message == message) &&
+            (identical(other.phone, phone) || other.phone == phone));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, status, pageStatus, message);
+  int get hashCode =>
+      Object.hash(runtimeType, status, pageStatus, message, phone);
 
   /// Create a copy of ForgotPasswordState
   /// with the given fields replaced by the non-null parameter values.
@@ -407,7 +426,8 @@ abstract class _ForgotPasswordState implements ForgotPasswordState {
   const factory _ForgotPasswordState(
       {final ForgotPasswordStatus status,
       final ForgotPasswordPageStatus pageStatus,
-      final String message}) = _$ForgotPasswordStateImpl;
+      final String message,
+      final String phone}) = _$ForgotPasswordStateImpl;
 
   @override
   ForgotPasswordStatus get status;
@@ -415,6 +435,8 @@ abstract class _ForgotPasswordState implements ForgotPasswordState {
   ForgotPasswordPageStatus get pageStatus;
   @override
   String get message;
+  @override
+  String get phone;
 
   /// Create a copy of ForgotPasswordState
   /// with the given fields replaced by the non-null parameter values.

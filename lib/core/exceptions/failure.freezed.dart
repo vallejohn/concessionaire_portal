@@ -18,22 +18,21 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$Failure {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(AuthenticationException authException)
-        authentication,
+    required TResult Function(BaseException<dynamic> baseException) exception,
     required TResult Function(HiveCollectionException collectionException)
         hiveCollectionException,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(AuthenticationException authException)? authentication,
+    TResult? Function(BaseException<dynamic> baseException)? exception,
     TResult? Function(HiveCollectionException collectionException)?
         hiveCollectionException,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(AuthenticationException authException)? authentication,
+    TResult Function(BaseException<dynamic> baseException)? exception,
     TResult Function(HiveCollectionException collectionException)?
         hiveCollectionException,
     required TResult orElse(),
@@ -41,20 +40,20 @@ mixin _$Failure {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_AuthenticationException value) authentication,
+    required TResult Function(_BaseException value) exception,
     required TResult Function(_HiveCollectionException value)
         hiveCollectionException,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_AuthenticationException value)? authentication,
+    TResult? Function(_BaseException value)? exception,
     TResult? Function(_HiveCollectionException value)? hiveCollectionException,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_AuthenticationException value)? authentication,
+    TResult Function(_BaseException value)? exception,
     TResult Function(_HiveCollectionException value)? hiveCollectionException,
     required TResult orElse(),
   }) =>
@@ -82,22 +81,20 @@ class _$FailureCopyWithImpl<$Res, $Val extends Failure>
 }
 
 /// @nodoc
-abstract class _$$AuthenticationExceptionImplCopyWith<$Res> {
-  factory _$$AuthenticationExceptionImplCopyWith(
-          _$AuthenticationExceptionImpl value,
-          $Res Function(_$AuthenticationExceptionImpl) then) =
-      __$$AuthenticationExceptionImplCopyWithImpl<$Res>;
+abstract class _$$BaseExceptionImplCopyWith<$Res> {
+  factory _$$BaseExceptionImplCopyWith(
+          _$BaseExceptionImpl value, $Res Function(_$BaseExceptionImpl) then) =
+      __$$BaseExceptionImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({AuthenticationException authException});
+  $Res call({BaseException<dynamic> baseException});
 }
 
 /// @nodoc
-class __$$AuthenticationExceptionImplCopyWithImpl<$Res>
-    extends _$FailureCopyWithImpl<$Res, _$AuthenticationExceptionImpl>
-    implements _$$AuthenticationExceptionImplCopyWith<$Res> {
-  __$$AuthenticationExceptionImplCopyWithImpl(
-      _$AuthenticationExceptionImpl _value,
-      $Res Function(_$AuthenticationExceptionImpl) _then)
+class __$$BaseExceptionImplCopyWithImpl<$Res>
+    extends _$FailureCopyWithImpl<$Res, _$BaseExceptionImpl>
+    implements _$$BaseExceptionImplCopyWith<$Res> {
+  __$$BaseExceptionImplCopyWithImpl(
+      _$BaseExceptionImpl _value, $Res Function(_$BaseExceptionImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of Failure
@@ -105,82 +102,80 @@ class __$$AuthenticationExceptionImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? authException = null,
+    Object? baseException = null,
   }) {
-    return _then(_$AuthenticationExceptionImpl(
-      null == authException
-          ? _value.authException
-          : authException // ignore: cast_nullable_to_non_nullable
-              as AuthenticationException,
+    return _then(_$BaseExceptionImpl(
+      null == baseException
+          ? _value.baseException
+          : baseException // ignore: cast_nullable_to_non_nullable
+              as BaseException<dynamic>,
     ));
   }
 }
 
 /// @nodoc
 
-class _$AuthenticationExceptionImpl implements _AuthenticationException {
-  const _$AuthenticationExceptionImpl(this.authException);
+class _$BaseExceptionImpl implements _BaseException {
+  const _$BaseExceptionImpl(this.baseException);
 
   @override
-  final AuthenticationException authException;
+  final BaseException<dynamic> baseException;
 
   @override
   String toString() {
-    return 'Failure.authentication(authException: $authException)';
+    return 'Failure.exception(baseException: $baseException)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$AuthenticationExceptionImpl &&
-            (identical(other.authException, authException) ||
-                other.authException == authException));
+            other is _$BaseExceptionImpl &&
+            (identical(other.baseException, baseException) ||
+                other.baseException == baseException));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, authException);
+  int get hashCode => Object.hash(runtimeType, baseException);
 
   /// Create a copy of Failure
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$AuthenticationExceptionImplCopyWith<_$AuthenticationExceptionImpl>
-      get copyWith => __$$AuthenticationExceptionImplCopyWithImpl<
-          _$AuthenticationExceptionImpl>(this, _$identity);
+  _$$BaseExceptionImplCopyWith<_$BaseExceptionImpl> get copyWith =>
+      __$$BaseExceptionImplCopyWithImpl<_$BaseExceptionImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(AuthenticationException authException)
-        authentication,
+    required TResult Function(BaseException<dynamic> baseException) exception,
     required TResult Function(HiveCollectionException collectionException)
         hiveCollectionException,
   }) {
-    return authentication(authException);
+    return exception(baseException);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(AuthenticationException authException)? authentication,
+    TResult? Function(BaseException<dynamic> baseException)? exception,
     TResult? Function(HiveCollectionException collectionException)?
         hiveCollectionException,
   }) {
-    return authentication?.call(authException);
+    return exception?.call(baseException);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(AuthenticationException authException)? authentication,
+    TResult Function(BaseException<dynamic> baseException)? exception,
     TResult Function(HiveCollectionException collectionException)?
         hiveCollectionException,
     required TResult orElse(),
   }) {
-    if (authentication != null) {
-      return authentication(authException);
+    if (exception != null) {
+      return exception(baseException);
     }
     return orElse();
   }
@@ -188,48 +183,47 @@ class _$AuthenticationExceptionImpl implements _AuthenticationException {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_AuthenticationException value) authentication,
+    required TResult Function(_BaseException value) exception,
     required TResult Function(_HiveCollectionException value)
         hiveCollectionException,
   }) {
-    return authentication(this);
+    return exception(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_AuthenticationException value)? authentication,
+    TResult? Function(_BaseException value)? exception,
     TResult? Function(_HiveCollectionException value)? hiveCollectionException,
   }) {
-    return authentication?.call(this);
+    return exception?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_AuthenticationException value)? authentication,
+    TResult Function(_BaseException value)? exception,
     TResult Function(_HiveCollectionException value)? hiveCollectionException,
     required TResult orElse(),
   }) {
-    if (authentication != null) {
-      return authentication(this);
+    if (exception != null) {
+      return exception(this);
     }
     return orElse();
   }
 }
 
-abstract class _AuthenticationException implements Failure {
-  const factory _AuthenticationException(
-          final AuthenticationException authException) =
-      _$AuthenticationExceptionImpl;
+abstract class _BaseException implements Failure {
+  const factory _BaseException(final BaseException<dynamic> baseException) =
+      _$BaseExceptionImpl;
 
-  AuthenticationException get authException;
+  BaseException<dynamic> get baseException;
 
   /// Create a copy of Failure
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$AuthenticationExceptionImplCopyWith<_$AuthenticationExceptionImpl>
-      get copyWith => throw _privateConstructorUsedError;
+  _$$BaseExceptionImplCopyWith<_$BaseExceptionImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -304,8 +298,7 @@ class _$HiveCollectionExceptionImpl implements _HiveCollectionException {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(AuthenticationException authException)
-        authentication,
+    required TResult Function(BaseException<dynamic> baseException) exception,
     required TResult Function(HiveCollectionException collectionException)
         hiveCollectionException,
   }) {
@@ -315,7 +308,7 @@ class _$HiveCollectionExceptionImpl implements _HiveCollectionException {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(AuthenticationException authException)? authentication,
+    TResult? Function(BaseException<dynamic> baseException)? exception,
     TResult? Function(HiveCollectionException collectionException)?
         hiveCollectionException,
   }) {
@@ -325,7 +318,7 @@ class _$HiveCollectionExceptionImpl implements _HiveCollectionException {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(AuthenticationException authException)? authentication,
+    TResult Function(BaseException<dynamic> baseException)? exception,
     TResult Function(HiveCollectionException collectionException)?
         hiveCollectionException,
     required TResult orElse(),
@@ -339,7 +332,7 @@ class _$HiveCollectionExceptionImpl implements _HiveCollectionException {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_AuthenticationException value) authentication,
+    required TResult Function(_BaseException value) exception,
     required TResult Function(_HiveCollectionException value)
         hiveCollectionException,
   }) {
@@ -349,7 +342,7 @@ class _$HiveCollectionExceptionImpl implements _HiveCollectionException {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_AuthenticationException value)? authentication,
+    TResult? Function(_BaseException value)? exception,
     TResult? Function(_HiveCollectionException value)? hiveCollectionException,
   }) {
     return hiveCollectionException?.call(this);
@@ -358,7 +351,7 @@ class _$HiveCollectionExceptionImpl implements _HiveCollectionException {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_AuthenticationException value)? authentication,
+    TResult Function(_BaseException value)? exception,
     TResult Function(_HiveCollectionException value)? hiveCollectionException,
     required TResult orElse(),
   }) {

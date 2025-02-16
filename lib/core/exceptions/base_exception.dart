@@ -1,4 +1,4 @@
-abstract class BaseException implements Exception{
-  final String message;
-  BaseException({this.message = ''});
+abstract class BaseException<T> implements Exception{
+  final T value;
+  BaseException({required this.value});
 }

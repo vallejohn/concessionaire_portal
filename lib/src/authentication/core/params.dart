@@ -1,5 +1,8 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+import '../presentation/blocs/otp/otp_bloc.dart';
+import '../presentation/pages/otp_page.dart';
+
 part 'params.freezed.dart';
 part 'params.g.dart';
 
@@ -37,6 +40,7 @@ class OTPParams with _$OTPParams {
   const factory OTPParams({
     required String phone,
     required String otp,
+    required OTPPurpose purpose,
     LoginParams? loginParam,
   }) = _OTPParams;
 
@@ -46,9 +50,10 @@ class OTPParams with _$OTPParams {
 @freezed
 class ForgotPasswordParams with _$ForgotPasswordParams {
   const factory ForgotPasswordParams({
-    required String password,
-    required String confirmPassword,
-    required String phone,
+    @Default('') String password,
+    @Default('') String confirmPassword,
+    @Default('') String username,
+    @Default('') String phone,
   }) = _ForgotPasswordParams;
 
   factory ForgotPasswordParams.fromJson(Map<String, dynamic> json) => _$ForgotPasswordParamsFromJson(json);

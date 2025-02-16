@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:mwd_concessionaire_portal/core/exceptions/authentication_exception.dart';
+import 'package:mwd_concessionaire_portal/core/exceptions/base_exception.dart';
 
 import 'package:mwd_concessionaire_portal/core/exceptions/failure.dart';
 import 'package:mwd_concessionaire_portal/src/authentication/core/params.dart';
@@ -30,7 +31,7 @@ class AuthenticationRepositoryImpl extends AuthenticationRepository{
     }on HiveCollectionException catch(e){
       return Left(Failure.hiveCollectionException(e));
     }on AuthenticationException catch(authError){
-      return Left(Failure.authentication(authError));
+      return Left(Failure.exception(authError));
     }
   }
 
@@ -41,8 +42,8 @@ class AuthenticationRepositoryImpl extends AuthenticationRepository{
       return Right(data);
     }on HiveCollectionException catch(e){
       return Left(Failure.hiveCollectionException(e));
-    }on AuthenticationException catch(authError){
-      return Left(Failure.authentication(authError));
+    }on SignUpException catch(authError){
+      return Left(Failure.exception(authError));
     }
   }
 
@@ -54,7 +55,7 @@ class AuthenticationRepositoryImpl extends AuthenticationRepository{
     }on HiveCollectionException catch(e){
       return Left(Failure.hiveCollectionException(e));
     }on AuthenticationException catch(authError){
-      return Left(Failure.authentication(authError));
+      return Left(Failure.exception(authError));
     }
   }
 
@@ -66,7 +67,19 @@ class AuthenticationRepositoryImpl extends AuthenticationRepository{
     }on HiveCollectionException catch(e){
       return Left(Failure.hiveCollectionException(e));
     }on AuthenticationException catch(authError){
-      return Left(Failure.authentication(authError));
+      return Left(Failure.exception(authError));
+    }
+  }
+
+  @override
+  Future<Either<Failure, String>> onForgotPassword(ForgotPasswordParams params)async {
+    try{
+      final data = await dataSource.onForgotPassword(params);
+      return Right(data);
+    }on HiveCollectionException catch(e){
+      return Left(Failure.hiveCollectionException(e));
+    }on BaseException catch(authError){
+      return Left(Failure.exception(authError));
     }
   }
 }

@@ -8,9 +8,15 @@ import 'package:mwd_concessionaire_portal/src/authentication/presentation/blocs/
 import 'package:pinput/pinput.dart';
 
 class OtpPage extends StatefulWidget {
+  final OTPPurpose purpose;
   final String phone;
   final LoginParams? loginParams;
-  const OtpPage({super.key, required this.phone, this.loginParams});
+  const OtpPage({
+    super.key,
+    required this.phone,
+    this.loginParams,
+    required this.purpose,
+  });
 
   @override
   State<OtpPage> createState() => _OtpPageState();
@@ -27,8 +33,15 @@ class _OtpPageState extends State<OtpPage> {
     return Scaffold(
       body: BlocConsumer<OtpBloc, OtpState>(listener: (context, state) {
         if (state.status == OTPStatus.success) {
-          context.go('/home');
+          switch(widget.purpose){
+            case OTPPurpose.registration:
+              context.go('/successRegistration');
+            case OTPPurpose.forgotPassword:
+              context.go('/chooseNewPassword');
+          }
+
         }
+
 
         if (state.status == OTPStatus.failed) {
           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
@@ -93,7 +106,6 @@ class _OtpPageState extends State<OtpPage> {
                 ),
               ),
               length: 6,
-              onChanged: (String value) {},
             ),
             const SizedBox(
               height: 20,
@@ -105,7 +117,7 @@ class _OtpPageState extends State<OtpPage> {
                   context.read<OtpBloc>().add(OtpEvent.onConfirmOTP(OTPParams(
                         phone: widget.phone,
                         otp: _otpController.text,
-                        loginParam: widget.loginParams,
+                        loginParam: widget.loginParams, purpose: widget.purpose,
                       )));
                 },
                 child: loading

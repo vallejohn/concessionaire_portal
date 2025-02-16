@@ -57,6 +57,13 @@ class AppTheme {
           fillColor: WidgetStateProperty.all(_kColorScheme.primary),
         ),
         progressIndicatorTheme:
-            const ProgressIndicatorThemeData(linearMinHeight: 2.5));
+            const ProgressIndicatorThemeData(linearMinHeight: 2.5),
+      dialogTheme: DialogTheme(
+        backgroundColor: Colors.white,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(23)
+        )
+      )
+    );
   }
 }

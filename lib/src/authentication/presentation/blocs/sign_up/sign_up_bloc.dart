@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:get_it/get_it.dart';
+import 'package:mwd_concessionaire_portal/core/exceptions/authentication_exception.dart';
 import 'package:mwd_concessionaire_portal/core/util/extensions.dart';
 import 'package:mwd_concessionaire_portal/src/authentication/core/params.dart';
 import 'package:mwd_concessionaire_portal/src/authentication/domain/usecases/sign_up_usecase.dart';
@@ -31,7 +32,14 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
     dataOrError.fold((failure) {
       emit(state.copyWith(
         signUpStatus: SignUpStatus.failed,
-        message: failure.decodeError(),
+        errors: failure.maybeWhen(
+          exception: (error) => (error as SignUpException).value,
+          orElse: () => [],
+        ),
+        message: failure.maybeWhen(
+          hiveCollectionException: (exception) => exception.message,
+          orElse: () => '',
+        ),
       ));
     }, (successData) {
       emit(state.copyWith(

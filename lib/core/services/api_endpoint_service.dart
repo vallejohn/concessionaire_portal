@@ -7,6 +7,7 @@ enum AuthenticationEndpoint {
   login,
   register,
   confirmOTP,
+  forgotPassword,
   forgotPasswordSendOTP,
   registerSendOTP,
 }
@@ -80,6 +81,11 @@ class APIEndpointService {
             params: data,
           );
           break;
+        case AuthenticationEndpoint.forgotPassword:
+          endpointResponse = await _doPostRequest(
+            '$_baseUrl/api/forgot-password',
+            params: data,
+          );
       }
       return endpointResponse;
     } on DioException catch (e) {
