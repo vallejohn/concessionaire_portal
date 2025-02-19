@@ -139,14 +139,11 @@ class _LoginPageState extends State<LoginPage> {
                   parent: AlwaysScrollableScrollPhysics(),
                 ),
                 children: [
+                  Image.asset('assets/images/logo.png'),
                   Form(
                       key: _formKey,
                       child: Column(
                         children: [
-                          const CircleAvatar(
-                            radius: 60,
-                          ),
-                          const SizedBox(height: 50),
                           Text(
                             'LOGIN',
                             style: textStyle.headlineLarge?.copyWith(
