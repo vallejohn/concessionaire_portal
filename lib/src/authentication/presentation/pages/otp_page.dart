@@ -53,7 +53,7 @@ class _OtpPageState extends State<OtpPage> {
         final loading = state.status == OTPStatus.loading;
 
         return ListView(
-          padding: const EdgeInsets.symmetric(vertical: 40, horizontal: 40),
+          padding: const EdgeInsets.all(40),
           physics: const BouncingScrollPhysics(
               parent: AlwaysScrollableScrollPhysics()),
           children: [

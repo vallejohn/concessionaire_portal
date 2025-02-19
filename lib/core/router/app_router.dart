@@ -1,6 +1,7 @@
 import 'package:go_router/go_router.dart';
 import 'package:mwd_concessionaire_portal/demo_pages/home_page.dart';
 import 'package:mwd_concessionaire_portal/src/authentication/core/params.dart';
+import 'package:mwd_concessionaire_portal/src/authentication/presentation/pages/forgot_password/create_password_page.dart';
 import 'package:mwd_concessionaire_portal/src/authentication/presentation/pages/forgot_password/forgot_password_page.dart';
 import 'package:mwd_concessionaire_portal/src/authentication/presentation/pages/otp_page.dart';
 import 'package:mwd_concessionaire_portal/src/authentication/presentation/pages/register_page.dart';
@@ -64,7 +65,7 @@ class _RouteConfiguration {
             final purposeString = queryParams['purpose'] as String;
             OTPPurpose? purpose;
 
-            switch(purposeString){
+            switch (purposeString) {
               case 'registration':
                 purpose = OTPPurpose.registration;
               case 'forgotPassword':
@@ -87,6 +88,10 @@ class _RouteConfiguration {
               loginParams: loginParams,
             );
           },
+        ),
+        GoRoute(
+          path: '/chooseNewPassword',
+          builder: (context, state) => const CreatePasswordPage(),
         ),
       ]);
 }

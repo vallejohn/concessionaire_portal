@@ -45,4 +45,10 @@ class AuthenticationLocalDataSourceImpl extends AuthenticationDataSource{
     // TODO: implement onForgotPassword
     throw UnimplementedError();
   }
+
+  @override
+  Future<String> onCreatePassword(ForgotPasswordParams params) {
+    // TODO: implement onCreatePassword
+    throw UnimplementedError();
+  }
 }

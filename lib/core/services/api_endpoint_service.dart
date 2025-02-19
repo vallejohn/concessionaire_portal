@@ -8,6 +8,7 @@ enum AuthenticationEndpoint {
   register,
   confirmOTP,
   forgotPassword,
+  createPassword,
   forgotPasswordSendOTP,
   registerSendOTP,
 }
@@ -84,6 +85,11 @@ class APIEndpointService {
         case AuthenticationEndpoint.forgotPassword:
           endpointResponse = await _doPostRequest(
             '$_baseUrl/api/forgot-password',
+            params: data,
+          );
+        case AuthenticationEndpoint.createPassword:
+          endpointResponse = await _doPostRequest(
+            '$_baseUrl/api/reset-password',
             params: data,
           );
       }

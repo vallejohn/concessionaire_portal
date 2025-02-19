@@ -116,6 +116,26 @@ class AuthenticationRemoteDataSourceImpl extends AuthenticationDataSource {
     );
 
     if (response.body['status'] == 'success') {
+      return response.body['message'] as String;
+    } else {
+      throw AuthenticationException(response.body['message']);
+    }
+  }
+
+  @override
+  Future<String> onCreatePassword(ForgotPasswordParams params)async {
+    final response = await APIEndpointService.authentication(
+      AuthenticationEndpoint.createPassword,
+      {
+        'username': params.username,
+        'password': params.password,
+        'confirm_password': params.confirmPassword,
+      },
+    );
+
+    return '';
+
+    if (response.body['status'] == 'success') {
       return response.body['phone'] as String;
     } else {
       throw AuthenticationException(response.body['message']['username']);

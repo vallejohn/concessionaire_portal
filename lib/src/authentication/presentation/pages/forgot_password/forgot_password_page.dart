@@ -19,11 +19,14 @@ class ForgotPasswordPage extends StatefulWidget {
 class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
   final TextEditingController _usernameController = TextEditingController();
 
+  final GlobalKey<FormFieldState> _usernameKey = GlobalKey<FormFieldState>();
+
   @override
   Widget build(BuildContext context) {
     final textStyle = Theme.of(context).textTheme;
 
     final usernameField = TextFormField(
+      key: _usernameKey,
       controller: _usernameController,
       keyboardType: TextInputType.emailAddress,
       autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -37,7 +40,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
       appBar: AppBar(),
       body: BlocConsumer<ForgotPasswordBloc, ForgotPasswordState>(
         listener: (context, state) {
-          if(state.status == ForgotPasswordStatus.success){
+          if (state.status == ForgotPasswordStatus.success) {
             context.go(LocalRoute.otp(
               OTPPurpose.forgotPassword,
               state.phone,
@@ -52,6 +55,20 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
           }
         },
         builder: (context, state) {
+          final loading = state.status == ForgotPasswordStatus.loading;
+
+          sendVerificationCode() {
+            if (_usernameKey.currentState!.validate() && !loading) {
+              context
+                  .read<ForgotPasswordBloc>()
+                  .add(ForgotPasswordEvent.onVerifyMobile(
+                    ForgotPasswordParams(
+                      username: _usernameController.text,
+                    ),
+                  ));
+            }
+          }
+
           return ListView(
             physics: const BouncingScrollPhysics(
               parent: AlwaysScrollableScrollPhysics(),
@@ -87,12 +104,18 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                       width: MediaQuery.of(context).size.width,
                       child: FilledButton(
                         onPressed: () async {
-                          context.read<ForgotPasswordBloc>().add(
-                              ForgotPasswordEvent.onVerifyMobile(
-                                  ForgotPasswordParams(
-                                      username: _usernameController.text)));
+                          FocusManager.instance.primaryFocus?.unfocus();
+                          sendVerificationCode();
                         },
-                        child: const Text('Send Verification Code'),
+                        child: loading
+                            ? const SizedBox(
+                                width: 20,
+                                height: 20,
+                                child: CircularProgressIndicator(
+                                  backgroundColor: Colors.white,
+                                  strokeWidth: 2,
+                                ))
+                            : const Text('Send Verification Code'),
                       ),
                     )
                   ],

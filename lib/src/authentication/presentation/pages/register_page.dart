@@ -90,7 +90,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 onPressed: () {
                   _passwordVisibilityCubit.onUpdateState(!visible);
                 },
-                icon: Icon(visible ? Icons.visibility : Icons.visibility_off),
+                icon: Icon(visible ? Icons.visibility_outlined : Icons.visibility_off_outlined),
               ),
             ),
             validator: (value) => PasswordValidator.dirty(value).error,

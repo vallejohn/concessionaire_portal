@@ -20,32 +20,38 @@ mixin _$ForgotPasswordEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(ForgotPasswordParams params) onVerifyMobile,
+    required TResult Function(ForgotPasswordParams params) onCreateNewPassword,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(ForgotPasswordParams params)? onVerifyMobile,
+    TResult? Function(ForgotPasswordParams params)? onCreateNewPassword,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(ForgotPasswordParams params)? onVerifyMobile,
+    TResult Function(ForgotPasswordParams params)? onCreateNewPassword,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_OnVerifyMobile value) onVerifyMobile,
+    required TResult Function(_OnCreateNewPassword value) onCreateNewPassword,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_OnVerifyMobile value)? onVerifyMobile,
+    TResult? Function(_OnCreateNewPassword value)? onCreateNewPassword,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_OnVerifyMobile value)? onVerifyMobile,
+    TResult Function(_OnCreateNewPassword value)? onCreateNewPassword,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -179,6 +185,7 @@ class _$OnVerifyMobileImpl implements _OnVerifyMobile {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(ForgotPasswordParams params) onVerifyMobile,
+    required TResult Function(ForgotPasswordParams params) onCreateNewPassword,
   }) {
     return onVerifyMobile(params);
   }
@@ -187,6 +194,7 @@ class _$OnVerifyMobileImpl implements _OnVerifyMobile {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(ForgotPasswordParams params)? onVerifyMobile,
+    TResult? Function(ForgotPasswordParams params)? onCreateNewPassword,
   }) {
     return onVerifyMobile?.call(params);
   }
@@ -195,6 +203,7 @@ class _$OnVerifyMobileImpl implements _OnVerifyMobile {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(ForgotPasswordParams params)? onVerifyMobile,
+    TResult Function(ForgotPasswordParams params)? onCreateNewPassword,
     required TResult orElse(),
   }) {
     if (onVerifyMobile != null) {
@@ -207,6 +216,7 @@ class _$OnVerifyMobileImpl implements _OnVerifyMobile {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_OnVerifyMobile value) onVerifyMobile,
+    required TResult Function(_OnCreateNewPassword value) onCreateNewPassword,
   }) {
     return onVerifyMobile(this);
   }
@@ -215,6 +225,7 @@ class _$OnVerifyMobileImpl implements _OnVerifyMobile {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_OnVerifyMobile value)? onVerifyMobile,
+    TResult? Function(_OnCreateNewPassword value)? onCreateNewPassword,
   }) {
     return onVerifyMobile?.call(this);
   }
@@ -223,6 +234,7 @@ class _$OnVerifyMobileImpl implements _OnVerifyMobile {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_OnVerifyMobile value)? onVerifyMobile,
+    TResult Function(_OnCreateNewPassword value)? onCreateNewPassword,
     required TResult orElse(),
   }) {
     if (onVerifyMobile != null) {
@@ -248,11 +260,162 @@ abstract class _OnVerifyMobile implements ForgotPasswordEvent {
 }
 
 /// @nodoc
+abstract class _$$OnCreateNewPasswordImplCopyWith<$Res>
+    implements $ForgotPasswordEventCopyWith<$Res> {
+  factory _$$OnCreateNewPasswordImplCopyWith(_$OnCreateNewPasswordImpl value,
+          $Res Function(_$OnCreateNewPasswordImpl) then) =
+      __$$OnCreateNewPasswordImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({ForgotPasswordParams params});
+
+  @override
+  $ForgotPasswordParamsCopyWith<$Res> get params;
+}
+
+/// @nodoc
+class __$$OnCreateNewPasswordImplCopyWithImpl<$Res>
+    extends _$ForgotPasswordEventCopyWithImpl<$Res, _$OnCreateNewPasswordImpl>
+    implements _$$OnCreateNewPasswordImplCopyWith<$Res> {
+  __$$OnCreateNewPasswordImplCopyWithImpl(_$OnCreateNewPasswordImpl _value,
+      $Res Function(_$OnCreateNewPasswordImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of ForgotPasswordEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? params = null,
+  }) {
+    return _then(_$OnCreateNewPasswordImpl(
+      null == params
+          ? _value.params
+          : params // ignore: cast_nullable_to_non_nullable
+              as ForgotPasswordParams,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$OnCreateNewPasswordImpl implements _OnCreateNewPassword {
+  const _$OnCreateNewPasswordImpl(this.params);
+
+  @override
+  final ForgotPasswordParams params;
+
+  @override
+  String toString() {
+    return 'ForgotPasswordEvent.onCreateNewPassword(params: $params)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$OnCreateNewPasswordImpl &&
+            (identical(other.params, params) || other.params == params));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, params);
+
+  /// Create a copy of ForgotPasswordEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$OnCreateNewPasswordImplCopyWith<_$OnCreateNewPasswordImpl> get copyWith =>
+      __$$OnCreateNewPasswordImplCopyWithImpl<_$OnCreateNewPasswordImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(ForgotPasswordParams params) onVerifyMobile,
+    required TResult Function(ForgotPasswordParams params) onCreateNewPassword,
+  }) {
+    return onCreateNewPassword(params);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(ForgotPasswordParams params)? onVerifyMobile,
+    TResult? Function(ForgotPasswordParams params)? onCreateNewPassword,
+  }) {
+    return onCreateNewPassword?.call(params);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(ForgotPasswordParams params)? onVerifyMobile,
+    TResult Function(ForgotPasswordParams params)? onCreateNewPassword,
+    required TResult orElse(),
+  }) {
+    if (onCreateNewPassword != null) {
+      return onCreateNewPassword(params);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_OnVerifyMobile value) onVerifyMobile,
+    required TResult Function(_OnCreateNewPassword value) onCreateNewPassword,
+  }) {
+    return onCreateNewPassword(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_OnVerifyMobile value)? onVerifyMobile,
+    TResult? Function(_OnCreateNewPassword value)? onCreateNewPassword,
+  }) {
+    return onCreateNewPassword?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_OnVerifyMobile value)? onVerifyMobile,
+    TResult Function(_OnCreateNewPassword value)? onCreateNewPassword,
+    required TResult orElse(),
+  }) {
+    if (onCreateNewPassword != null) {
+      return onCreateNewPassword(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _OnCreateNewPassword implements ForgotPasswordEvent {
+  const factory _OnCreateNewPassword(final ForgotPasswordParams params) =
+      _$OnCreateNewPasswordImpl;
+
+  @override
+  ForgotPasswordParams get params;
+
+  /// Create a copy of ForgotPasswordEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$OnCreateNewPasswordImplCopyWith<_$OnCreateNewPasswordImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
 mixin _$ForgotPasswordState {
   ForgotPasswordStatus get status => throw _privateConstructorUsedError;
+  CreatePasswordStatus get createStatus => throw _privateConstructorUsedError;
   ForgotPasswordPageStatus get pageStatus => throw _privateConstructorUsedError;
   String get message => throw _privateConstructorUsedError;
   String get phone => throw _privateConstructorUsedError;
+  String get username => throw _privateConstructorUsedError;
 
   /// Create a copy of ForgotPasswordState
   /// with the given fields replaced by the non-null parameter values.
@@ -269,9 +432,11 @@ abstract class $ForgotPasswordStateCopyWith<$Res> {
   @useResult
   $Res call(
       {ForgotPasswordStatus status,
+      CreatePasswordStatus createStatus,
       ForgotPasswordPageStatus pageStatus,
       String message,
-      String phone});
+      String phone,
+      String username});
 }
 
 /// @nodoc
@@ -290,15 +455,21 @@ class _$ForgotPasswordStateCopyWithImpl<$Res, $Val extends ForgotPasswordState>
   @override
   $Res call({
     Object? status = null,
+    Object? createStatus = null,
     Object? pageStatus = null,
     Object? message = null,
     Object? phone = null,
+    Object? username = null,
   }) {
     return _then(_value.copyWith(
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as ForgotPasswordStatus,
+      createStatus: null == createStatus
+          ? _value.createStatus
+          : createStatus // ignore: cast_nullable_to_non_nullable
+              as CreatePasswordStatus,
       pageStatus: null == pageStatus
           ? _value.pageStatus
           : pageStatus // ignore: cast_nullable_to_non_nullable
@@ -310,6 +481,10 @@ class _$ForgotPasswordStateCopyWithImpl<$Res, $Val extends ForgotPasswordState>
       phone: null == phone
           ? _value.phone
           : phone // ignore: cast_nullable_to_non_nullable
+              as String,
+      username: null == username
+          ? _value.username
+          : username // ignore: cast_nullable_to_non_nullable
               as String,
     ) as $Val);
   }
@@ -325,9 +500,11 @@ abstract class _$$ForgotPasswordStateImplCopyWith<$Res>
   @useResult
   $Res call(
       {ForgotPasswordStatus status,
+      CreatePasswordStatus createStatus,
       ForgotPasswordPageStatus pageStatus,
       String message,
-      String phone});
+      String phone,
+      String username});
 }
 
 /// @nodoc
@@ -344,15 +521,21 @@ class __$$ForgotPasswordStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? status = null,
+    Object? createStatus = null,
     Object? pageStatus = null,
     Object? message = null,
     Object? phone = null,
+    Object? username = null,
   }) {
     return _then(_$ForgotPasswordStateImpl(
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as ForgotPasswordStatus,
+      createStatus: null == createStatus
+          ? _value.createStatus
+          : createStatus // ignore: cast_nullable_to_non_nullable
+              as CreatePasswordStatus,
       pageStatus: null == pageStatus
           ? _value.pageStatus
           : pageStatus // ignore: cast_nullable_to_non_nullable
@@ -365,6 +548,10 @@ class __$$ForgotPasswordStateImplCopyWithImpl<$Res>
           ? _value.phone
           : phone // ignore: cast_nullable_to_non_nullable
               as String,
+      username: null == username
+          ? _value.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -374,13 +561,18 @@ class __$$ForgotPasswordStateImplCopyWithImpl<$Res>
 class _$ForgotPasswordStateImpl implements _ForgotPasswordState {
   const _$ForgotPasswordStateImpl(
       {this.status = ForgotPasswordStatus.initial,
+      this.createStatus = CreatePasswordStatus.initial,
       this.pageStatus = ForgotPasswordPageStatus.numberEntry,
       this.message = '',
-      this.phone = ''});
+      this.phone = '',
+      this.username = ''});
 
   @override
   @JsonKey()
   final ForgotPasswordStatus status;
+  @override
+  @JsonKey()
+  final CreatePasswordStatus createStatus;
   @override
   @JsonKey()
   final ForgotPasswordPageStatus pageStatus;
@@ -390,10 +582,13 @@ class _$ForgotPasswordStateImpl implements _ForgotPasswordState {
   @override
   @JsonKey()
   final String phone;
+  @override
+  @JsonKey()
+  final String username;
 
   @override
   String toString() {
-    return 'ForgotPasswordState(status: $status, pageStatus: $pageStatus, message: $message, phone: $phone)';
+    return 'ForgotPasswordState(status: $status, createStatus: $createStatus, pageStatus: $pageStatus, message: $message, phone: $phone, username: $username)';
   }
 
   @override
@@ -402,15 +597,19 @@ class _$ForgotPasswordStateImpl implements _ForgotPasswordState {
         (other.runtimeType == runtimeType &&
             other is _$ForgotPasswordStateImpl &&
             (identical(other.status, status) || other.status == status) &&
+            (identical(other.createStatus, createStatus) ||
+                other.createStatus == createStatus) &&
             (identical(other.pageStatus, pageStatus) ||
                 other.pageStatus == pageStatus) &&
             (identical(other.message, message) || other.message == message) &&
-            (identical(other.phone, phone) || other.phone == phone));
+            (identical(other.phone, phone) || other.phone == phone) &&
+            (identical(other.username, username) ||
+                other.username == username));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, status, pageStatus, message, phone);
+  int get hashCode => Object.hash(
+      runtimeType, status, createStatus, pageStatus, message, phone, username);
 
   /// Create a copy of ForgotPasswordState
   /// with the given fields replaced by the non-null parameter values.
@@ -425,18 +624,24 @@ class _$ForgotPasswordStateImpl implements _ForgotPasswordState {
 abstract class _ForgotPasswordState implements ForgotPasswordState {
   const factory _ForgotPasswordState(
       {final ForgotPasswordStatus status,
+      final CreatePasswordStatus createStatus,
       final ForgotPasswordPageStatus pageStatus,
       final String message,
-      final String phone}) = _$ForgotPasswordStateImpl;
+      final String phone,
+      final String username}) = _$ForgotPasswordStateImpl;
 
   @override
   ForgotPasswordStatus get status;
+  @override
+  CreatePasswordStatus get createStatus;
   @override
   ForgotPasswordPageStatus get pageStatus;
   @override
   String get message;
   @override
   String get phone;
+  @override
+  String get username;
 
   /// Create a copy of ForgotPasswordState
   /// with the given fields replaced by the non-null parameter values.
