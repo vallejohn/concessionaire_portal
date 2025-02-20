@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
+import 'package:lottie/lottie.dart';
 import 'package:mwd_concessionaire_portal/core/form_validator/form_validators.dart';
-import 'package:mwd_concessionaire_portal/core/router/app_router.dart';
-import 'package:mwd_concessionaire_portal/demo_pages/home_page.dart';
-import 'package:mwd_concessionaire_portal/demo_pages/register_page.dart';
+import 'package:mwd_concessionaire_portal/core/util/widgets/loading.dart';
+import 'package:mwd_concessionaire_portal/src/authentication/core/local_route.dart';
 import 'package:mwd_concessionaire_portal/src/authentication/core/params.dart';
 import 'package:mwd_concessionaire_portal/src/authentication/presentation/blocs/login/login_bloc.dart';
+import 'package:mwd_concessionaire_portal/src/authentication/presentation/blocs/otp/otp_bloc.dart';
 
 import '../../../../core/util/cubit/widget_cubit.dart';
 
@@ -31,12 +33,11 @@ class _LoginPageState extends State<LoginPage> {
 
     final emailField = TextFormField(
       controller: _usernameController,
-      //keyboardType: TextInputType.emailAddress,
       autovalidateMode: AutovalidateMode.onUserInteraction,
       decoration: const InputDecoration(
-        hintText: 'Email address',
+        hintText: 'Username',
       ),
-      //validator: (value) => EmailValidator.dirty(value).error,
+      validator: (value) => EmptyFieldValidator.dirty(value).error,
     );
 
     final passwordField = BlocBuilder<WidgetCubit<bool>, bool>(
@@ -52,36 +53,36 @@ class _LoginPageState extends State<LoginPage> {
                 onPressed: () {
                   _passwordVisibilityCubit.onUpdateState(!visible);
                 },
-                icon: Icon(visible ? Icons.visibility_outlined : Icons.visibility_off_outlined),
+                icon: Icon(visible
+                    ? Icons.visibility_outlined
+                    : Icons.visibility_off_outlined),
               ),
             ),
             validator: (value) => PasswordValidator.dirty(value).error,
           );
         });
 
-    loginButton(LoginBloc loginBloc) => SizedBox(
-          width: MediaQuery.of(context).size.width,
-          child: FilledButton(
-            onPressed: () async {
-              FocusManager.instance.primaryFocus?.unfocus();
+    loginButton(LoginBloc loginBloc) {
+      final loading = loginBloc.state.loginStatus == LoginStatus.loading;
+      return SizedBox(
+        width: MediaQuery.of(context).size.width,
+        child: FilledButton(
+          onPressed: () async {
+            FocusManager.instance.primaryFocus?.unfocus();
+            final valid = _formKey.currentState!.validate();
+            if (valid && !loading) {
               loginBloc.add(LoginEvent.doLogin(
                 LoginParams(
                   username: _usernameController.text,
                   password: _passwordController.text,
                 ),
               ));
-            },
-            child: loginBloc.state.loginStatus == LoginStatus.loading
-                ? const SizedBox(
-                    width: 20,
-                    height: 20,
-                    child: CircularProgressIndicator(
-                      backgroundColor: Colors.white,
-                      strokeWidth: 2,
-                    ))
-                : const Text('Login'),
-          ),
-        );
+            }
+          },
+          child: const Text('Login'),
+        ),
+      );
+    }
 
     final forgotPasswordLink = Align(
       alignment: Alignment.centerRight,
@@ -111,15 +112,26 @@ class _LoginPageState extends State<LoginPage> {
     return Scaffold(
       body: BlocListener<LoginBloc, LoginState>(
         listener: (context, state) {
+          if (state.loginStatus == LoginStatus.loading) {
+            LoadingDialog.show(context);
+          }
+
           if (state.loginStatus == LoginStatus.success) {
+            context.pop();
             if (state.user!.phoneVerifiedAt.isEmpty) {
-              context.go('/otp?phone=${state.user!.phone}');
+              context.go(
+                LocalRoute.otp(
+                  OTPPurpose.registration,
+                  state.user!.phone,
+                ).path,
+              );
             } else {
               context.go('/home');
             }
           }
 
           if (state.loginStatus == LoginStatus.failed) {
+            context.pop();
             ScaffoldMessenger.of(context).showSnackBar(SnackBar(
               content: Text(state.message),
               backgroundColor: Theme.of(context).colorScheme.error,

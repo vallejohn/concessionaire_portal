@@ -59,6 +59,7 @@ class AppTheme {
         progressIndicatorTheme:
             const ProgressIndicatorThemeData(linearMinHeight: 2.5),
       dialogTheme: DialogTheme(
+        barrierColor: Colors.black.withOpacity(0.2),
         backgroundColor: Colors.white,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(23)

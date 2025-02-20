@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mwd_concessionaire_portal/core/form_validator/form_validators.dart';
 import 'package:mwd_concessionaire_portal/core/util/cubit/widget_cubit.dart';
+import 'package:mwd_concessionaire_portal/core/util/widgets/loading.dart';
 import 'package:mwd_concessionaire_portal/src/authentication/core/params.dart';
 
 import '../../core/local_route.dart';
@@ -90,7 +91,9 @@ class _RegisterPageState extends State<RegisterPage> {
                 onPressed: () {
                   _passwordVisibilityCubit.onUpdateState(!visible);
                 },
-                icon: Icon(visible ? Icons.visibility_outlined : Icons.visibility_off_outlined),
+                icon: Icon(visible
+                    ? Icons.visibility_outlined
+                    : Icons.visibility_off_outlined),
               ),
             ),
             validator: (value) => PasswordValidator.dirty(value).error,
@@ -111,7 +114,9 @@ class _RegisterPageState extends State<RegisterPage> {
                 onPressed: () {
                   _confirmPassVisibilityCubit.onUpdateState(!visible);
                 },
-                icon: Icon(visible ? Icons.visibility : Icons.visibility_off),
+                icon: Icon(visible
+                    ? Icons.visibility_outlined
+                    : Icons.visibility_off_outlined),
               ),
             ),
             validator: (value) => ConfirmPasswordValidator.dirty(
@@ -130,7 +135,12 @@ class _RegisterPageState extends State<RegisterPage> {
       appBar: AppBar(),
       body: BlocConsumer<SignUpBloc, SignUpState>(
         listener: (context, state) {
+          if (state.signUpStatus == SignUpStatus.loading) {
+            LoadingDialog.show(context);
+          }
+
           if (state.signUpStatus == SignUpStatus.success) {
+            context.pop();
             context.go(LocalRoute.otp(
               OTPPurpose.registration,
               _phoneNumberController.text,
@@ -140,6 +150,7 @@ class _RegisterPageState extends State<RegisterPage> {
           }
 
           if (state.signUpStatus == SignUpStatus.failed) {
+            context.pop();
             showDialog(
               context: context,
               builder: (BuildContext context) {
@@ -176,9 +187,12 @@ class _RegisterPageState extends State<RegisterPage> {
                               children: [
                                 CircleAvatar(
                                   radius: 4,
-                                  backgroundColor: Theme.of(context).colorScheme.error,
+                                  backgroundColor:
+                                      Theme.of(context).colorScheme.error,
                                 ),
-                                const SizedBox(width: 15,),
+                                const SizedBox(
+                                  width: 15,
+                                ),
                                 Text(
                                   e.message,
                                   style: textStyle.bodySmall,
@@ -192,7 +206,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         SizedBox(
                           width: MediaQuery.of(context).size.width,
                           child: FilledButton(
-                              onPressed: (){
+                              onPressed: () {
                                 context.pop();
                               },
                               child: const Text('Close')),
@@ -279,16 +293,7 @@ class _RegisterPageState extends State<RegisterPage> {
                       SizedBox(
                         width: MediaQuery.of(context).size.width,
                         child: FilledButton(
-                            onPressed: doSignUp,
-                            child: loading
-                                ? const SizedBox(
-                                    width: 20,
-                                    height: 20,
-                                    child: CircularProgressIndicator(
-                                      backgroundColor: Colors.white,
-                                      strokeWidth: 2,
-                                    ))
-                                : const Text('Register')),
+                            onPressed: doSignUp, child: const Text('Register')),
                       ),
                     ],
                   ),
