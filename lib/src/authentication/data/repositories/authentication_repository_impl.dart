@@ -83,7 +83,7 @@ class AuthenticationRepositoryImpl extends AuthenticationRepository{
   }
 
   @override
-  Future<Either<Failure, String>> onCreatePassword(ForgotPasswordParams params)async {
+  Future<Either<Failure, bool>> onCreatePassword(ForgotPasswordParams params)async {
     try{
       final data = await dataSource.onCreatePassword(params);
       return Right(data);

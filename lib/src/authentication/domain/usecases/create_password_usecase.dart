@@ -6,13 +6,13 @@ import 'package:mwd_concessionaire_portal/src/authentication/domain/repositories
 
 import '../../data/models/user.dart';
 
-class CreatePasswordUsecase extends UseCaseWithParams<String, ForgotPasswordParams>{
+class CreatePasswordUsecase extends UseCaseWithParams<bool, ForgotPasswordParams>{
   final AuthenticationRepository _authenticationRepository;
 
   CreatePasswordUsecase(this._authenticationRepository);
 
   @override
-  Future<Either<Failure, String>> call(ForgotPasswordParams params) {
+  Future<Either<Failure, bool>> call(ForgotPasswordParams params) {
     return _authenticationRepository.onCreatePassword(params);
   }
 }

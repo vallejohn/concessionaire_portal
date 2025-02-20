@@ -16,5 +16,5 @@ abstract class AuthenticationRepository {
   Future<Either<Failure, bool>> onConfirmOTP(OTPParams params);
   Future<Either<Failure, bool>> onForgotPasswordSendOTP(ForgotPasswordParams params);
   Future<Either<Failure, String>> onForgotPassword(ForgotPasswordParams params);
-  Future<Either<Failure, String>> onCreatePassword(ForgotPasswordParams params);
+  Future<Either<Failure, bool>> onCreatePassword(ForgotPasswordParams params);
 }

@@ -18,8 +18,6 @@ class AuthenticationRemoteDataSourceImpl extends AuthenticationDataSource {
   @override
   Future<User?> requestAuthenticationStatus() async {
     final auth = await _authenticationCollection.read();
-    Logger().i('User fetched');
-    Logger().i(auth?.user?.toJson());
     return auth?.user;
   }
 
@@ -27,14 +25,15 @@ class AuthenticationRemoteDataSourceImpl extends AuthenticationDataSource {
   Future<User> doLogin(LoginParams params) async {
     final response = await APIEndpointService.authentication(
       AuthenticationEndpoint.login,
-      params.toJson(),
+      params,
     );
 
     final body = response.body;
     User user = User.fromJson(body['user']);
     user = user.copyWith(
-        accessToken: response.body['access_token'],
-        tokenType: response.body['token_type']);
+      accessToken: response.body['access_token'],
+      tokenType: response.body['token_type'],
+    );
 
     if (user.phoneVerifiedAt.isEmpty) {
       await APIEndpointService.authentication(
@@ -123,7 +122,7 @@ class AuthenticationRemoteDataSourceImpl extends AuthenticationDataSource {
   }
 
   @override
-  Future<String> onCreatePassword(ForgotPasswordParams params)async {
+  Future<bool> onCreatePassword(ForgotPasswordParams params) async {
     final response = await APIEndpointService.authentication(
       AuthenticationEndpoint.createPassword,
       {
@@ -133,12 +132,10 @@ class AuthenticationRemoteDataSourceImpl extends AuthenticationDataSource {
       },
     );
 
-    return '';
-
     if (response.body['status'] == 'success') {
-      return response.body['phone'] as String;
+      return true;
     } else {
-      throw AuthenticationException(response.body['message']['username']);
+      throw AuthenticationException(response.body['message']);
     }
   }
 }

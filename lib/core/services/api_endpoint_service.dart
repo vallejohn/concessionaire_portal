@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter_flavor/flutter_flavor.dart';
 import 'package:logger/logger.dart';
 import 'package:mwd_concessionaire_portal/core/exceptions/authentication_exception.dart';
+import 'package:mwd_concessionaire_portal/src/authentication/core/params.dart';
 
 enum AuthenticationEndpoint {
   login,
@@ -47,21 +48,27 @@ class APIEndpointService {
 
   static Future<EndpointResponse> authentication(
     AuthenticationEndpoint endpoint,
-    Map<String, dynamic> data,
+    dynamic data,
   ) async {
     try {
       late EndpointResponse endpointResponse;
       switch (endpoint) {
         case AuthenticationEndpoint.login:
+          assert(data is LoginParams, 'Incorrect parameter type');
+          LoginParams params = data as LoginParams;
+
           endpointResponse = await _doPostRequest(
             '$_baseUrl/api/login',
-            params: data,
+            params: params.toJson(),
           );
           break;
         case AuthenticationEndpoint.register:
+          assert(data is SignupParams, 'Incorrect parameter type');
+          SignupParams params = data as SignupParams;
+
           endpointResponse = await _doPostRequest(
             '$_baseUrl/api/register',
-            params: data,
+            params: params.toJson(),
           );
           break;
         case AuthenticationEndpoint.registerSendOTP:
@@ -71,15 +78,21 @@ class APIEndpointService {
           );
           break;
         case AuthenticationEndpoint.confirmOTP:
+          assert(data is OTPParams, 'Incorrect parameter type');
+          OTPParams params = data as OTPParams;
+
           endpointResponse = await _doPostRequest(
             '$_baseUrl/api/verify-phone',
-            params: data,
+            params: params.toJson(),
           );
           break;
         case AuthenticationEndpoint.forgotPasswordSendOTP:
+          assert(data is OTPParams, 'Incorrect parameter type');
+          OTPParams params = data as OTPParams;
+
           endpointResponse = await _doPostRequest(
             '$_baseUrl/api/forgot-password-otp',
-            params: data,
+            params: params.toJson(),
           );
           break;
         case AuthenticationEndpoint.forgotPassword:
