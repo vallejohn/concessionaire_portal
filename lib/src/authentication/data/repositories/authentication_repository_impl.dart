@@ -29,7 +29,7 @@ class AuthenticationRepositoryImpl extends AuthenticationRepository{
       return Right(data);
     }on HiveCollectionException catch(e){
       return Left(Failure.hiveCollectionException(e));
-    }on AuthenticationException catch(authError){
+    }on BaseException catch(authError){
       return Left(Failure.exception(authError));
     }
   }
@@ -41,7 +41,7 @@ class AuthenticationRepositoryImpl extends AuthenticationRepository{
       return Right(data);
     }on HiveCollectionException catch(e){
       return Left(Failure.hiveCollectionException(e));
-    }on SignUpException catch(authError){
+    }on BaseException catch(authError){
       return Left(Failure.exception(authError));
     }
   }
@@ -53,7 +53,7 @@ class AuthenticationRepositoryImpl extends AuthenticationRepository{
       return Right(data);
     }on HiveCollectionException catch(e){
       return Left(Failure.hiveCollectionException(e));
-    }on AuthenticationException catch(authError){
+    }on BaseException catch(authError){
       return Left(Failure.exception(authError));
     }
   }
@@ -65,7 +65,7 @@ class AuthenticationRepositoryImpl extends AuthenticationRepository{
       return Right(data);
     }on HiveCollectionException catch(e){
       return Left(Failure.hiveCollectionException(e));
-    }on AuthenticationException catch(authError){
+    }on BaseException catch(authError){
       return Left(Failure.exception(authError));
     }
   }

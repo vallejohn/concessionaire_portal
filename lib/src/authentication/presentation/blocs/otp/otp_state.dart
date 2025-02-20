@@ -7,6 +7,6 @@ enum OTPPurpose { registration, forgotPassword }
 class OtpState with _$OtpState {
   const factory OtpState({
     @Default(OTPStatus.initial) OTPStatus status,
-    @Default('') String message,
+    DynamicError? errors,
   }) = _OtpState;
 }

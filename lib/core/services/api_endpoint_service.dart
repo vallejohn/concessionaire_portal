@@ -17,8 +17,15 @@ enum AuthenticationEndpoint {
 class EndpointResponse {
   final int? statusCode;
   final Map<String, dynamic> body;
+  final void Function(List<FieldError> errors, String message)? onError;
+  final void Function(dynamic success)? onSuccess;
 
-  EndpointResponse({required this.body, this.statusCode});
+  EndpointResponse({
+    required this.body,
+    this.statusCode,
+    this.onError,
+    this.onSuccess,
+  });
 }
 
 class APIEndpointService {
@@ -48,8 +55,12 @@ class APIEndpointService {
 
   static Future<EndpointResponse> authentication(
     AuthenticationEndpoint endpoint,
-    dynamic data,
-  ) async {
+    dynamic data, {
+    final void Function(DynamicError)? onError,
+    final void Function(
+      Map<String, dynamic> success,
+    )? onSuccess,
+  }) async {
     try {
       late EndpointResponse endpointResponse;
       switch (endpoint) {
@@ -106,6 +117,34 @@ class APIEndpointService {
             params: data,
           );
       }
+
+      final body = endpointResponse.body;
+      String status = body['status'];
+
+      if (status == 'error') {
+        List<FieldError> fieldErrors = [];
+        String message = '';
+
+        if (body['message'] is Map) {
+          final errorsRaw = body['message'] as Map;
+          final List<FieldError> errors = errorsRaw.entries.map((e) {
+            return FieldError(field: e.key, message: e.value);
+          }).toList();
+          fieldErrors = errors;
+        }
+
+        if(body['message'] is String){
+          message = body['message'];
+        }
+
+        onError?.call(DynamicError(
+          fields: fieldErrors,
+          message: message,
+        ));
+      } else if (status == 'success') {
+        onSuccess?.call(body);
+      }
+
       return endpointResponse;
     } on DioException catch (e) {
       Logger().e(e.message);
@@ -133,6 +172,9 @@ class APIEndpointService {
       'Parameters': params,
       'Endpoint Response': response.data,
     });
-    return EndpointResponse(body: response.data);
+
+    return EndpointResponse(
+      body: response.data,
+    );
   }
 }

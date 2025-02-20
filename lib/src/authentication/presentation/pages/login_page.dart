@@ -133,7 +133,7 @@ class _LoginPageState extends State<LoginPage> {
           if (state.loginStatus == LoginStatus.failed) {
             context.pop();
             ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-              content: Text(state.message),
+              content: Text(state.errors!.message),
               backgroundColor: Theme.of(context).colorScheme.error,
             ));
           }

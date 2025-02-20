@@ -49,7 +49,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
 
           if (state.status == ForgotPasswordStatus.failed) {
             ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-              content: Text(state.message),
+              content: Text(state.errors!.message),
               backgroundColor: Theme.of(context).colorScheme.error,
             ));
           }

@@ -10,7 +10,7 @@ class ForgotPasswordState with _$ForgotPasswordState {
     @Default(ForgotPasswordStatus.initial) ForgotPasswordStatus status,
     @Default(CreatePasswordStatus.initial) CreatePasswordStatus createStatus,
     @Default(ForgotPasswordPageStatus.numberEntry) ForgotPasswordPageStatus pageStatus,
-    @Default('') String message,
+    DynamicError? errors,
     @Default('') String phone,
     @Default('') String username,
   }) = _ForgotPasswordState;

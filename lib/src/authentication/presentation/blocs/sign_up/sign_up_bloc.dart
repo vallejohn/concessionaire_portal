@@ -32,13 +32,8 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
     dataOrError.fold((failure) {
       emit(state.copyWith(
         signUpStatus: SignUpStatus.failed,
-        errors: failure.maybeWhen(
-          exception: (error) => (error as SignUpException).value,
-          orElse: () => [],
-        ),
-        message: failure.maybeWhen(
-          hiveCollectionException: (exception) => exception.message,
-          orElse: () => '',
+        errors: failure.whenOrNull(
+          exception: (error) => (error as ServerException).value,
         ),
       ));
     }, (successData) {

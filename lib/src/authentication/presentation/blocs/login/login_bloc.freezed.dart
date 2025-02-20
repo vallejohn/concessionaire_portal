@@ -352,7 +352,7 @@ abstract class _DoLogin implements LoginEvent {
 mixin _$LoginState {
   LoginStatus get loginStatus => throw _privateConstructorUsedError;
   CheckAuthStatus get checkAuthStatus => throw _privateConstructorUsedError;
-  String get message => throw _privateConstructorUsedError;
+  DynamicError? get errors => throw _privateConstructorUsedError;
   User? get user => throw _privateConstructorUsedError;
 
   /// Create a copy of LoginState
@@ -371,7 +371,7 @@ abstract class $LoginStateCopyWith<$Res> {
   $Res call(
       {LoginStatus loginStatus,
       CheckAuthStatus checkAuthStatus,
-      String message,
+      DynamicError? errors,
       User? user});
 
   $UserCopyWith<$Res>? get user;
@@ -394,7 +394,7 @@ class _$LoginStateCopyWithImpl<$Res, $Val extends LoginState>
   $Res call({
     Object? loginStatus = null,
     Object? checkAuthStatus = null,
-    Object? message = null,
+    Object? errors = freezed,
     Object? user = freezed,
   }) {
     return _then(_value.copyWith(
@@ -406,10 +406,10 @@ class _$LoginStateCopyWithImpl<$Res, $Val extends LoginState>
           ? _value.checkAuthStatus
           : checkAuthStatus // ignore: cast_nullable_to_non_nullable
               as CheckAuthStatus,
-      message: null == message
-          ? _value.message
-          : message // ignore: cast_nullable_to_non_nullable
-              as String,
+      errors: freezed == errors
+          ? _value.errors
+          : errors // ignore: cast_nullable_to_non_nullable
+              as DynamicError?,
       user: freezed == user
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
@@ -443,7 +443,7 @@ abstract class _$$LoginStateImplCopyWith<$Res>
   $Res call(
       {LoginStatus loginStatus,
       CheckAuthStatus checkAuthStatus,
-      String message,
+      DynamicError? errors,
       User? user});
 
   @override
@@ -465,7 +465,7 @@ class __$$LoginStateImplCopyWithImpl<$Res>
   $Res call({
     Object? loginStatus = null,
     Object? checkAuthStatus = null,
-    Object? message = null,
+    Object? errors = freezed,
     Object? user = freezed,
   }) {
     return _then(_$LoginStateImpl(
@@ -477,10 +477,10 @@ class __$$LoginStateImplCopyWithImpl<$Res>
           ? _value.checkAuthStatus
           : checkAuthStatus // ignore: cast_nullable_to_non_nullable
               as CheckAuthStatus,
-      message: null == message
-          ? _value.message
-          : message // ignore: cast_nullable_to_non_nullable
-              as String,
+      errors: freezed == errors
+          ? _value.errors
+          : errors // ignore: cast_nullable_to_non_nullable
+              as DynamicError?,
       user: freezed == user
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
@@ -495,7 +495,7 @@ class _$LoginStateImpl implements _LoginState {
   const _$LoginStateImpl(
       {this.loginStatus = LoginStatus.initial,
       this.checkAuthStatus = CheckAuthStatus.initial,
-      this.message = '',
+      this.errors,
       this.user});
 
   @override
@@ -505,14 +505,13 @@ class _$LoginStateImpl implements _LoginState {
   @JsonKey()
   final CheckAuthStatus checkAuthStatus;
   @override
-  @JsonKey()
-  final String message;
+  final DynamicError? errors;
   @override
   final User? user;
 
   @override
   String toString() {
-    return 'LoginState(loginStatus: $loginStatus, checkAuthStatus: $checkAuthStatus, message: $message, user: $user)';
+    return 'LoginState(loginStatus: $loginStatus, checkAuthStatus: $checkAuthStatus, errors: $errors, user: $user)';
   }
 
   @override
@@ -524,13 +523,13 @@ class _$LoginStateImpl implements _LoginState {
                 other.loginStatus == loginStatus) &&
             (identical(other.checkAuthStatus, checkAuthStatus) ||
                 other.checkAuthStatus == checkAuthStatus) &&
-            (identical(other.message, message) || other.message == message) &&
+            (identical(other.errors, errors) || other.errors == errors) &&
             (identical(other.user, user) || other.user == user));
   }
 
   @override
   int get hashCode =>
-      Object.hash(runtimeType, loginStatus, checkAuthStatus, message, user);
+      Object.hash(runtimeType, loginStatus, checkAuthStatus, errors, user);
 
   /// Create a copy of LoginState
   /// with the given fields replaced by the non-null parameter values.
@@ -545,7 +544,7 @@ abstract class _LoginState implements LoginState {
   const factory _LoginState(
       {final LoginStatus loginStatus,
       final CheckAuthStatus checkAuthStatus,
-      final String message,
+      final DynamicError? errors,
       final User? user}) = _$LoginStateImpl;
 
   @override
@@ -553,7 +552,7 @@ abstract class _LoginState implements LoginState {
   @override
   CheckAuthStatus get checkAuthStatus;
   @override
-  String get message;
+  DynamicError? get errors;
   @override
   User? get user;
 

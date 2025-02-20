@@ -413,7 +413,7 @@ mixin _$ForgotPasswordState {
   ForgotPasswordStatus get status => throw _privateConstructorUsedError;
   CreatePasswordStatus get createStatus => throw _privateConstructorUsedError;
   ForgotPasswordPageStatus get pageStatus => throw _privateConstructorUsedError;
-  String get message => throw _privateConstructorUsedError;
+  DynamicError? get errors => throw _privateConstructorUsedError;
   String get phone => throw _privateConstructorUsedError;
   String get username => throw _privateConstructorUsedError;
 
@@ -434,7 +434,7 @@ abstract class $ForgotPasswordStateCopyWith<$Res> {
       {ForgotPasswordStatus status,
       CreatePasswordStatus createStatus,
       ForgotPasswordPageStatus pageStatus,
-      String message,
+      DynamicError? errors,
       String phone,
       String username});
 }
@@ -457,7 +457,7 @@ class _$ForgotPasswordStateCopyWithImpl<$Res, $Val extends ForgotPasswordState>
     Object? status = null,
     Object? createStatus = null,
     Object? pageStatus = null,
-    Object? message = null,
+    Object? errors = freezed,
     Object? phone = null,
     Object? username = null,
   }) {
@@ -474,10 +474,10 @@ class _$ForgotPasswordStateCopyWithImpl<$Res, $Val extends ForgotPasswordState>
           ? _value.pageStatus
           : pageStatus // ignore: cast_nullable_to_non_nullable
               as ForgotPasswordPageStatus,
-      message: null == message
-          ? _value.message
-          : message // ignore: cast_nullable_to_non_nullable
-              as String,
+      errors: freezed == errors
+          ? _value.errors
+          : errors // ignore: cast_nullable_to_non_nullable
+              as DynamicError?,
       phone: null == phone
           ? _value.phone
           : phone // ignore: cast_nullable_to_non_nullable
@@ -502,7 +502,7 @@ abstract class _$$ForgotPasswordStateImplCopyWith<$Res>
       {ForgotPasswordStatus status,
       CreatePasswordStatus createStatus,
       ForgotPasswordPageStatus pageStatus,
-      String message,
+      DynamicError? errors,
       String phone,
       String username});
 }
@@ -523,7 +523,7 @@ class __$$ForgotPasswordStateImplCopyWithImpl<$Res>
     Object? status = null,
     Object? createStatus = null,
     Object? pageStatus = null,
-    Object? message = null,
+    Object? errors = freezed,
     Object? phone = null,
     Object? username = null,
   }) {
@@ -540,10 +540,10 @@ class __$$ForgotPasswordStateImplCopyWithImpl<$Res>
           ? _value.pageStatus
           : pageStatus // ignore: cast_nullable_to_non_nullable
               as ForgotPasswordPageStatus,
-      message: null == message
-          ? _value.message
-          : message // ignore: cast_nullable_to_non_nullable
-              as String,
+      errors: freezed == errors
+          ? _value.errors
+          : errors // ignore: cast_nullable_to_non_nullable
+              as DynamicError?,
       phone: null == phone
           ? _value.phone
           : phone // ignore: cast_nullable_to_non_nullable
@@ -563,7 +563,7 @@ class _$ForgotPasswordStateImpl implements _ForgotPasswordState {
       {this.status = ForgotPasswordStatus.initial,
       this.createStatus = CreatePasswordStatus.initial,
       this.pageStatus = ForgotPasswordPageStatus.numberEntry,
-      this.message = '',
+      this.errors,
       this.phone = '',
       this.username = ''});
 
@@ -577,8 +577,7 @@ class _$ForgotPasswordStateImpl implements _ForgotPasswordState {
   @JsonKey()
   final ForgotPasswordPageStatus pageStatus;
   @override
-  @JsonKey()
-  final String message;
+  final DynamicError? errors;
   @override
   @JsonKey()
   final String phone;
@@ -588,7 +587,7 @@ class _$ForgotPasswordStateImpl implements _ForgotPasswordState {
 
   @override
   String toString() {
-    return 'ForgotPasswordState(status: $status, createStatus: $createStatus, pageStatus: $pageStatus, message: $message, phone: $phone, username: $username)';
+    return 'ForgotPasswordState(status: $status, createStatus: $createStatus, pageStatus: $pageStatus, errors: $errors, phone: $phone, username: $username)';
   }
 
   @override
@@ -601,7 +600,7 @@ class _$ForgotPasswordStateImpl implements _ForgotPasswordState {
                 other.createStatus == createStatus) &&
             (identical(other.pageStatus, pageStatus) ||
                 other.pageStatus == pageStatus) &&
-            (identical(other.message, message) || other.message == message) &&
+            (identical(other.errors, errors) || other.errors == errors) &&
             (identical(other.phone, phone) || other.phone == phone) &&
             (identical(other.username, username) ||
                 other.username == username));
@@ -609,7 +608,7 @@ class _$ForgotPasswordStateImpl implements _ForgotPasswordState {
 
   @override
   int get hashCode => Object.hash(
-      runtimeType, status, createStatus, pageStatus, message, phone, username);
+      runtimeType, status, createStatus, pageStatus, errors, phone, username);
 
   /// Create a copy of ForgotPasswordState
   /// with the given fields replaced by the non-null parameter values.
@@ -626,7 +625,7 @@ abstract class _ForgotPasswordState implements ForgotPasswordState {
       {final ForgotPasswordStatus status,
       final CreatePasswordStatus createStatus,
       final ForgotPasswordPageStatus pageStatus,
-      final String message,
+      final DynamicError? errors,
       final String phone,
       final String username}) = _$ForgotPasswordStateImpl;
 
@@ -637,7 +636,7 @@ abstract class _ForgotPasswordState implements ForgotPasswordState {
   @override
   ForgotPasswordPageStatus get pageStatus;
   @override
-  String get message;
+  DynamicError? get errors;
   @override
   String get phone;
   @override

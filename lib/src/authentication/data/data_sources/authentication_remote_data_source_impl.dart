@@ -23,52 +23,55 @@ class AuthenticationRemoteDataSourceImpl extends AuthenticationDataSource {
 
   @override
   Future<User> doLogin(LoginParams params) async {
-    final response = await APIEndpointService.authentication(
+    User? user;
+    await APIEndpointService.authentication(
       AuthenticationEndpoint.login,
       params,
+      onError: (dynamicError) {
+        throw ServerException(dynamicError);
+      },
+      onSuccess: (data) async {
+        user = User.fromJson(data['user']);
+        user = user!.copyWith(
+          accessToken: data['access_token'],
+          tokenType: data['token_type'],
+        );
+
+        if (user!.phoneVerifiedAt.isEmpty) {
+          await APIEndpointService.authentication(
+            AuthenticationEndpoint.registerSendOTP,
+            {'phone': user!.phone},
+            onError: (dynamicError) {
+              throw ServerException(dynamicError);
+            },
+          );
+        }
+
+        await _authenticationCollection.create(
+          UserAuth(user: user),
+        );
+      },
     );
 
-    final body = response.body;
-    User user = User.fromJson(body['user']);
-    user = user.copyWith(
-      accessToken: response.body['access_token'],
-      tokenType: response.body['token_type'],
-    );
-
-    if (user.phoneVerifiedAt.isEmpty) {
-      await APIEndpointService.authentication(
-        AuthenticationEndpoint.registerSendOTP,
-        {'phone': user.phone},
-      );
-    }
-
-    await _authenticationCollection.create(UserAuth(user: user));
-
-    return user;
+    return user!;
   }
 
   @override
   Future<User> doSignUp(SignupParams params) async {
-    final response = await APIEndpointService.authentication(
+    User? user;
+    await APIEndpointService.authentication(
       AuthenticationEndpoint.register,
-      params.toJson(),
+      params,
+      onError: (dynamicError) {
+        throw ServerException(dynamicError);
+      },
+      onSuccess: (data) {
+        final userRaw = data['user'];
+        user = userRaw == null ? null : User.fromJson(userRaw);
+      },
     );
 
-    final body = response.body;
-
-    if (body['status'] == 'error') {
-      final errorsRaw = body['message'] as Map;
-      final List<SignUpErrors> errors = errorsRaw.entries.map((e) {
-        return SignUpErrors(field: e.key, message: e.value);
-      }).toList();
-
-      throw SignUpException(errors);
-    } else {
-      final userRaw = body['user'];
-      User? user = userRaw == null ? null : User.fromJson(userRaw);
-
-      return user!;
-    }
+    return user!;
   }
 
   @override
@@ -84,7 +87,10 @@ class AuthenticationRemoteDataSourceImpl extends AuthenticationDataSource {
 
     await APIEndpointService.authentication(
       endpoint,
-      params.toJson(),
+      params,
+      onError: (dynamicError) {
+        throw ServerException(dynamicError);
+      },
     );
 
     if (params.loginParam != null &&
@@ -93,6 +99,8 @@ class AuthenticationRemoteDataSourceImpl extends AuthenticationDataSource {
         username: params.loginParam!.username,
         password: params.loginParam!.password,
       ));
+    }else if (endpoint == AuthenticationEndpoint.confirmOTP){
+      ///Get user details here via API
     }
     return true;
   }
@@ -102,40 +110,42 @@ class AuthenticationRemoteDataSourceImpl extends AuthenticationDataSource {
     await APIEndpointService.authentication(
       AuthenticationEndpoint.forgotPasswordSendOTP,
       {'phone': params.phone},
+      onError: (dynamicError) {
+        throw ServerException(dynamicError);
+      },
     );
-
     return true;
   }
 
   @override
   Future<String> onForgotPassword(ForgotPasswordParams params) async {
-    final response = await APIEndpointService.authentication(
+    String message = '';
+    await APIEndpointService.authentication(
       AuthenticationEndpoint.forgotPassword,
       {'username': params.username},
+      onError: (dynamicError) {
+        throw ServerException(dynamicError);
+      },
+      onSuccess: (data) {
+        message = data['message'] as String;
+      },
     );
-
-    if (response.body['status'] == 'success') {
-      return response.body['message'] as String;
-    } else {
-      throw AuthenticationException(response.body['message']);
-    }
+    return message;
   }
 
   @override
   Future<bool> onCreatePassword(ForgotPasswordParams params) async {
-    final response = await APIEndpointService.authentication(
+    await APIEndpointService.authentication(
       AuthenticationEndpoint.createPassword,
       {
         'username': params.username,
         'password': params.password,
         'confirm_password': params.confirmPassword,
       },
+      onError: (dynamicError) {
+        throw ServerException(dynamicError);
+      },
     );
-
-    if (response.body['status'] == 'success') {
-      return true;
-    } else {
-      throw AuthenticationException(response.body['message']);
-    }
+    return true;
   }
 }

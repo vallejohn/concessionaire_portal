@@ -8,6 +8,8 @@ import 'package:mwd_concessionaire_portal/core/util/extensions.dart';
 import 'package:mwd_concessionaire_portal/src/authentication/core/params.dart';
 import 'package:mwd_concessionaire_portal/src/authentication/domain/usecases/confirm_otp_usecase.dart';
 
+import '../../../../../core/exceptions/authentication_exception.dart';
+
 part 'otp_event.dart';
 part 'otp_state.dart';
 part 'otp_bloc.freezed.dart';
@@ -33,7 +35,9 @@ class OtpBloc extends Bloc<OtpEvent, OtpState> {
       (failure) {
         emit(state.copyWith(
           status: OTPStatus.failed,
-          message: failure.decodeError(),
+          errors: failure.whenOrNull(
+            exception: (error) => (error as ServerException).value,
+          ),
         ));
       },
       (user) {

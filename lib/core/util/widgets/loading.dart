@@ -30,8 +30,9 @@ class _LottieLoadingDialogState extends State<LottieLoadingDialog>  with SingleT
 
   @override
   void dispose() {
-    super.dispose();
+    _controller.stop();
     _controller.dispose();
+    super.dispose();
   }
 
   @override

@@ -13,15 +13,24 @@ class AuthenticationException extends BaseException<String>{
   }
 }
 
-class SignUpErrors extends Equatable{
+class DynamicError extends Equatable{
+  final List<FieldError> fields;
+  final String message;
+  const DynamicError({this.fields = const [], this.message = ''});
+
+  @override
+  List<Object?> get props => [fields, message];
+}
+
+class FieldError extends Equatable{
   final String field;
   final String message;
-  const SignUpErrors({this.field = '', this.message = ''});
+  const FieldError({this.field = '', this.message = ''});
 
   @override
   List<Object?> get props => [field, message];
 }
 
-class SignUpException extends BaseException<List<SignUpErrors>>{
-  SignUpException(List<SignUpErrors> errors) : super(value: errors);
+class ServerException extends BaseException<DynamicError>{
+  ServerException(DynamicError error) : super(value: error);
 }

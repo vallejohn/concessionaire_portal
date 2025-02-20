@@ -45,7 +45,7 @@ class _OtpPageState extends State<OtpPage> {
 
         if (state.status == OTPStatus.failed) {
           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-            content: Text(state.message),
+            content: Text(state.errors!.message),
             backgroundColor: Theme.of(context).colorScheme.error,
           ));
         }

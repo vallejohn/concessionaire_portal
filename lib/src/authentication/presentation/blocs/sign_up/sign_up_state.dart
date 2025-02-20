@@ -6,8 +6,7 @@ enum SignUpStatus {initial, loading, success, failed}
 class SignUpState with _$SignUpState {
   const factory SignUpState({
     @Default(SignUpStatus.initial) SignUpStatus signUpStatus,
-    @Default('') String message,
-    @Default([]) List<SignUpErrors> errors,
+    DynamicError? errors,
   }) = _SignUpState;
 
 }

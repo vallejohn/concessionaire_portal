@@ -11,6 +11,8 @@ import 'package:mwd_concessionaire_portal/src/authentication/data/models/user.da
 import 'package:mwd_concessionaire_portal/src/authentication/domain/usecases/login_usecase.dart';
 import 'package:mwd_concessionaire_portal/src/authentication/domain/usecases/request_auth_status_usecase.dart';
 
+import '../../../../../core/exceptions/authentication_exception.dart';
+
 part 'login_event.dart';
 part 'login_state.dart';
 part 'login_bloc.freezed.dart';
@@ -38,7 +40,9 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       (failure) {
         emit(state.copyWith(
           checkAuthStatus: CheckAuthStatus.failed,
-          message: failure.decodeError(),
+          errors: failure.whenOrNull(
+            exception: (error) => (error as ServerException).value,
+          ),
         ));
       },
       (user) {
@@ -64,7 +68,9 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       (failure) {
         emit(state.copyWith(
           loginStatus: LoginStatus.failed,
-          message: failure.decodeError(),
+          errors: failure.whenOrNull(
+            exception: (error) => (error as ServerException).value,
+          ),
         ));
       },
       (user) {

@@ -8,6 +8,8 @@ import 'package:mwd_concessionaire_portal/src/authentication/core/params.dart';
 import 'package:mwd_concessionaire_portal/src/authentication/domain/usecases/create_password_usecase.dart';
 import 'package:mwd_concessionaire_portal/src/authentication/domain/usecases/forgot_password_usecase.dart';
 
+import '../../../../../core/exceptions/authentication_exception.dart';
+
 part 'forgot_password_event.dart';
 part 'forgot_password_state.dart';
 part 'forgot_password_bloc.freezed.dart';
@@ -36,7 +38,9 @@ class ForgotPasswordBloc
       (failure) {
         emit(state.copyWith(
           status: ForgotPasswordStatus.failed,
-          message: failure.decodeError(),
+          errors: failure.whenOrNull(
+            exception: (error) => (error as ServerException).value,
+          ),
         ));
       },
       (phone) {
@@ -66,7 +70,9 @@ class ForgotPasswordBloc
       (failure) {
         emit(state.copyWith(
           createStatus: CreatePasswordStatus.failed,
-          message: failure.decodeError(),
+          errors: failure.whenOrNull(
+            exception: (error) => (error as ServerException).value,
+          ),
         ));
       },
       (phone) {

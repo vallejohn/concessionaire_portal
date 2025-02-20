@@ -247,7 +247,7 @@ abstract class _OnConfirmOTP implements OtpEvent {
 /// @nodoc
 mixin _$OtpState {
   OTPStatus get status => throw _privateConstructorUsedError;
-  String get message => throw _privateConstructorUsedError;
+  DynamicError? get errors => throw _privateConstructorUsedError;
 
   /// Create a copy of OtpState
   /// with the given fields replaced by the non-null parameter values.
@@ -261,7 +261,7 @@ abstract class $OtpStateCopyWith<$Res> {
   factory $OtpStateCopyWith(OtpState value, $Res Function(OtpState) then) =
       _$OtpStateCopyWithImpl<$Res, OtpState>;
   @useResult
-  $Res call({OTPStatus status, String message});
+  $Res call({OTPStatus status, DynamicError? errors});
 }
 
 /// @nodoc
@@ -280,17 +280,17 @@ class _$OtpStateCopyWithImpl<$Res, $Val extends OtpState>
   @override
   $Res call({
     Object? status = null,
-    Object? message = null,
+    Object? errors = freezed,
   }) {
     return _then(_value.copyWith(
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as OTPStatus,
-      message: null == message
-          ? _value.message
-          : message // ignore: cast_nullable_to_non_nullable
-              as String,
+      errors: freezed == errors
+          ? _value.errors
+          : errors // ignore: cast_nullable_to_non_nullable
+              as DynamicError?,
     ) as $Val);
   }
 }
@@ -303,7 +303,7 @@ abstract class _$$OtpStateImplCopyWith<$Res>
       __$$OtpStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({OTPStatus status, String message});
+  $Res call({OTPStatus status, DynamicError? errors});
 }
 
 /// @nodoc
@@ -320,17 +320,17 @@ class __$$OtpStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? status = null,
-    Object? message = null,
+    Object? errors = freezed,
   }) {
     return _then(_$OtpStateImpl(
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as OTPStatus,
-      message: null == message
-          ? _value.message
-          : message // ignore: cast_nullable_to_non_nullable
-              as String,
+      errors: freezed == errors
+          ? _value.errors
+          : errors // ignore: cast_nullable_to_non_nullable
+              as DynamicError?,
     ));
   }
 }
@@ -338,18 +338,17 @@ class __$$OtpStateImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$OtpStateImpl implements _OtpState {
-  const _$OtpStateImpl({this.status = OTPStatus.initial, this.message = ''});
+  const _$OtpStateImpl({this.status = OTPStatus.initial, this.errors});
 
   @override
   @JsonKey()
   final OTPStatus status;
   @override
-  @JsonKey()
-  final String message;
+  final DynamicError? errors;
 
   @override
   String toString() {
-    return 'OtpState(status: $status, message: $message)';
+    return 'OtpState(status: $status, errors: $errors)';
   }
 
   @override
@@ -358,11 +357,11 @@ class _$OtpStateImpl implements _OtpState {
         (other.runtimeType == runtimeType &&
             other is _$OtpStateImpl &&
             (identical(other.status, status) || other.status == status) &&
-            (identical(other.message, message) || other.message == message));
+            (identical(other.errors, errors) || other.errors == errors));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, status, message);
+  int get hashCode => Object.hash(runtimeType, status, errors);
 
   /// Create a copy of OtpState
   /// with the given fields replaced by the non-null parameter values.
@@ -374,13 +373,13 @@ class _$OtpStateImpl implements _OtpState {
 }
 
 abstract class _OtpState implements OtpState {
-  const factory _OtpState({final OTPStatus status, final String message}) =
-      _$OtpStateImpl;
+  const factory _OtpState(
+      {final OTPStatus status, final DynamicError? errors}) = _$OtpStateImpl;
 
   @override
   OTPStatus get status;
   @override
-  String get message;
+  DynamicError? get errors;
 
   /// Create a copy of OtpState
   /// with the given fields replaced by the non-null parameter values.

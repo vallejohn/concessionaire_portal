@@ -151,77 +151,82 @@ class _RegisterPageState extends State<RegisterPage> {
 
           if (state.signUpStatus == SignUpStatus.failed) {
             context.pop();
-            showDialog(
-              context: context,
-              builder: (BuildContext context) {
-                return Dialog(
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                      vertical: 20,
-                      horizontal: 30,
-                    ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Text(
-                          'Please Fix the Following Errors',
-                          style: textStyle.bodyLarge?.copyWith(
-                            fontWeight: FontWeight.w700,
-                            color: Theme.of(context).primaryColor,
-                          ),
-                          textAlign: TextAlign.center,
-                        ),
-                        Text(
-                          'Some fields have errors. Please review '
-                          'and correct them before proceeding.',
-                          style: textStyle.bodySmall,
-                          textAlign: TextAlign.center,
-                        ),
-                        const SizedBox(height: 20),
-                        ...state.errors.map((e) {
-                          return Padding(
-                            padding: const EdgeInsets.only(bottom: 10),
-                            child: Row(
-                              children: [
-                                CircleAvatar(
-                                  radius: 4,
-                                  backgroundColor:
-                                      Theme.of(context).colorScheme.error,
-                                ),
-                                const SizedBox(
-                                  width: 15,
-                                ),
-                                Text(
-                                  e.message,
-                                  style: textStyle.bodySmall,
-                                  textAlign: TextAlign.center,
-                                ),
-                              ],
-                            ),
-                          );
-                        }),
-                        const SizedBox(height: 20),
-                        SizedBox(
-                          width: MediaQuery.of(context).size.width,
-                          child: FilledButton(
-                              onPressed: () {
-                                context.pop();
-                              },
-                              child: const Text('Close')),
-                        ),
-                      ],
-                    ),
-                  ),
-                );
-              },
-            );
 
-            /*ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            if(state.errors!.fields.isNotEmpty){
+              showDialog(
+                context: context,
+                builder: (BuildContext context) {
+                  return Dialog(
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                        vertical: 20,
+                        horizontal: 30,
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Text(
+                            'Please Fix the Following Errors',
+                            style: textStyle.bodyLarge?.copyWith(
+                              fontWeight: FontWeight.w700,
+                              color: Theme.of(context).primaryColor,
+                            ),
+                            textAlign: TextAlign.center,
+                          ),
+                          Text(
+                            'Some fields have errors. Please review '
+                                'and correct them before proceeding.',
+                            style: textStyle.bodySmall,
+                            textAlign: TextAlign.center,
+                          ),
+                          const SizedBox(height: 20),
+                          ...state.errors!.fields.map((e) {
+                            return Padding(
+                              padding: const EdgeInsets.only(bottom: 10),
+                              child: Row(
+                                children: [
+                                  CircleAvatar(
+                                    radius: 4,
+                                    backgroundColor:
+                                    Theme.of(context).colorScheme.error,
+                                  ),
+                                  const SizedBox(
+                                    width: 15,
+                                  ),
+                                  Text(
+                                    e.message,
+                                    style: textStyle.bodySmall,
+                                    textAlign: TextAlign.center,
+                                  ),
+                                ],
+                              ),
+                            );
+                          }),
+                          const SizedBox(height: 20),
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width,
+                            child: FilledButton(
+                                onPressed: () {
+                                  context.pop();
+                                },
+                                child: const Text('Close')),
+                          ),
+                        ],
+                      ),
+                    ),
+                  );
+                },
+              );
+            }
+
+            if(state.errors!.message.isNotEmpty){
+              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
               content: Text(state.errors.toString()),
               backgroundColor: Theme.of(context).colorScheme.error,
-            ));*/
+            ));
+            }
           }
         },
         builder: (context, state) {

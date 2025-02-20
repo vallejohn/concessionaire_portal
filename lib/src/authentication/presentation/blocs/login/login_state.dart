@@ -8,7 +8,7 @@ class LoginState with _$LoginState {
   const factory LoginState({
     @Default(LoginStatus.initial) LoginStatus loginStatus,
     @Default(CheckAuthStatus.initial) CheckAuthStatus checkAuthStatus,
-    @Default('') String message,
+    DynamicError? errors,
     User? user,
   }) = _LoginState;
 }

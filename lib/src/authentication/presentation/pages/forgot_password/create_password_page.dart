@@ -134,7 +134,7 @@ class _CreatePasswordPageState extends State<CreatePasswordPage> {
 
         if (state.createStatus == CreatePasswordStatus.failed) {
           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-            content: Text(state.message),
+            content: Text(state.errors!.message),
             backgroundColor: Theme.of(context).colorScheme.error,
           ));
         }
