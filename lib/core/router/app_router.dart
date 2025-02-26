@@ -1,5 +1,4 @@
 import 'package:go_router/go_router.dart';
-import 'package:mwd_concessionaire_portal/demo_pages/home_page.dart';
 import 'package:mwd_concessionaire_portal/src/authentication/core/params.dart';
 import 'package:mwd_concessionaire_portal/src/authentication/presentation/pages/forgot_password/create_password_page.dart';
 import 'package:mwd_concessionaire_portal/src/authentication/presentation/pages/forgot_password/forgot_password_page.dart';
@@ -7,6 +6,7 @@ import 'package:mwd_concessionaire_portal/src/authentication/presentation/pages/
 import 'package:mwd_concessionaire_portal/src/authentication/presentation/pages/register_page.dart';
 import 'package:mwd_concessionaire_portal/src/authentication/presentation/pages/startup_page.dart';
 import 'package:mwd_concessionaire_portal/src/authentication/presentation/pages/success_registration_page.dart';
+import 'package:mwd_concessionaire_portal/src/home_page.dart';
 
 import '../../src/authentication/presentation/blocs/otp/otp_bloc.dart';
 import '../../src/authentication/presentation/pages/login_page.dart';

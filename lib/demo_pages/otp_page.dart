@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
 
-import 'home_page.dart';
-
 class OtpPage extends StatefulWidget {
   const OtpPage({super.key});
 
@@ -23,7 +21,7 @@ class _OtpPageState extends State<OtpPage> {
     setState(() => _confirmingOtp = true);
     await Future.delayed(const Duration(seconds: 3));
     if(mounted){
-      Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => const HomePage()));
+      //Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => const HomePage()));
     }
     setState(() => _confirmingOtp = false);
   }

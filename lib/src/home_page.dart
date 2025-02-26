@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mwd_concessionaire_portal/demo_pages/bill_information_page.dart';
 import 'package:mwd_concessionaire_portal/demo_pages/profile_page.dart';
 import 'package:mwd_concessionaire_portal/demo_pages/settings_page.dart';
+import 'package:mwd_concessionaire_portal/src/profile/presentation/blocs/profile/profile_bloc.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -13,12 +15,6 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   final PageController _pageController = PageController();
   int _currentIndex = 0;
-
-  final List<Widget> _pages = [
-    const BillInformationPage(),
-    const ProfilePage(),
-    const SettingsPage(),
-  ];
 
   void _onNavBarItemTapped(int index) {
     setState(() {
@@ -34,13 +30,31 @@ class _HomePageState extends State<HomePage> {
   }
 
   @override
+  void initState() {
+    super.initState();
+    BlocProvider.of<ProfileBloc>(context).add(
+      const ProfileEvent.onRequestData(),
+    );
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
         child: PageView(
           controller: _pageController,
           onPageChanged: _onPageChanged, // Listen for page changes
-          children: _pages,
+          children: [
+            const BillInformationPage(),
+            BlocBuilder<ProfileBloc, ProfileState>(builder: (context, state) {
+              final accountState = state.accountState;
+
+              return ProfilePage(
+                linkedAccounts: accountState.linkedAccounts,
+              );
+            }),
+            const SettingsPage(),
+          ],
         ),
       ),
       bottomNavigationBar: NavigationBar(

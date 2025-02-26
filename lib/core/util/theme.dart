@@ -37,7 +37,9 @@ class AppTheme {
         cardTheme: CardTheme(
             elevation: 10,
             shadowColor: Colors.grey.withOpacity(0.24),
-            //color: colorScheme.surfaceVariant,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(8), // Adjust the radius
+            ),
             color: Colors.white,
             surfaceTintColor: Colors.white),
         filledButtonTheme: FilledButtonThemeData(

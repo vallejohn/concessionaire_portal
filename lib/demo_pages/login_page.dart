@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:mwd_concessionaire_portal/demo_pages/home_page.dart';
 import 'package:mwd_concessionaire_portal/demo_pages/register_page.dart';
 
 class LoginDemoPage extends StatefulWidget {
@@ -21,7 +20,7 @@ class _LoginDemoPageState extends State<LoginDemoPage> {
       await Future.delayed(const Duration(seconds: 3));
       setState(() => _loggingIn = false);
       if(mounted){
-        Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => const HomePage()));
+        //Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => const HomePage()));
       }
     }
   }

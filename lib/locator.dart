@@ -12,6 +12,11 @@ import 'package:mwd_concessionaire_portal/src/authentication/domain/usecases/for
 import 'package:mwd_concessionaire_portal/src/authentication/domain/usecases/login_usecase.dart';
 import 'package:mwd_concessionaire_portal/src/authentication/domain/usecases/request_auth_status_usecase.dart';
 import 'package:mwd_concessionaire_portal/src/authentication/domain/usecases/sign_up_usecase.dart';
+import 'package:mwd_concessionaire_portal/src/profile/data/data_sources/profile_data_source.dart';
+import 'package:mwd_concessionaire_portal/src/profile/data/data_sources/profile_remote_data_source_impl.dart';
+import 'package:mwd_concessionaire_portal/src/profile/data/repositories/profile_repository_impl.dart';
+import 'package:mwd_concessionaire_portal/src/profile/domain/repositories/profile_repository.dart';
+import 'package:mwd_concessionaire_portal/src/profile/domain/usecases/get_linked_accounts_usecase.dart';
 
 final getIt = GetIt.instance;
 
@@ -27,6 +32,7 @@ Future<void> setupLocator()async {
 
 
   _setupAuth(authenticationCollection);
+  _setupProfile();
 }
 
 void _setupAuth(AuthenticationCollection collection) {
@@ -44,4 +50,14 @@ void _setupAuth(AuthenticationCollection collection) {
   getIt.registerLazySingleton(() => ConfirmOTPUsecase(getIt()));
   getIt.registerLazySingleton(() => ForgotPasswordUsecase(getIt()));
   getIt.registerLazySingleton(() => CreatePasswordUsecase(getIt()));
+}
+
+void _setupProfile() {
+  getIt.registerLazySingleton<ProfileDataSource>(() =>
+      ProfileRemoteDataSourceImpl());
+
+  getIt.registerLazySingleton<ProfileRepository>(() =>
+      ProfileRepositoryImpl(dataSource: getIt()));
+
+  getIt.registerLazySingleton(() => GetLinkedAccountsUsecase(getIt()));
 }

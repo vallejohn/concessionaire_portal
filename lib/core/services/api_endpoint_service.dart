@@ -133,7 +133,7 @@ class APIEndpointService {
           fieldErrors = errors;
         }
 
-        if(body['message'] is String){
+        if (body['message'] is String) {
           message = body['message'];
         }
 
@@ -148,9 +148,11 @@ class APIEndpointService {
       return endpointResponse;
     } on DioException catch (e) {
       Logger().e(e.message);
-      throw AuthenticationException(
-        'Something went wrong while processing '
-        'your request. Please try again later.',
+      throw ServerException(
+        const DynamicError(
+          message: 'Something went wrong while processing '
+              'your request. Please try again later.',
+        ),
       );
     }
   }
