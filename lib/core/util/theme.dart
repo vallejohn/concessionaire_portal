@@ -26,7 +26,9 @@ class AppTheme {
           suffixIconColor: _kColorScheme.primary,
           fillColor: Colors.white,
           filled: true,
+          hintStyle: const TextStyle(fontWeight: FontWeight.w500),
           border: const OutlineInputBorder(),
+          contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
           enabledBorder: OutlineInputBorder(
             borderSide: BorderSide(
               //width: 1.3,
@@ -45,11 +47,19 @@ class AppTheme {
         filledButtonTheme: FilledButtonThemeData(
             style: ButtonStyle(
                 shape: WidgetStateProperty.all(RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8))))),
+                    borderRadius: BorderRadius.circular(8))),
+              padding: WidgetStateProperty.all<EdgeInsets>(
+                const EdgeInsets.symmetric(horizontal: 24, vertical: 15),
+              ),
+            )),
         textButtonTheme: TextButtonThemeData(
             style: ButtonStyle(
                 shape: WidgetStateProperty.all(RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8))))),
+                    borderRadius: BorderRadius.circular(8))),
+              padding: WidgetStateProperty.all<EdgeInsets>(
+                const EdgeInsets.symmetric(horizontal: 24, vertical: 15),
+              ),
+            )),
         checkboxTheme: CheckboxThemeData(
             side: BorderSide(color: _kColorScheme.primary, width: 1.5),
             shape: RoundedRectangleBorder(

@@ -1,11 +1,8 @@
 import 'dart:async';
 
-import 'package:dartz/dartz.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:get_it/get_it.dart';
-import 'package:mwd_concessionaire_portal/core/exceptions/failure.dart';
-import 'package:mwd_concessionaire_portal/core/util/extensions.dart';
 import 'package:mwd_concessionaire_portal/src/authentication/core/params.dart';
 import 'package:mwd_concessionaire_portal/src/authentication/data/models/user.dart';
 import 'package:mwd_concessionaire_portal/src/authentication/domain/usecases/login_usecase.dart';
