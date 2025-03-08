@@ -1,11 +1,13 @@
+import 'package:mwd_concessionaire_portal/core/services/api_endpoint_service.dart';
+import 'package:mwd_concessionaire_portal/src/profile/core/params.dart';
 import 'package:mwd_concessionaire_portal/src/profile/data/models/account.dart';
 
+import '../../../../core/exceptions/authentication_exception.dart';
 import 'profile_data_source.dart';
 
-/// This class is responsible for retrieving data from remote 
+/// This class is responsible for retrieving data from remote
 /// sources like REST APIs, Amplify, Firebase etc.
-class ProfileRemoteDataSourceImpl extends ProfileDataSource{
-
+class ProfileRemoteDataSourceImpl extends ProfileDataSource {
   final data = [
     {
       "alias": "home",
@@ -50,7 +52,19 @@ class ProfileRemoteDataSourceImpl extends ProfileDataSource{
   ];
 
   @override
-  Future<List<Account>> getLinkedAccounts()async {
+  Future<List<Account>> getLinkedAccounts() async {
     return data.map((e) => Account.fromJson(e)).toList();
+  }
+
+  @override
+  Future<bool> linkNewAccount(LinkAccountParams params) async {
+    await APIEndpointService.profile(
+      ProfileEndpoint.linkNewAccount,
+      params,
+      onError: (dynamicError) {
+        throw ServerException(dynamicError);
+      },
+    );
+    return true;
   }
 }

@@ -1,3 +1,4 @@
+import 'package:mwd_concessionaire_portal/src/profile/core/params.dart';
 import 'package:mwd_concessionaire_portal/src/profile/data/models/account.dart';
 
 import 'profile_data_source.dart';
@@ -8,6 +9,12 @@ class ProfileLocalDataSourceImpl extends ProfileDataSource{
   @override
   Future<List<Account>> getLinkedAccounts() {
     // TODO: implement getLinkedAccounts
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<bool> linkNewAccount(LinkAccountParams params) {
+    // TODO: implement linkNewAccount
     throw UnimplementedError();
   }
 }

@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 
 import 'package:mwd_concessionaire_portal/core/exceptions/failure.dart';
+import 'package:mwd_concessionaire_portal/src/profile/core/params.dart';
 
 import 'package:mwd_concessionaire_portal/src/profile/data/models/account.dart';
 
@@ -15,6 +16,18 @@ class ProfileRepositoryImpl extends ProfileRepository{
   Future<Either<Failure, List<Account>>> getLinkedAccounts()async {
     try{
       final data = await dataSource.getLinkedAccounts();
+      return Right(data);
+    }on HiveCollectionException catch(e){
+      return Left(Failure.hiveCollectionException(e));
+    }on BaseException catch(authError){
+      return Left(Failure.exception(authError));
+    }
+  }
+
+  @override
+  Future<Either<Failure, bool>> linkNewAccount(LinkAccountParams params)async {
+    try{
+      final data = await dataSource.linkNewAccount(params);
       return Right(data);
     }on HiveCollectionException catch(e){
       return Left(Failure.hiveCollectionException(e));

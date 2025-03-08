@@ -23,7 +23,7 @@ class _ProfilePageState extends State<ProfilePage> {
     final defaultAccountIcon = Align(
       alignment: Alignment.topRight,
       child: Container(
-        padding: const EdgeInsets.all(10),
+        padding: const EdgeInsets.all(15),
         decoration: const BoxDecoration(
             borderRadius: BorderRadius.only(
               topRight: Radius.circular(8),
@@ -168,6 +168,12 @@ class _ProfilePageState extends State<ProfilePage> {
                 if (!account.isDefault)
                   TextButton(
                     onPressed: () {},
+                    style: const ButtonStyle(
+                      padding: WidgetStatePropertyAll(EdgeInsets.symmetric(
+                        horizontal: 10,
+                        vertical: 2,
+                      )),
+                    ),
                     child: const Text('Set as default account'),
                   ),
               ],
@@ -195,7 +201,7 @@ class _ProfilePageState extends State<ProfilePage> {
             editNicknameDialog();
           },
           child: const Padding(
-            padding: EdgeInsets.all(10),
+            padding: EdgeInsets.all(15),
             child: Icon(
               Icons.edit,
               color: Colors.white,
@@ -247,7 +253,9 @@ class _ProfilePageState extends State<ProfilePage> {
               ),
               const Spacer(),
               FilledButton.icon(
-                onPressed: () {},
+                onPressed: () {
+                  context.go('/home/linkAccount');
+                },
                 label: const Text('Link account'),
                 icon: const Icon(Icons.add),
               ),

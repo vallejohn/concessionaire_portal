@@ -17,6 +17,7 @@ import 'package:mwd_concessionaire_portal/src/profile/data/data_sources/profile_
 import 'package:mwd_concessionaire_portal/src/profile/data/repositories/profile_repository_impl.dart';
 import 'package:mwd_concessionaire_portal/src/profile/domain/repositories/profile_repository.dart';
 import 'package:mwd_concessionaire_portal/src/profile/domain/usecases/get_linked_accounts_usecase.dart';
+import 'package:mwd_concessionaire_portal/src/profile/domain/usecases/link_new_account_usecase.dart';
 
 final getIt = GetIt.instance;
 
@@ -26,17 +27,18 @@ Future<void> setupLocator()async {
   final authenticationCollection = AuthenticationCollection();
   await authenticationCollection.init(localStorageService);
 
+  getIt.registerLazySingleton(() => authenticationCollection);
+
   APIEndpointService.init();
 
   getIt.registerLazySingleton(() => localStorageService);
 
 
-  _setupAuth(authenticationCollection);
+  _setupAuth();
   _setupProfile();
 }
 
-void _setupAuth(AuthenticationCollection collection) {
-  getIt.registerLazySingleton(() => collection);
+void _setupAuth() {
 
   getIt.registerLazySingleton<AuthenticationDataSource>(() =>
       AuthenticationRemoteDataSourceImpl());
@@ -60,4 +62,5 @@ void _setupProfile() {
       ProfileRepositoryImpl(dataSource: getIt()));
 
   getIt.registerLazySingleton(() => GetLinkedAccountsUsecase(getIt()));
+  getIt.registerLazySingleton(() => LinkNewAccountUsecase(getIt()));
 }

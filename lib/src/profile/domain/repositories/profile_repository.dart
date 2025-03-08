@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:mwd_concessionaire_portal/src/profile/core/params.dart';
 import 'package:mwd_concessionaire_portal/src/profile/data/models/account.dart';
 
 import '../../../../core/exceptions/failure.dart';
@@ -10,4 +11,5 @@ abstract class ProfileRepository {
   ProfileRepository({required this.dataSource});
 
   Future<Either<Failure, List<Account>>> getLinkedAccounts();
+  Future<Either<Failure, bool>> linkNewAccount(LinkAccountParams params);
 }

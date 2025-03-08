@@ -19,32 +19,41 @@ mixin _$ProfileEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() onRequestData,
+    required TResult Function(LinkAccountParams params, String nickname)
+        onLinkNewAccount,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? onRequestData,
+    TResult? Function(LinkAccountParams params, String nickname)?
+        onLinkNewAccount,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? onRequestData,
+    TResult Function(LinkAccountParams params, String nickname)?
+        onLinkNewAccount,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_OnRequestData value) onRequestData,
+    required TResult Function(_OnLinkNewAccount value) onLinkNewAccount,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_OnRequestData value)? onRequestData,
+    TResult? Function(_OnLinkNewAccount value)? onLinkNewAccount,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_OnRequestData value)? onRequestData,
+    TResult Function(_OnLinkNewAccount value)? onLinkNewAccount,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -113,6 +122,8 @@ class _$OnRequestDataImpl implements _OnRequestData {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() onRequestData,
+    required TResult Function(LinkAccountParams params, String nickname)
+        onLinkNewAccount,
   }) {
     return onRequestData();
   }
@@ -121,6 +132,8 @@ class _$OnRequestDataImpl implements _OnRequestData {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? onRequestData,
+    TResult? Function(LinkAccountParams params, String nickname)?
+        onLinkNewAccount,
   }) {
     return onRequestData?.call();
   }
@@ -129,6 +142,8 @@ class _$OnRequestDataImpl implements _OnRequestData {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? onRequestData,
+    TResult Function(LinkAccountParams params, String nickname)?
+        onLinkNewAccount,
     required TResult orElse(),
   }) {
     if (onRequestData != null) {
@@ -141,6 +156,7 @@ class _$OnRequestDataImpl implements _OnRequestData {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_OnRequestData value) onRequestData,
+    required TResult Function(_OnLinkNewAccount value) onLinkNewAccount,
   }) {
     return onRequestData(this);
   }
@@ -149,6 +165,7 @@ class _$OnRequestDataImpl implements _OnRequestData {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_OnRequestData value)? onRequestData,
+    TResult? Function(_OnLinkNewAccount value)? onLinkNewAccount,
   }) {
     return onRequestData?.call(this);
   }
@@ -157,6 +174,7 @@ class _$OnRequestDataImpl implements _OnRequestData {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_OnRequestData value)? onRequestData,
+    TResult Function(_OnLinkNewAccount value)? onLinkNewAccount,
     required TResult orElse(),
   }) {
     if (onRequestData != null) {
@@ -168,6 +186,174 @@ class _$OnRequestDataImpl implements _OnRequestData {
 
 abstract class _OnRequestData implements ProfileEvent {
   const factory _OnRequestData() = _$OnRequestDataImpl;
+}
+
+/// @nodoc
+abstract class _$$OnLinkNewAccountImplCopyWith<$Res> {
+  factory _$$OnLinkNewAccountImplCopyWith(_$OnLinkNewAccountImpl value,
+          $Res Function(_$OnLinkNewAccountImpl) then) =
+      __$$OnLinkNewAccountImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({LinkAccountParams params, String nickname});
+
+  $LinkAccountParamsCopyWith<$Res> get params;
+}
+
+/// @nodoc
+class __$$OnLinkNewAccountImplCopyWithImpl<$Res>
+    extends _$ProfileEventCopyWithImpl<$Res, _$OnLinkNewAccountImpl>
+    implements _$$OnLinkNewAccountImplCopyWith<$Res> {
+  __$$OnLinkNewAccountImplCopyWithImpl(_$OnLinkNewAccountImpl _value,
+      $Res Function(_$OnLinkNewAccountImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of ProfileEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? params = null,
+    Object? nickname = null,
+  }) {
+    return _then(_$OnLinkNewAccountImpl(
+      null == params
+          ? _value.params
+          : params // ignore: cast_nullable_to_non_nullable
+              as LinkAccountParams,
+      null == nickname
+          ? _value.nickname
+          : nickname // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+
+  /// Create a copy of ProfileEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $LinkAccountParamsCopyWith<$Res> get params {
+    return $LinkAccountParamsCopyWith<$Res>(_value.params, (value) {
+      return _then(_value.copyWith(params: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$OnLinkNewAccountImpl implements _OnLinkNewAccount {
+  const _$OnLinkNewAccountImpl(this.params, this.nickname);
+
+  @override
+  final LinkAccountParams params;
+  @override
+  final String nickname;
+
+  @override
+  String toString() {
+    return 'ProfileEvent.onLinkNewAccount(params: $params, nickname: $nickname)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$OnLinkNewAccountImpl &&
+            (identical(other.params, params) || other.params == params) &&
+            (identical(other.nickname, nickname) ||
+                other.nickname == nickname));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, params, nickname);
+
+  /// Create a copy of ProfileEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$OnLinkNewAccountImplCopyWith<_$OnLinkNewAccountImpl> get copyWith =>
+      __$$OnLinkNewAccountImplCopyWithImpl<_$OnLinkNewAccountImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() onRequestData,
+    required TResult Function(LinkAccountParams params, String nickname)
+        onLinkNewAccount,
+  }) {
+    return onLinkNewAccount(params, nickname);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? onRequestData,
+    TResult? Function(LinkAccountParams params, String nickname)?
+        onLinkNewAccount,
+  }) {
+    return onLinkNewAccount?.call(params, nickname);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? onRequestData,
+    TResult Function(LinkAccountParams params, String nickname)?
+        onLinkNewAccount,
+    required TResult orElse(),
+  }) {
+    if (onLinkNewAccount != null) {
+      return onLinkNewAccount(params, nickname);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_OnRequestData value) onRequestData,
+    required TResult Function(_OnLinkNewAccount value) onLinkNewAccount,
+  }) {
+    return onLinkNewAccount(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_OnRequestData value)? onRequestData,
+    TResult? Function(_OnLinkNewAccount value)? onLinkNewAccount,
+  }) {
+    return onLinkNewAccount?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_OnRequestData value)? onRequestData,
+    TResult Function(_OnLinkNewAccount value)? onLinkNewAccount,
+    required TResult orElse(),
+  }) {
+    if (onLinkNewAccount != null) {
+      return onLinkNewAccount(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _OnLinkNewAccount implements ProfileEvent {
+  const factory _OnLinkNewAccount(
+          final LinkAccountParams params, final String nickname) =
+      _$OnLinkNewAccountImpl;
+
+  LinkAccountParams get params;
+  String get nickname;
+
+  /// Create a copy of ProfileEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$OnLinkNewAccountImplCopyWith<_$OnLinkNewAccountImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc

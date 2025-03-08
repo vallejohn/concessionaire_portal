@@ -7,6 +7,7 @@ import 'package:mwd_concessionaire_portal/src/authentication/presentation/pages/
 import 'package:mwd_concessionaire_portal/src/authentication/presentation/pages/startup_page.dart';
 import 'package:mwd_concessionaire_portal/src/authentication/presentation/pages/success_registration_page.dart';
 import 'package:mwd_concessionaire_portal/src/home_page.dart';
+import 'package:mwd_concessionaire_portal/src/profile/presentation/pages/link_account.dart';
 
 import '../../src/authentication/presentation/blocs/otp/otp_bloc.dart';
 import '../../src/authentication/presentation/pages/login_page.dart';
@@ -38,6 +39,12 @@ class _RouteConfiguration {
         GoRoute(
           path: '/home',
           builder: (context, state) => const HomePage(),
+          routes: [
+            GoRoute(
+              path: '/linkAccount',
+              builder: (context, state) => const LinkAccount(),
+            ),
+          ]
         ),
         GoRoute(
           path: '/successRegistration',
