@@ -19,41 +19,57 @@ mixin _$ProfileEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() onRequestData,
+    required TResult Function(String accountNo) onSetDefaultAccount,
     required TResult Function(LinkAccountParams params, String nickname)
         onLinkNewAccount,
+    required TResult Function(
+            String alias, String accountNumber, bool setAsDefault)
+        onSaveAccountAlias,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? onRequestData,
+    TResult? Function(String accountNo)? onSetDefaultAccount,
     TResult? Function(LinkAccountParams params, String nickname)?
         onLinkNewAccount,
+    TResult? Function(String alias, String accountNumber, bool setAsDefault)?
+        onSaveAccountAlias,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? onRequestData,
+    TResult Function(String accountNo)? onSetDefaultAccount,
     TResult Function(LinkAccountParams params, String nickname)?
         onLinkNewAccount,
+    TResult Function(String alias, String accountNumber, bool setAsDefault)?
+        onSaveAccountAlias,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_OnRequestData value) onRequestData,
+    required TResult Function(_OnSetDefaultAccount value) onSetDefaultAccount,
     required TResult Function(_OnLinkNewAccount value) onLinkNewAccount,
+    required TResult Function(_OnSaveAccountAlias value) onSaveAccountAlias,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_OnRequestData value)? onRequestData,
+    TResult? Function(_OnSetDefaultAccount value)? onSetDefaultAccount,
     TResult? Function(_OnLinkNewAccount value)? onLinkNewAccount,
+    TResult? Function(_OnSaveAccountAlias value)? onSaveAccountAlias,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_OnRequestData value)? onRequestData,
+    TResult Function(_OnSetDefaultAccount value)? onSetDefaultAccount,
     TResult Function(_OnLinkNewAccount value)? onLinkNewAccount,
+    TResult Function(_OnSaveAccountAlias value)? onSaveAccountAlias,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -122,8 +138,12 @@ class _$OnRequestDataImpl implements _OnRequestData {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() onRequestData,
+    required TResult Function(String accountNo) onSetDefaultAccount,
     required TResult Function(LinkAccountParams params, String nickname)
         onLinkNewAccount,
+    required TResult Function(
+            String alias, String accountNumber, bool setAsDefault)
+        onSaveAccountAlias,
   }) {
     return onRequestData();
   }
@@ -132,8 +152,11 @@ class _$OnRequestDataImpl implements _OnRequestData {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? onRequestData,
+    TResult? Function(String accountNo)? onSetDefaultAccount,
     TResult? Function(LinkAccountParams params, String nickname)?
         onLinkNewAccount,
+    TResult? Function(String alias, String accountNumber, bool setAsDefault)?
+        onSaveAccountAlias,
   }) {
     return onRequestData?.call();
   }
@@ -142,8 +165,11 @@ class _$OnRequestDataImpl implements _OnRequestData {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? onRequestData,
+    TResult Function(String accountNo)? onSetDefaultAccount,
     TResult Function(LinkAccountParams params, String nickname)?
         onLinkNewAccount,
+    TResult Function(String alias, String accountNumber, bool setAsDefault)?
+        onSaveAccountAlias,
     required TResult orElse(),
   }) {
     if (onRequestData != null) {
@@ -156,7 +182,9 @@ class _$OnRequestDataImpl implements _OnRequestData {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_OnRequestData value) onRequestData,
+    required TResult Function(_OnSetDefaultAccount value) onSetDefaultAccount,
     required TResult Function(_OnLinkNewAccount value) onLinkNewAccount,
+    required TResult Function(_OnSaveAccountAlias value) onSaveAccountAlias,
   }) {
     return onRequestData(this);
   }
@@ -165,7 +193,9 @@ class _$OnRequestDataImpl implements _OnRequestData {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_OnRequestData value)? onRequestData,
+    TResult? Function(_OnSetDefaultAccount value)? onSetDefaultAccount,
     TResult? Function(_OnLinkNewAccount value)? onLinkNewAccount,
+    TResult? Function(_OnSaveAccountAlias value)? onSaveAccountAlias,
   }) {
     return onRequestData?.call(this);
   }
@@ -174,7 +204,9 @@ class _$OnRequestDataImpl implements _OnRequestData {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_OnRequestData value)? onRequestData,
+    TResult Function(_OnSetDefaultAccount value)? onSetDefaultAccount,
     TResult Function(_OnLinkNewAccount value)? onLinkNewAccount,
+    TResult Function(_OnSaveAccountAlias value)? onSaveAccountAlias,
     required TResult orElse(),
   }) {
     if (onRequestData != null) {
@@ -186,6 +218,168 @@ class _$OnRequestDataImpl implements _OnRequestData {
 
 abstract class _OnRequestData implements ProfileEvent {
   const factory _OnRequestData() = _$OnRequestDataImpl;
+}
+
+/// @nodoc
+abstract class _$$OnSetDefaultAccountImplCopyWith<$Res> {
+  factory _$$OnSetDefaultAccountImplCopyWith(_$OnSetDefaultAccountImpl value,
+          $Res Function(_$OnSetDefaultAccountImpl) then) =
+      __$$OnSetDefaultAccountImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String accountNo});
+}
+
+/// @nodoc
+class __$$OnSetDefaultAccountImplCopyWithImpl<$Res>
+    extends _$ProfileEventCopyWithImpl<$Res, _$OnSetDefaultAccountImpl>
+    implements _$$OnSetDefaultAccountImplCopyWith<$Res> {
+  __$$OnSetDefaultAccountImplCopyWithImpl(_$OnSetDefaultAccountImpl _value,
+      $Res Function(_$OnSetDefaultAccountImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of ProfileEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? accountNo = null,
+  }) {
+    return _then(_$OnSetDefaultAccountImpl(
+      null == accountNo
+          ? _value.accountNo
+          : accountNo // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$OnSetDefaultAccountImpl implements _OnSetDefaultAccount {
+  const _$OnSetDefaultAccountImpl(this.accountNo);
+
+  @override
+  final String accountNo;
+
+  @override
+  String toString() {
+    return 'ProfileEvent.onSetDefaultAccount(accountNo: $accountNo)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$OnSetDefaultAccountImpl &&
+            (identical(other.accountNo, accountNo) ||
+                other.accountNo == accountNo));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, accountNo);
+
+  /// Create a copy of ProfileEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$OnSetDefaultAccountImplCopyWith<_$OnSetDefaultAccountImpl> get copyWith =>
+      __$$OnSetDefaultAccountImplCopyWithImpl<_$OnSetDefaultAccountImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() onRequestData,
+    required TResult Function(String accountNo) onSetDefaultAccount,
+    required TResult Function(LinkAccountParams params, String nickname)
+        onLinkNewAccount,
+    required TResult Function(
+            String alias, String accountNumber, bool setAsDefault)
+        onSaveAccountAlias,
+  }) {
+    return onSetDefaultAccount(accountNo);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? onRequestData,
+    TResult? Function(String accountNo)? onSetDefaultAccount,
+    TResult? Function(LinkAccountParams params, String nickname)?
+        onLinkNewAccount,
+    TResult? Function(String alias, String accountNumber, bool setAsDefault)?
+        onSaveAccountAlias,
+  }) {
+    return onSetDefaultAccount?.call(accountNo);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? onRequestData,
+    TResult Function(String accountNo)? onSetDefaultAccount,
+    TResult Function(LinkAccountParams params, String nickname)?
+        onLinkNewAccount,
+    TResult Function(String alias, String accountNumber, bool setAsDefault)?
+        onSaveAccountAlias,
+    required TResult orElse(),
+  }) {
+    if (onSetDefaultAccount != null) {
+      return onSetDefaultAccount(accountNo);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_OnRequestData value) onRequestData,
+    required TResult Function(_OnSetDefaultAccount value) onSetDefaultAccount,
+    required TResult Function(_OnLinkNewAccount value) onLinkNewAccount,
+    required TResult Function(_OnSaveAccountAlias value) onSaveAccountAlias,
+  }) {
+    return onSetDefaultAccount(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_OnRequestData value)? onRequestData,
+    TResult? Function(_OnSetDefaultAccount value)? onSetDefaultAccount,
+    TResult? Function(_OnLinkNewAccount value)? onLinkNewAccount,
+    TResult? Function(_OnSaveAccountAlias value)? onSaveAccountAlias,
+  }) {
+    return onSetDefaultAccount?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_OnRequestData value)? onRequestData,
+    TResult Function(_OnSetDefaultAccount value)? onSetDefaultAccount,
+    TResult Function(_OnLinkNewAccount value)? onLinkNewAccount,
+    TResult Function(_OnSaveAccountAlias value)? onSaveAccountAlias,
+    required TResult orElse(),
+  }) {
+    if (onSetDefaultAccount != null) {
+      return onSetDefaultAccount(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _OnSetDefaultAccount implements ProfileEvent {
+  const factory _OnSetDefaultAccount(final String accountNo) =
+      _$OnSetDefaultAccountImpl;
+
+  String get accountNo;
+
+  /// Create a copy of ProfileEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$OnSetDefaultAccountImplCopyWith<_$OnSetDefaultAccountImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -279,8 +473,12 @@ class _$OnLinkNewAccountImpl implements _OnLinkNewAccount {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() onRequestData,
+    required TResult Function(String accountNo) onSetDefaultAccount,
     required TResult Function(LinkAccountParams params, String nickname)
         onLinkNewAccount,
+    required TResult Function(
+            String alias, String accountNumber, bool setAsDefault)
+        onSaveAccountAlias,
   }) {
     return onLinkNewAccount(params, nickname);
   }
@@ -289,8 +487,11 @@ class _$OnLinkNewAccountImpl implements _OnLinkNewAccount {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? onRequestData,
+    TResult? Function(String accountNo)? onSetDefaultAccount,
     TResult? Function(LinkAccountParams params, String nickname)?
         onLinkNewAccount,
+    TResult? Function(String alias, String accountNumber, bool setAsDefault)?
+        onSaveAccountAlias,
   }) {
     return onLinkNewAccount?.call(params, nickname);
   }
@@ -299,8 +500,11 @@ class _$OnLinkNewAccountImpl implements _OnLinkNewAccount {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? onRequestData,
+    TResult Function(String accountNo)? onSetDefaultAccount,
     TResult Function(LinkAccountParams params, String nickname)?
         onLinkNewAccount,
+    TResult Function(String alias, String accountNumber, bool setAsDefault)?
+        onSaveAccountAlias,
     required TResult orElse(),
   }) {
     if (onLinkNewAccount != null) {
@@ -313,7 +517,9 @@ class _$OnLinkNewAccountImpl implements _OnLinkNewAccount {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_OnRequestData value) onRequestData,
+    required TResult Function(_OnSetDefaultAccount value) onSetDefaultAccount,
     required TResult Function(_OnLinkNewAccount value) onLinkNewAccount,
+    required TResult Function(_OnSaveAccountAlias value) onSaveAccountAlias,
   }) {
     return onLinkNewAccount(this);
   }
@@ -322,7 +528,9 @@ class _$OnLinkNewAccountImpl implements _OnLinkNewAccount {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_OnRequestData value)? onRequestData,
+    TResult? Function(_OnSetDefaultAccount value)? onSetDefaultAccount,
     TResult? Function(_OnLinkNewAccount value)? onLinkNewAccount,
+    TResult? Function(_OnSaveAccountAlias value)? onSaveAccountAlias,
   }) {
     return onLinkNewAccount?.call(this);
   }
@@ -331,7 +539,9 @@ class _$OnLinkNewAccountImpl implements _OnLinkNewAccount {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_OnRequestData value)? onRequestData,
+    TResult Function(_OnSetDefaultAccount value)? onSetDefaultAccount,
     TResult Function(_OnLinkNewAccount value)? onLinkNewAccount,
+    TResult Function(_OnSaveAccountAlias value)? onSaveAccountAlias,
     required TResult orElse(),
   }) {
     if (onLinkNewAccount != null) {
@@ -353,6 +563,194 @@ abstract class _OnLinkNewAccount implements ProfileEvent {
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$OnLinkNewAccountImplCopyWith<_$OnLinkNewAccountImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$OnSaveAccountAliasImplCopyWith<$Res> {
+  factory _$$OnSaveAccountAliasImplCopyWith(_$OnSaveAccountAliasImpl value,
+          $Res Function(_$OnSaveAccountAliasImpl) then) =
+      __$$OnSaveAccountAliasImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String alias, String accountNumber, bool setAsDefault});
+}
+
+/// @nodoc
+class __$$OnSaveAccountAliasImplCopyWithImpl<$Res>
+    extends _$ProfileEventCopyWithImpl<$Res, _$OnSaveAccountAliasImpl>
+    implements _$$OnSaveAccountAliasImplCopyWith<$Res> {
+  __$$OnSaveAccountAliasImplCopyWithImpl(_$OnSaveAccountAliasImpl _value,
+      $Res Function(_$OnSaveAccountAliasImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of ProfileEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? alias = null,
+    Object? accountNumber = null,
+    Object? setAsDefault = null,
+  }) {
+    return _then(_$OnSaveAccountAliasImpl(
+      alias: null == alias
+          ? _value.alias
+          : alias // ignore: cast_nullable_to_non_nullable
+              as String,
+      accountNumber: null == accountNumber
+          ? _value.accountNumber
+          : accountNumber // ignore: cast_nullable_to_non_nullable
+              as String,
+      setAsDefault: null == setAsDefault
+          ? _value.setAsDefault
+          : setAsDefault // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$OnSaveAccountAliasImpl implements _OnSaveAccountAlias {
+  const _$OnSaveAccountAliasImpl(
+      {required this.alias,
+      required this.accountNumber,
+      this.setAsDefault = false});
+
+  @override
+  final String alias;
+  @override
+  final String accountNumber;
+  @override
+  @JsonKey()
+  final bool setAsDefault;
+
+  @override
+  String toString() {
+    return 'ProfileEvent.onSaveAccountAlias(alias: $alias, accountNumber: $accountNumber, setAsDefault: $setAsDefault)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$OnSaveAccountAliasImpl &&
+            (identical(other.alias, alias) || other.alias == alias) &&
+            (identical(other.accountNumber, accountNumber) ||
+                other.accountNumber == accountNumber) &&
+            (identical(other.setAsDefault, setAsDefault) ||
+                other.setAsDefault == setAsDefault));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, alias, accountNumber, setAsDefault);
+
+  /// Create a copy of ProfileEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$OnSaveAccountAliasImplCopyWith<_$OnSaveAccountAliasImpl> get copyWith =>
+      __$$OnSaveAccountAliasImplCopyWithImpl<_$OnSaveAccountAliasImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() onRequestData,
+    required TResult Function(String accountNo) onSetDefaultAccount,
+    required TResult Function(LinkAccountParams params, String nickname)
+        onLinkNewAccount,
+    required TResult Function(
+            String alias, String accountNumber, bool setAsDefault)
+        onSaveAccountAlias,
+  }) {
+    return onSaveAccountAlias(alias, accountNumber, setAsDefault);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? onRequestData,
+    TResult? Function(String accountNo)? onSetDefaultAccount,
+    TResult? Function(LinkAccountParams params, String nickname)?
+        onLinkNewAccount,
+    TResult? Function(String alias, String accountNumber, bool setAsDefault)?
+        onSaveAccountAlias,
+  }) {
+    return onSaveAccountAlias?.call(alias, accountNumber, setAsDefault);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? onRequestData,
+    TResult Function(String accountNo)? onSetDefaultAccount,
+    TResult Function(LinkAccountParams params, String nickname)?
+        onLinkNewAccount,
+    TResult Function(String alias, String accountNumber, bool setAsDefault)?
+        onSaveAccountAlias,
+    required TResult orElse(),
+  }) {
+    if (onSaveAccountAlias != null) {
+      return onSaveAccountAlias(alias, accountNumber, setAsDefault);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_OnRequestData value) onRequestData,
+    required TResult Function(_OnSetDefaultAccount value) onSetDefaultAccount,
+    required TResult Function(_OnLinkNewAccount value) onLinkNewAccount,
+    required TResult Function(_OnSaveAccountAlias value) onSaveAccountAlias,
+  }) {
+    return onSaveAccountAlias(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_OnRequestData value)? onRequestData,
+    TResult? Function(_OnSetDefaultAccount value)? onSetDefaultAccount,
+    TResult? Function(_OnLinkNewAccount value)? onLinkNewAccount,
+    TResult? Function(_OnSaveAccountAlias value)? onSaveAccountAlias,
+  }) {
+    return onSaveAccountAlias?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_OnRequestData value)? onRequestData,
+    TResult Function(_OnSetDefaultAccount value)? onSetDefaultAccount,
+    TResult Function(_OnLinkNewAccount value)? onLinkNewAccount,
+    TResult Function(_OnSaveAccountAlias value)? onSaveAccountAlias,
+    required TResult orElse(),
+  }) {
+    if (onSaveAccountAlias != null) {
+      return onSaveAccountAlias(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _OnSaveAccountAlias implements ProfileEvent {
+  const factory _OnSaveAccountAlias(
+      {required final String alias,
+      required final String accountNumber,
+      final bool setAsDefault}) = _$OnSaveAccountAliasImpl;
+
+  String get alias;
+  String get accountNumber;
+  bool get setAsDefault;
+
+  /// Create a copy of ProfileEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$OnSaveAccountAliasImplCopyWith<_$OnSaveAccountAliasImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -505,6 +903,9 @@ abstract class _ProfileState implements ProfileState {
 /// @nodoc
 mixin _$AccountState {
   AccountStatus get status => throw _privateConstructorUsedError;
+  AddAccountStatus get addAccountStatus => throw _privateConstructorUsedError;
+  SetDefaultAccountStatus get setDefaultAccountStatus =>
+      throw _privateConstructorUsedError;
   DynamicError? get error => throw _privateConstructorUsedError;
   List<Account> get linkedAccounts => throw _privateConstructorUsedError;
 
@@ -523,6 +924,8 @@ abstract class $AccountStateCopyWith<$Res> {
   @useResult
   $Res call(
       {AccountStatus status,
+      AddAccountStatus addAccountStatus,
+      SetDefaultAccountStatus setDefaultAccountStatus,
       DynamicError? error,
       List<Account> linkedAccounts});
 }
@@ -543,6 +946,8 @@ class _$AccountStateCopyWithImpl<$Res, $Val extends AccountState>
   @override
   $Res call({
     Object? status = null,
+    Object? addAccountStatus = null,
+    Object? setDefaultAccountStatus = null,
     Object? error = freezed,
     Object? linkedAccounts = null,
   }) {
@@ -551,6 +956,14 @@ class _$AccountStateCopyWithImpl<$Res, $Val extends AccountState>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as AccountStatus,
+      addAccountStatus: null == addAccountStatus
+          ? _value.addAccountStatus
+          : addAccountStatus // ignore: cast_nullable_to_non_nullable
+              as AddAccountStatus,
+      setDefaultAccountStatus: null == setDefaultAccountStatus
+          ? _value.setDefaultAccountStatus
+          : setDefaultAccountStatus // ignore: cast_nullable_to_non_nullable
+              as SetDefaultAccountStatus,
       error: freezed == error
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
@@ -573,6 +986,8 @@ abstract class _$$AccountStateImplCopyWith<$Res>
   @useResult
   $Res call(
       {AccountStatus status,
+      AddAccountStatus addAccountStatus,
+      SetDefaultAccountStatus setDefaultAccountStatus,
       DynamicError? error,
       List<Account> linkedAccounts});
 }
@@ -591,6 +1006,8 @@ class __$$AccountStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? status = null,
+    Object? addAccountStatus = null,
+    Object? setDefaultAccountStatus = null,
     Object? error = freezed,
     Object? linkedAccounts = null,
   }) {
@@ -599,6 +1016,14 @@ class __$$AccountStateImplCopyWithImpl<$Res>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as AccountStatus,
+      addAccountStatus: null == addAccountStatus
+          ? _value.addAccountStatus
+          : addAccountStatus // ignore: cast_nullable_to_non_nullable
+              as AddAccountStatus,
+      setDefaultAccountStatus: null == setDefaultAccountStatus
+          ? _value.setDefaultAccountStatus
+          : setDefaultAccountStatus // ignore: cast_nullable_to_non_nullable
+              as SetDefaultAccountStatus,
       error: freezed == error
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
@@ -616,6 +1041,8 @@ class __$$AccountStateImplCopyWithImpl<$Res>
 class _$AccountStateImpl implements _AccountState {
   const _$AccountStateImpl(
       {this.status = AccountStatus.initial,
+      this.addAccountStatus = AddAccountStatus.initial,
+      this.setDefaultAccountStatus = SetDefaultAccountStatus.initial,
       this.error,
       final List<Account> linkedAccounts = const []})
       : _linkedAccounts = linkedAccounts;
@@ -623,6 +1050,12 @@ class _$AccountStateImpl implements _AccountState {
   @override
   @JsonKey()
   final AccountStatus status;
+  @override
+  @JsonKey()
+  final AddAccountStatus addAccountStatus;
+  @override
+  @JsonKey()
+  final SetDefaultAccountStatus setDefaultAccountStatus;
   @override
   final DynamicError? error;
   final List<Account> _linkedAccounts;
@@ -636,7 +1069,7 @@ class _$AccountStateImpl implements _AccountState {
 
   @override
   String toString() {
-    return 'AccountState(status: $status, error: $error, linkedAccounts: $linkedAccounts)';
+    return 'AccountState(status: $status, addAccountStatus: $addAccountStatus, setDefaultAccountStatus: $setDefaultAccountStatus, error: $error, linkedAccounts: $linkedAccounts)';
   }
 
   @override
@@ -645,13 +1078,23 @@ class _$AccountStateImpl implements _AccountState {
         (other.runtimeType == runtimeType &&
             other is _$AccountStateImpl &&
             (identical(other.status, status) || other.status == status) &&
+            (identical(other.addAccountStatus, addAccountStatus) ||
+                other.addAccountStatus == addAccountStatus) &&
+            (identical(
+                    other.setDefaultAccountStatus, setDefaultAccountStatus) ||
+                other.setDefaultAccountStatus == setDefaultAccountStatus) &&
             (identical(other.error, error) || other.error == error) &&
             const DeepCollectionEquality()
                 .equals(other._linkedAccounts, _linkedAccounts));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, status, error,
+  int get hashCode => Object.hash(
+      runtimeType,
+      status,
+      addAccountStatus,
+      setDefaultAccountStatus,
+      error,
       const DeepCollectionEquality().hash(_linkedAccounts));
 
   /// Create a copy of AccountState
@@ -666,11 +1109,17 @@ class _$AccountStateImpl implements _AccountState {
 abstract class _AccountState implements AccountState {
   const factory _AccountState(
       {final AccountStatus status,
+      final AddAccountStatus addAccountStatus,
+      final SetDefaultAccountStatus setDefaultAccountStatus,
       final DynamicError? error,
       final List<Account> linkedAccounts}) = _$AccountStateImpl;
 
   @override
   AccountStatus get status;
+  @override
+  AddAccountStatus get addAccountStatus;
+  @override
+  SetDefaultAccountStatus get setDefaultAccountStatus;
   @override
   DynamicError? get error;
   @override

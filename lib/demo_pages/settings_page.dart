@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:logger/logger.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class SettingsPage extends StatefulWidget {
   const SettingsPage({super.key});
@@ -83,7 +85,14 @@ class _SettingsPageState extends State<SettingsPage> {
           _navItem(
             'About us',
             subtitle: 'Learn more about Murcia Water District',
-            onTap: () {},
+            onTap: ()async {
+              final Uri uri = Uri.parse('https://murciawd.gov.ph/about-us');
+              if (await canLaunchUrl(uri)) {
+              await launchUrl(uri, mode: LaunchMode.externalApplication);
+              }else{
+                Logger().i('cannot open url');
+              }
+            },
           ),
           _navItem(
             'Terms and Conditions',
@@ -102,6 +111,12 @@ class _SettingsPageState extends State<SettingsPage> {
             onTap: () {},
           ),
           _navItem(
+            'Meter calculator',
+            leadingIcon: Icons.gas_meter,
+            subtitle: 'Check your current consumption',
+            onTap: () {},
+          ),
+          /*_navItem(
             'Notifications',
             leadingIcon: Icons.notifications_active,
             subtitle: 'Turn notifications on or off',
@@ -110,8 +125,8 @@ class _SettingsPageState extends State<SettingsPage> {
                 _notifActive = value;
               });
             })
-          ),
-          _navItem(
+          ),*/
+          /*_navItem(
               'Biometrics',
               leadingIcon: Icons.fingerprint_rounded,
               subtitle: 'Enable biometrics on or off',
@@ -120,7 +135,7 @@ class _SettingsPageState extends State<SettingsPage> {
                   _biometricActive = value;
                 });
               })
-          ),
+          ),*/
           _navItem(
             'Logout',
             leadingIcon: Icons.logout_rounded,

@@ -6,6 +6,7 @@ part 'params.g.dart';
 @freezed
 class LinkAccountParams with _$LinkAccountParams {
   const factory LinkAccountParams({
+    required String alias,
     @JsonKey(name: 'account_number')
     required String accountNo,
     @JsonKey(name: 'bill_no')

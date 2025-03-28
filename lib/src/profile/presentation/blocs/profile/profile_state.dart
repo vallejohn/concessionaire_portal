@@ -8,11 +8,15 @@ class ProfileState with _$ProfileState {
 }
 
 enum AccountStatus {initial, loading, success, failed}
+enum AddAccountStatus {initial, loading, success, failed}
+enum SetDefaultAccountStatus {initial, loading, success, failed}
 
 @freezed
 class AccountState with _$AccountState {
   const factory AccountState({
     @Default(AccountStatus.initial) AccountStatus status,
+    @Default(AddAccountStatus.initial) AddAccountStatus addAccountStatus,
+    @Default(SetDefaultAccountStatus.initial) SetDefaultAccountStatus setDefaultAccountStatus,
     DynamicError? error,
     @Default([]) List<Account> linkedAccounts,
   }) = _AccountState;

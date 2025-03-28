@@ -3,6 +3,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mwd_concessionaire_portal/src/authentication/presentation/blocs/login/login_bloc.dart';
 import 'package:mwd_concessionaire_portal/src/profile/data/models/account.dart';
+import 'package:mwd_concessionaire_portal/src/profile/presentation/blocs/profile/profile_bloc.dart';
+import 'package:shimmer/shimmer.dart';
+
+import '../../../../core/util/widgets/loading.dart';
 
 class ProfilePage extends StatefulWidget {
   final List<Account> linkedAccounts;
@@ -19,6 +23,9 @@ class _ProfilePageState extends State<ProfilePage> {
   Widget build(BuildContext context) {
     final textStyle = Theme.of(context).textTheme;
     final user = context.read<LoginBloc>().state.user!;
+    final profileState = context.watch<ProfileBloc>().state;
+    final profileLoading =
+        profileState.accountState.status == AccountStatus.loading;
 
     final defaultAccountIcon = Align(
       alignment: Alignment.topRight,
@@ -140,14 +147,14 @@ class _ProfilePageState extends State<ProfilePage> {
                   flex: 1,
                   child: cardItem(
                     'Account name',
-                    account.name,
+                    account.fullName,
                   ),
                 ),
                 Expanded(
                   flex: 1,
                   child: cardItem(
                     'Account no.',
-                    account.number,
+                    account.accountNumber,
                   ),
                 ),
               ],
@@ -167,7 +174,13 @@ class _ProfilePageState extends State<ProfilePage> {
                 const Spacer(),
                 if (!account.isDefault)
                   TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      context.read<ProfileBloc>().add(
+                            ProfileEvent.onSetDefaultAccount(
+                              account.accountNumber,
+                            ),
+                          );
+                    },
                     style: const ButtonStyle(
                       padding: WidgetStatePropertyAll(EdgeInsets.symmetric(
                         horizontal: 10,
@@ -265,28 +278,51 @@ class _ProfilePageState extends State<ProfilePage> {
             height: 10,
           ),
           const SizedBox(height: 10),
-          ListView.builder(
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            itemCount: widget.linkedAccounts.length,
-            itemBuilder: (context, index) {
-              final account = widget.linkedAccounts[index];
-              return Card(
-                child: Stack(
-                  children: [
-                    content(account),
-                    if (account.isDefault) defaultAccountIcon,
-                    if (account.isDefault)
-                      Positioned(
-                        bottom: 0,
-                        right: 0,
-                        child: editButton(account),
-                      ),
-                  ],
-                ),
-              );
-            },
-          ),
+
+          if(profileLoading)
+            Shimmer.fromColors(
+              baseColor: Colors.black.withOpacity(0.3),
+              highlightColor: Colors.black.withOpacity(0.01),
+              child: ListView(
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                children: List.generate(3, (index) {
+                  return Container(
+                    margin: const EdgeInsets.only(bottom: 10),
+                    height: 200,
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                      color: Colors.black.withOpacity(0.3),
+                      borderRadius: BorderRadius.circular(8)
+                    ),
+                  );
+                }).toList(),
+              ),
+            ),
+
+          if(!profileLoading)
+            ListView.builder(
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              itemCount: widget.linkedAccounts.length,
+              itemBuilder: (context, index) {
+                final account = widget.linkedAccounts[index];
+                return Card(
+                  child: Stack(
+                    children: [
+                      content(account),
+                      if (account.isDefault) defaultAccountIcon,
+                      if (account.isDefault)
+                        Positioned(
+                          bottom: 0,
+                          right: 0,
+                          child: editButton(account),
+                        ),
+                    ],
+                  ),
+                );
+              },
+            ),
         ],
       ),
     );

@@ -13,8 +13,20 @@ class ProfileLocalDataSourceImpl extends ProfileDataSource{
   }
 
   @override
-  Future<bool> linkNewAccount(LinkAccountParams params) {
+  Future<Account> linkNewAccount(LinkAccountParams params) {
     // TODO: implement linkNewAccount
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<bool> getAccounts() {
+    // TODO: implement getAccounts
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<bool> setDefaultAccount(String accountNo) {
+    // TODO: implement setDefaultAccount
     throw UnimplementedError();
   }
 }

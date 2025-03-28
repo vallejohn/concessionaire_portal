@@ -180,7 +180,7 @@ abstract class _OnRequestBillingHistory implements BillingInformationEvent {
 /// @nodoc
 mixin _$BillingInformationState {
   BillingInformationStatus get status => throw _privateConstructorUsedError;
-  String get message => throw _privateConstructorUsedError;
+  DynamicError? get error => throw _privateConstructorUsedError;
   List<BillingInformation> get billHistory =>
       throw _privateConstructorUsedError;
 
@@ -199,7 +199,7 @@ abstract class $BillingInformationStateCopyWith<$Res> {
   @useResult
   $Res call(
       {BillingInformationStatus status,
-      String message,
+      DynamicError? error,
       List<BillingInformation> billHistory});
 }
 
@@ -220,7 +220,7 @@ class _$BillingInformationStateCopyWithImpl<$Res,
   @override
   $Res call({
     Object? status = null,
-    Object? message = null,
+    Object? error = freezed,
     Object? billHistory = null,
   }) {
     return _then(_value.copyWith(
@@ -228,10 +228,10 @@ class _$BillingInformationStateCopyWithImpl<$Res,
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as BillingInformationStatus,
-      message: null == message
-          ? _value.message
-          : message // ignore: cast_nullable_to_non_nullable
-              as String,
+      error: freezed == error
+          ? _value.error
+          : error // ignore: cast_nullable_to_non_nullable
+              as DynamicError?,
       billHistory: null == billHistory
           ? _value.billHistory
           : billHistory // ignore: cast_nullable_to_non_nullable
@@ -251,7 +251,7 @@ abstract class _$$BillingInformationStateImplCopyWith<$Res>
   @useResult
   $Res call(
       {BillingInformationStatus status,
-      String message,
+      DynamicError? error,
       List<BillingInformation> billHistory});
 }
 
@@ -271,7 +271,7 @@ class __$$BillingInformationStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? status = null,
-    Object? message = null,
+    Object? error = freezed,
     Object? billHistory = null,
   }) {
     return _then(_$BillingInformationStateImpl(
@@ -279,10 +279,10 @@ class __$$BillingInformationStateImplCopyWithImpl<$Res>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as BillingInformationStatus,
-      message: null == message
-          ? _value.message
-          : message // ignore: cast_nullable_to_non_nullable
-              as String,
+      error: freezed == error
+          ? _value.error
+          : error // ignore: cast_nullable_to_non_nullable
+              as DynamicError?,
       billHistory: null == billHistory
           ? _value._billHistory
           : billHistory // ignore: cast_nullable_to_non_nullable
@@ -296,7 +296,7 @@ class __$$BillingInformationStateImplCopyWithImpl<$Res>
 class _$BillingInformationStateImpl implements _BillingInformationState {
   const _$BillingInformationStateImpl(
       {this.status = BillingInformationStatus.initial,
-      this.message = '',
+      this.error,
       final List<BillingInformation> billHistory = const []})
       : _billHistory = billHistory;
 
@@ -304,8 +304,7 @@ class _$BillingInformationStateImpl implements _BillingInformationState {
   @JsonKey()
   final BillingInformationStatus status;
   @override
-  @JsonKey()
-  final String message;
+  final DynamicError? error;
   final List<BillingInformation> _billHistory;
   @override
   @JsonKey()
@@ -317,7 +316,7 @@ class _$BillingInformationStateImpl implements _BillingInformationState {
 
   @override
   String toString() {
-    return 'BillingInformationState(status: $status, message: $message, billHistory: $billHistory)';
+    return 'BillingInformationState(status: $status, error: $error, billHistory: $billHistory)';
   }
 
   @override
@@ -326,13 +325,13 @@ class _$BillingInformationStateImpl implements _BillingInformationState {
         (other.runtimeType == runtimeType &&
             other is _$BillingInformationStateImpl &&
             (identical(other.status, status) || other.status == status) &&
-            (identical(other.message, message) || other.message == message) &&
+            (identical(other.error, error) || other.error == error) &&
             const DeepCollectionEquality()
                 .equals(other._billHistory, _billHistory));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, status, message,
+  int get hashCode => Object.hash(runtimeType, status, error,
       const DeepCollectionEquality().hash(_billHistory));
 
   /// Create a copy of BillingInformationState
@@ -348,14 +347,14 @@ class _$BillingInformationStateImpl implements _BillingInformationState {
 abstract class _BillingInformationState implements BillingInformationState {
   const factory _BillingInformationState(
           {final BillingInformationStatus status,
-          final String message,
+          final DynamicError? error,
           final List<BillingInformation> billHistory}) =
       _$BillingInformationStateImpl;
 
   @override
   BillingInformationStatus get status;
   @override
-  String get message;
+  DynamicError? get error;
   @override
   List<BillingInformation> get billHistory;
 

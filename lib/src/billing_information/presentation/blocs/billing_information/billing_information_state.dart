@@ -6,7 +6,7 @@ enum BillingInformationStatus {initial, loading, success, failed}
 class BillingInformationState with _$BillingInformationState {
   const factory BillingInformationState({
     @Default(BillingInformationStatus.initial) BillingInformationStatus status,
-    @Default('') String message,
+    DynamicError? error,
     @Default([]) List<BillingInformation> billHistory,
   }) = _BillingInformationState;
 }

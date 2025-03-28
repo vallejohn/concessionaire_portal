@@ -25,9 +25,21 @@ class ProfileRepositoryImpl extends ProfileRepository{
   }
 
   @override
-  Future<Either<Failure, bool>> linkNewAccount(LinkAccountParams params)async {
+  Future<Either<Failure, Account>> linkNewAccount(LinkAccountParams params)async {
     try{
       final data = await dataSource.linkNewAccount(params);
+      return Right(data);
+    }on HiveCollectionException catch(e){
+      return Left(Failure.hiveCollectionException(e));
+    }on BaseException catch(authError){
+      return Left(Failure.exception(authError));
+    }
+  }
+
+  @override
+  Future<Either<Failure, bool>> setDefaultAccount(String accountNo)async {
+    try{
+      final data = await dataSource.setDefaultAccount(accountNo);
       return Right(data);
     }on HiveCollectionException catch(e){
       return Left(Failure.hiveCollectionException(e));

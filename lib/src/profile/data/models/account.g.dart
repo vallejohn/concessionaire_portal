@@ -8,9 +8,11 @@ part of 'account.dart';
 
 _$AccountImpl _$$AccountImplFromJson(Map<String, dynamic> json) =>
     _$AccountImpl(
+      id: (json['id'] as num?)?.toInt(),
+      userId: (json['user_id'] as num?)?.toInt(),
       alias: json['alias'] as String? ?? '',
-      name: json['name'] as String? ?? '',
-      number: json['number'] as String? ?? '',
+      fullName: json['full_name'] as String? ?? '',
+      accountNumber: json['account_number'] as String? ?? '',
       address: json['address'] as String? ?? '',
       status: json['status'] as String? ?? '',
       isDefault: json['isDefault'] as bool? ?? false,
@@ -18,9 +20,11 @@ _$AccountImpl _$$AccountImplFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$$AccountImplToJson(_$AccountImpl instance) =>
     <String, dynamic>{
+      'id': instance.id,
+      'user_id': instance.userId,
       'alias': instance.alias,
-      'name': instance.name,
-      'number': instance.number,
+      'full_name': instance.fullName,
+      'account_number': instance.accountNumber,
       'address': instance.address,
       'status': instance.status,
       'isDefault': instance.isDefault,

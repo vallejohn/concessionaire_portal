@@ -20,6 +20,7 @@ LinkAccountParams _$LinkAccountParamsFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$LinkAccountParams {
+  String get alias => throw _privateConstructorUsedError;
   @JsonKey(name: 'account_number')
   String get accountNo => throw _privateConstructorUsedError;
   @JsonKey(name: 'bill_no')
@@ -42,7 +43,8 @@ abstract class $LinkAccountParamsCopyWith<$Res> {
       _$LinkAccountParamsCopyWithImpl<$Res, LinkAccountParams>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'account_number') String accountNo,
+      {String alias,
+      @JsonKey(name: 'account_number') String accountNo,
       @JsonKey(name: 'bill_no') String billNo});
 }
 
@@ -61,10 +63,15 @@ class _$LinkAccountParamsCopyWithImpl<$Res, $Val extends LinkAccountParams>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? alias = null,
     Object? accountNo = null,
     Object? billNo = null,
   }) {
     return _then(_value.copyWith(
+      alias: null == alias
+          ? _value.alias
+          : alias // ignore: cast_nullable_to_non_nullable
+              as String,
       accountNo: null == accountNo
           ? _value.accountNo
           : accountNo // ignore: cast_nullable_to_non_nullable
@@ -86,7 +93,8 @@ abstract class _$$LinkAccountParamsImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'account_number') String accountNo,
+      {String alias,
+      @JsonKey(name: 'account_number') String accountNo,
       @JsonKey(name: 'bill_no') String billNo});
 }
 
@@ -103,10 +111,15 @@ class __$$LinkAccountParamsImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? alias = null,
     Object? accountNo = null,
     Object? billNo = null,
   }) {
     return _then(_$LinkAccountParamsImpl(
+      alias: null == alias
+          ? _value.alias
+          : alias // ignore: cast_nullable_to_non_nullable
+              as String,
       accountNo: null == accountNo
           ? _value.accountNo
           : accountNo // ignore: cast_nullable_to_non_nullable
@@ -123,12 +136,15 @@ class __$$LinkAccountParamsImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$LinkAccountParamsImpl implements _LinkAccountParams {
   const _$LinkAccountParamsImpl(
-      {@JsonKey(name: 'account_number') required this.accountNo,
+      {required this.alias,
+      @JsonKey(name: 'account_number') required this.accountNo,
       @JsonKey(name: 'bill_no') required this.billNo});
 
   factory _$LinkAccountParamsImpl.fromJson(Map<String, dynamic> json) =>
       _$$LinkAccountParamsImplFromJson(json);
 
+  @override
+  final String alias;
   @override
   @JsonKey(name: 'account_number')
   final String accountNo;
@@ -138,7 +154,7 @@ class _$LinkAccountParamsImpl implements _LinkAccountParams {
 
   @override
   String toString() {
-    return 'LinkAccountParams(accountNo: $accountNo, billNo: $billNo)';
+    return 'LinkAccountParams(alias: $alias, accountNo: $accountNo, billNo: $billNo)';
   }
 
   @override
@@ -146,6 +162,7 @@ class _$LinkAccountParamsImpl implements _LinkAccountParams {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$LinkAccountParamsImpl &&
+            (identical(other.alias, alias) || other.alias == alias) &&
             (identical(other.accountNo, accountNo) ||
                 other.accountNo == accountNo) &&
             (identical(other.billNo, billNo) || other.billNo == billNo));
@@ -153,7 +170,7 @@ class _$LinkAccountParamsImpl implements _LinkAccountParams {
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, accountNo, billNo);
+  int get hashCode => Object.hash(runtimeType, alias, accountNo, billNo);
 
   /// Create a copy of LinkAccountParams
   /// with the given fields replaced by the non-null parameter values.
@@ -174,13 +191,16 @@ class _$LinkAccountParamsImpl implements _LinkAccountParams {
 
 abstract class _LinkAccountParams implements LinkAccountParams {
   const factory _LinkAccountParams(
-          {@JsonKey(name: 'account_number') required final String accountNo,
+          {required final String alias,
+          @JsonKey(name: 'account_number') required final String accountNo,
           @JsonKey(name: 'bill_no') required final String billNo}) =
       _$LinkAccountParamsImpl;
 
   factory _LinkAccountParams.fromJson(Map<String, dynamic> json) =
       _$LinkAccountParamsImpl.fromJson;
 
+  @override
+  String get alias;
   @override
   @JsonKey(name: 'account_number')
   String get accountNo;

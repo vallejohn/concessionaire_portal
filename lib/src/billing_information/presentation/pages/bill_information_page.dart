@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:mwd_concessionaire_portal/core/util/extensions.dart';
+import 'package:mwd_concessionaire_portal/src/billing_information/data/models/billing_information.dart';
 
 class BillInformationPage extends StatefulWidget {
-  const BillInformationPage({super.key});
+  final List<BillingInformation> billingInformation;
+  const BillInformationPage({super.key, required this.billingInformation});
 
   @override
   State<BillInformationPage> createState() => _BillInformationPageState();
@@ -109,7 +112,8 @@ class _BillInformationPageState extends State<BillInformationPage> {
         ),
         const SizedBox(height: 10,),
         Column(
-          children: List.generate(10, (index){
+          children: List.generate(widget.billingInformation.length, (index){
+            final bill = widget.billingInformation[index];
             return Card(
               child: Padding(
                 padding: const EdgeInsets.all(20),
@@ -120,10 +124,10 @@ class _BillInformationPageState extends State<BillInformationPage> {
                   children: [
                     Row(
                       children: [
-                        Text('November 2024', style: textStyle.bodyLarge),
+                        Text(bill.billMonth.toMonthDayYear(), style: textStyle.bodyLarge),
                         const Spacer(),
                         Text('Bill No: ', style: textStyle.bodyLarge),
-                        Text('085464', style: textStyle.bodyLarge?.copyWith(fontWeight: FontWeight.w700),),
+                        Text(bill.billNo, style: textStyle.bodyLarge?.copyWith(fontWeight: FontWeight.w700),),
                       ],
                     ),
                     const SizedBox(height: 20,),
@@ -137,7 +141,7 @@ class _BillInformationPageState extends State<BillInformationPage> {
                               style: textStyle.titleMedium,
                             ),
                             Text(
-                              'P 27.00',
+                              'P ${bill.totalAmount}',
                               style: textStyle.titleLarge?.copyWith(
                                 fontWeight: FontWeight.w600,
                                 color: Theme.of(context).primaryColor,
@@ -153,7 +157,7 @@ class _BillInformationPageState extends State<BillInformationPage> {
                     Row(
                       children: [
                         Text('Payment date: ', style: textStyle.bodyLarge,),
-                        Text('Nov. 16, 2024', style: textStyle.bodyLarge?.copyWith(fontWeight: FontWeight.w500),),
+                        Text(bill.dueDate.toMonthDayYear(), style: textStyle.bodyLarge?.copyWith(fontWeight: FontWeight.w500),),
                       ],
                     ),
                   ],

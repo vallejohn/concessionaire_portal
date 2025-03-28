@@ -11,5 +11,6 @@ abstract class ProfileRepository {
   ProfileRepository({required this.dataSource});
 
   Future<Either<Failure, List<Account>>> getLinkedAccounts();
-  Future<Either<Failure, bool>> linkNewAccount(LinkAccountParams params);
+  Future<Either<Failure, Account>> linkNewAccount(LinkAccountParams params);
+  Future<Either<Failure, bool>> setDefaultAccount(String accountNo);
 }

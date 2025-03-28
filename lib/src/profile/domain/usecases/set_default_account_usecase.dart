@@ -5,13 +5,13 @@ import 'package:mwd_concessionaire_portal/src/profile/core/params.dart';
 import 'package:mwd_concessionaire_portal/src/profile/data/models/account.dart';
 import 'package:mwd_concessionaire_portal/src/profile/domain/repositories/profile_repository.dart';
 
-class LinkNewAccountUsecase extends UseCaseWithParams<Account, LinkAccountParams>{
+class SetDefaultAccountUsecase extends UseCaseWithParams<bool, String>{
   final ProfileRepository _profileRepository;
 
-  LinkNewAccountUsecase(this._profileRepository);
+  SetDefaultAccountUsecase(this._profileRepository);
 
   @override
-  Future<Either<Failure, Account>> call(LinkAccountParams params) {
-    return _profileRepository.linkNewAccount(params);
+  Future<Either<Failure, bool>> call(String params) {
+    return _profileRepository.setDefaultAccount(params);
   }
 }

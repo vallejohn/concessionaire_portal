@@ -1,5 +1,6 @@
 import 'package:get_it/get_it.dart';
 import 'package:mwd_concessionaire_portal/core/db/hive/collections/authentication_collection.dart';
+import 'package:mwd_concessionaire_portal/core/db/hive/collections/linked_accounts_collection.dart';
 import 'package:mwd_concessionaire_portal/core/db/hive/local_storage_service.dart';
 import 'package:mwd_concessionaire_portal/core/services/api_endpoint_service.dart';
 import 'package:mwd_concessionaire_portal/src/authentication/data/data_sources/authentication_data_source.dart';
@@ -12,12 +13,18 @@ import 'package:mwd_concessionaire_portal/src/authentication/domain/usecases/for
 import 'package:mwd_concessionaire_portal/src/authentication/domain/usecases/login_usecase.dart';
 import 'package:mwd_concessionaire_portal/src/authentication/domain/usecases/request_auth_status_usecase.dart';
 import 'package:mwd_concessionaire_portal/src/authentication/domain/usecases/sign_up_usecase.dart';
+import 'package:mwd_concessionaire_portal/src/billing_information/data/data_sources/billing_information_data_source.dart';
+import 'package:mwd_concessionaire_portal/src/billing_information/data/data_sources/billing_information_remote_data_source_impl.dart';
+import 'package:mwd_concessionaire_portal/src/billing_information/data/repositories/billing_information_repository_impl.dart';
+import 'package:mwd_concessionaire_portal/src/billing_information/domain/repositories/billing_information_repository.dart';
+import 'package:mwd_concessionaire_portal/src/billing_information/domain/usecases/get_billing_history_usecase.dart';
 import 'package:mwd_concessionaire_portal/src/profile/data/data_sources/profile_data_source.dart';
 import 'package:mwd_concessionaire_portal/src/profile/data/data_sources/profile_remote_data_source_impl.dart';
 import 'package:mwd_concessionaire_portal/src/profile/data/repositories/profile_repository_impl.dart';
 import 'package:mwd_concessionaire_portal/src/profile/domain/repositories/profile_repository.dart';
 import 'package:mwd_concessionaire_portal/src/profile/domain/usecases/get_linked_accounts_usecase.dart';
 import 'package:mwd_concessionaire_portal/src/profile/domain/usecases/link_new_account_usecase.dart';
+import 'package:mwd_concessionaire_portal/src/profile/domain/usecases/set_default_account_usecase.dart';
 
 final getIt = GetIt.instance;
 
@@ -27,7 +34,11 @@ Future<void> setupLocator()async {
   final authenticationCollection = AuthenticationCollection();
   await authenticationCollection.init(localStorageService);
 
+  final linkedAccountsCollection = LinkedAccountsCollection();
+  await linkedAccountsCollection.init(localStorageService);
+
   getIt.registerLazySingleton(() => authenticationCollection);
+  getIt.registerLazySingleton(() => linkedAccountsCollection);
 
   APIEndpointService.init();
 
@@ -36,6 +47,7 @@ Future<void> setupLocator()async {
 
   _setupAuth();
   _setupProfile();
+  _setupBilling();
 }
 
 void _setupAuth() {
@@ -63,4 +75,15 @@ void _setupProfile() {
 
   getIt.registerLazySingleton(() => GetLinkedAccountsUsecase(getIt()));
   getIt.registerLazySingleton(() => LinkNewAccountUsecase(getIt()));
+  getIt.registerLazySingleton(() => SetDefaultAccountUsecase(getIt()));
+}
+
+void _setupBilling() {
+  getIt.registerLazySingleton<BillingInformationDataSource>(() =>
+      BillingInformationRemoteDataSourceImpl());
+
+  getIt.registerLazySingleton<BillingInformationRepository>(() =>
+      BillingInformationRepositoryImpl(dataSource: getIt()));
+
+  getIt.registerLazySingleton(() => GetBillingHistoryUsecase(getIt()));
 }
