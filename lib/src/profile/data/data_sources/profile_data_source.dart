@@ -5,4 +5,5 @@ abstract class ProfileDataSource {
   Future<List<Account>> getLinkedAccounts();
   Future<Account> linkNewAccount(LinkAccountParams params);
   Future<bool> setDefaultAccount(String accountNo);
+  Future<bool> saveAccountAlias(Account account);
 }

@@ -24,6 +24,7 @@ import 'package:mwd_concessionaire_portal/src/profile/data/repositories/profile_
 import 'package:mwd_concessionaire_portal/src/profile/domain/repositories/profile_repository.dart';
 import 'package:mwd_concessionaire_portal/src/profile/domain/usecases/get_linked_accounts_usecase.dart';
 import 'package:mwd_concessionaire_portal/src/profile/domain/usecases/link_new_account_usecase.dart';
+import 'package:mwd_concessionaire_portal/src/profile/domain/usecases/save_account_alias_usecase.dart';
 import 'package:mwd_concessionaire_portal/src/profile/domain/usecases/set_default_account_usecase.dart';
 
 final getIt = GetIt.instance;
@@ -76,6 +77,7 @@ void _setupProfile() {
   getIt.registerLazySingleton(() => GetLinkedAccountsUsecase(getIt()));
   getIt.registerLazySingleton(() => LinkNewAccountUsecase(getIt()));
   getIt.registerLazySingleton(() => SetDefaultAccountUsecase(getIt()));
+  getIt.registerLazySingleton(() => SaveAccountAliasUsecase(getIt()));
 }
 
 void _setupBilling() {

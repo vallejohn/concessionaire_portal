@@ -44,7 +44,7 @@ class _ProfilePageState extends State<ProfilePage> {
       ),
     );
 
-    editNicknameDialog() {
+    editNicknameDialog(Account account) {
       showDialog(
           context: context,
           builder: (context) {
@@ -93,7 +93,10 @@ class _ProfilePageState extends State<ProfilePage> {
                             flex: 2,
                             child: FilledButton(
                               onPressed: () {
-                                ///Execute here
+                                context.pop();
+                                context.read<ProfileBloc>().add(ProfileEvent.onSaveAccountAlias(
+                                  account.copyWith(alias: _tagController.text),
+                                ));
                               },
                               child: const Text('Ok'),
                             ),
@@ -211,7 +214,7 @@ class _ProfilePageState extends State<ProfilePage> {
           splashColor: Colors.white.withOpacity(0.2),
           onTap: () {
             _tagController.text = account.alias;
-            editNicknameDialog();
+            editNicknameDialog(account);
           },
           child: const Padding(
             padding: EdgeInsets.all(15),

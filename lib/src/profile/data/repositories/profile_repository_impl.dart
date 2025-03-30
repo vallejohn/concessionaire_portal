@@ -47,4 +47,16 @@ class ProfileRepositoryImpl extends ProfileRepository{
       return Left(Failure.exception(authError));
     }
   }
+
+  @override
+  Future<Either<Failure, bool>> saveAccountAlias(Account account)async {
+    try{
+      final data = await dataSource.saveAccountAlias(account);
+      return Right(data);
+    }on HiveCollectionException catch(e){
+      return Left(Failure.hiveCollectionException(e));
+    }on BaseException catch(authError){
+      return Left(Failure.exception(authError));
+    }
+  }
 }

@@ -29,4 +29,10 @@ class ProfileLocalDataSourceImpl extends ProfileDataSource{
     // TODO: implement setDefaultAccount
     throw UnimplementedError();
   }
+
+  @override
+  Future<bool> saveAccountAlias(Account account) {
+    // TODO: implement saveAccountAlias
+    throw UnimplementedError();
+  }
 }

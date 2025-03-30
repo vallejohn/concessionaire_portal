@@ -135,4 +135,26 @@ class ProfileRemoteDataSourceImpl extends ProfileDataSource {
 
     return true;
   }
+
+  @override
+  Future<bool> saveAccountAlias(Account account)async {
+    Profile? profile = await collection.read();
+
+    List<Account> localAccounts = profile!.accounts.map((e) {
+      Account account = Account.fromJson(Map<String, dynamic>.from(e));
+      return account;
+    }).toList();
+
+    final index = localAccounts.indexWhere((e) => e.accountNumber == account.accountNumber);
+    localAccounts[index] = localAccounts[index].copyWith(alias: account.alias);
+
+    final accountsRaw = localAccounts.map((e) {
+      return e.toJson();
+    }).toList();
+
+    profile = profile.copyWith(accounts: accountsRaw);
+    await collection.update(profile);
+
+    return true;
+  }
 }

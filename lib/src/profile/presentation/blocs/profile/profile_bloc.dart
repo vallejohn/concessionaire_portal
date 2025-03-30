@@ -9,6 +9,7 @@ import 'package:mwd_concessionaire_portal/src/profile/core/params.dart';
 import 'package:mwd_concessionaire_portal/src/profile/data/models/account.dart';
 import 'package:mwd_concessionaire_portal/src/profile/domain/usecases/get_linked_accounts_usecase.dart';
 import 'package:mwd_concessionaire_portal/src/profile/domain/usecases/link_new_account_usecase.dart';
+import 'package:mwd_concessionaire_portal/src/profile/domain/usecases/save_account_alias_usecase.dart';
 import 'package:mwd_concessionaire_portal/src/profile/domain/usecases/set_default_account_usecase.dart';
 
 part 'profile_event.dart';
@@ -19,6 +20,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
   final _getAccountsUsecase = GetIt.instance<GetLinkedAccountsUsecase>();
   final _onLinkNewAccountUsecase = GetIt.instance<LinkNewAccountUsecase>();
   final _setDefaultAccountUsecase = GetIt.instance<SetDefaultAccountUsecase>();
+  final _saveAccountAliasUsecase = GetIt.instance<SaveAccountAliasUsecase>();
   ProfileBloc() : super(const ProfileState()) {
     on<_OnRequestData>(_onRequestData);
     on<_OnSetDefaultAccount>(_onSetDefaultAccount);
@@ -101,7 +103,42 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
   FutureOr<void> _onSaveAccountAlias(
     _OnSaveAccountAlias event,
     Emitter<ProfileState> emit,
-  ) async {}
+  ) async {
+    emit(
+      state.copyWith(
+        accountState: state.accountState.copyWith(
+          saveAccountAliasStatus: SaveAccountAliasStatus.loading,
+        ),
+      ),
+    );
+
+    final dataOrError = await _saveAccountAliasUsecase(event.account);
+
+    dataOrError.fold((error) {
+      emit(
+        state.copyWith(
+          accountState: state.accountState.copyWith(
+            saveAccountAliasStatus: SaveAccountAliasStatus.failed,
+            error: error.whenOrNull(
+              exception: (error) => (error as ServerException).value,
+            ),
+          ),
+        ),
+      );
+    }, (success) {
+      List<Account> accounts = [...state.accountState.linkedAccounts];
+      final index = accounts.indexWhere((e) => e.accountNumber == event.account.accountNumber);
+      accounts[index] = accounts[index].copyWith(alias: event.account.alias);
+
+      emit(state.copyWith(
+        accountState: state.accountState.copyWith(
+            saveAccountAliasStatus: SaveAccountAliasStatus.success,
+            error: const DynamicError(message: 'Alias saved successfully'),
+          linkedAccounts: accounts,
+        ),
+      ));
+    });
+  }
 
   FutureOr<void> _onSetDefaultAccount(
     _OnSetDefaultAccount event,

@@ -10,6 +10,7 @@ class ProfileState with _$ProfileState {
 enum AccountStatus {initial, loading, success, failed}
 enum AddAccountStatus {initial, loading, success, failed}
 enum SetDefaultAccountStatus {initial, loading, success, failed}
+enum SaveAccountAliasStatus {initial, loading, success, failed}
 
 @freezed
 class AccountState with _$AccountState {
@@ -17,6 +18,7 @@ class AccountState with _$AccountState {
     @Default(AccountStatus.initial) AccountStatus status,
     @Default(AddAccountStatus.initial) AddAccountStatus addAccountStatus,
     @Default(SetDefaultAccountStatus.initial) SetDefaultAccountStatus setDefaultAccountStatus,
+    @Default(SaveAccountAliasStatus.initial) SaveAccountAliasStatus saveAccountAliasStatus,
     DynamicError? error,
     @Default([]) List<Account> linkedAccounts,
   }) = _AccountState;
