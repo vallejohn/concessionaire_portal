@@ -21,5 +21,7 @@ class AccountState with _$AccountState {
     @Default(SaveAccountAliasStatus.initial) SaveAccountAliasStatus saveAccountAliasStatus,
     DynamicError? error,
     @Default([]) List<Account> linkedAccounts,
+    Account? defaultAccount,
+    Account? displayedAccount,
   }) = _AccountState;
 }

@@ -26,6 +26,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
     on<_OnSetDefaultAccount>(_onSetDefaultAccount);
     on<_OnLinkNewAccount>(_onLinkNewAccount);
     on<_OnSaveAccountAlias>(_onSaveAccountAlias);
+    on<_OnNavigateAccount>(_onNavigateAccount);
   }
 
   FutureOr<void> _onRequestData(
@@ -54,10 +55,22 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
         ),
       );
     }, (data) {
+      int defaultAccountIndex = data.indexWhere((e) => e.isDefault == true);
+      Account defaultAccount = data[defaultAccountIndex];
+
+      if (data.remove(defaultAccount)) {
+        data.insert(0, defaultAccount);
+      }
+
+      defaultAccountIndex = data.indexWhere((e) => e.isDefault == true);
+      defaultAccount = data[defaultAccountIndex];
+
       emit(
         state.copyWith(
           accountState: state.accountState.copyWith(
             status: AccountStatus.success,
+            defaultAccount: data[defaultAccountIndex],
+            displayedAccount: data[defaultAccountIndex],
             linkedAccounts: data,
           ),
         ),
@@ -93,9 +106,8 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
     }, (account) {
       emit(state.copyWith(
         accountState: state.accountState.copyWith(
-          addAccountStatus: AddAccountStatus.success,
-          error: const DynamicError(message: 'Account added successfully')
-        ),
+            addAccountStatus: AddAccountStatus.success,
+            error: const DynamicError(message: 'Account added successfully')),
       ));
     });
   }
@@ -127,13 +139,14 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
       );
     }, (success) {
       List<Account> accounts = [...state.accountState.linkedAccounts];
-      final index = accounts.indexWhere((e) => e.accountNumber == event.account.accountNumber);
+      final index = accounts
+          .indexWhere((e) => e.accountNumber == event.account.accountNumber);
       accounts[index] = accounts[index].copyWith(alias: event.account.alias);
 
       emit(state.copyWith(
         accountState: state.accountState.copyWith(
-            saveAccountAliasStatus: SaveAccountAliasStatus.success,
-            error: const DynamicError(message: 'Alias saved successfully'),
+          saveAccountAliasStatus: SaveAccountAliasStatus.success,
+          error: const DynamicError(message: 'Alias saved successfully'),
           linkedAccounts: accounts,
         ),
       ));
@@ -182,10 +195,51 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
           accountState: state.accountState.copyWith(
             setDefaultAccountStatus: SetDefaultAccountStatus.success,
             linkedAccounts: accounts,
+            defaultAccount: accounts[index],
             error: const DynamicError(message: 'Account linked successfully'),
           ),
         ),
       );
     });
+  }
+
+  int initialIndex = 0;
+
+  FutureOr<void> _onNavigateAccount(
+    _OnNavigateAccount event,
+    Emitter<ProfileState> emit,
+  ) async {
+    List<Account> accounts = [...state.accountState.linkedAccounts];
+    final accountLength = accounts.length;
+
+    switch(event.navigation){
+      case AccountNavigation.previous:
+        Logger().i(AccountNavigation.previous);
+        if(initialIndex > 0){
+          initialIndex -= 1;
+        }else{
+          initialIndex = accountLength - 1;
+        }
+      case AccountNavigation.next:
+        Logger().i(AccountNavigation.next);
+        if(initialIndex < accountLength - 1 && initialIndex != accountLength - 1){
+          Logger().w('1');
+          initialIndex += 1;
+        }else{
+          Logger().w('2');
+          initialIndex = 0;
+        }
+    }
+
+    Logger().w('index now $initialIndex');
+    Logger().w('account ${accounts[initialIndex]}');
+
+    emit(
+      state.copyWith(
+        accountState: state.accountState.copyWith(
+          displayedAccount: accounts[initialIndex],
+        ),
+      ),
+    );
   }
 }

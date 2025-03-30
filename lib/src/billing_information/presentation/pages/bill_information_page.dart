@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mwd_concessionaire_portal/concessionaire_portal.dart';
 import 'package:mwd_concessionaire_portal/core/util/extensions.dart';
 import 'package:mwd_concessionaire_portal/src/billing_information/data/models/billing_information.dart';
+import 'package:mwd_concessionaire_portal/src/profile/data/models/account.dart';
+import 'package:mwd_concessionaire_portal/src/profile/presentation/blocs/profile/profile_bloc.dart';
+import 'package:shimmer/shimmer.dart';
 
 class BillInformationPage extends StatefulWidget {
   final List<BillingInformation> billingInformation;
@@ -14,154 +19,290 @@ class _BillInformationPageState extends State<BillInformationPage> {
   @override
   Widget build(BuildContext context) {
     final textStyle = Theme.of(context).textTheme;
+    final profileState = context.watch<ProfileBloc>().state;
+    final accountState = profileState.accountState;
+    final profileLoading = accountState.status == AccountStatus.loading;
+    final displayedAccount = accountState.displayedAccount;
+    final accounts = accountState.linkedAccounts;
 
     return ListView(
       padding: const EdgeInsets.symmetric(horizontal: 20),
       physics:
           const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
       children: [
-        const SizedBox(height: 20,),
-        Row(children: [
-          const CircleAvatar(radius: 20,),
-          const SizedBox(width: 15,),
-          Text('Hi, John!', style: textStyle.bodyLarge,),
-          const Spacer(),
-          Stack(
-            children: [
-              IconButton(onPressed: (){
-
-              }, icon: Icon(Icons.notifications, color: Theme.of(context).primaryColor,)),
-              Positioned(bottom: 0, right: 0, child: CircleAvatar(radius: 5, backgroundColor: Theme.of(context).colorScheme.error,))
-            ],
-          )
-        ],),
-        const SizedBox(height: 30,),
-        Card(
-          elevation: 0,
-          color: Theme.of(context).primaryColor,
-          child: Padding(
-            padding: const EdgeInsets.all(20),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+        const SizedBox(
+          height: 20,
+        ),
+        Row(
+          children: [
+            const CircleAvatar(
+              radius: 20,
+            ),
+            const SizedBox(
+              width: 15,
+            ),
+            Text(
+              'Hi, John!',
+              style: textStyle.bodyLarge,
+            ),
+            const Spacer(),
+            Stack(
               children: [
-                Row(
-                  children: [
-                    Expanded(child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Row(
-                          children: [
-                            Icon(Icons.star, color: Theme.of(context).scaffoldBackgroundColor, size: 15,),
-                            const SizedBox(width: 5,),
-                            Text('Home', style: textStyle.bodyLarge?.copyWith(color: Theme.of(context).scaffoldBackgroundColor),),
-                          ],
-                        ),
-                        Text('0111227323', style: textStyle.titleLarge?.copyWith(color: Theme.of(context).scaffoldBackgroundColor, fontWeight: FontWeight.w500),),
-                      ],
+                IconButton(
+                    onPressed: () {},
+                    icon: Icon(
+                      Icons.notifications,
+                      color: Theme.of(context).primaryColor,
                     )),
-                    IconButton(onPressed: (){
-                    }, icon: Icon(Icons.arrow_back_ios_rounded, color: Theme.of(context).scaffoldBackgroundColor,)),
-                    const SizedBox(width: 5,),
-                    IconButton(onPressed: (){
-                    }, icon: Icon(Icons.arrow_forward_ios_rounded, color: Theme.of(context).scaffoldBackgroundColor)),
-                  ],
-                ),
-                const SizedBox(height: 20,),
-                Text(
-                  'Outstanding Balance',
-                  style: textStyle.titleMedium?.copyWith(color: Theme.of(context).scaffoldBackgroundColor),
-                ),
-                Text(
-                  'P 981.75',
-                  style: textStyle.displayMedium?.copyWith(
-                    fontWeight: FontWeight.w600,
-                    color: Theme.of(context).scaffoldBackgroundColor,
-                  ),
-                ),
-                const Divider(),
-                Row(
-                  children: [
-                    Text('Statement date', style: textStyle.bodyLarge?.copyWith(color: Theme.of(context).scaffoldBackgroundColor),),
-                    const Spacer(),
-                    Text('Nov. 16, 2024', style: textStyle.bodyLarge?.copyWith(color: Theme.of(context).scaffoldBackgroundColor),),
-                  ],
-                ),
-                Row(
-                  children: [
-                    Text('Disconnection date', style: textStyle.bodyLarge?.copyWith(color: Theme.of(context).scaffoldBackgroundColor),),
-                    const Spacer(),
-                    Text('Dec. 3, 2024', style: textStyle.bodyLarge?.copyWith(color: Theme.of(context).scaffoldBackgroundColor),),
-                  ],
-                ),
-                const SizedBox(height: 10,),
-                Row(
-                  children: [
-                    Text('Due date', style: textStyle.titleLarge?.copyWith(fontWeight: FontWeight.w700, color: Theme.of(context).scaffoldBackgroundColor),),
-                    const Spacer(),
-                    Text('Dec. 3, 2024', style: textStyle.titleLarge?.copyWith(color: Theme.of(context).scaffoldBackgroundColor),),
-                  ],
-                ),
+                Positioned(
+                    bottom: 0,
+                    right: 0,
+                    child: CircleAvatar(
+                      radius: 5,
+                      backgroundColor: Theme.of(context).colorScheme.error,
+                    ))
               ],
+            )
+          ],
+        ),
+        const SizedBox(
+          height: 30,
+        ),
+        if (profileLoading)
+          Shimmer.fromColors(
+            baseColor: Colors.black.withOpacity(0.3),
+            highlightColor: Colors.black.withOpacity(0.01),
+            child: Container(
+              height: 300,
+              width: double.infinity,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(8),
+                color: Colors.black.withOpacity(0.3),
+              ),
             ),
           ),
+        if (!profileLoading && displayedAccount != null)
+          Card(
+            elevation: 0,
+            color: Theme.of(context).primaryColor,
+            child: Padding(
+              padding: const EdgeInsets.all(20),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      Expanded(
+                          child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            children: [
+                              if (displayedAccount.isDefault)
+                                Icon(
+                                  Icons.star,
+                                  color:
+                                      Theme.of(context).scaffoldBackgroundColor,
+                                  size: 15,
+                                ),
+                              if (displayedAccount.isDefault)
+                                const SizedBox(
+                                  width: 5,
+                                ),
+                              Text(
+                                displayedAccount.alias,
+                                style: textStyle.bodyLarge?.copyWith(
+                                    color: Theme.of(context)
+                                        .scaffoldBackgroundColor),
+                              ),
+                            ],
+                          ),
+                          Text(
+                            displayedAccount.accountNumber,
+                            style: textStyle.titleLarge?.copyWith(
+                                color:
+                                    Theme.of(context).scaffoldBackgroundColor,
+                                fontWeight: FontWeight.w500),
+                          ),
+                        ],
+                      )),
+                      if (accounts.length > 1)
+                        IconButton(
+                            onPressed: () {
+                              context
+                                  .read<ProfileBloc>()
+                                  .add(const ProfileEvent.onNavigateAccount(
+                                    AccountNavigation.previous,
+                                  ));
+                            },
+                            icon: Icon(
+                              Icons.arrow_back_ios_rounded,
+                              color: Theme.of(context).scaffoldBackgroundColor,
+                            )),
+                      if (accounts.length > 1)
+                        const SizedBox(
+                          width: 5,
+                        ),
+                      if (accounts.length > 1)
+                        IconButton(
+                            onPressed: () {
+                              context
+                                  .read<ProfileBloc>()
+                                  .add(const ProfileEvent.onNavigateAccount(
+                                    AccountNavigation.next,
+                                  ));
+                            },
+                            icon: Icon(Icons.arrow_forward_ios_rounded,
+                                color:
+                                    Theme.of(context).scaffoldBackgroundColor)),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Text(
+                    'Outstanding Balance',
+                    style: textStyle.titleMedium?.copyWith(
+                        color: Theme.of(context).scaffoldBackgroundColor),
+                  ),
+                  Text(
+                    'P 981.75',
+                    style: textStyle.displayMedium?.copyWith(
+                      fontWeight: FontWeight.w600,
+                      color: Theme.of(context).scaffoldBackgroundColor,
+                    ),
+                  ),
+                  const Divider(),
+                  Row(
+                    children: [
+                      Text(
+                        'Statement date',
+                        style: textStyle.bodyLarge?.copyWith(
+                            color: Theme.of(context).scaffoldBackgroundColor),
+                      ),
+                      const Spacer(),
+                      Text(
+                        'Nov. 16, 2024',
+                        style: textStyle.bodyLarge?.copyWith(
+                            color: Theme.of(context).scaffoldBackgroundColor),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      Text(
+                        'Disconnection date',
+                        style: textStyle.bodyLarge?.copyWith(
+                            color: Theme.of(context).scaffoldBackgroundColor),
+                      ),
+                      const Spacer(),
+                      Text(
+                        'Dec. 3, 2024',
+                        style: textStyle.bodyLarge?.copyWith(
+                            color: Theme.of(context).scaffoldBackgroundColor),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  Row(
+                    children: [
+                      Text(
+                        'Due date',
+                        style: textStyle.titleLarge?.copyWith(
+                            fontWeight: FontWeight.w700,
+                            color: Theme.of(context).scaffoldBackgroundColor),
+                      ),
+                      const Spacer(),
+                      Text(
+                        'Dec. 3, 2024',
+                        style: textStyle.titleLarge?.copyWith(
+                            color: Theme.of(context).scaffoldBackgroundColor),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ),
+        const SizedBox(
+          height: 30,
         ),
-        const SizedBox(height: 30,),
         Text(
           'Billing History',
           style: textStyle.titleLarge,
         ),
-        const SizedBox(height: 10,),
+        const SizedBox(
+          height: 10,
+        ),
         Column(
-          children: List.generate(widget.billingInformation.length, (index){
+          children: List.generate(widget.billingInformation.length, (index) {
             final bill = widget.billingInformation[index];
             return Card(
               child: Padding(
                 padding: const EdgeInsets.all(20),
                 child: SizedBox(
                     width: MediaQuery.of(context).size.width,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(bill.billMonth.toMonthDayYear(), style: textStyle.bodyLarge),
-                        const Spacer(),
-                        Text('Bill No: ', style: textStyle.bodyLarge),
-                        Text(bill.billNo, style: textStyle.bodyLarge?.copyWith(fontWeight: FontWeight.w700),),
-                      ],
-                    ),
-                    const SizedBox(height: 20,),
-                    Row(
-                      children: [
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                        Row(
                           children: [
+                            Text(bill.billMonth.toMonthDayYear(),
+                                style: textStyle.bodyLarge),
+                            const Spacer(),
+                            Text('Bill No: ', style: textStyle.bodyLarge),
                             Text(
-                              'Amount Due',
-                              style: textStyle.titleMedium,
-                            ),
-                            Text(
-                              'P ${bill.totalAmount}',
-                              style: textStyle.titleLarge?.copyWith(
-                                fontWeight: FontWeight.w600,
-                                color: Theme.of(context).primaryColor,
-                              ),
+                              bill.billNo,
+                              style: textStyle.bodyLarge
+                                  ?.copyWith(fontWeight: FontWeight.w700),
                             ),
                           ],
                         ),
-                        const Spacer(),
-                        const Chip(label: Text('Paid'))
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        Row(
+                          children: [
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  'Amount Due',
+                                  style: textStyle.titleMedium,
+                                ),
+                                Text(
+                                  'P ${bill.totalAmount}',
+                                  style: textStyle.titleLarge?.copyWith(
+                                    fontWeight: FontWeight.w600,
+                                    color: Theme.of(context).primaryColor,
+                                  ),
+                                ),
+                              ],
+                            ),
+                            const Spacer(),
+                            const Chip(label: Text('Paid'))
+                          ],
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        Row(
+                          children: [
+                            Text(
+                              'Payment date: ',
+                              style: textStyle.bodyLarge,
+                            ),
+                            Text(
+                              bill.dueDate.toMonthDayYear(),
+                              style: textStyle.bodyLarge
+                                  ?.copyWith(fontWeight: FontWeight.w500),
+                            ),
+                          ],
+                        ),
                       ],
-                    ),
-                    const SizedBox(height: 20,),
-                    Row(
-                      children: [
-                        Text('Payment date: ', style: textStyle.bodyLarge,),
-                        Text(bill.dueDate.toMonthDayYear(), style: textStyle.bodyLarge?.copyWith(fontWeight: FontWeight.w500),),
-                      ],
-                    ),
-                  ],
-                )),
+                    )),
               ),
             );
           }),
