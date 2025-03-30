@@ -45,9 +45,15 @@ class BillingInformationBloc extends BillingInformationBlocDef {
         ));
       },
       (success) {
+        BillingInformation? latestBill;
+        if(success.isNotEmpty){
+          latestBill = success.first;
+        }
+
         emit(state.copyWith(
           status: BillingInformationStatus.success,
           billHistory: success,
+          latestBill: latestBill
         ));
       },
     );

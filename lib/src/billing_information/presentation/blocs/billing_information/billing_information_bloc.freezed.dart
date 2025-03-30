@@ -183,6 +183,7 @@ mixin _$BillingInformationState {
   DynamicError? get error => throw _privateConstructorUsedError;
   List<BillingInformation> get billHistory =>
       throw _privateConstructorUsedError;
+  BillingInformation? get latestBill => throw _privateConstructorUsedError;
 
   /// Create a copy of BillingInformationState
   /// with the given fields replaced by the non-null parameter values.
@@ -200,7 +201,10 @@ abstract class $BillingInformationStateCopyWith<$Res> {
   $Res call(
       {BillingInformationStatus status,
       DynamicError? error,
-      List<BillingInformation> billHistory});
+      List<BillingInformation> billHistory,
+      BillingInformation? latestBill});
+
+  $BillingInformationCopyWith<$Res>? get latestBill;
 }
 
 /// @nodoc
@@ -222,6 +226,7 @@ class _$BillingInformationStateCopyWithImpl<$Res,
     Object? status = null,
     Object? error = freezed,
     Object? billHistory = null,
+    Object? latestBill = freezed,
   }) {
     return _then(_value.copyWith(
       status: null == status
@@ -236,7 +241,25 @@ class _$BillingInformationStateCopyWithImpl<$Res,
           ? _value.billHistory
           : billHistory // ignore: cast_nullable_to_non_nullable
               as List<BillingInformation>,
+      latestBill: freezed == latestBill
+          ? _value.latestBill
+          : latestBill // ignore: cast_nullable_to_non_nullable
+              as BillingInformation?,
     ) as $Val);
+  }
+
+  /// Create a copy of BillingInformationState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $BillingInformationCopyWith<$Res>? get latestBill {
+    if (_value.latestBill == null) {
+      return null;
+    }
+
+    return $BillingInformationCopyWith<$Res>(_value.latestBill!, (value) {
+      return _then(_value.copyWith(latestBill: value) as $Val);
+    });
   }
 }
 
@@ -252,7 +275,11 @@ abstract class _$$BillingInformationStateImplCopyWith<$Res>
   $Res call(
       {BillingInformationStatus status,
       DynamicError? error,
-      List<BillingInformation> billHistory});
+      List<BillingInformation> billHistory,
+      BillingInformation? latestBill});
+
+  @override
+  $BillingInformationCopyWith<$Res>? get latestBill;
 }
 
 /// @nodoc
@@ -273,6 +300,7 @@ class __$$BillingInformationStateImplCopyWithImpl<$Res>
     Object? status = null,
     Object? error = freezed,
     Object? billHistory = null,
+    Object? latestBill = freezed,
   }) {
     return _then(_$BillingInformationStateImpl(
       status: null == status
@@ -287,6 +315,10 @@ class __$$BillingInformationStateImplCopyWithImpl<$Res>
           ? _value._billHistory
           : billHistory // ignore: cast_nullable_to_non_nullable
               as List<BillingInformation>,
+      latestBill: freezed == latestBill
+          ? _value.latestBill
+          : latestBill // ignore: cast_nullable_to_non_nullable
+              as BillingInformation?,
     ));
   }
 }
@@ -297,7 +329,8 @@ class _$BillingInformationStateImpl implements _BillingInformationState {
   const _$BillingInformationStateImpl(
       {this.status = BillingInformationStatus.initial,
       this.error,
-      final List<BillingInformation> billHistory = const []})
+      final List<BillingInformation> billHistory = const [],
+      this.latestBill})
       : _billHistory = billHistory;
 
   @override
@@ -315,8 +348,11 @@ class _$BillingInformationStateImpl implements _BillingInformationState {
   }
 
   @override
+  final BillingInformation? latestBill;
+
+  @override
   String toString() {
-    return 'BillingInformationState(status: $status, error: $error, billHistory: $billHistory)';
+    return 'BillingInformationState(status: $status, error: $error, billHistory: $billHistory, latestBill: $latestBill)';
   }
 
   @override
@@ -327,12 +363,14 @@ class _$BillingInformationStateImpl implements _BillingInformationState {
             (identical(other.status, status) || other.status == status) &&
             (identical(other.error, error) || other.error == error) &&
             const DeepCollectionEquality()
-                .equals(other._billHistory, _billHistory));
+                .equals(other._billHistory, _billHistory) &&
+            (identical(other.latestBill, latestBill) ||
+                other.latestBill == latestBill));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, status, error,
-      const DeepCollectionEquality().hash(_billHistory));
+      const DeepCollectionEquality().hash(_billHistory), latestBill);
 
   /// Create a copy of BillingInformationState
   /// with the given fields replaced by the non-null parameter values.
@@ -346,10 +384,10 @@ class _$BillingInformationStateImpl implements _BillingInformationState {
 
 abstract class _BillingInformationState implements BillingInformationState {
   const factory _BillingInformationState(
-          {final BillingInformationStatus status,
-          final DynamicError? error,
-          final List<BillingInformation> billHistory}) =
-      _$BillingInformationStateImpl;
+      {final BillingInformationStatus status,
+      final DynamicError? error,
+      final List<BillingInformation> billHistory,
+      final BillingInformation? latestBill}) = _$BillingInformationStateImpl;
 
   @override
   BillingInformationStatus get status;
@@ -357,6 +395,8 @@ abstract class _BillingInformationState implements BillingInformationState {
   DynamicError? get error;
   @override
   List<BillingInformation> get billHistory;
+  @override
+  BillingInformation? get latestBill;
 
   /// Create a copy of BillingInformationState
   /// with the given fields replaced by the non-null parameter values.

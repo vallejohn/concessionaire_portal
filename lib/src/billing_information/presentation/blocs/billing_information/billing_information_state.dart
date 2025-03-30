@@ -8,5 +8,6 @@ class BillingInformationState with _$BillingInformationState {
     @Default(BillingInformationStatus.initial) BillingInformationStatus status,
     DynamicError? error,
     @Default([]) List<BillingInformation> billHistory,
+    BillingInformation? latestBill,
   }) = _BillingInformationState;
 }

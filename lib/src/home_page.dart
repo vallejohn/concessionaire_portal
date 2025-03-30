@@ -51,12 +51,7 @@ class _HomePageState extends State<HomePage> {
           controller: _pageController,
           onPageChanged: _onPageChanged, // Listen for page changes
           children: [
-            BlocBuilder<BillingInformationBloc, BillingInformationState>(
-                builder: (context, state) {
-              return BillInformationPage(
-                billingInformation: state.billHistory,
-              );
-            }),
+            const BillInformationPage(),
             BlocBuilder<ProfileBloc, ProfileState>(builder: (context, state) {
               final accountState = state.accountState;
 
