@@ -6,6 +6,8 @@ import 'package:mwd_concessionaire_portal/src/authentication/presentation/pages/
 import 'package:mwd_concessionaire_portal/src/authentication/presentation/pages/register_page.dart';
 import 'package:mwd_concessionaire_portal/src/authentication/presentation/pages/startup_page.dart';
 import 'package:mwd_concessionaire_portal/src/authentication/presentation/pages/success_registration_page.dart';
+import 'package:mwd_concessionaire_portal/src/billing_information/data/models/billing_information.dart';
+import 'package:mwd_concessionaire_portal/src/billing_information/presentation/pages/billing_statement_page.dart';
 import 'package:mwd_concessionaire_portal/src/home_page.dart';
 import 'package:mwd_concessionaire_portal/src/profile/presentation/pages/link_account.dart';
 
@@ -43,6 +45,16 @@ class _RouteConfiguration {
             GoRoute(
               path: '/linkAccount',
               builder: (context, state) => const LinkAccount(),
+            ),
+            GoRoute(
+              path: '/billingStatement',
+              name: 'billingStatement',
+              builder: (context, state){
+                final queryParams = state.extra as Map;
+                final bill = queryParams['bill'] as BillingInformation;
+
+                return BillingStatementPage(bill: bill);
+              },
             ),
           ]
         ),

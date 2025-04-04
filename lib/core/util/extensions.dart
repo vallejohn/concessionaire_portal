@@ -26,4 +26,16 @@ extension DateFormatExtension on String {
     ];
     return months[month - 1];
   }
+
+  String toMonthYear() {
+    final date = DateTime.tryParse(this);
+    if (date == null) return this; // Fallback if the string isn't a valid date
+
+    const months = [
+      'January', 'February', 'March', 'April', 'May', 'June',
+      'July', 'August', 'September', 'October', 'November', 'December'
+    ];
+    final monthName = months[date.month - 1];
+    return '$monthName ${date.year}';
+  }
 }

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:logger/logger.dart';
+import 'package:mwd_concessionaire_portal/core/router/app_router.dart';
 import 'package:mwd_concessionaire_portal/core/util/extensions.dart';
 import 'package:mwd_concessionaire_portal/core/widgets/empty_account_widget.dart';
 import 'package:mwd_concessionaire_portal/src/authentication/presentation/blocs/login/login_bloc.dart';
@@ -96,13 +98,11 @@ class _BillInformationPageState extends State<BillInformationPage> {
               const SizedBox(
                 height: 30,
               ),
-              if(accounts.isEmpty)
+              /*if(accounts.isEmpty && billLoading)
                 const Padding(
                   padding: EdgeInsets.only(top: 200),
                   child: EmptyAccountWidget(),
-                ),
-
-              if(accounts.isNotEmpty)
+                ),*/
               Column(
                 children: [
                   Card(
@@ -434,6 +434,11 @@ class _BillInformationPageState extends State<BillInformationPage> {
                             );
                           }),
                         )),
+                  if(!billLoading && billingInformation.isEmpty)
+                    const Padding(
+                      padding: EdgeInsets.only(top: 200),
+                      child: EmptyAccountWidget(),
+                    ),
                   if (!billLoading)
                     Column(
                       children: List.generate(billingInformation.length, (index) {
@@ -451,92 +456,101 @@ class _BillInformationPageState extends State<BillInformationPage> {
                         }
 
                         return Card(
-                          child: Stack(
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.all(20),
-                                child: SizedBox(
-                                    width: MediaQuery.of(context).size.width,
-                                    child: Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                      children: [
-                                        Row(
-                                          children: [
-                                            Text(bill.billMonth.toMonthDayYear(),
-                                                style: textStyle.bodyLarge),
-                                            const Spacer(),
-                                            Text('Bill No: ',
-                                                style: textStyle.bodyLarge),
-                                            Text(
-                                              bill.billNo,
-                                              style: textStyle.bodyLarge?.copyWith(
-                                                  fontWeight: FontWeight.w700),
-                                            ),
-                                          ],
-                                        ),
-                                        const SizedBox(
-                                          height: 20,
-                                        ),
-                                        Column(
-                                          crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                          children: [
-                                            Text(
-                                              'Amount Due',
-                                              style: textStyle.titleMedium,
-                                            ),
-                                            Text(
-                                              'P ${bill.totalAmount}',
-                                              style: textStyle.titleLarge?.copyWith(
-                                                fontWeight: FontWeight.w600,
-                                                color:
-                                                Theme.of(context).primaryColor,
+                          child: InkWell(
+                            borderRadius: BorderRadius.circular(8),
+                            onTap: (){
+                              context.pushNamed(
+                                'billingStatement',
+                                extra: {'bill': bill}
+                              );
+                            },
+                            child: Stack(
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.all(20),
+                                  child: SizedBox(
+                                      width: MediaQuery.of(context).size.width,
+                                      child: Column(
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        children: [
+                                          Row(
+                                            children: [
+                                              Text(bill.billMonth.toMonthDayYear(),
+                                                  style: textStyle.bodyLarge),
+                                              const Spacer(),
+                                              Text('Bill No: ',
+                                                  style: textStyle.bodyLarge),
+                                              Text(
+                                                bill.billNo,
+                                                style: textStyle.bodyLarge?.copyWith(
+                                                    fontWeight: FontWeight.w700),
                                               ),
-                                            ),
-                                          ],
+                                            ],
+                                          ),
+                                          const SizedBox(
+                                            height: 20,
+                                          ),
+                                          Column(
+                                            crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                            children: [
+                                              Text(
+                                                'Amount Due',
+                                                style: textStyle.titleMedium,
+                                              ),
+                                              Text(
+                                                'P ${bill.totalAmount}',
+                                                style: textStyle.titleLarge?.copyWith(
+                                                  fontWeight: FontWeight.w600,
+                                                  color:
+                                                  Theme.of(context).primaryColor,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                          const SizedBox(
+                                            height: 20,
+                                          ),
+                                          Row(
+                                            children: [
+                                              Text(
+                                                'Payment date: ',
+                                                style: textStyle.bodyLarge,
+                                              ),
+                                              Text(
+                                                bill.dueDate.toMonthDayYear(),
+                                                style: textStyle.bodyLarge?.copyWith(
+                                                    fontWeight: FontWeight.w500),
+                                              ),
+                                            ],
+                                          ),
+                                        ],
+                                      )),
+                                ),
+                                Positioned(
+                                  bottom: 0,
+                                  right: 0,
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                        borderRadius: const BorderRadius.only(
+                                          topLeft: Radius.circular(8),
+                                          bottomRight: Radius.circular(8),
                                         ),
-                                        const SizedBox(
-                                          height: 20,
-                                        ),
-                                        Row(
-                                          children: [
-                                            Text(
-                                              'Payment date: ',
-                                              style: textStyle.bodyLarge,
-                                            ),
-                                            Text(
-                                              bill.dueDate.toMonthDayYear(),
-                                              style: textStyle.bodyLarge?.copyWith(
-                                                  fontWeight: FontWeight.w500),
-                                            ),
-                                          ],
-                                        ),
-                                      ],
-                                    )),
-                              ),
-                              Positioned(
-                                bottom: 0,
-                                right: 0,
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                      borderRadius: const BorderRadius.only(
-                                        topLeft: Radius.circular(8),
-                                        bottomRight: Radius.circular(8),
+                                        color: statusColor),
+                                    child: Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 25, vertical: 5),
+                                      child: Text(
+                                        status,
+                                        style: textStyle.bodyLarge?.copyWith(
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.w500),
                                       ),
-                                      color: statusColor),
-                                  child: Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 25, vertical: 5),
-                                    child: Text(
-                                      status,
-                                      style: textStyle.bodyLarge?.copyWith(
-                                          color: Colors.white,
-                                          fontWeight: FontWeight.w500),
                                     ),
                                   ),
-                                ),
-                              )
-                            ],
+                                )
+                              ],
+                            ),
                           ),
                         );
                       }),
