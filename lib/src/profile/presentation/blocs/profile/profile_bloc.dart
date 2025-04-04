@@ -55,22 +55,27 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
         ),
       );
     }, (data) {
-      int defaultAccountIndex = data.indexWhere((e) => e.isDefault == true);
-      Account defaultAccount = data[defaultAccountIndex];
+      Account? defaultAccount;
 
-      if (data.remove(defaultAccount)) {
-        data.insert(0, defaultAccount);
+
+      if(data.isNotEmpty){
+        int defaultAccountIndex = data.indexWhere((e) => e.isDefault == true);
+        defaultAccount = data[defaultAccountIndex];
+
+        if (data.remove(defaultAccount)) {
+          data.insert(0, defaultAccount);
+        }
+
+        defaultAccountIndex = data.indexWhere((e) => e.isDefault == true);
+        defaultAccount = data[defaultAccountIndex];
       }
-
-      defaultAccountIndex = data.indexWhere((e) => e.isDefault == true);
-      defaultAccount = data[defaultAccountIndex];
 
       emit(
         state.copyWith(
           accountState: state.accountState.copyWith(
             status: AccountStatus.success,
-            defaultAccount: data[defaultAccountIndex],
-            displayedAccount: data[defaultAccountIndex],
+            defaultAccount: defaultAccount,
+            displayedAccount: defaultAccount,
             linkedAccounts: data,
           ),
         ),
@@ -230,9 +235,6 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
           initialIndex = 0;
         }
     }
-
-    Logger().w('index now $initialIndex');
-    Logger().w('account ${accounts[initialIndex]}');
 
     emit(
       state.copyWith(

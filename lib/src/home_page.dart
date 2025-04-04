@@ -37,10 +37,6 @@ class _HomePageState extends State<HomePage> {
     BlocProvider.of<ProfileBloc>(context).add(
       const ProfileEvent.onRequestData(),
     );
-
-    BlocProvider.of<BillingInformationBloc>(context).add(
-      const BillingInformationEvent.onRequestBillingHistory(),
-    );
   }
 
   @override

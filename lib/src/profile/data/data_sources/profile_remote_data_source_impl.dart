@@ -40,7 +40,6 @@ class ProfileRemoteDataSourceImpl extends ProfileDataSource {
     Profile? profile = await collection.read();
 
     if (profile != null) {
-
       ///Get raw from local and convert to Model
       final localAccounts = profile.accounts.map((accountRaw) {
         return Account.fromJson(Map<String, dynamic>.from(accountRaw));
@@ -72,7 +71,41 @@ class ProfileRemoteDataSourceImpl extends ProfileDataSource {
     } else {
       profile = const Profile();
       await collection.create(profile);
-      profile = profile.copyWith(accounts: rawData);
+
+      List<Account> initialLoadedAccounts = rawData.map((e) {
+        return Account.fromJson(Map<String, dynamic>.from(e));
+      }).toList();
+
+      List<Account> defaultAccounts =
+          initialLoadedAccounts.where((e) => e.isDefault).toList();
+      if (defaultAccounts.isEmpty) {
+        if (initialLoadedAccounts.isNotEmpty) {
+          Account defaultAccount = initialLoadedAccounts.first.copyWith(
+            isDefault: true,
+            alias: 'Home'
+          );
+
+          for(int i = 0; i < initialLoadedAccounts.length; i++){
+            if(i == 0){
+              initialLoadedAccounts[i] = defaultAccount;
+            }else{
+              Account otherAccount = initialLoadedAccounts[i].copyWith(
+                  alias: 'Account $i'
+              );
+              initialLoadedAccounts[i] = otherAccount;
+            }
+          }
+
+        }
+      }
+
+      final accountsRaw = initialLoadedAccounts.map((e) {
+        return e.toJson();
+      }).toList();
+
+      accounts = initialLoadedAccounts;
+
+      profile = profile.copyWith(accounts: accountsRaw);
       await collection.update(profile);
     }
 
@@ -83,15 +116,16 @@ class ProfileRemoteDataSourceImpl extends ProfileDataSource {
   Future<Account> linkNewAccount(LinkAccountParams params) async {
     Account account = Account();
 
-    final response = await APIEndpointService.profile(ProfileEndpoint.linkNewAccount, params,
-        onError: (dynamicError) {
+    final response = await APIEndpointService.profile(
+        ProfileEndpoint.linkNewAccount, params, onError: (dynamicError) {
       throw ServerException(dynamicError);
     });
 
     final responseRaw = response.body['data'];
 
-    if(responseRaw == null){
-      throw ServerException(const DynamicError(message: 'Invalid account number or bill number'));
+    if (responseRaw == null) {
+      throw ServerException(
+          const DynamicError(message: 'Invalid account number or bill number'));
     }
 
     Profile? profile = await collection.read();
@@ -100,12 +134,11 @@ class ProfileRemoteDataSourceImpl extends ProfileDataSource {
     }).toList();
 
     localAccounts.add(Account(
-      alias: params.alias,
-      accountNumber: params.accountNo,
-      isDefault: localAccounts.isEmpty? true : false
-    ));
+        alias: params.alias,
+        accountNumber: params.accountNo,
+        isDefault: localAccounts.isEmpty ? true : false));
 
-    final accountsRaw = localAccounts.map((e){
+    final accountsRaw = localAccounts.map((e) {
       return e.toJson();
     }).toList();
 
@@ -137,7 +170,7 @@ class ProfileRemoteDataSourceImpl extends ProfileDataSource {
   }
 
   @override
-  Future<bool> saveAccountAlias(Account account)async {
+  Future<bool> saveAccountAlias(Account account) async {
     Profile? profile = await collection.read();
 
     List<Account> localAccounts = profile!.accounts.map((e) {
@@ -145,7 +178,8 @@ class ProfileRemoteDataSourceImpl extends ProfileDataSource {
       return account;
     }).toList();
 
-    final index = localAccounts.indexWhere((e) => e.accountNumber == account.accountNumber);
+    final index = localAccounts
+        .indexWhere((e) => e.accountNumber == account.accountNumber);
     localAccounts[index] = localAccounts[index].copyWith(alias: account.alias);
 
     final accountsRaw = localAccounts.map((e) {

@@ -16,19 +16,20 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$BillingInformationEvent {
+  String get accountNumber => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() onRequestBillingHistory,
+    required TResult Function(String accountNumber) onRequestBillingHistory,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? onRequestBillingHistory,
+    TResult? Function(String accountNumber)? onRequestBillingHistory,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? onRequestBillingHistory,
+    TResult Function(String accountNumber)? onRequestBillingHistory,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -49,6 +50,12 @@ mixin _$BillingInformationEvent {
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
+
+  /// Create a copy of BillingInformationEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $BillingInformationEventCopyWith<BillingInformationEvent> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -56,6 +63,8 @@ abstract class $BillingInformationEventCopyWith<$Res> {
   factory $BillingInformationEventCopyWith(BillingInformationEvent value,
           $Res Function(BillingInformationEvent) then) =
       _$BillingInformationEventCopyWithImpl<$Res, BillingInformationEvent>;
+  @useResult
+  $Res call({String accountNumber});
 }
 
 /// @nodoc
@@ -71,14 +80,30 @@ class _$BillingInformationEventCopyWithImpl<$Res,
 
   /// Create a copy of BillingInformationEvent
   /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? accountNumber = null,
+  }) {
+    return _then(_value.copyWith(
+      accountNumber: null == accountNumber
+          ? _value.accountNumber
+          : accountNumber // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
+  }
 }
 
 /// @nodoc
-abstract class _$$OnRequestBillingHistoryImplCopyWith<$Res> {
+abstract class _$$OnRequestBillingHistoryImplCopyWith<$Res>
+    implements $BillingInformationEventCopyWith<$Res> {
   factory _$$OnRequestBillingHistoryImplCopyWith(
           _$OnRequestBillingHistoryImpl value,
           $Res Function(_$OnRequestBillingHistoryImpl) then) =
       __$$OnRequestBillingHistoryImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String accountNumber});
 }
 
 /// @nodoc
@@ -93,52 +118,78 @@ class __$$OnRequestBillingHistoryImplCopyWithImpl<$Res>
 
   /// Create a copy of BillingInformationEvent
   /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? accountNumber = null,
+  }) {
+    return _then(_$OnRequestBillingHistoryImpl(
+      null == accountNumber
+          ? _value.accountNumber
+          : accountNumber // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$OnRequestBillingHistoryImpl implements _OnRequestBillingHistory {
-  const _$OnRequestBillingHistoryImpl();
+  const _$OnRequestBillingHistoryImpl(this.accountNumber);
+
+  @override
+  final String accountNumber;
 
   @override
   String toString() {
-    return 'BillingInformationEvent.onRequestBillingHistory()';
+    return 'BillingInformationEvent.onRequestBillingHistory(accountNumber: $accountNumber)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$OnRequestBillingHistoryImpl);
+            other is _$OnRequestBillingHistoryImpl &&
+            (identical(other.accountNumber, accountNumber) ||
+                other.accountNumber == accountNumber));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, accountNumber);
+
+  /// Create a copy of BillingInformationEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$OnRequestBillingHistoryImplCopyWith<_$OnRequestBillingHistoryImpl>
+      get copyWith => __$$OnRequestBillingHistoryImplCopyWithImpl<
+          _$OnRequestBillingHistoryImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() onRequestBillingHistory,
+    required TResult Function(String accountNumber) onRequestBillingHistory,
   }) {
-    return onRequestBillingHistory();
+    return onRequestBillingHistory(accountNumber);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? onRequestBillingHistory,
+    TResult? Function(String accountNumber)? onRequestBillingHistory,
   }) {
-    return onRequestBillingHistory?.call();
+    return onRequestBillingHistory?.call(accountNumber);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? onRequestBillingHistory,
+    TResult Function(String accountNumber)? onRequestBillingHistory,
     required TResult orElse(),
   }) {
     if (onRequestBillingHistory != null) {
-      return onRequestBillingHistory();
+      return onRequestBillingHistory(accountNumber);
     }
     return orElse();
   }
@@ -174,7 +225,18 @@ class _$OnRequestBillingHistoryImpl implements _OnRequestBillingHistory {
 }
 
 abstract class _OnRequestBillingHistory implements BillingInformationEvent {
-  const factory _OnRequestBillingHistory() = _$OnRequestBillingHistoryImpl;
+  const factory _OnRequestBillingHistory(final String accountNumber) =
+      _$OnRequestBillingHistoryImpl;
+
+  @override
+  String get accountNumber;
+
+  /// Create a copy of BillingInformationEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$OnRequestBillingHistoryImplCopyWith<_$OnRequestBillingHistoryImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc

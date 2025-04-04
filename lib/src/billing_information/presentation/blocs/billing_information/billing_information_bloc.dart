@@ -30,8 +30,8 @@ class BillingInformationBloc extends BillingInformationBlocDef {
     emit(state.copyWith(status: BillingInformationStatus.loading));
 
     final dataOrFailure = await _getBillHistoryUsecase(
-      const BillingHistoryParams(
-        accountNo: '21112007771',
+      BillingHistoryParams(
+        accountNo: event.accountNumber
       ),
     );
 
