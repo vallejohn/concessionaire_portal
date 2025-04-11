@@ -14,4 +14,5 @@ abstract class ProfileRepository {
   Future<Either<Failure, Account>> linkNewAccount(LinkAccountParams params);
   Future<Either<Failure, bool>> setDefaultAccount(String accountNo);
   Future<Either<Failure, bool>> saveAccountAlias(Account account);
+  Future<Either<Failure, bool>> deleteAccounts(DeleteAccountsParam param);
 }

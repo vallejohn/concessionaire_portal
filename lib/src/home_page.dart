@@ -1,8 +1,9 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mwd_concessionaire_portal/src/profile/presentation/pages/profile_page.dart';
 import 'package:mwd_concessionaire_portal/demo_pages/settings_page.dart';
-import 'package:mwd_concessionaire_portal/src/billing_information/presentation/blocs/billing_information/billing_information_bloc.dart';
 import 'package:mwd_concessionaire_portal/src/profile/presentation/blocs/profile/profile_bloc.dart';
 
 import 'billing_information/presentation/pages/bill_information_page.dart';
@@ -76,7 +77,7 @@ class _HomePageState extends State<HomePage> {
             label: 'Settings',
           ),
         ].map(
-          (destination) {
+              (destination) {
             return NavigationDestination(
               icon: destination.icon,
               label: destination.label ?? '',

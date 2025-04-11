@@ -25,6 +25,7 @@ enum AuthenticationEndpoint {
 enum ProfileEndpoint {
   accounts,
   linkNewAccount,
+  delete,
 }
 
 enum BillingEndpoint {
@@ -196,6 +197,17 @@ class APIEndpointService {
         endpointResponse = await _doRequest(
             '$_baseUrl/api/account-number',
             operation: Operation.get,
+            onError: onError,
+            onSuccess: onSuccess
+        );
+        break;
+      case ProfileEndpoint.delete:
+        assert(data is DeleteAccountsParam, 'Incorrect parameter type');
+        DeleteAccountsParam params = data as DeleteAccountsParam;
+
+        endpointResponse = await _doRequest(
+            '$_baseUrl/api/account-number-delete',
+            params: params.toJson(),
             onError: onError,
             onSuccess: onSuccess
         );

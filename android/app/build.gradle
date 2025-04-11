@@ -14,7 +14,7 @@ android {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
-    flavorDimensions "flavor-type"
+/*    flavorDimensions "flavor-type"
 
     productFlavors {
         staging {
@@ -22,7 +22,7 @@ android {
             applicationIdSuffix ".staging"
             versionNameSuffix "-staging"
         }
-    }
+    }*/
 
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_1_8

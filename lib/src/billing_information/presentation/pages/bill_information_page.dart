@@ -22,7 +22,6 @@ class _BillInformationPageState extends State<BillInformationPage> {
   Widget build(BuildContext context) {
     final textStyle = Theme.of(context).textTheme;
     final profileState = context.watch<ProfileBloc>().state;
-    final billingState = context.watch<BillingInformationBloc>().state;
     final loginState = context.watch<LoginBloc>().state;
 
     final user = loginState.user;
@@ -32,12 +31,10 @@ class _BillInformationPageState extends State<BillInformationPage> {
     final profileLoading = accountState.status == AccountStatus.loading;
     final accounts = accountState.linkedAccounts;
 
-    final latestBill = billingState.latestBill;
-    final billStatus = billingState.status;
-    final billLoading =
-        billStatus == BillingInformationStatus.loading ||
-            billStatus == BillingInformationStatus.initial;
-    final billingInformation = billingState.billHistory;
+
+    accountNavShimmer(){
+
+    }
 
     return BlocListener<ProfileBloc, ProfileState>(
       listenWhen: (prev, cur) {
@@ -53,7 +50,14 @@ class _BillInformationPageState extends State<BillInformationPage> {
         );
       },
       child: BlocBuilder<BillingInformationBloc, BillingInformationState>(
-        builder: (context, state) {
+        builder: (context, billingState) {
+          final latestBill = billingState.latestBill;
+          final billStatus = billingState.status;
+          final billLoading =
+              billStatus == BillingInformationStatus.loading ||
+                  billStatus == BillingInformationStatus.initial;
+          final billingInformation = billingState.billHistory;
+
           return ListView(
             padding: const EdgeInsets.symmetric(horizontal: 20),
             physics: const BouncingScrollPhysics(
@@ -98,13 +102,14 @@ class _BillInformationPageState extends State<BillInformationPage> {
               const SizedBox(
                 height: 30,
               ),
-              /*if(accounts.isEmpty && billLoading)
+              if(!profileLoading && displayedAccount == null)
                 const Padding(
                   padding: EdgeInsets.only(top: 200),
                   child: EmptyAccountWidget(),
-                ),*/
+                ),
               Column(
                 children: [
+                  if(profileLoading || profileState.accountState.linkedAccounts.isNotEmpty)
                   Card(
                     elevation: 0,
                     color: Theme.of(context).primaryColor,
@@ -406,6 +411,7 @@ class _BillInformationPageState extends State<BillInformationPage> {
                   const SizedBox(
                     height: 30,
                   ),
+                  if (billLoading && profileLoading)
                   Align(
                     alignment: Alignment.center,
                     child: Text(
@@ -417,7 +423,7 @@ class _BillInformationPageState extends State<BillInformationPage> {
                   const SizedBox(
                     height: 10,
                   ),
-                  if (billLoading)
+                  if (billLoading && profileLoading)
                     Shimmer.fromColors(
                         baseColor: Colors.black.withOpacity(0.3),
                         highlightColor: Colors.black.withOpacity(0.01),
@@ -434,12 +440,7 @@ class _BillInformationPageState extends State<BillInformationPage> {
                             );
                           }),
                         )),
-                  if(!billLoading && billingInformation.isEmpty)
-                    const Padding(
-                      padding: EdgeInsets.only(top: 200),
-                      child: EmptyAccountWidget(),
-                    ),
-                  if (!billLoading)
+                  if(profileLoading || profileState.accountState.linkedAccounts.isNotEmpty)
                     Column(
                       children: List.generate(billingInformation.length, (index) {
                         final bill = billingInformation[index];

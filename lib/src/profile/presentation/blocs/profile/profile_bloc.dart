@@ -7,6 +7,7 @@ import 'package:logger/logger.dart';
 import 'package:mwd_concessionaire_portal/core/exceptions/authentication_exception.dart';
 import 'package:mwd_concessionaire_portal/src/profile/core/params.dart';
 import 'package:mwd_concessionaire_portal/src/profile/data/models/account.dart';
+import 'package:mwd_concessionaire_portal/src/profile/domain/usecases/delete_accounts_usecase.dart';
 import 'package:mwd_concessionaire_portal/src/profile/domain/usecases/get_linked_accounts_usecase.dart';
 import 'package:mwd_concessionaire_portal/src/profile/domain/usecases/link_new_account_usecase.dart';
 import 'package:mwd_concessionaire_portal/src/profile/domain/usecases/save_account_alias_usecase.dart';
@@ -21,12 +22,17 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
   final _onLinkNewAccountUsecase = GetIt.instance<LinkNewAccountUsecase>();
   final _setDefaultAccountUsecase = GetIt.instance<SetDefaultAccountUsecase>();
   final _saveAccountAliasUsecase = GetIt.instance<SaveAccountAliasUsecase>();
+  final _deleteAccountsUsecase = GetIt.instance<DeleteAccountsUsecase>();
+
   ProfileBloc() : super(const ProfileState()) {
     on<_OnRequestData>(_onRequestData);
     on<_OnSetDefaultAccount>(_onSetDefaultAccount);
     on<_OnLinkNewAccount>(_onLinkNewAccount);
     on<_OnSaveAccountAlias>(_onSaveAccountAlias);
     on<_OnNavigateAccount>(_onNavigateAccount);
+    on<_OnActivateDeleteSelection>(_onActivateDeleteSelection);
+    on<_OnUpdateDeletionList>(_onUpdateDeletionList);
+    on<_OnExecuteDeletion>(_onExecuteDeletion);
   }
 
   FutureOr<void> _onRequestData(
@@ -57,8 +63,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
     }, (data) {
       Account? defaultAccount;
 
-
-      if(data.isNotEmpty){
+      if (data.isNotEmpty) {
         int defaultAccountIndex = data.indexWhere((e) => e.isDefault == true);
         defaultAccount = data[defaultAccountIndex];
 
@@ -217,20 +222,21 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
     List<Account> accounts = [...state.accountState.linkedAccounts];
     final accountLength = accounts.length;
 
-    switch(event.navigation){
+    switch (event.navigation) {
       case AccountNavigation.previous:
         Logger().i(AccountNavigation.previous);
-        if(initialIndex > 0){
+        if (initialIndex > 0) {
           initialIndex -= 1;
-        }else{
+        } else {
           initialIndex = accountLength - 1;
         }
       case AccountNavigation.next:
         Logger().i(AccountNavigation.next);
-        if(initialIndex < accountLength - 1 && initialIndex != accountLength - 1){
+        if (initialIndex < accountLength - 1 &&
+            initialIndex != accountLength - 1) {
           Logger().w('1');
           initialIndex += 1;
-        }else{
+        } else {
           Logger().w('2');
           initialIndex = 0;
         }
@@ -243,5 +249,82 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
         ),
       ),
     );
+  }
+
+  FutureOr<void> _onActivateDeleteSelection(
+    _OnActivateDeleteSelection event,
+    Emitter<ProfileState> emit,
+  ) {
+    emit(
+      state.copyWith(
+        accountState: state.accountState.copyWith(
+          accountDeleteSelection: !state.accountState.accountDeleteSelection,
+        ),
+      ),
+    );
+  }
+
+  FutureOr<void> _onUpdateDeletionList(
+    _OnUpdateDeletionList event,
+    Emitter<ProfileState> emit,
+  ) async {
+    List<Account> deletionList = [...state.accountState.deletionList];
+
+    if (!event.remove) {
+      deletionList.add(event.account);
+    } else {
+      deletionList.remove(event.account);
+    }
+
+    emit(
+      state.copyWith(
+        accountState: state.accountState.copyWith(
+          deletionList: deletionList,
+          accountDeleteSelection: deletionList.isNotEmpty
+        ),
+      ),
+    );
+  }
+
+  FutureOr<void> _onExecuteDeletion(
+    _OnExecuteDeletion event,
+    Emitter<ProfileState> emit,
+  ) async {
+    emit(state.copyWith(
+      accountState: state.accountState.copyWith(
+        accountDeletionStatus: AccountDeletionStatus.loading,
+      ),
+    ));
+
+    List<Account> linkedAccounts = [...state.accountState.linkedAccounts];
+    List<Account> deletionList = [...state.accountState.deletionList];
+
+    final deletionListAccountNos = deletionList.map((e) => e.accountNumber).toList();
+
+    final dataOrError = await _deleteAccountsUsecase(DeleteAccountsParam(accountNos: deletionListAccountNos));
+
+    dataOrError.fold((error) {
+      emit(
+        state.copyWith(
+          accountState: state.accountState.copyWith(
+            accountDeletionStatus: AccountDeletionStatus.failed,
+            error: error.whenOrNull(
+              exception: (error) => (error as ServerException).value,
+            ),
+          ),
+        ),
+      );
+    }, (account) {
+      linkedAccounts.removeWhere((e) => deletionList.contains(e));
+
+      emit(state.copyWith(
+        accountState: state.accountState.copyWith(
+            accountDeletionStatus: AccountDeletionStatus.success,
+            linkedAccounts: linkedAccounts,
+            accountDeleteSelection: false,
+            deletionList: [],
+            error: const DynamicError(message: 'Accounts deleted successfully')),
+      ));
+    });
   }
 }

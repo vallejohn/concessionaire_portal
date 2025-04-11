@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
-import 'package:lottie/lottie.dart';
 import 'package:mwd_concessionaire_portal/core/form_validator/form_validators.dart';
 import 'package:mwd_concessionaire_portal/core/util/widgets/loading.dart';
 import 'package:mwd_concessionaire_portal/src/authentication/core/local_route.dart';
@@ -126,7 +124,7 @@ class _LoginPageState extends State<LoginPage> {
                 ).path,
               );
             } else {
-              context.go('/home');
+              context.goNamed('home');
             }
           }
 

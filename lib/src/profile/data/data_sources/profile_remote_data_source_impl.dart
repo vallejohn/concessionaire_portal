@@ -191,4 +191,30 @@ class ProfileRemoteDataSourceImpl extends ProfileDataSource {
 
     return true;
   }
+
+  @override
+  Future<bool> deleteAccounts(DeleteAccountsParam param)async {
+    final response = await APIEndpointService.profile(
+        ProfileEndpoint.delete, param, onError: (dynamicError) {
+      throw ServerException(dynamicError);
+    });
+
+    Profile? profile = await collection.read();
+
+    List<Account> localAccounts = profile!.accounts.map((e) {
+      Account account = Account.fromJson(Map<String, dynamic>.from(e));
+      return account;
+    }).toList();
+
+    localAccounts.removeWhere((e) => param.accountNos.contains(e.accountNumber));
+
+    final accountsRaw = localAccounts.map((e) {
+      return e.toJson();
+    }).toList();
+
+    profile = profile.copyWith(accounts: accountsRaw);
+    await collection.update(profile);
+
+    return true;
+  }
 }

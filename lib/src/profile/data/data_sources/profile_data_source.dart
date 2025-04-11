@@ -6,4 +6,5 @@ abstract class ProfileDataSource {
   Future<Account> linkNewAccount(LinkAccountParams params);
   Future<bool> setDefaultAccount(String accountNo);
   Future<bool> saveAccountAlias(Account account);
+  Future<bool> deleteAccounts(DeleteAccountsParam param);
 }

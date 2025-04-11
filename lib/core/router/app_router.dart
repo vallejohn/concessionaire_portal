@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mwd_concessionaire_portal/src/authentication/core/params.dart';
 import 'package:mwd_concessionaire_portal/src/authentication/presentation/pages/forgot_password/create_password_page.dart';
@@ -28,11 +29,14 @@ class AppRouter {
   AppRouter._internal();
 
   void init() {
-    _router = _RouteConfiguration().configuredRouter;
+    _router = _Configuration().configuredRouter;
   }
 }
 
-class _RouteConfiguration {
+///
+class _Configuration extends _RouteConfiguration {}
+
+class _RouteConfiguration extends Route {
   GoRouter get configuredRouter => GoRouter(observers: [], routes: [
         GoRoute(
           path: '/',
@@ -40,43 +44,50 @@ class _RouteConfiguration {
         ),
         GoRoute(
           path: '/home',
+          name: 'home',
           builder: (context, state) => const HomePage(),
           routes: [
             GoRoute(
               path: '/linkAccount',
+              name: 'linkAccount',
               builder: (context, state) => const LinkAccount(),
             ),
             GoRoute(
               path: '/billingStatement',
               name: 'billingStatement',
-              builder: (context, state){
+              builder: (context, state) {
                 final queryParams = state.extra as Map;
                 final bill = queryParams['bill'] as BillingInformation;
 
                 return BillingStatementPage(bill: bill);
               },
             ),
-          ]
+          ],
         ),
         GoRoute(
           path: '/successRegistration',
+          name: 'successRegistration',
           builder: (context, state) => const SuccessRegistrationPage(),
         ),
         GoRoute(
             path: '/login',
+            name: 'login',
             builder: (context, state) => const LoginPage(),
             routes: [
               GoRoute(
                 path: '/register',
+                name: 'register',
                 builder: (context, state) => const RegisterPage(),
               ),
               GoRoute(
                 path: '/forgotPassword',
+                name: 'forgotPassword',
                 builder: (context, state) => const ForgotPasswordPage(),
               ),
             ]),
         GoRoute(
           path: '/otp',
+          name: 'otp',
           builder: (context, state) {
             final queryParams = state.uri.queryParameters;
 
@@ -110,6 +121,7 @@ class _RouteConfiguration {
         ),
         GoRoute(
           path: '/chooseNewPassword',
+          name: 'chooseNewPassword',
           builder: (context, state) => const CreatePasswordPage(),
         ),
       ]);

@@ -215,3 +215,168 @@ abstract class _LinkAccountParams implements LinkAccountParams {
   _$$LinkAccountParamsImplCopyWith<_$LinkAccountParamsImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
+
+DeleteAccountsParam _$DeleteAccountsParamFromJson(Map<String, dynamic> json) {
+  return _DeleteAccountsParam.fromJson(json);
+}
+
+/// @nodoc
+mixin _$DeleteAccountsParam {
+  @JsonKey(name: 'account_numbers')
+  List<String> get accountNos => throw _privateConstructorUsedError;
+
+  /// Serializes this DeleteAccountsParam to a JSON map.
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+
+  /// Create a copy of DeleteAccountsParam
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $DeleteAccountsParamCopyWith<DeleteAccountsParam> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $DeleteAccountsParamCopyWith<$Res> {
+  factory $DeleteAccountsParamCopyWith(
+          DeleteAccountsParam value, $Res Function(DeleteAccountsParam) then) =
+      _$DeleteAccountsParamCopyWithImpl<$Res, DeleteAccountsParam>;
+  @useResult
+  $Res call({@JsonKey(name: 'account_numbers') List<String> accountNos});
+}
+
+/// @nodoc
+class _$DeleteAccountsParamCopyWithImpl<$Res, $Val extends DeleteAccountsParam>
+    implements $DeleteAccountsParamCopyWith<$Res> {
+  _$DeleteAccountsParamCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  /// Create a copy of DeleteAccountsParam
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? accountNos = null,
+  }) {
+    return _then(_value.copyWith(
+      accountNos: null == accountNos
+          ? _value.accountNos
+          : accountNos // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$DeleteAccountsParamImplCopyWith<$Res>
+    implements $DeleteAccountsParamCopyWith<$Res> {
+  factory _$$DeleteAccountsParamImplCopyWith(_$DeleteAccountsParamImpl value,
+          $Res Function(_$DeleteAccountsParamImpl) then) =
+      __$$DeleteAccountsParamImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({@JsonKey(name: 'account_numbers') List<String> accountNos});
+}
+
+/// @nodoc
+class __$$DeleteAccountsParamImplCopyWithImpl<$Res>
+    extends _$DeleteAccountsParamCopyWithImpl<$Res, _$DeleteAccountsParamImpl>
+    implements _$$DeleteAccountsParamImplCopyWith<$Res> {
+  __$$DeleteAccountsParamImplCopyWithImpl(_$DeleteAccountsParamImpl _value,
+      $Res Function(_$DeleteAccountsParamImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of DeleteAccountsParam
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? accountNos = null,
+  }) {
+    return _then(_$DeleteAccountsParamImpl(
+      accountNos: null == accountNos
+          ? _value._accountNos
+          : accountNos // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$DeleteAccountsParamImpl implements _DeleteAccountsParam {
+  const _$DeleteAccountsParamImpl(
+      {@JsonKey(name: 'account_numbers')
+      required final List<String> accountNos})
+      : _accountNos = accountNos;
+
+  factory _$DeleteAccountsParamImpl.fromJson(Map<String, dynamic> json) =>
+      _$$DeleteAccountsParamImplFromJson(json);
+
+  final List<String> _accountNos;
+  @override
+  @JsonKey(name: 'account_numbers')
+  List<String> get accountNos {
+    if (_accountNos is EqualUnmodifiableListView) return _accountNos;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_accountNos);
+  }
+
+  @override
+  String toString() {
+    return 'DeleteAccountsParam(accountNos: $accountNos)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$DeleteAccountsParamImpl &&
+            const DeepCollectionEquality()
+                .equals(other._accountNos, _accountNos));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(_accountNos));
+
+  /// Create a copy of DeleteAccountsParam
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$DeleteAccountsParamImplCopyWith<_$DeleteAccountsParamImpl> get copyWith =>
+      __$$DeleteAccountsParamImplCopyWithImpl<_$DeleteAccountsParamImpl>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$DeleteAccountsParamImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _DeleteAccountsParam implements DeleteAccountsParam {
+  const factory _DeleteAccountsParam(
+      {@JsonKey(name: 'account_numbers')
+      required final List<String> accountNos}) = _$DeleteAccountsParamImpl;
+
+  factory _DeleteAccountsParam.fromJson(Map<String, dynamic> json) =
+      _$DeleteAccountsParamImpl.fromJson;
+
+  @override
+  @JsonKey(name: 'account_numbers')
+  List<String> get accountNos;
+
+  /// Create a copy of DeleteAccountsParam
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$DeleteAccountsParamImplCopyWith<_$DeleteAccountsParamImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}

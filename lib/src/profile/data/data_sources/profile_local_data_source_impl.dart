@@ -35,4 +35,10 @@ class ProfileLocalDataSourceImpl extends ProfileDataSource{
     // TODO: implement saveAccountAlias
     throw UnimplementedError();
   }
+
+  @override
+  Future<bool> deleteAccounts(DeleteAccountsParam param) {
+    // TODO: implement deleteAccounts
+    throw UnimplementedError();
+  }
 }

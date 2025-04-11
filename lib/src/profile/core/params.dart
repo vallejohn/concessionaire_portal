@@ -1,5 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+import '../data/models/account.dart';
+
 part 'params.freezed.dart';
 part 'params.g.dart';
 
@@ -14,4 +16,14 @@ class LinkAccountParams with _$LinkAccountParams {
   }) = _LinkAccountParams;
 
   factory LinkAccountParams.fromJson(Map<String, dynamic> json) => _$LinkAccountParamsFromJson(json);
+}
+
+@freezed
+class DeleteAccountsParam with _$DeleteAccountsParam {
+  const factory DeleteAccountsParam({
+    @JsonKey(name: 'account_numbers')
+    required List<String> accountNos,
+  }) = _DeleteAccountsParam;
+
+  factory DeleteAccountsParam.fromJson(Map<String, dynamic> json) => _$DeleteAccountsParamFromJson(json);
 }

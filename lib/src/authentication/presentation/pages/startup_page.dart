@@ -21,12 +21,12 @@ class _StartupPageState extends State<StartupPage> {
 
         if (status == CheckAuthStatus.success) {
           if (user == null) {
-            context.go('/login');
+            context.goNamed('login');
           }else{
             if(user.phoneVerifiedAt.isEmpty){
-              context.go('/otp?phone=${user.phone}');
+              context.goNamed('/otp?phone=${user.phone}');
             }else{
-              context.go('/home');
+              context.goNamed('home');
             }
           }
         }

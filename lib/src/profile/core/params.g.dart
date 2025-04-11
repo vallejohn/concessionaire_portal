@@ -21,3 +21,17 @@ Map<String, dynamic> _$$LinkAccountParamsImplToJson(
       'account_number': instance.accountNo,
       'bill_no': instance.billNo,
     };
+
+_$DeleteAccountsParamImpl _$$DeleteAccountsParamImplFromJson(
+        Map<String, dynamic> json) =>
+    _$DeleteAccountsParamImpl(
+      accountNos: (json['account_numbers'] as List<dynamic>)
+          .map((e) => e as String)
+          .toList(),
+    );
+
+Map<String, dynamic> _$$DeleteAccountsParamImplToJson(
+        _$DeleteAccountsParamImpl instance) =>
+    <String, dynamic>{
+      'account_numbers': instance.accountNos,
+    };

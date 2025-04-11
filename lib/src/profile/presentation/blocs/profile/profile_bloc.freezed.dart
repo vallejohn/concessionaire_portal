@@ -20,6 +20,10 @@ mixin _$ProfileEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() onRequestData,
     required TResult Function(String accountNo) onSetDefaultAccount,
+    required TResult Function(Account account, bool remove)
+        onUpdateDeletionList,
+    required TResult Function() onExecuteDeletion,
+    required TResult Function() onActivateDeleteSelection,
     required TResult Function(AccountNavigation navigation) onNavigateAccount,
     required TResult Function(LinkAccountParams params, String nickname)
         onLinkNewAccount,
@@ -30,6 +34,9 @@ mixin _$ProfileEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? onRequestData,
     TResult? Function(String accountNo)? onSetDefaultAccount,
+    TResult? Function(Account account, bool remove)? onUpdateDeletionList,
+    TResult? Function()? onExecuteDeletion,
+    TResult? Function()? onActivateDeleteSelection,
     TResult? Function(AccountNavigation navigation)? onNavigateAccount,
     TResult? Function(LinkAccountParams params, String nickname)?
         onLinkNewAccount,
@@ -40,6 +47,9 @@ mixin _$ProfileEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? onRequestData,
     TResult Function(String accountNo)? onSetDefaultAccount,
+    TResult Function(Account account, bool remove)? onUpdateDeletionList,
+    TResult Function()? onExecuteDeletion,
+    TResult Function()? onActivateDeleteSelection,
     TResult Function(AccountNavigation navigation)? onNavigateAccount,
     TResult Function(LinkAccountParams params, String nickname)?
         onLinkNewAccount,
@@ -51,6 +61,10 @@ mixin _$ProfileEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(_OnRequestData value) onRequestData,
     required TResult Function(_OnSetDefaultAccount value) onSetDefaultAccount,
+    required TResult Function(_OnUpdateDeletionList value) onUpdateDeletionList,
+    required TResult Function(_OnExecuteDeletion value) onExecuteDeletion,
+    required TResult Function(_OnActivateDeleteSelection value)
+        onActivateDeleteSelection,
     required TResult Function(_OnNavigateAccount value) onNavigateAccount,
     required TResult Function(_OnLinkNewAccount value) onLinkNewAccount,
     required TResult Function(_OnSaveAccountAlias value) onSaveAccountAlias,
@@ -60,6 +74,10 @@ mixin _$ProfileEvent {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_OnRequestData value)? onRequestData,
     TResult? Function(_OnSetDefaultAccount value)? onSetDefaultAccount,
+    TResult? Function(_OnUpdateDeletionList value)? onUpdateDeletionList,
+    TResult? Function(_OnExecuteDeletion value)? onExecuteDeletion,
+    TResult? Function(_OnActivateDeleteSelection value)?
+        onActivateDeleteSelection,
     TResult? Function(_OnNavigateAccount value)? onNavigateAccount,
     TResult? Function(_OnLinkNewAccount value)? onLinkNewAccount,
     TResult? Function(_OnSaveAccountAlias value)? onSaveAccountAlias,
@@ -69,6 +87,10 @@ mixin _$ProfileEvent {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_OnRequestData value)? onRequestData,
     TResult Function(_OnSetDefaultAccount value)? onSetDefaultAccount,
+    TResult Function(_OnUpdateDeletionList value)? onUpdateDeletionList,
+    TResult Function(_OnExecuteDeletion value)? onExecuteDeletion,
+    TResult Function(_OnActivateDeleteSelection value)?
+        onActivateDeleteSelection,
     TResult Function(_OnNavigateAccount value)? onNavigateAccount,
     TResult Function(_OnLinkNewAccount value)? onLinkNewAccount,
     TResult Function(_OnSaveAccountAlias value)? onSaveAccountAlias,
@@ -141,6 +163,10 @@ class _$OnRequestDataImpl implements _OnRequestData {
   TResult when<TResult extends Object?>({
     required TResult Function() onRequestData,
     required TResult Function(String accountNo) onSetDefaultAccount,
+    required TResult Function(Account account, bool remove)
+        onUpdateDeletionList,
+    required TResult Function() onExecuteDeletion,
+    required TResult Function() onActivateDeleteSelection,
     required TResult Function(AccountNavigation navigation) onNavigateAccount,
     required TResult Function(LinkAccountParams params, String nickname)
         onLinkNewAccount,
@@ -154,6 +180,9 @@ class _$OnRequestDataImpl implements _OnRequestData {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? onRequestData,
     TResult? Function(String accountNo)? onSetDefaultAccount,
+    TResult? Function(Account account, bool remove)? onUpdateDeletionList,
+    TResult? Function()? onExecuteDeletion,
+    TResult? Function()? onActivateDeleteSelection,
     TResult? Function(AccountNavigation navigation)? onNavigateAccount,
     TResult? Function(LinkAccountParams params, String nickname)?
         onLinkNewAccount,
@@ -167,6 +196,9 @@ class _$OnRequestDataImpl implements _OnRequestData {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? onRequestData,
     TResult Function(String accountNo)? onSetDefaultAccount,
+    TResult Function(Account account, bool remove)? onUpdateDeletionList,
+    TResult Function()? onExecuteDeletion,
+    TResult Function()? onActivateDeleteSelection,
     TResult Function(AccountNavigation navigation)? onNavigateAccount,
     TResult Function(LinkAccountParams params, String nickname)?
         onLinkNewAccount,
@@ -184,6 +216,10 @@ class _$OnRequestDataImpl implements _OnRequestData {
   TResult map<TResult extends Object?>({
     required TResult Function(_OnRequestData value) onRequestData,
     required TResult Function(_OnSetDefaultAccount value) onSetDefaultAccount,
+    required TResult Function(_OnUpdateDeletionList value) onUpdateDeletionList,
+    required TResult Function(_OnExecuteDeletion value) onExecuteDeletion,
+    required TResult Function(_OnActivateDeleteSelection value)
+        onActivateDeleteSelection,
     required TResult Function(_OnNavigateAccount value) onNavigateAccount,
     required TResult Function(_OnLinkNewAccount value) onLinkNewAccount,
     required TResult Function(_OnSaveAccountAlias value) onSaveAccountAlias,
@@ -196,6 +232,10 @@ class _$OnRequestDataImpl implements _OnRequestData {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_OnRequestData value)? onRequestData,
     TResult? Function(_OnSetDefaultAccount value)? onSetDefaultAccount,
+    TResult? Function(_OnUpdateDeletionList value)? onUpdateDeletionList,
+    TResult? Function(_OnExecuteDeletion value)? onExecuteDeletion,
+    TResult? Function(_OnActivateDeleteSelection value)?
+        onActivateDeleteSelection,
     TResult? Function(_OnNavigateAccount value)? onNavigateAccount,
     TResult? Function(_OnLinkNewAccount value)? onLinkNewAccount,
     TResult? Function(_OnSaveAccountAlias value)? onSaveAccountAlias,
@@ -208,6 +248,10 @@ class _$OnRequestDataImpl implements _OnRequestData {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_OnRequestData value)? onRequestData,
     TResult Function(_OnSetDefaultAccount value)? onSetDefaultAccount,
+    TResult Function(_OnUpdateDeletionList value)? onUpdateDeletionList,
+    TResult Function(_OnExecuteDeletion value)? onExecuteDeletion,
+    TResult Function(_OnActivateDeleteSelection value)?
+        onActivateDeleteSelection,
     TResult Function(_OnNavigateAccount value)? onNavigateAccount,
     TResult Function(_OnLinkNewAccount value)? onLinkNewAccount,
     TResult Function(_OnSaveAccountAlias value)? onSaveAccountAlias,
@@ -296,6 +340,10 @@ class _$OnSetDefaultAccountImpl implements _OnSetDefaultAccount {
   TResult when<TResult extends Object?>({
     required TResult Function() onRequestData,
     required TResult Function(String accountNo) onSetDefaultAccount,
+    required TResult Function(Account account, bool remove)
+        onUpdateDeletionList,
+    required TResult Function() onExecuteDeletion,
+    required TResult Function() onActivateDeleteSelection,
     required TResult Function(AccountNavigation navigation) onNavigateAccount,
     required TResult Function(LinkAccountParams params, String nickname)
         onLinkNewAccount,
@@ -309,6 +357,9 @@ class _$OnSetDefaultAccountImpl implements _OnSetDefaultAccount {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? onRequestData,
     TResult? Function(String accountNo)? onSetDefaultAccount,
+    TResult? Function(Account account, bool remove)? onUpdateDeletionList,
+    TResult? Function()? onExecuteDeletion,
+    TResult? Function()? onActivateDeleteSelection,
     TResult? Function(AccountNavigation navigation)? onNavigateAccount,
     TResult? Function(LinkAccountParams params, String nickname)?
         onLinkNewAccount,
@@ -322,6 +373,9 @@ class _$OnSetDefaultAccountImpl implements _OnSetDefaultAccount {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? onRequestData,
     TResult Function(String accountNo)? onSetDefaultAccount,
+    TResult Function(Account account, bool remove)? onUpdateDeletionList,
+    TResult Function()? onExecuteDeletion,
+    TResult Function()? onActivateDeleteSelection,
     TResult Function(AccountNavigation navigation)? onNavigateAccount,
     TResult Function(LinkAccountParams params, String nickname)?
         onLinkNewAccount,
@@ -339,6 +393,10 @@ class _$OnSetDefaultAccountImpl implements _OnSetDefaultAccount {
   TResult map<TResult extends Object?>({
     required TResult Function(_OnRequestData value) onRequestData,
     required TResult Function(_OnSetDefaultAccount value) onSetDefaultAccount,
+    required TResult Function(_OnUpdateDeletionList value) onUpdateDeletionList,
+    required TResult Function(_OnExecuteDeletion value) onExecuteDeletion,
+    required TResult Function(_OnActivateDeleteSelection value)
+        onActivateDeleteSelection,
     required TResult Function(_OnNavigateAccount value) onNavigateAccount,
     required TResult Function(_OnLinkNewAccount value) onLinkNewAccount,
     required TResult Function(_OnSaveAccountAlias value) onSaveAccountAlias,
@@ -351,6 +409,10 @@ class _$OnSetDefaultAccountImpl implements _OnSetDefaultAccount {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_OnRequestData value)? onRequestData,
     TResult? Function(_OnSetDefaultAccount value)? onSetDefaultAccount,
+    TResult? Function(_OnUpdateDeletionList value)? onUpdateDeletionList,
+    TResult? Function(_OnExecuteDeletion value)? onExecuteDeletion,
+    TResult? Function(_OnActivateDeleteSelection value)?
+        onActivateDeleteSelection,
     TResult? Function(_OnNavigateAccount value)? onNavigateAccount,
     TResult? Function(_OnLinkNewAccount value)? onLinkNewAccount,
     TResult? Function(_OnSaveAccountAlias value)? onSaveAccountAlias,
@@ -363,6 +425,10 @@ class _$OnSetDefaultAccountImpl implements _OnSetDefaultAccount {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_OnRequestData value)? onRequestData,
     TResult Function(_OnSetDefaultAccount value)? onSetDefaultAccount,
+    TResult Function(_OnUpdateDeletionList value)? onUpdateDeletionList,
+    TResult Function(_OnExecuteDeletion value)? onExecuteDeletion,
+    TResult Function(_OnActivateDeleteSelection value)?
+        onActivateDeleteSelection,
     TResult Function(_OnNavigateAccount value)? onNavigateAccount,
     TResult Function(_OnLinkNewAccount value)? onLinkNewAccount,
     TResult Function(_OnSaveAccountAlias value)? onSaveAccountAlias,
@@ -386,6 +452,513 @@ abstract class _OnSetDefaultAccount implements ProfileEvent {
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$OnSetDefaultAccountImplCopyWith<_$OnSetDefaultAccountImpl> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$OnUpdateDeletionListImplCopyWith<$Res> {
+  factory _$$OnUpdateDeletionListImplCopyWith(_$OnUpdateDeletionListImpl value,
+          $Res Function(_$OnUpdateDeletionListImpl) then) =
+      __$$OnUpdateDeletionListImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({Account account, bool remove});
+
+  $AccountCopyWith<$Res> get account;
+}
+
+/// @nodoc
+class __$$OnUpdateDeletionListImplCopyWithImpl<$Res>
+    extends _$ProfileEventCopyWithImpl<$Res, _$OnUpdateDeletionListImpl>
+    implements _$$OnUpdateDeletionListImplCopyWith<$Res> {
+  __$$OnUpdateDeletionListImplCopyWithImpl(_$OnUpdateDeletionListImpl _value,
+      $Res Function(_$OnUpdateDeletionListImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of ProfileEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? account = null,
+    Object? remove = null,
+  }) {
+    return _then(_$OnUpdateDeletionListImpl(
+      null == account
+          ? _value.account
+          : account // ignore: cast_nullable_to_non_nullable
+              as Account,
+      remove: null == remove
+          ? _value.remove
+          : remove // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
+
+  /// Create a copy of ProfileEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $AccountCopyWith<$Res> get account {
+    return $AccountCopyWith<$Res>(_value.account, (value) {
+      return _then(_value.copyWith(account: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$OnUpdateDeletionListImpl implements _OnUpdateDeletionList {
+  const _$OnUpdateDeletionListImpl(this.account, {this.remove = false});
+
+  @override
+  final Account account;
+  @override
+  @JsonKey()
+  final bool remove;
+
+  @override
+  String toString() {
+    return 'ProfileEvent.onUpdateDeletionList(account: $account, remove: $remove)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$OnUpdateDeletionListImpl &&
+            (identical(other.account, account) || other.account == account) &&
+            (identical(other.remove, remove) || other.remove == remove));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, account, remove);
+
+  /// Create a copy of ProfileEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$OnUpdateDeletionListImplCopyWith<_$OnUpdateDeletionListImpl>
+      get copyWith =>
+          __$$OnUpdateDeletionListImplCopyWithImpl<_$OnUpdateDeletionListImpl>(
+              this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() onRequestData,
+    required TResult Function(String accountNo) onSetDefaultAccount,
+    required TResult Function(Account account, bool remove)
+        onUpdateDeletionList,
+    required TResult Function() onExecuteDeletion,
+    required TResult Function() onActivateDeleteSelection,
+    required TResult Function(AccountNavigation navigation) onNavigateAccount,
+    required TResult Function(LinkAccountParams params, String nickname)
+        onLinkNewAccount,
+    required TResult Function(Account account) onSaveAccountAlias,
+  }) {
+    return onUpdateDeletionList(account, remove);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? onRequestData,
+    TResult? Function(String accountNo)? onSetDefaultAccount,
+    TResult? Function(Account account, bool remove)? onUpdateDeletionList,
+    TResult? Function()? onExecuteDeletion,
+    TResult? Function()? onActivateDeleteSelection,
+    TResult? Function(AccountNavigation navigation)? onNavigateAccount,
+    TResult? Function(LinkAccountParams params, String nickname)?
+        onLinkNewAccount,
+    TResult? Function(Account account)? onSaveAccountAlias,
+  }) {
+    return onUpdateDeletionList?.call(account, remove);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? onRequestData,
+    TResult Function(String accountNo)? onSetDefaultAccount,
+    TResult Function(Account account, bool remove)? onUpdateDeletionList,
+    TResult Function()? onExecuteDeletion,
+    TResult Function()? onActivateDeleteSelection,
+    TResult Function(AccountNavigation navigation)? onNavigateAccount,
+    TResult Function(LinkAccountParams params, String nickname)?
+        onLinkNewAccount,
+    TResult Function(Account account)? onSaveAccountAlias,
+    required TResult orElse(),
+  }) {
+    if (onUpdateDeletionList != null) {
+      return onUpdateDeletionList(account, remove);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_OnRequestData value) onRequestData,
+    required TResult Function(_OnSetDefaultAccount value) onSetDefaultAccount,
+    required TResult Function(_OnUpdateDeletionList value) onUpdateDeletionList,
+    required TResult Function(_OnExecuteDeletion value) onExecuteDeletion,
+    required TResult Function(_OnActivateDeleteSelection value)
+        onActivateDeleteSelection,
+    required TResult Function(_OnNavigateAccount value) onNavigateAccount,
+    required TResult Function(_OnLinkNewAccount value) onLinkNewAccount,
+    required TResult Function(_OnSaveAccountAlias value) onSaveAccountAlias,
+  }) {
+    return onUpdateDeletionList(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_OnRequestData value)? onRequestData,
+    TResult? Function(_OnSetDefaultAccount value)? onSetDefaultAccount,
+    TResult? Function(_OnUpdateDeletionList value)? onUpdateDeletionList,
+    TResult? Function(_OnExecuteDeletion value)? onExecuteDeletion,
+    TResult? Function(_OnActivateDeleteSelection value)?
+        onActivateDeleteSelection,
+    TResult? Function(_OnNavigateAccount value)? onNavigateAccount,
+    TResult? Function(_OnLinkNewAccount value)? onLinkNewAccount,
+    TResult? Function(_OnSaveAccountAlias value)? onSaveAccountAlias,
+  }) {
+    return onUpdateDeletionList?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_OnRequestData value)? onRequestData,
+    TResult Function(_OnSetDefaultAccount value)? onSetDefaultAccount,
+    TResult Function(_OnUpdateDeletionList value)? onUpdateDeletionList,
+    TResult Function(_OnExecuteDeletion value)? onExecuteDeletion,
+    TResult Function(_OnActivateDeleteSelection value)?
+        onActivateDeleteSelection,
+    TResult Function(_OnNavigateAccount value)? onNavigateAccount,
+    TResult Function(_OnLinkNewAccount value)? onLinkNewAccount,
+    TResult Function(_OnSaveAccountAlias value)? onSaveAccountAlias,
+    required TResult orElse(),
+  }) {
+    if (onUpdateDeletionList != null) {
+      return onUpdateDeletionList(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _OnUpdateDeletionList implements ProfileEvent {
+  const factory _OnUpdateDeletionList(final Account account,
+      {final bool remove}) = _$OnUpdateDeletionListImpl;
+
+  Account get account;
+  bool get remove;
+
+  /// Create a copy of ProfileEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$OnUpdateDeletionListImplCopyWith<_$OnUpdateDeletionListImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$OnExecuteDeletionImplCopyWith<$Res> {
+  factory _$$OnExecuteDeletionImplCopyWith(_$OnExecuteDeletionImpl value,
+          $Res Function(_$OnExecuteDeletionImpl) then) =
+      __$$OnExecuteDeletionImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$OnExecuteDeletionImplCopyWithImpl<$Res>
+    extends _$ProfileEventCopyWithImpl<$Res, _$OnExecuteDeletionImpl>
+    implements _$$OnExecuteDeletionImplCopyWith<$Res> {
+  __$$OnExecuteDeletionImplCopyWithImpl(_$OnExecuteDeletionImpl _value,
+      $Res Function(_$OnExecuteDeletionImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of ProfileEvent
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$OnExecuteDeletionImpl implements _OnExecuteDeletion {
+  const _$OnExecuteDeletionImpl();
+
+  @override
+  String toString() {
+    return 'ProfileEvent.onExecuteDeletion()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$OnExecuteDeletionImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() onRequestData,
+    required TResult Function(String accountNo) onSetDefaultAccount,
+    required TResult Function(Account account, bool remove)
+        onUpdateDeletionList,
+    required TResult Function() onExecuteDeletion,
+    required TResult Function() onActivateDeleteSelection,
+    required TResult Function(AccountNavigation navigation) onNavigateAccount,
+    required TResult Function(LinkAccountParams params, String nickname)
+        onLinkNewAccount,
+    required TResult Function(Account account) onSaveAccountAlias,
+  }) {
+    return onExecuteDeletion();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? onRequestData,
+    TResult? Function(String accountNo)? onSetDefaultAccount,
+    TResult? Function(Account account, bool remove)? onUpdateDeletionList,
+    TResult? Function()? onExecuteDeletion,
+    TResult? Function()? onActivateDeleteSelection,
+    TResult? Function(AccountNavigation navigation)? onNavigateAccount,
+    TResult? Function(LinkAccountParams params, String nickname)?
+        onLinkNewAccount,
+    TResult? Function(Account account)? onSaveAccountAlias,
+  }) {
+    return onExecuteDeletion?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? onRequestData,
+    TResult Function(String accountNo)? onSetDefaultAccount,
+    TResult Function(Account account, bool remove)? onUpdateDeletionList,
+    TResult Function()? onExecuteDeletion,
+    TResult Function()? onActivateDeleteSelection,
+    TResult Function(AccountNavigation navigation)? onNavigateAccount,
+    TResult Function(LinkAccountParams params, String nickname)?
+        onLinkNewAccount,
+    TResult Function(Account account)? onSaveAccountAlias,
+    required TResult orElse(),
+  }) {
+    if (onExecuteDeletion != null) {
+      return onExecuteDeletion();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_OnRequestData value) onRequestData,
+    required TResult Function(_OnSetDefaultAccount value) onSetDefaultAccount,
+    required TResult Function(_OnUpdateDeletionList value) onUpdateDeletionList,
+    required TResult Function(_OnExecuteDeletion value) onExecuteDeletion,
+    required TResult Function(_OnActivateDeleteSelection value)
+        onActivateDeleteSelection,
+    required TResult Function(_OnNavigateAccount value) onNavigateAccount,
+    required TResult Function(_OnLinkNewAccount value) onLinkNewAccount,
+    required TResult Function(_OnSaveAccountAlias value) onSaveAccountAlias,
+  }) {
+    return onExecuteDeletion(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_OnRequestData value)? onRequestData,
+    TResult? Function(_OnSetDefaultAccount value)? onSetDefaultAccount,
+    TResult? Function(_OnUpdateDeletionList value)? onUpdateDeletionList,
+    TResult? Function(_OnExecuteDeletion value)? onExecuteDeletion,
+    TResult? Function(_OnActivateDeleteSelection value)?
+        onActivateDeleteSelection,
+    TResult? Function(_OnNavigateAccount value)? onNavigateAccount,
+    TResult? Function(_OnLinkNewAccount value)? onLinkNewAccount,
+    TResult? Function(_OnSaveAccountAlias value)? onSaveAccountAlias,
+  }) {
+    return onExecuteDeletion?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_OnRequestData value)? onRequestData,
+    TResult Function(_OnSetDefaultAccount value)? onSetDefaultAccount,
+    TResult Function(_OnUpdateDeletionList value)? onUpdateDeletionList,
+    TResult Function(_OnExecuteDeletion value)? onExecuteDeletion,
+    TResult Function(_OnActivateDeleteSelection value)?
+        onActivateDeleteSelection,
+    TResult Function(_OnNavigateAccount value)? onNavigateAccount,
+    TResult Function(_OnLinkNewAccount value)? onLinkNewAccount,
+    TResult Function(_OnSaveAccountAlias value)? onSaveAccountAlias,
+    required TResult orElse(),
+  }) {
+    if (onExecuteDeletion != null) {
+      return onExecuteDeletion(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _OnExecuteDeletion implements ProfileEvent {
+  const factory _OnExecuteDeletion() = _$OnExecuteDeletionImpl;
+}
+
+/// @nodoc
+abstract class _$$OnActivateDeleteSelectionImplCopyWith<$Res> {
+  factory _$$OnActivateDeleteSelectionImplCopyWith(
+          _$OnActivateDeleteSelectionImpl value,
+          $Res Function(_$OnActivateDeleteSelectionImpl) then) =
+      __$$OnActivateDeleteSelectionImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$OnActivateDeleteSelectionImplCopyWithImpl<$Res>
+    extends _$ProfileEventCopyWithImpl<$Res, _$OnActivateDeleteSelectionImpl>
+    implements _$$OnActivateDeleteSelectionImplCopyWith<$Res> {
+  __$$OnActivateDeleteSelectionImplCopyWithImpl(
+      _$OnActivateDeleteSelectionImpl _value,
+      $Res Function(_$OnActivateDeleteSelectionImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of ProfileEvent
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$OnActivateDeleteSelectionImpl implements _OnActivateDeleteSelection {
+  const _$OnActivateDeleteSelectionImpl();
+
+  @override
+  String toString() {
+    return 'ProfileEvent.onActivateDeleteSelection()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$OnActivateDeleteSelectionImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() onRequestData,
+    required TResult Function(String accountNo) onSetDefaultAccount,
+    required TResult Function(Account account, bool remove)
+        onUpdateDeletionList,
+    required TResult Function() onExecuteDeletion,
+    required TResult Function() onActivateDeleteSelection,
+    required TResult Function(AccountNavigation navigation) onNavigateAccount,
+    required TResult Function(LinkAccountParams params, String nickname)
+        onLinkNewAccount,
+    required TResult Function(Account account) onSaveAccountAlias,
+  }) {
+    return onActivateDeleteSelection();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? onRequestData,
+    TResult? Function(String accountNo)? onSetDefaultAccount,
+    TResult? Function(Account account, bool remove)? onUpdateDeletionList,
+    TResult? Function()? onExecuteDeletion,
+    TResult? Function()? onActivateDeleteSelection,
+    TResult? Function(AccountNavigation navigation)? onNavigateAccount,
+    TResult? Function(LinkAccountParams params, String nickname)?
+        onLinkNewAccount,
+    TResult? Function(Account account)? onSaveAccountAlias,
+  }) {
+    return onActivateDeleteSelection?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? onRequestData,
+    TResult Function(String accountNo)? onSetDefaultAccount,
+    TResult Function(Account account, bool remove)? onUpdateDeletionList,
+    TResult Function()? onExecuteDeletion,
+    TResult Function()? onActivateDeleteSelection,
+    TResult Function(AccountNavigation navigation)? onNavigateAccount,
+    TResult Function(LinkAccountParams params, String nickname)?
+        onLinkNewAccount,
+    TResult Function(Account account)? onSaveAccountAlias,
+    required TResult orElse(),
+  }) {
+    if (onActivateDeleteSelection != null) {
+      return onActivateDeleteSelection();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_OnRequestData value) onRequestData,
+    required TResult Function(_OnSetDefaultAccount value) onSetDefaultAccount,
+    required TResult Function(_OnUpdateDeletionList value) onUpdateDeletionList,
+    required TResult Function(_OnExecuteDeletion value) onExecuteDeletion,
+    required TResult Function(_OnActivateDeleteSelection value)
+        onActivateDeleteSelection,
+    required TResult Function(_OnNavigateAccount value) onNavigateAccount,
+    required TResult Function(_OnLinkNewAccount value) onLinkNewAccount,
+    required TResult Function(_OnSaveAccountAlias value) onSaveAccountAlias,
+  }) {
+    return onActivateDeleteSelection(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_OnRequestData value)? onRequestData,
+    TResult? Function(_OnSetDefaultAccount value)? onSetDefaultAccount,
+    TResult? Function(_OnUpdateDeletionList value)? onUpdateDeletionList,
+    TResult? Function(_OnExecuteDeletion value)? onExecuteDeletion,
+    TResult? Function(_OnActivateDeleteSelection value)?
+        onActivateDeleteSelection,
+    TResult? Function(_OnNavigateAccount value)? onNavigateAccount,
+    TResult? Function(_OnLinkNewAccount value)? onLinkNewAccount,
+    TResult? Function(_OnSaveAccountAlias value)? onSaveAccountAlias,
+  }) {
+    return onActivateDeleteSelection?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_OnRequestData value)? onRequestData,
+    TResult Function(_OnSetDefaultAccount value)? onSetDefaultAccount,
+    TResult Function(_OnUpdateDeletionList value)? onUpdateDeletionList,
+    TResult Function(_OnExecuteDeletion value)? onExecuteDeletion,
+    TResult Function(_OnActivateDeleteSelection value)?
+        onActivateDeleteSelection,
+    TResult Function(_OnNavigateAccount value)? onNavigateAccount,
+    TResult Function(_OnLinkNewAccount value)? onLinkNewAccount,
+    TResult Function(_OnSaveAccountAlias value)? onSaveAccountAlias,
+    required TResult orElse(),
+  }) {
+    if (onActivateDeleteSelection != null) {
+      return onActivateDeleteSelection(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _OnActivateDeleteSelection implements ProfileEvent {
+  const factory _OnActivateDeleteSelection() = _$OnActivateDeleteSelectionImpl;
 }
 
 /// @nodoc
@@ -460,6 +1033,10 @@ class _$OnNavigateAccountImpl implements _OnNavigateAccount {
   TResult when<TResult extends Object?>({
     required TResult Function() onRequestData,
     required TResult Function(String accountNo) onSetDefaultAccount,
+    required TResult Function(Account account, bool remove)
+        onUpdateDeletionList,
+    required TResult Function() onExecuteDeletion,
+    required TResult Function() onActivateDeleteSelection,
     required TResult Function(AccountNavigation navigation) onNavigateAccount,
     required TResult Function(LinkAccountParams params, String nickname)
         onLinkNewAccount,
@@ -473,6 +1050,9 @@ class _$OnNavigateAccountImpl implements _OnNavigateAccount {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? onRequestData,
     TResult? Function(String accountNo)? onSetDefaultAccount,
+    TResult? Function(Account account, bool remove)? onUpdateDeletionList,
+    TResult? Function()? onExecuteDeletion,
+    TResult? Function()? onActivateDeleteSelection,
     TResult? Function(AccountNavigation navigation)? onNavigateAccount,
     TResult? Function(LinkAccountParams params, String nickname)?
         onLinkNewAccount,
@@ -486,6 +1066,9 @@ class _$OnNavigateAccountImpl implements _OnNavigateAccount {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? onRequestData,
     TResult Function(String accountNo)? onSetDefaultAccount,
+    TResult Function(Account account, bool remove)? onUpdateDeletionList,
+    TResult Function()? onExecuteDeletion,
+    TResult Function()? onActivateDeleteSelection,
     TResult Function(AccountNavigation navigation)? onNavigateAccount,
     TResult Function(LinkAccountParams params, String nickname)?
         onLinkNewAccount,
@@ -503,6 +1086,10 @@ class _$OnNavigateAccountImpl implements _OnNavigateAccount {
   TResult map<TResult extends Object?>({
     required TResult Function(_OnRequestData value) onRequestData,
     required TResult Function(_OnSetDefaultAccount value) onSetDefaultAccount,
+    required TResult Function(_OnUpdateDeletionList value) onUpdateDeletionList,
+    required TResult Function(_OnExecuteDeletion value) onExecuteDeletion,
+    required TResult Function(_OnActivateDeleteSelection value)
+        onActivateDeleteSelection,
     required TResult Function(_OnNavigateAccount value) onNavigateAccount,
     required TResult Function(_OnLinkNewAccount value) onLinkNewAccount,
     required TResult Function(_OnSaveAccountAlias value) onSaveAccountAlias,
@@ -515,6 +1102,10 @@ class _$OnNavigateAccountImpl implements _OnNavigateAccount {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_OnRequestData value)? onRequestData,
     TResult? Function(_OnSetDefaultAccount value)? onSetDefaultAccount,
+    TResult? Function(_OnUpdateDeletionList value)? onUpdateDeletionList,
+    TResult? Function(_OnExecuteDeletion value)? onExecuteDeletion,
+    TResult? Function(_OnActivateDeleteSelection value)?
+        onActivateDeleteSelection,
     TResult? Function(_OnNavigateAccount value)? onNavigateAccount,
     TResult? Function(_OnLinkNewAccount value)? onLinkNewAccount,
     TResult? Function(_OnSaveAccountAlias value)? onSaveAccountAlias,
@@ -527,6 +1118,10 @@ class _$OnNavigateAccountImpl implements _OnNavigateAccount {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_OnRequestData value)? onRequestData,
     TResult Function(_OnSetDefaultAccount value)? onSetDefaultAccount,
+    TResult Function(_OnUpdateDeletionList value)? onUpdateDeletionList,
+    TResult Function(_OnExecuteDeletion value)? onExecuteDeletion,
+    TResult Function(_OnActivateDeleteSelection value)?
+        onActivateDeleteSelection,
     TResult Function(_OnNavigateAccount value)? onNavigateAccount,
     TResult Function(_OnLinkNewAccount value)? onLinkNewAccount,
     TResult Function(_OnSaveAccountAlias value)? onSaveAccountAlias,
@@ -644,6 +1239,10 @@ class _$OnLinkNewAccountImpl implements _OnLinkNewAccount {
   TResult when<TResult extends Object?>({
     required TResult Function() onRequestData,
     required TResult Function(String accountNo) onSetDefaultAccount,
+    required TResult Function(Account account, bool remove)
+        onUpdateDeletionList,
+    required TResult Function() onExecuteDeletion,
+    required TResult Function() onActivateDeleteSelection,
     required TResult Function(AccountNavigation navigation) onNavigateAccount,
     required TResult Function(LinkAccountParams params, String nickname)
         onLinkNewAccount,
@@ -657,6 +1256,9 @@ class _$OnLinkNewAccountImpl implements _OnLinkNewAccount {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? onRequestData,
     TResult? Function(String accountNo)? onSetDefaultAccount,
+    TResult? Function(Account account, bool remove)? onUpdateDeletionList,
+    TResult? Function()? onExecuteDeletion,
+    TResult? Function()? onActivateDeleteSelection,
     TResult? Function(AccountNavigation navigation)? onNavigateAccount,
     TResult? Function(LinkAccountParams params, String nickname)?
         onLinkNewAccount,
@@ -670,6 +1272,9 @@ class _$OnLinkNewAccountImpl implements _OnLinkNewAccount {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? onRequestData,
     TResult Function(String accountNo)? onSetDefaultAccount,
+    TResult Function(Account account, bool remove)? onUpdateDeletionList,
+    TResult Function()? onExecuteDeletion,
+    TResult Function()? onActivateDeleteSelection,
     TResult Function(AccountNavigation navigation)? onNavigateAccount,
     TResult Function(LinkAccountParams params, String nickname)?
         onLinkNewAccount,
@@ -687,6 +1292,10 @@ class _$OnLinkNewAccountImpl implements _OnLinkNewAccount {
   TResult map<TResult extends Object?>({
     required TResult Function(_OnRequestData value) onRequestData,
     required TResult Function(_OnSetDefaultAccount value) onSetDefaultAccount,
+    required TResult Function(_OnUpdateDeletionList value) onUpdateDeletionList,
+    required TResult Function(_OnExecuteDeletion value) onExecuteDeletion,
+    required TResult Function(_OnActivateDeleteSelection value)
+        onActivateDeleteSelection,
     required TResult Function(_OnNavigateAccount value) onNavigateAccount,
     required TResult Function(_OnLinkNewAccount value) onLinkNewAccount,
     required TResult Function(_OnSaveAccountAlias value) onSaveAccountAlias,
@@ -699,6 +1308,10 @@ class _$OnLinkNewAccountImpl implements _OnLinkNewAccount {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_OnRequestData value)? onRequestData,
     TResult? Function(_OnSetDefaultAccount value)? onSetDefaultAccount,
+    TResult? Function(_OnUpdateDeletionList value)? onUpdateDeletionList,
+    TResult? Function(_OnExecuteDeletion value)? onExecuteDeletion,
+    TResult? Function(_OnActivateDeleteSelection value)?
+        onActivateDeleteSelection,
     TResult? Function(_OnNavigateAccount value)? onNavigateAccount,
     TResult? Function(_OnLinkNewAccount value)? onLinkNewAccount,
     TResult? Function(_OnSaveAccountAlias value)? onSaveAccountAlias,
@@ -711,6 +1324,10 @@ class _$OnLinkNewAccountImpl implements _OnLinkNewAccount {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_OnRequestData value)? onRequestData,
     TResult Function(_OnSetDefaultAccount value)? onSetDefaultAccount,
+    TResult Function(_OnUpdateDeletionList value)? onUpdateDeletionList,
+    TResult Function(_OnExecuteDeletion value)? onExecuteDeletion,
+    TResult Function(_OnActivateDeleteSelection value)?
+        onActivateDeleteSelection,
     TResult Function(_OnNavigateAccount value)? onNavigateAccount,
     TResult Function(_OnLinkNewAccount value)? onLinkNewAccount,
     TResult Function(_OnSaveAccountAlias value)? onSaveAccountAlias,
@@ -821,6 +1438,10 @@ class _$OnSaveAccountAliasImpl implements _OnSaveAccountAlias {
   TResult when<TResult extends Object?>({
     required TResult Function() onRequestData,
     required TResult Function(String accountNo) onSetDefaultAccount,
+    required TResult Function(Account account, bool remove)
+        onUpdateDeletionList,
+    required TResult Function() onExecuteDeletion,
+    required TResult Function() onActivateDeleteSelection,
     required TResult Function(AccountNavigation navigation) onNavigateAccount,
     required TResult Function(LinkAccountParams params, String nickname)
         onLinkNewAccount,
@@ -834,6 +1455,9 @@ class _$OnSaveAccountAliasImpl implements _OnSaveAccountAlias {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? onRequestData,
     TResult? Function(String accountNo)? onSetDefaultAccount,
+    TResult? Function(Account account, bool remove)? onUpdateDeletionList,
+    TResult? Function()? onExecuteDeletion,
+    TResult? Function()? onActivateDeleteSelection,
     TResult? Function(AccountNavigation navigation)? onNavigateAccount,
     TResult? Function(LinkAccountParams params, String nickname)?
         onLinkNewAccount,
@@ -847,6 +1471,9 @@ class _$OnSaveAccountAliasImpl implements _OnSaveAccountAlias {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? onRequestData,
     TResult Function(String accountNo)? onSetDefaultAccount,
+    TResult Function(Account account, bool remove)? onUpdateDeletionList,
+    TResult Function()? onExecuteDeletion,
+    TResult Function()? onActivateDeleteSelection,
     TResult Function(AccountNavigation navigation)? onNavigateAccount,
     TResult Function(LinkAccountParams params, String nickname)?
         onLinkNewAccount,
@@ -864,6 +1491,10 @@ class _$OnSaveAccountAliasImpl implements _OnSaveAccountAlias {
   TResult map<TResult extends Object?>({
     required TResult Function(_OnRequestData value) onRequestData,
     required TResult Function(_OnSetDefaultAccount value) onSetDefaultAccount,
+    required TResult Function(_OnUpdateDeletionList value) onUpdateDeletionList,
+    required TResult Function(_OnExecuteDeletion value) onExecuteDeletion,
+    required TResult Function(_OnActivateDeleteSelection value)
+        onActivateDeleteSelection,
     required TResult Function(_OnNavigateAccount value) onNavigateAccount,
     required TResult Function(_OnLinkNewAccount value) onLinkNewAccount,
     required TResult Function(_OnSaveAccountAlias value) onSaveAccountAlias,
@@ -876,6 +1507,10 @@ class _$OnSaveAccountAliasImpl implements _OnSaveAccountAlias {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_OnRequestData value)? onRequestData,
     TResult? Function(_OnSetDefaultAccount value)? onSetDefaultAccount,
+    TResult? Function(_OnUpdateDeletionList value)? onUpdateDeletionList,
+    TResult? Function(_OnExecuteDeletion value)? onExecuteDeletion,
+    TResult? Function(_OnActivateDeleteSelection value)?
+        onActivateDeleteSelection,
     TResult? Function(_OnNavigateAccount value)? onNavigateAccount,
     TResult? Function(_OnLinkNewAccount value)? onLinkNewAccount,
     TResult? Function(_OnSaveAccountAlias value)? onSaveAccountAlias,
@@ -888,6 +1523,10 @@ class _$OnSaveAccountAliasImpl implements _OnSaveAccountAlias {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_OnRequestData value)? onRequestData,
     TResult Function(_OnSetDefaultAccount value)? onSetDefaultAccount,
+    TResult Function(_OnUpdateDeletionList value)? onUpdateDeletionList,
+    TResult Function(_OnExecuteDeletion value)? onExecuteDeletion,
+    TResult Function(_OnActivateDeleteSelection value)?
+        onActivateDeleteSelection,
     TResult Function(_OnNavigateAccount value)? onNavigateAccount,
     TResult Function(_OnLinkNewAccount value)? onLinkNewAccount,
     TResult Function(_OnSaveAccountAlias value)? onSaveAccountAlias,
@@ -1063,12 +1702,16 @@ abstract class _ProfileState implements ProfileState {
 mixin _$AccountState {
   AccountStatus get status => throw _privateConstructorUsedError;
   AddAccountStatus get addAccountStatus => throw _privateConstructorUsedError;
+  AccountDeletionStatus get accountDeletionStatus =>
+      throw _privateConstructorUsedError;
   SetDefaultAccountStatus get setDefaultAccountStatus =>
       throw _privateConstructorUsedError;
   SaveAccountAliasStatus get saveAccountAliasStatus =>
       throw _privateConstructorUsedError;
   DynamicError? get error => throw _privateConstructorUsedError;
+  bool get accountDeleteSelection => throw _privateConstructorUsedError;
   List<Account> get linkedAccounts => throw _privateConstructorUsedError;
+  List<Account> get deletionList => throw _privateConstructorUsedError;
   Account? get defaultAccount => throw _privateConstructorUsedError;
   Account? get displayedAccount => throw _privateConstructorUsedError;
 
@@ -1088,10 +1731,13 @@ abstract class $AccountStateCopyWith<$Res> {
   $Res call(
       {AccountStatus status,
       AddAccountStatus addAccountStatus,
+      AccountDeletionStatus accountDeletionStatus,
       SetDefaultAccountStatus setDefaultAccountStatus,
       SaveAccountAliasStatus saveAccountAliasStatus,
       DynamicError? error,
+      bool accountDeleteSelection,
       List<Account> linkedAccounts,
+      List<Account> deletionList,
       Account? defaultAccount,
       Account? displayedAccount});
 
@@ -1116,10 +1762,13 @@ class _$AccountStateCopyWithImpl<$Res, $Val extends AccountState>
   $Res call({
     Object? status = null,
     Object? addAccountStatus = null,
+    Object? accountDeletionStatus = null,
     Object? setDefaultAccountStatus = null,
     Object? saveAccountAliasStatus = null,
     Object? error = freezed,
+    Object? accountDeleteSelection = null,
     Object? linkedAccounts = null,
+    Object? deletionList = null,
     Object? defaultAccount = freezed,
     Object? displayedAccount = freezed,
   }) {
@@ -1132,6 +1781,10 @@ class _$AccountStateCopyWithImpl<$Res, $Val extends AccountState>
           ? _value.addAccountStatus
           : addAccountStatus // ignore: cast_nullable_to_non_nullable
               as AddAccountStatus,
+      accountDeletionStatus: null == accountDeletionStatus
+          ? _value.accountDeletionStatus
+          : accountDeletionStatus // ignore: cast_nullable_to_non_nullable
+              as AccountDeletionStatus,
       setDefaultAccountStatus: null == setDefaultAccountStatus
           ? _value.setDefaultAccountStatus
           : setDefaultAccountStatus // ignore: cast_nullable_to_non_nullable
@@ -1144,9 +1797,17 @@ class _$AccountStateCopyWithImpl<$Res, $Val extends AccountState>
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
               as DynamicError?,
+      accountDeleteSelection: null == accountDeleteSelection
+          ? _value.accountDeleteSelection
+          : accountDeleteSelection // ignore: cast_nullable_to_non_nullable
+              as bool,
       linkedAccounts: null == linkedAccounts
           ? _value.linkedAccounts
           : linkedAccounts // ignore: cast_nullable_to_non_nullable
+              as List<Account>,
+      deletionList: null == deletionList
+          ? _value.deletionList
+          : deletionList // ignore: cast_nullable_to_non_nullable
               as List<Account>,
       defaultAccount: freezed == defaultAccount
           ? _value.defaultAccount
@@ -1199,10 +1860,13 @@ abstract class _$$AccountStateImplCopyWith<$Res>
   $Res call(
       {AccountStatus status,
       AddAccountStatus addAccountStatus,
+      AccountDeletionStatus accountDeletionStatus,
       SetDefaultAccountStatus setDefaultAccountStatus,
       SaveAccountAliasStatus saveAccountAliasStatus,
       DynamicError? error,
+      bool accountDeleteSelection,
       List<Account> linkedAccounts,
+      List<Account> deletionList,
       Account? defaultAccount,
       Account? displayedAccount});
 
@@ -1227,10 +1891,13 @@ class __$$AccountStateImplCopyWithImpl<$Res>
   $Res call({
     Object? status = null,
     Object? addAccountStatus = null,
+    Object? accountDeletionStatus = null,
     Object? setDefaultAccountStatus = null,
     Object? saveAccountAliasStatus = null,
     Object? error = freezed,
+    Object? accountDeleteSelection = null,
     Object? linkedAccounts = null,
+    Object? deletionList = null,
     Object? defaultAccount = freezed,
     Object? displayedAccount = freezed,
   }) {
@@ -1243,6 +1910,10 @@ class __$$AccountStateImplCopyWithImpl<$Res>
           ? _value.addAccountStatus
           : addAccountStatus // ignore: cast_nullable_to_non_nullable
               as AddAccountStatus,
+      accountDeletionStatus: null == accountDeletionStatus
+          ? _value.accountDeletionStatus
+          : accountDeletionStatus // ignore: cast_nullable_to_non_nullable
+              as AccountDeletionStatus,
       setDefaultAccountStatus: null == setDefaultAccountStatus
           ? _value.setDefaultAccountStatus
           : setDefaultAccountStatus // ignore: cast_nullable_to_non_nullable
@@ -1255,9 +1926,17 @@ class __$$AccountStateImplCopyWithImpl<$Res>
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
               as DynamicError?,
+      accountDeleteSelection: null == accountDeleteSelection
+          ? _value.accountDeleteSelection
+          : accountDeleteSelection // ignore: cast_nullable_to_non_nullable
+              as bool,
       linkedAccounts: null == linkedAccounts
           ? _value._linkedAccounts
           : linkedAccounts // ignore: cast_nullable_to_non_nullable
+              as List<Account>,
+      deletionList: null == deletionList
+          ? _value._deletionList
+          : deletionList // ignore: cast_nullable_to_non_nullable
               as List<Account>,
       defaultAccount: freezed == defaultAccount
           ? _value.defaultAccount
@@ -1277,13 +1956,17 @@ class _$AccountStateImpl implements _AccountState {
   const _$AccountStateImpl(
       {this.status = AccountStatus.initial,
       this.addAccountStatus = AddAccountStatus.initial,
+      this.accountDeletionStatus = AccountDeletionStatus.initial,
       this.setDefaultAccountStatus = SetDefaultAccountStatus.initial,
       this.saveAccountAliasStatus = SaveAccountAliasStatus.initial,
       this.error,
+      this.accountDeleteSelection = false,
       final List<Account> linkedAccounts = const [],
+      final List<Account> deletionList = const [],
       this.defaultAccount,
       this.displayedAccount})
-      : _linkedAccounts = linkedAccounts;
+      : _linkedAccounts = linkedAccounts,
+        _deletionList = deletionList;
 
   @override
   @JsonKey()
@@ -1293,12 +1976,18 @@ class _$AccountStateImpl implements _AccountState {
   final AddAccountStatus addAccountStatus;
   @override
   @JsonKey()
+  final AccountDeletionStatus accountDeletionStatus;
+  @override
+  @JsonKey()
   final SetDefaultAccountStatus setDefaultAccountStatus;
   @override
   @JsonKey()
   final SaveAccountAliasStatus saveAccountAliasStatus;
   @override
   final DynamicError? error;
+  @override
+  @JsonKey()
+  final bool accountDeleteSelection;
   final List<Account> _linkedAccounts;
   @override
   @JsonKey()
@@ -1308,6 +1997,15 @@ class _$AccountStateImpl implements _AccountState {
     return EqualUnmodifiableListView(_linkedAccounts);
   }
 
+  final List<Account> _deletionList;
+  @override
+  @JsonKey()
+  List<Account> get deletionList {
+    if (_deletionList is EqualUnmodifiableListView) return _deletionList;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_deletionList);
+  }
+
   @override
   final Account? defaultAccount;
   @override
@@ -1315,7 +2013,7 @@ class _$AccountStateImpl implements _AccountState {
 
   @override
   String toString() {
-    return 'AccountState(status: $status, addAccountStatus: $addAccountStatus, setDefaultAccountStatus: $setDefaultAccountStatus, saveAccountAliasStatus: $saveAccountAliasStatus, error: $error, linkedAccounts: $linkedAccounts, defaultAccount: $defaultAccount, displayedAccount: $displayedAccount)';
+    return 'AccountState(status: $status, addAccountStatus: $addAccountStatus, accountDeletionStatus: $accountDeletionStatus, setDefaultAccountStatus: $setDefaultAccountStatus, saveAccountAliasStatus: $saveAccountAliasStatus, error: $error, accountDeleteSelection: $accountDeleteSelection, linkedAccounts: $linkedAccounts, deletionList: $deletionList, defaultAccount: $defaultAccount, displayedAccount: $displayedAccount)';
   }
 
   @override
@@ -1326,14 +2024,20 @@ class _$AccountStateImpl implements _AccountState {
             (identical(other.status, status) || other.status == status) &&
             (identical(other.addAccountStatus, addAccountStatus) ||
                 other.addAccountStatus == addAccountStatus) &&
+            (identical(other.accountDeletionStatus, accountDeletionStatus) ||
+                other.accountDeletionStatus == accountDeletionStatus) &&
             (identical(
                     other.setDefaultAccountStatus, setDefaultAccountStatus) ||
                 other.setDefaultAccountStatus == setDefaultAccountStatus) &&
             (identical(other.saveAccountAliasStatus, saveAccountAliasStatus) ||
                 other.saveAccountAliasStatus == saveAccountAliasStatus) &&
             (identical(other.error, error) || other.error == error) &&
+            (identical(other.accountDeleteSelection, accountDeleteSelection) ||
+                other.accountDeleteSelection == accountDeleteSelection) &&
             const DeepCollectionEquality()
                 .equals(other._linkedAccounts, _linkedAccounts) &&
+            const DeepCollectionEquality()
+                .equals(other._deletionList, _deletionList) &&
             (identical(other.defaultAccount, defaultAccount) ||
                 other.defaultAccount == defaultAccount) &&
             (identical(other.displayedAccount, displayedAccount) ||
@@ -1345,10 +2049,13 @@ class _$AccountStateImpl implements _AccountState {
       runtimeType,
       status,
       addAccountStatus,
+      accountDeletionStatus,
       setDefaultAccountStatus,
       saveAccountAliasStatus,
       error,
+      accountDeleteSelection,
       const DeepCollectionEquality().hash(_linkedAccounts),
+      const DeepCollectionEquality().hash(_deletionList),
       defaultAccount,
       displayedAccount);
 
@@ -1365,10 +2072,13 @@ abstract class _AccountState implements AccountState {
   const factory _AccountState(
       {final AccountStatus status,
       final AddAccountStatus addAccountStatus,
+      final AccountDeletionStatus accountDeletionStatus,
       final SetDefaultAccountStatus setDefaultAccountStatus,
       final SaveAccountAliasStatus saveAccountAliasStatus,
       final DynamicError? error,
+      final bool accountDeleteSelection,
       final List<Account> linkedAccounts,
+      final List<Account> deletionList,
       final Account? defaultAccount,
       final Account? displayedAccount}) = _$AccountStateImpl;
 
@@ -1377,13 +2087,19 @@ abstract class _AccountState implements AccountState {
   @override
   AddAccountStatus get addAccountStatus;
   @override
+  AccountDeletionStatus get accountDeletionStatus;
+  @override
   SetDefaultAccountStatus get setDefaultAccountStatus;
   @override
   SaveAccountAliasStatus get saveAccountAliasStatus;
   @override
   DynamicError? get error;
   @override
+  bool get accountDeleteSelection;
+  @override
   List<Account> get linkedAccounts;
+  @override
+  List<Account> get deletionList;
   @override
   Account? get defaultAccount;
   @override
