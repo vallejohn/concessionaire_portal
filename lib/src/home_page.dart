@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mwd_concessionaire_portal/src/billing_information/presentation/pages/payments_page.dart';
 import 'package:mwd_concessionaire_portal/src/profile/presentation/pages/profile_page.dart';
 import 'package:mwd_concessionaire_portal/demo_pages/settings_page.dart';
 import 'package:mwd_concessionaire_portal/src/profile/presentation/blocs/profile/profile_bloc.dart';
@@ -49,6 +50,7 @@ class _HomePageState extends State<HomePage> {
           onPageChanged: _onPageChanged, // Listen for page changes
           children: [
             const BillInformationPage(),
+            const PaymentsPage(),
             BlocBuilder<ProfileBloc, ProfileState>(builder: (context, state) {
               final accountState = state.accountState;
 
@@ -66,7 +68,11 @@ class _HomePageState extends State<HomePage> {
         destinations: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.receipt),
-            label: 'Billing Information',
+            label: 'Billing',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.payments_outlined),
+            label: 'Payments',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person),
