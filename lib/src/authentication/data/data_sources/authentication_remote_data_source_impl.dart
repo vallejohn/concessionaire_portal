@@ -148,4 +148,22 @@ class AuthenticationRemoteDataSourceImpl extends AuthenticationDataSource {
     );
     return true;
   }
+
+  @override
+  Future<bool> logout()async {
+    final result = await APIEndpointService.authentication(
+      AuthenticationEndpoint.logout,
+      {},
+      onError: (dynamicError) {
+        throw ServerException(dynamicError);
+      },
+    );
+    final responseBody = result.body;
+
+    if(responseBody['status'] == 'success'){
+      await _authenticationCollection.clear();
+    }
+
+    return true;
+  }
 }

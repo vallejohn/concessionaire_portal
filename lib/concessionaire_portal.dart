@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mwd_concessionaire_portal/src/authentication/presentation/blocs/forgot_password/forgot_password_bloc.dart';
 import 'package:mwd_concessionaire_portal/src/authentication/presentation/blocs/login/login_bloc.dart';
+import 'package:mwd_concessionaire_portal/src/authentication/presentation/blocs/logout/logout_bloc.dart';
 import 'package:mwd_concessionaire_portal/src/authentication/presentation/blocs/otp/otp_bloc.dart';
 import 'package:mwd_concessionaire_portal/src/authentication/presentation/blocs/sign_up/sign_up_bloc.dart';
 import 'package:mwd_concessionaire_portal/src/billing_information/presentation/blocs/billing_information/billing_information_bloc.dart';
@@ -23,6 +24,7 @@ class ConcessionairePortal extends StatelessWidget {
         BlocProvider(create: (context) => ForgotPasswordBloc()),
         BlocProvider(create: (context) => ProfileBloc()),
         BlocProvider(create: (context) => BillingInformationBloc()),
+        BlocProvider(create: (context) => LogoutBloc()),
       ],
       child: MaterialApp.router(
         title: 'Concessionaire Portal',

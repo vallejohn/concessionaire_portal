@@ -20,6 +20,7 @@ enum AuthenticationEndpoint {
   createPassword,
   forgotPasswordSendOTP,
   registerSendOTP,
+  logout,
 }
 
 enum ProfileEndpoint {
@@ -165,6 +166,12 @@ class APIEndpointService {
         endpointResponse = await _doRequest(
             '$_baseUrl/api/reset-password',
             params: data,
+            onError: onError,
+            onSuccess: onSuccess
+        );
+      case AuthenticationEndpoint.logout:
+        endpointResponse = await _doRequest(
+            '$_baseUrl/api/logout',
             onError: onError,
             onSuccess: onSuccess
         );

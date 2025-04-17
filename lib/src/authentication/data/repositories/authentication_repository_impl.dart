@@ -93,4 +93,16 @@ class AuthenticationRepositoryImpl extends AuthenticationRepository{
       return Left(Failure.exception(authError));
     }
   }
+
+  @override
+  Future<Either<Failure, bool>> logout()async {
+    try{
+      final data = await dataSource.logout();
+      return Right(data);
+    }on HiveCollectionException catch(e){
+      return Left(Failure.hiveCollectionException(e));
+    }on BaseException catch(authError){
+      return Left(Failure.exception(authError));
+    }
+  }
 }

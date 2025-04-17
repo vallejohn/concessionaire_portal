@@ -11,6 +11,7 @@ import 'package:mwd_concessionaire_portal/src/authentication/domain/usecases/con
 import 'package:mwd_concessionaire_portal/src/authentication/domain/usecases/create_password_usecase.dart';
 import 'package:mwd_concessionaire_portal/src/authentication/domain/usecases/forgot_password_usecase.dart';
 import 'package:mwd_concessionaire_portal/src/authentication/domain/usecases/login_usecase.dart';
+import 'package:mwd_concessionaire_portal/src/authentication/domain/usecases/logout_usecase.dart';
 import 'package:mwd_concessionaire_portal/src/authentication/domain/usecases/request_auth_status_usecase.dart';
 import 'package:mwd_concessionaire_portal/src/authentication/domain/usecases/sign_up_usecase.dart';
 import 'package:mwd_concessionaire_portal/src/billing_information/data/data_sources/billing_information_data_source.dart';
@@ -66,6 +67,7 @@ void _setupAuth() {
   getIt.registerLazySingleton(() => ConfirmOTPUsecase(getIt()));
   getIt.registerLazySingleton(() => ForgotPasswordUsecase(getIt()));
   getIt.registerLazySingleton(() => CreatePasswordUsecase(getIt()));
+  getIt.registerLazySingleton(() => LogoutUsecase(getIt()));
 }
 
 void _setupProfile() {

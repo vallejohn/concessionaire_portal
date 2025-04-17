@@ -51,4 +51,10 @@ class AuthenticationLocalDataSourceImpl extends AuthenticationDataSource{
     // TODO: implement onCreatePassword
     throw UnimplementedError();
   }
+
+  @override
+  Future<bool> logout() {
+    // TODO: implement logout
+    throw UnimplementedError();
+  }
 }
