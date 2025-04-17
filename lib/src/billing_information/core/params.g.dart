@@ -17,3 +17,13 @@ Map<String, dynamic> _$$BillingHistoryParamsImplToJson(
     <String, dynamic>{
       'account_number': instance.accountNo,
     };
+
+_$PaymentParamsImpl _$$PaymentParamsImplFromJson(Map<String, dynamic> json) =>
+    _$PaymentParamsImpl(
+      accountNo: json['account_number'] as String,
+    );
+
+Map<String, dynamic> _$$PaymentParamsImplToJson(_$PaymentParamsImpl instance) =>
+    <String, dynamic>{
+      'account_number': instance.accountNo,
+    };

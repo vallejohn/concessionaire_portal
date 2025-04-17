@@ -172,3 +172,159 @@ abstract class _BillingHistoryParams implements BillingHistoryParams {
   _$$BillingHistoryParamsImplCopyWith<_$BillingHistoryParamsImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
+
+PaymentParams _$PaymentParamsFromJson(Map<String, dynamic> json) {
+  return _PaymentParams.fromJson(json);
+}
+
+/// @nodoc
+mixin _$PaymentParams {
+  @JsonKey(name: 'account_number')
+  String get accountNo => throw _privateConstructorUsedError;
+
+  /// Serializes this PaymentParams to a JSON map.
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+
+  /// Create a copy of PaymentParams
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $PaymentParamsCopyWith<PaymentParams> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $PaymentParamsCopyWith<$Res> {
+  factory $PaymentParamsCopyWith(
+          PaymentParams value, $Res Function(PaymentParams) then) =
+      _$PaymentParamsCopyWithImpl<$Res, PaymentParams>;
+  @useResult
+  $Res call({@JsonKey(name: 'account_number') String accountNo});
+}
+
+/// @nodoc
+class _$PaymentParamsCopyWithImpl<$Res, $Val extends PaymentParams>
+    implements $PaymentParamsCopyWith<$Res> {
+  _$PaymentParamsCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  /// Create a copy of PaymentParams
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? accountNo = null,
+  }) {
+    return _then(_value.copyWith(
+      accountNo: null == accountNo
+          ? _value.accountNo
+          : accountNo // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$PaymentParamsImplCopyWith<$Res>
+    implements $PaymentParamsCopyWith<$Res> {
+  factory _$$PaymentParamsImplCopyWith(
+          _$PaymentParamsImpl value, $Res Function(_$PaymentParamsImpl) then) =
+      __$$PaymentParamsImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({@JsonKey(name: 'account_number') String accountNo});
+}
+
+/// @nodoc
+class __$$PaymentParamsImplCopyWithImpl<$Res>
+    extends _$PaymentParamsCopyWithImpl<$Res, _$PaymentParamsImpl>
+    implements _$$PaymentParamsImplCopyWith<$Res> {
+  __$$PaymentParamsImplCopyWithImpl(
+      _$PaymentParamsImpl _value, $Res Function(_$PaymentParamsImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of PaymentParams
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? accountNo = null,
+  }) {
+    return _then(_$PaymentParamsImpl(
+      accountNo: null == accountNo
+          ? _value.accountNo
+          : accountNo // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$PaymentParamsImpl implements _PaymentParams {
+  const _$PaymentParamsImpl(
+      {@JsonKey(name: 'account_number') required this.accountNo});
+
+  factory _$PaymentParamsImpl.fromJson(Map<String, dynamic> json) =>
+      _$$PaymentParamsImplFromJson(json);
+
+  @override
+  @JsonKey(name: 'account_number')
+  final String accountNo;
+
+  @override
+  String toString() {
+    return 'PaymentParams(accountNo: $accountNo)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$PaymentParamsImpl &&
+            (identical(other.accountNo, accountNo) ||
+                other.accountNo == accountNo));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, accountNo);
+
+  /// Create a copy of PaymentParams
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$PaymentParamsImplCopyWith<_$PaymentParamsImpl> get copyWith =>
+      __$$PaymentParamsImplCopyWithImpl<_$PaymentParamsImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$PaymentParamsImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _PaymentParams implements PaymentParams {
+  const factory _PaymentParams(
+          {@JsonKey(name: 'account_number') required final String accountNo}) =
+      _$PaymentParamsImpl;
+
+  factory _PaymentParams.fromJson(Map<String, dynamic> json) =
+      _$PaymentParamsImpl.fromJson;
+
+  @override
+  @JsonKey(name: 'account_number')
+  String get accountNo;
+
+  /// Create a copy of PaymentParams
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$PaymentParamsImplCopyWith<_$PaymentParamsImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}

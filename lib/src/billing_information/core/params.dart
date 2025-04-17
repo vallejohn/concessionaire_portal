@@ -12,3 +12,13 @@ class BillingHistoryParams with _$BillingHistoryParams {
 
   factory BillingHistoryParams.fromJson(Map<String, dynamic> json) => _$BillingHistoryParamsFromJson(json);
 }
+
+@freezed
+class PaymentParams with _$PaymentParams {
+  const factory PaymentParams({
+    @JsonKey(name: 'account_number')
+    required String accountNo,
+  }) = _PaymentParams;
+
+  factory PaymentParams.fromJson(Map<String, dynamic> json) => _$PaymentParamsFromJson(json);
+}
