@@ -13,26 +13,42 @@ class _SettingsPageState extends State<SettingsPage> {
   bool _notifActive = false;
   bool _biometricActive = false;
 
-
   Widget _navItem(
     String title, {
-      Color? titleColor,
+    Color? titleColor,
     String? subtitle,
     VoidCallback? onTap,
     IconData? leadingIcon,
     Widget? trailingWidget,
+    bool active = true,
   }) {
     final textStyle = Theme.of(context).textTheme;
 
+    Color effectiveTitleColor = Theme.of(context).colorScheme.primary;
+    Color? effectiveSubTitleColor;
+
+    if(!active){
+      effectiveTitleColor = Theme.of(context).disabledColor;
+      effectiveSubTitleColor = Theme.of(context).disabledColor;
+    }else if(titleColor != null){
+      effectiveTitleColor = titleColor;
+    }
+
     return InkWell(
-      onTap: onTap,
+      onTap: !active? null : onTap,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
         child: Row(
           children: [
-            if(leadingIcon != null)
-              Icon(leadingIcon, color: Theme.of(context).primaryColor,),
-            if(leadingIcon != null) const SizedBox(width: 15,),
+            if (leadingIcon != null)
+              Icon(
+                leadingIcon,
+                color: effectiveTitleColor,
+              ),
+            if (leadingIcon != null)
+              const SizedBox(
+                width: 15,
+              ),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -41,22 +57,22 @@ class _SettingsPageState extends State<SettingsPage> {
                     title,
                     style: textStyle.titleLarge?.copyWith(
                         fontWeight: FontWeight.w500,
-                        color: titleColor?? Theme.of(context).colorScheme.primary),
+                        color: effectiveTitleColor),
                   ),
                   if (subtitle != null)
                     Text(
                       subtitle,
-                      style: textStyle.bodyLarge,
+                      style: textStyle.bodyLarge?.copyWith(color: effectiveSubTitleColor),
                     ),
                 ],
               ),
             ),
-            if(trailingWidget != null)
-              trailingWidget,
-            if(trailingWidget == null) Icon(
-              Icons.arrow_forward_ios_rounded,
-              color: Theme.of(context).disabledColor,
-            ),
+            if (trailingWidget != null) trailingWidget,
+            if (trailingWidget == null)
+              Icon(
+                Icons.arrow_forward_ios_rounded,
+                color: Theme.of(context).disabledColor,
+              ),
           ],
         ),
       ),
@@ -85,11 +101,11 @@ class _SettingsPageState extends State<SettingsPage> {
           _navItem(
             'About us',
             subtitle: 'Learn more about Murcia Water District',
-            onTap: ()async {
+            onTap: () async {
               final Uri uri = Uri.parse('https://murciawd.gov.ph/about-us');
               if (await canLaunchUrl(uri)) {
-              await launchUrl(uri, mode: LaunchMode.externalApplication);
-              }else{
+                await launchUrl(uri, mode: LaunchMode.externalApplication);
+              } else {
                 Logger().i('cannot open url');
               }
             },
@@ -115,6 +131,7 @@ class _SettingsPageState extends State<SettingsPage> {
             leadingIcon: Icons.gas_meter,
             subtitle: 'Check your current consumption',
             onTap: () {},
+            active: false,
           ),
           /*_navItem(
             'Notifications',
@@ -140,27 +157,24 @@ class _SettingsPageState extends State<SettingsPage> {
             'Logout',
             leadingIcon: Icons.logout_rounded,
             subtitle: 'Logout your account',
-            onTap: (){
-
-            },
+            onTap: () {},
           ),
-          _navItem(
-            'Version',
-            subtitle: 'Tap to check for latest version',
-            trailingWidget: Text('v1.0.0', style: textStyle.bodyLarge,),
-            onTap: (){
-
-            }
+          _navItem('Version',
+              subtitle: 'Tap to check for latest version',
+              trailingWidget: Text(
+                'v1.0.0',
+                style: textStyle.bodyLarge,
+              ),
+              onTap: () {}),
+          const Divider(
+            height: 30,
           ),
-          const Divider(height: 30,),
           _navItem(
             'Delete Account',
             titleColor: Theme.of(context).colorScheme.error,
             leadingIcon: Icons.delete_forever_rounded,
             subtitle: 'This action cannot be undone',
-            onTap: (){
-
-            },
+            onTap: () {},
           ),
         ],
       ),
