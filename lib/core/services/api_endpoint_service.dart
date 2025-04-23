@@ -31,7 +31,7 @@ enum ProfileEndpoint {
 
 enum BillingEndpoint {
   bills,
-  payments,
+  accountSummary,
 }
 
 class EndpointResponse {
@@ -246,12 +246,12 @@ class APIEndpointService {
             onSuccess: onSuccess
         );
         break;
-      case BillingEndpoint.payments:
+      case BillingEndpoint.accountSummary:
         assert(data is PaymentParams, 'Incorrect parameter type');
         PaymentParams params = data as PaymentParams;
 
         endpointResponse = await _doRequest(
-            '$_baseUrl/api/payments',
+            '$_baseUrl/api/account-summary?account_number=${params.accountNo}',
             operation: Operation.get,
             onError: onError,
             onSuccess: onSuccess

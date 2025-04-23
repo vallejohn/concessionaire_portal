@@ -21,7 +21,7 @@ BillingInformation _$BillingInformationFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$BillingInformation {
   int get id => throw _privateConstructorUsedError;
-  @JsonKey(name: 'account_number')
+  @JsonKey(name: 'account_no')
   String get accountNo => throw _privateConstructorUsedError;
   @JsonKey(name: 'bill_no')
   String get billNo => throw _privateConstructorUsedError;
@@ -82,7 +82,7 @@ abstract class $BillingInformationCopyWith<$Res> {
   @useResult
   $Res call(
       {int id,
-      @JsonKey(name: 'account_number') String accountNo,
+      @JsonKey(name: 'account_no') String accountNo,
       @JsonKey(name: 'bill_no') String billNo,
       String name,
       String address,
@@ -270,7 +270,7 @@ abstract class _$$BillingInformationImplCopyWith<$Res>
   @useResult
   $Res call(
       {int id,
-      @JsonKey(name: 'account_number') String accountNo,
+      @JsonKey(name: 'account_no') String accountNo,
       @JsonKey(name: 'bill_no') String billNo,
       String name,
       String address,
@@ -451,7 +451,7 @@ class __$$BillingInformationImplCopyWithImpl<$Res>
 class _$BillingInformationImpl implements _BillingInformation {
   const _$BillingInformationImpl(
       {this.id = 0,
-      @JsonKey(name: 'account_number') this.accountNo = '',
+      @JsonKey(name: 'account_no') this.accountNo = '',
       @JsonKey(name: 'bill_no') this.billNo = '',
       this.name = '',
       this.address = '',
@@ -484,7 +484,7 @@ class _$BillingInformationImpl implements _BillingInformation {
   @JsonKey()
   final int id;
   @override
-  @JsonKey(name: 'account_number')
+  @JsonKey(name: 'account_no')
   final String accountNo;
   @override
   @JsonKey(name: 'bill_no')
@@ -665,7 +665,7 @@ class _$BillingInformationImpl implements _BillingInformation {
 abstract class _BillingInformation implements BillingInformation {
   const factory _BillingInformation(
           {final int id,
-          @JsonKey(name: 'account_number') final String accountNo,
+          @JsonKey(name: 'account_no') final String accountNo,
           @JsonKey(name: 'bill_no') final String billNo,
           final String name,
           final String address,
@@ -698,7 +698,7 @@ abstract class _BillingInformation implements BillingInformation {
   @override
   int get id;
   @override
-  @JsonKey(name: 'account_number')
+  @JsonKey(name: 'account_no')
   String get accountNo;
   @override
   @JsonKey(name: 'bill_no')

@@ -9,5 +9,17 @@ class BillingInformationState with _$BillingInformationState {
     DynamicError? error,
     @Default([]) List<BillingInformation> billHistory,
     BillingInformation? latestBill,
+    @Default(PaymentState()) PaymentState paymentState,
   }) = _BillingInformationState;
+}
+
+enum PaymentStatus {initial, loading, success, failed}
+
+@freezed
+class PaymentState with _$PaymentState {
+  const factory PaymentState({
+    @Default(PaymentStatus.initial) PaymentStatus status,
+    DynamicError? error,
+    @Default([]) List<Payment> payments,
+  }) = _PaymentState;
 }

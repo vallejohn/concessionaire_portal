@@ -33,27 +33,18 @@ class BillingInformationRemoteDataSourceImpl extends BillingInformationDataSourc
   Future<List<Payment>> getPayments(PaymentParams params)async {
     List<Payment> payments = [];
 
-    await APIEndpointService.billing(
-        BillingEndpoint.payments,
+    final response = await APIEndpointService.billing(
+        BillingEndpoint.accountSummary,
         params,
         onError: (dynamicError) {
           throw ServerException(dynamicError);
         },
-        onSuccess: (data){
-          payments = (data['payments'] as List).map((e) => Payment.fromJson(e)).toList();
-        }
     );
 
-    payments = List.generate(23, (index){
-      return Payment(
-        referenceNo: '232982$index',
-        transactionDate: '01/05/2024',
-        particulars: 'Water Bill',
-        reading: 3644,
-        usage: 13,
-        debit: 260.70,
-        balance: 970.60
-      );
+    Logger().i(response.body['data']['data']);
+
+    payments = (response.body['data']['data'] as List).map((e){
+      return Payment.fromJson(e);
     }).toList();
 
     return payments;

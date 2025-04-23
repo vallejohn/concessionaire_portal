@@ -20,16 +20,19 @@ mixin _$BillingInformationEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String accountNumber) onRequestBillingHistory,
+    required TResult Function(String accountNumber) onRequestPaymentHistory,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String accountNumber)? onRequestBillingHistory,
+    TResult? Function(String accountNumber)? onRequestPaymentHistory,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String accountNumber)? onRequestBillingHistory,
+    TResult Function(String accountNumber)? onRequestPaymentHistory,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -37,16 +40,20 @@ mixin _$BillingInformationEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(_OnRequestBillingHistory value)
         onRequestBillingHistory,
+    required TResult Function(_OnRequestPaymentHistory value)
+        onRequestPaymentHistory,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_OnRequestBillingHistory value)? onRequestBillingHistory,
+    TResult? Function(_OnRequestPaymentHistory value)? onRequestPaymentHistory,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_OnRequestBillingHistory value)? onRequestBillingHistory,
+    TResult Function(_OnRequestPaymentHistory value)? onRequestPaymentHistory,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -170,6 +177,7 @@ class _$OnRequestBillingHistoryImpl implements _OnRequestBillingHistory {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String accountNumber) onRequestBillingHistory,
+    required TResult Function(String accountNumber) onRequestPaymentHistory,
   }) {
     return onRequestBillingHistory(accountNumber);
   }
@@ -178,6 +186,7 @@ class _$OnRequestBillingHistoryImpl implements _OnRequestBillingHistory {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String accountNumber)? onRequestBillingHistory,
+    TResult? Function(String accountNumber)? onRequestPaymentHistory,
   }) {
     return onRequestBillingHistory?.call(accountNumber);
   }
@@ -186,6 +195,7 @@ class _$OnRequestBillingHistoryImpl implements _OnRequestBillingHistory {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String accountNumber)? onRequestBillingHistory,
+    TResult Function(String accountNumber)? onRequestPaymentHistory,
     required TResult orElse(),
   }) {
     if (onRequestBillingHistory != null) {
@@ -199,6 +209,8 @@ class _$OnRequestBillingHistoryImpl implements _OnRequestBillingHistory {
   TResult map<TResult extends Object?>({
     required TResult Function(_OnRequestBillingHistory value)
         onRequestBillingHistory,
+    required TResult Function(_OnRequestPaymentHistory value)
+        onRequestPaymentHistory,
   }) {
     return onRequestBillingHistory(this);
   }
@@ -207,6 +219,7 @@ class _$OnRequestBillingHistoryImpl implements _OnRequestBillingHistory {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_OnRequestBillingHistory value)? onRequestBillingHistory,
+    TResult? Function(_OnRequestPaymentHistory value)? onRequestPaymentHistory,
   }) {
     return onRequestBillingHistory?.call(this);
   }
@@ -215,6 +228,7 @@ class _$OnRequestBillingHistoryImpl implements _OnRequestBillingHistory {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_OnRequestBillingHistory value)? onRequestBillingHistory,
+    TResult Function(_OnRequestPaymentHistory value)? onRequestPaymentHistory,
     required TResult orElse(),
   }) {
     if (onRequestBillingHistory != null) {
@@ -240,12 +254,165 @@ abstract class _OnRequestBillingHistory implements BillingInformationEvent {
 }
 
 /// @nodoc
+abstract class _$$OnRequestPaymentHistoryImplCopyWith<$Res>
+    implements $BillingInformationEventCopyWith<$Res> {
+  factory _$$OnRequestPaymentHistoryImplCopyWith(
+          _$OnRequestPaymentHistoryImpl value,
+          $Res Function(_$OnRequestPaymentHistoryImpl) then) =
+      __$$OnRequestPaymentHistoryImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String accountNumber});
+}
+
+/// @nodoc
+class __$$OnRequestPaymentHistoryImplCopyWithImpl<$Res>
+    extends _$BillingInformationEventCopyWithImpl<$Res,
+        _$OnRequestPaymentHistoryImpl>
+    implements _$$OnRequestPaymentHistoryImplCopyWith<$Res> {
+  __$$OnRequestPaymentHistoryImplCopyWithImpl(
+      _$OnRequestPaymentHistoryImpl _value,
+      $Res Function(_$OnRequestPaymentHistoryImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of BillingInformationEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? accountNumber = null,
+  }) {
+    return _then(_$OnRequestPaymentHistoryImpl(
+      null == accountNumber
+          ? _value.accountNumber
+          : accountNumber // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$OnRequestPaymentHistoryImpl implements _OnRequestPaymentHistory {
+  const _$OnRequestPaymentHistoryImpl(this.accountNumber);
+
+  @override
+  final String accountNumber;
+
+  @override
+  String toString() {
+    return 'BillingInformationEvent.onRequestPaymentHistory(accountNumber: $accountNumber)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$OnRequestPaymentHistoryImpl &&
+            (identical(other.accountNumber, accountNumber) ||
+                other.accountNumber == accountNumber));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, accountNumber);
+
+  /// Create a copy of BillingInformationEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$OnRequestPaymentHistoryImplCopyWith<_$OnRequestPaymentHistoryImpl>
+      get copyWith => __$$OnRequestPaymentHistoryImplCopyWithImpl<
+          _$OnRequestPaymentHistoryImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String accountNumber) onRequestBillingHistory,
+    required TResult Function(String accountNumber) onRequestPaymentHistory,
+  }) {
+    return onRequestPaymentHistory(accountNumber);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String accountNumber)? onRequestBillingHistory,
+    TResult? Function(String accountNumber)? onRequestPaymentHistory,
+  }) {
+    return onRequestPaymentHistory?.call(accountNumber);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String accountNumber)? onRequestBillingHistory,
+    TResult Function(String accountNumber)? onRequestPaymentHistory,
+    required TResult orElse(),
+  }) {
+    if (onRequestPaymentHistory != null) {
+      return onRequestPaymentHistory(accountNumber);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_OnRequestBillingHistory value)
+        onRequestBillingHistory,
+    required TResult Function(_OnRequestPaymentHistory value)
+        onRequestPaymentHistory,
+  }) {
+    return onRequestPaymentHistory(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_OnRequestBillingHistory value)? onRequestBillingHistory,
+    TResult? Function(_OnRequestPaymentHistory value)? onRequestPaymentHistory,
+  }) {
+    return onRequestPaymentHistory?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_OnRequestBillingHistory value)? onRequestBillingHistory,
+    TResult Function(_OnRequestPaymentHistory value)? onRequestPaymentHistory,
+    required TResult orElse(),
+  }) {
+    if (onRequestPaymentHistory != null) {
+      return onRequestPaymentHistory(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _OnRequestPaymentHistory implements BillingInformationEvent {
+  const factory _OnRequestPaymentHistory(final String accountNumber) =
+      _$OnRequestPaymentHistoryImpl;
+
+  @override
+  String get accountNumber;
+
+  /// Create a copy of BillingInformationEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$OnRequestPaymentHistoryImplCopyWith<_$OnRequestPaymentHistoryImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
 mixin _$BillingInformationState {
   BillingInformationStatus get status => throw _privateConstructorUsedError;
   DynamicError? get error => throw _privateConstructorUsedError;
   List<BillingInformation> get billHistory =>
       throw _privateConstructorUsedError;
   BillingInformation? get latestBill => throw _privateConstructorUsedError;
+  PaymentState get paymentState => throw _privateConstructorUsedError;
 
   /// Create a copy of BillingInformationState
   /// with the given fields replaced by the non-null parameter values.
@@ -264,9 +431,11 @@ abstract class $BillingInformationStateCopyWith<$Res> {
       {BillingInformationStatus status,
       DynamicError? error,
       List<BillingInformation> billHistory,
-      BillingInformation? latestBill});
+      BillingInformation? latestBill,
+      PaymentState paymentState});
 
   $BillingInformationCopyWith<$Res>? get latestBill;
+  $PaymentStateCopyWith<$Res> get paymentState;
 }
 
 /// @nodoc
@@ -289,6 +458,7 @@ class _$BillingInformationStateCopyWithImpl<$Res,
     Object? error = freezed,
     Object? billHistory = null,
     Object? latestBill = freezed,
+    Object? paymentState = null,
   }) {
     return _then(_value.copyWith(
       status: null == status
@@ -307,6 +477,10 @@ class _$BillingInformationStateCopyWithImpl<$Res,
           ? _value.latestBill
           : latestBill // ignore: cast_nullable_to_non_nullable
               as BillingInformation?,
+      paymentState: null == paymentState
+          ? _value.paymentState
+          : paymentState // ignore: cast_nullable_to_non_nullable
+              as PaymentState,
     ) as $Val);
   }
 
@@ -321,6 +495,16 @@ class _$BillingInformationStateCopyWithImpl<$Res,
 
     return $BillingInformationCopyWith<$Res>(_value.latestBill!, (value) {
       return _then(_value.copyWith(latestBill: value) as $Val);
+    });
+  }
+
+  /// Create a copy of BillingInformationState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $PaymentStateCopyWith<$Res> get paymentState {
+    return $PaymentStateCopyWith<$Res>(_value.paymentState, (value) {
+      return _then(_value.copyWith(paymentState: value) as $Val);
     });
   }
 }
@@ -338,10 +522,13 @@ abstract class _$$BillingInformationStateImplCopyWith<$Res>
       {BillingInformationStatus status,
       DynamicError? error,
       List<BillingInformation> billHistory,
-      BillingInformation? latestBill});
+      BillingInformation? latestBill,
+      PaymentState paymentState});
 
   @override
   $BillingInformationCopyWith<$Res>? get latestBill;
+  @override
+  $PaymentStateCopyWith<$Res> get paymentState;
 }
 
 /// @nodoc
@@ -363,6 +550,7 @@ class __$$BillingInformationStateImplCopyWithImpl<$Res>
     Object? error = freezed,
     Object? billHistory = null,
     Object? latestBill = freezed,
+    Object? paymentState = null,
   }) {
     return _then(_$BillingInformationStateImpl(
       status: null == status
@@ -381,6 +569,10 @@ class __$$BillingInformationStateImplCopyWithImpl<$Res>
           ? _value.latestBill
           : latestBill // ignore: cast_nullable_to_non_nullable
               as BillingInformation?,
+      paymentState: null == paymentState
+          ? _value.paymentState
+          : paymentState // ignore: cast_nullable_to_non_nullable
+              as PaymentState,
     ));
   }
 }
@@ -392,7 +584,8 @@ class _$BillingInformationStateImpl implements _BillingInformationState {
       {this.status = BillingInformationStatus.initial,
       this.error,
       final List<BillingInformation> billHistory = const [],
-      this.latestBill})
+      this.latestBill,
+      this.paymentState = const PaymentState()})
       : _billHistory = billHistory;
 
   @override
@@ -411,10 +604,13 @@ class _$BillingInformationStateImpl implements _BillingInformationState {
 
   @override
   final BillingInformation? latestBill;
+  @override
+  @JsonKey()
+  final PaymentState paymentState;
 
   @override
   String toString() {
-    return 'BillingInformationState(status: $status, error: $error, billHistory: $billHistory, latestBill: $latestBill)';
+    return 'BillingInformationState(status: $status, error: $error, billHistory: $billHistory, latestBill: $latestBill, paymentState: $paymentState)';
   }
 
   @override
@@ -427,12 +623,19 @@ class _$BillingInformationStateImpl implements _BillingInformationState {
             const DeepCollectionEquality()
                 .equals(other._billHistory, _billHistory) &&
             (identical(other.latestBill, latestBill) ||
-                other.latestBill == latestBill));
+                other.latestBill == latestBill) &&
+            (identical(other.paymentState, paymentState) ||
+                other.paymentState == paymentState));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, status, error,
-      const DeepCollectionEquality().hash(_billHistory), latestBill);
+  int get hashCode => Object.hash(
+      runtimeType,
+      status,
+      error,
+      const DeepCollectionEquality().hash(_billHistory),
+      latestBill,
+      paymentState);
 
   /// Create a copy of BillingInformationState
   /// with the given fields replaced by the non-null parameter values.
@@ -449,7 +652,8 @@ abstract class _BillingInformationState implements BillingInformationState {
       {final BillingInformationStatus status,
       final DynamicError? error,
       final List<BillingInformation> billHistory,
-      final BillingInformation? latestBill}) = _$BillingInformationStateImpl;
+      final BillingInformation? latestBill,
+      final PaymentState paymentState}) = _$BillingInformationStateImpl;
 
   @override
   BillingInformationStatus get status;
@@ -459,6 +663,8 @@ abstract class _BillingInformationState implements BillingInformationState {
   List<BillingInformation> get billHistory;
   @override
   BillingInformation? get latestBill;
+  @override
+  PaymentState get paymentState;
 
   /// Create a copy of BillingInformationState
   /// with the given fields replaced by the non-null parameter values.
@@ -466,4 +672,181 @@ abstract class _BillingInformationState implements BillingInformationState {
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$BillingInformationStateImplCopyWith<_$BillingInformationStateImpl>
       get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+mixin _$PaymentState {
+  PaymentStatus get status => throw _privateConstructorUsedError;
+  DynamicError? get error => throw _privateConstructorUsedError;
+  List<Payment> get payments => throw _privateConstructorUsedError;
+
+  /// Create a copy of PaymentState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $PaymentStateCopyWith<PaymentState> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $PaymentStateCopyWith<$Res> {
+  factory $PaymentStateCopyWith(
+          PaymentState value, $Res Function(PaymentState) then) =
+      _$PaymentStateCopyWithImpl<$Res, PaymentState>;
+  @useResult
+  $Res call(
+      {PaymentStatus status, DynamicError? error, List<Payment> payments});
+}
+
+/// @nodoc
+class _$PaymentStateCopyWithImpl<$Res, $Val extends PaymentState>
+    implements $PaymentStateCopyWith<$Res> {
+  _$PaymentStateCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  /// Create a copy of PaymentState
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? status = null,
+    Object? error = freezed,
+    Object? payments = null,
+  }) {
+    return _then(_value.copyWith(
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as PaymentStatus,
+      error: freezed == error
+          ? _value.error
+          : error // ignore: cast_nullable_to_non_nullable
+              as DynamicError?,
+      payments: null == payments
+          ? _value.payments
+          : payments // ignore: cast_nullable_to_non_nullable
+              as List<Payment>,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$PaymentStateImplCopyWith<$Res>
+    implements $PaymentStateCopyWith<$Res> {
+  factory _$$PaymentStateImplCopyWith(
+          _$PaymentStateImpl value, $Res Function(_$PaymentStateImpl) then) =
+      __$$PaymentStateImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {PaymentStatus status, DynamicError? error, List<Payment> payments});
+}
+
+/// @nodoc
+class __$$PaymentStateImplCopyWithImpl<$Res>
+    extends _$PaymentStateCopyWithImpl<$Res, _$PaymentStateImpl>
+    implements _$$PaymentStateImplCopyWith<$Res> {
+  __$$PaymentStateImplCopyWithImpl(
+      _$PaymentStateImpl _value, $Res Function(_$PaymentStateImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of PaymentState
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? status = null,
+    Object? error = freezed,
+    Object? payments = null,
+  }) {
+    return _then(_$PaymentStateImpl(
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as PaymentStatus,
+      error: freezed == error
+          ? _value.error
+          : error // ignore: cast_nullable_to_non_nullable
+              as DynamicError?,
+      payments: null == payments
+          ? _value._payments
+          : payments // ignore: cast_nullable_to_non_nullable
+              as List<Payment>,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$PaymentStateImpl implements _PaymentState {
+  const _$PaymentStateImpl(
+      {this.status = PaymentStatus.initial,
+      this.error,
+      final List<Payment> payments = const []})
+      : _payments = payments;
+
+  @override
+  @JsonKey()
+  final PaymentStatus status;
+  @override
+  final DynamicError? error;
+  final List<Payment> _payments;
+  @override
+  @JsonKey()
+  List<Payment> get payments {
+    if (_payments is EqualUnmodifiableListView) return _payments;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_payments);
+  }
+
+  @override
+  String toString() {
+    return 'PaymentState(status: $status, error: $error, payments: $payments)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$PaymentStateImpl &&
+            (identical(other.status, status) || other.status == status) &&
+            (identical(other.error, error) || other.error == error) &&
+            const DeepCollectionEquality().equals(other._payments, _payments));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, status, error,
+      const DeepCollectionEquality().hash(_payments));
+
+  /// Create a copy of PaymentState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$PaymentStateImplCopyWith<_$PaymentStateImpl> get copyWith =>
+      __$$PaymentStateImplCopyWithImpl<_$PaymentStateImpl>(this, _$identity);
+}
+
+abstract class _PaymentState implements PaymentState {
+  const factory _PaymentState(
+      {final PaymentStatus status,
+      final DynamicError? error,
+      final List<Payment> payments}) = _$PaymentStateImpl;
+
+  @override
+  PaymentStatus get status;
+  @override
+  DynamicError? get error;
+  @override
+  List<Payment> get payments;
+
+  /// Create a copy of PaymentState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$PaymentStateImplCopyWith<_$PaymentStateImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }

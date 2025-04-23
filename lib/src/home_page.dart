@@ -50,7 +50,6 @@ class _HomePageState extends State<HomePage> {
           onPageChanged: _onPageChanged, // Listen for page changes
           children: [
             const BillInformationPage(),
-            const PaymentsPage(),
             BlocBuilder<ProfileBloc, ProfileState>(builder: (context, state) {
               final accountState = state.accountState;
 
@@ -69,10 +68,6 @@ class _HomePageState extends State<HomePage> {
           BottomNavigationBarItem(
             icon: Icon(Icons.receipt),
             label: 'Billing',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.payments_outlined),
-            label: 'Payments',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person),

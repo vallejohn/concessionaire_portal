@@ -7,7 +7,7 @@ part 'billing_information.g.dart';
 class BillingInformation with _$BillingInformation {
   const factory BillingInformation({
     @Default(0) int id,
-    @JsonKey(name: 'account_number')
+    @JsonKey(name: 'account_no')
     @Default('') String accountNo,
     @JsonKey(name: 'bill_no')
     @Default('') String billNo,

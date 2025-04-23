@@ -19,6 +19,7 @@ import 'package:mwd_concessionaire_portal/src/billing_information/data/data_sour
 import 'package:mwd_concessionaire_portal/src/billing_information/data/repositories/billing_information_repository_impl.dart';
 import 'package:mwd_concessionaire_portal/src/billing_information/domain/repositories/billing_information_repository.dart';
 import 'package:mwd_concessionaire_portal/src/billing_information/domain/usecases/get_billing_history_usecase.dart';
+import 'package:mwd_concessionaire_portal/src/billing_information/domain/usecases/get_payment_history_usecase.dart';
 import 'package:mwd_concessionaire_portal/src/profile/data/data_sources/profile_data_source.dart';
 import 'package:mwd_concessionaire_portal/src/profile/data/data_sources/profile_remote_data_source_impl.dart';
 import 'package:mwd_concessionaire_portal/src/profile/data/repositories/profile_repository_impl.dart';
@@ -92,4 +93,5 @@ void _setupBilling() {
       BillingInformationRepositoryImpl(dataSource: getIt()));
 
   getIt.registerLazySingleton(() => GetBillingHistoryUsecase(getIt()));
+  getIt.registerLazySingleton(() => GetPaymentHistoryUsecase(getIt()));
 }

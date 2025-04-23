@@ -10,7 +10,7 @@ _$BillingInformationImpl _$$BillingInformationImplFromJson(
         Map<String, dynamic> json) =>
     _$BillingInformationImpl(
       id: (json['id'] as num?)?.toInt() ?? 0,
-      accountNo: json['account_number'] as String? ?? '',
+      accountNo: json['account_no'] as String? ?? '',
       billNo: json['bill_no'] as String? ?? '',
       name: json['name'] as String? ?? '',
       address: json['address'] as String? ?? '',
@@ -41,7 +41,7 @@ Map<String, dynamic> _$$BillingInformationImplToJson(
         _$BillingInformationImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'account_number': instance.accountNo,
+      'account_no': instance.accountNo,
       'bill_no': instance.billNo,
       'name': instance.name,
       'address': instance.address,

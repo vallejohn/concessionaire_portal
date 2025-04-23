@@ -93,11 +93,11 @@ class _SettingsPageState extends State<SettingsPage> {
       listener: (context, state) {
         final logoutStatus = state.status;
 
-        if(logoutStatus == LogoutStatus.loading){
+        if (logoutStatus == LogoutStatus.loading) {
           LoadingDialog.show(context);
         }
 
-        if(logoutStatus == LogoutStatus.failed){
+        if (logoutStatus == LogoutStatus.failed) {
           context.pop();
           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
             content: Text(state.errors!.message),
@@ -105,7 +105,7 @@ class _SettingsPageState extends State<SettingsPage> {
           ));
         }
 
-        if(logoutStatus == LogoutStatus.success){
+        if (logoutStatus == LogoutStatus.success) {
           context.pop();
           context.go('/');
         }
@@ -141,12 +141,12 @@ class _SettingsPageState extends State<SettingsPage> {
               'Terms and Conditions',
               onTap: () {},
             ),
-            _navItem(
+            /*_navItem(
               'Accounts',
               leadingIcon: Icons.credit_card_rounded,
               subtitle: 'See list of link accounts',
               onTap: () {},
-            ),
+            ),*/
             _navItem(
               'Change password',
               leadingIcon: Icons.password_rounded,
@@ -185,7 +185,68 @@ class _SettingsPageState extends State<SettingsPage> {
               leadingIcon: Icons.logout_rounded,
               subtitle: 'Logout your account',
               onTap: () {
-                context.read<LogoutBloc>().add(const LogoutEvent.onLogout());
+                showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return Dialog(
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 25,
+                          vertical: 40,
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Text(
+                              'Confirm Logout',
+                              style: textStyle.titleLarge?.copyWith(
+                                color: Theme.of(context).primaryColor,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                            const SizedBox(height: 20),
+                            Text(
+                              "Are you sure you want to log out from your account?",
+                              style: textStyle.bodyLarge?.copyWith(),
+                            ),
+                            const SizedBox(height: 20),
+                            Align(
+                              alignment: Alignment.center,
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: [
+                                  Expanded(
+                                    flex: 2,
+                                    child: TextButton(
+                                      onPressed: () {
+                                        context.pop();
+                                      },
+                                      child: const Text('Cancel'),
+                                    ),
+                                  ),
+                                  const SizedBox(width: 10),
+                                  Expanded(
+                                    flex: 2,
+                                    child: FilledButton(
+                                      onPressed: () {
+                                        context.pop();
+                                        context
+                                            .read<LogoutBloc>()
+                                            .add(const LogoutEvent.onLogout());
+                                      },
+                                      child: const Text('Logout'),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                    );
+                  },
+                );
               },
             ),
             _navItem('Version',
@@ -194,6 +255,7 @@ class _SettingsPageState extends State<SettingsPage> {
                   'v1.0.0',
                   style: textStyle.bodyLarge,
                 ),
+                active: false,
                 onTap: () {}),
             const Divider(
               height: 30,

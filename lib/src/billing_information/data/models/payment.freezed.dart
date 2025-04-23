@@ -20,16 +20,24 @@ Payment _$PaymentFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Payment {
+  int get id => throw _privateConstructorUsedError;
+  @JsonKey(name: 'account_no')
+  String get accountNumber => throw _privateConstructorUsedError;
   @JsonKey(name: 'reference_no')
-  String get referenceNo => throw _privateConstructorUsedError;
+  String get referenceNumber => throw _privateConstructorUsedError;
   @JsonKey(name: 'transaction_date')
   String get transactionDate => throw _privateConstructorUsedError;
-  String get particulars => throw _privateConstructorUsedError;
   int get reading => throw _privateConstructorUsedError;
   int get usage => throw _privateConstructorUsedError;
   double get debit => throw _privateConstructorUsedError;
   double get credit => throw _privateConstructorUsedError;
   double get balance => throw _privateConstructorUsedError;
+  @JsonKey(name: 'created_at')
+  String get createdAt => throw _privateConstructorUsedError;
+  @JsonKey(name: 'updated_at')
+  String get updatedAt => throw _privateConstructorUsedError;
+  @JsonKey(name: 'reference_name')
+  String get referenceName => throw _privateConstructorUsedError;
 
   /// Serializes this Payment to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -46,14 +54,18 @@ abstract class $PaymentCopyWith<$Res> {
       _$PaymentCopyWithImpl<$Res, Payment>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'reference_no') String referenceNo,
+      {int id,
+      @JsonKey(name: 'account_no') String accountNumber,
+      @JsonKey(name: 'reference_no') String referenceNumber,
       @JsonKey(name: 'transaction_date') String transactionDate,
-      String particulars,
       int reading,
       int usage,
       double debit,
       double credit,
-      double balance});
+      double balance,
+      @JsonKey(name: 'created_at') String createdAt,
+      @JsonKey(name: 'updated_at') String updatedAt,
+      @JsonKey(name: 'reference_name') String referenceName});
 }
 
 /// @nodoc
@@ -71,27 +83,35 @@ class _$PaymentCopyWithImpl<$Res, $Val extends Payment>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? referenceNo = null,
+    Object? id = null,
+    Object? accountNumber = null,
+    Object? referenceNumber = null,
     Object? transactionDate = null,
-    Object? particulars = null,
     Object? reading = null,
     Object? usage = null,
     Object? debit = null,
     Object? credit = null,
     Object? balance = null,
+    Object? createdAt = null,
+    Object? updatedAt = null,
+    Object? referenceName = null,
   }) {
     return _then(_value.copyWith(
-      referenceNo: null == referenceNo
-          ? _value.referenceNo
-          : referenceNo // ignore: cast_nullable_to_non_nullable
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      accountNumber: null == accountNumber
+          ? _value.accountNumber
+          : accountNumber // ignore: cast_nullable_to_non_nullable
+              as String,
+      referenceNumber: null == referenceNumber
+          ? _value.referenceNumber
+          : referenceNumber // ignore: cast_nullable_to_non_nullable
               as String,
       transactionDate: null == transactionDate
           ? _value.transactionDate
           : transactionDate // ignore: cast_nullable_to_non_nullable
-              as String,
-      particulars: null == particulars
-          ? _value.particulars
-          : particulars // ignore: cast_nullable_to_non_nullable
               as String,
       reading: null == reading
           ? _value.reading
@@ -113,6 +133,18 @@ class _$PaymentCopyWithImpl<$Res, $Val extends Payment>
           ? _value.balance
           : balance // ignore: cast_nullable_to_non_nullable
               as double,
+      createdAt: null == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as String,
+      updatedAt: null == updatedAt
+          ? _value.updatedAt
+          : updatedAt // ignore: cast_nullable_to_non_nullable
+              as String,
+      referenceName: null == referenceName
+          ? _value.referenceName
+          : referenceName // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 }
@@ -125,14 +157,18 @@ abstract class _$$PaymentImplCopyWith<$Res> implements $PaymentCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'reference_no') String referenceNo,
+      {int id,
+      @JsonKey(name: 'account_no') String accountNumber,
+      @JsonKey(name: 'reference_no') String referenceNumber,
       @JsonKey(name: 'transaction_date') String transactionDate,
-      String particulars,
       int reading,
       int usage,
       double debit,
       double credit,
-      double balance});
+      double balance,
+      @JsonKey(name: 'created_at') String createdAt,
+      @JsonKey(name: 'updated_at') String updatedAt,
+      @JsonKey(name: 'reference_name') String referenceName});
 }
 
 /// @nodoc
@@ -148,27 +184,35 @@ class __$$PaymentImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? referenceNo = null,
+    Object? id = null,
+    Object? accountNumber = null,
+    Object? referenceNumber = null,
     Object? transactionDate = null,
-    Object? particulars = null,
     Object? reading = null,
     Object? usage = null,
     Object? debit = null,
     Object? credit = null,
     Object? balance = null,
+    Object? createdAt = null,
+    Object? updatedAt = null,
+    Object? referenceName = null,
   }) {
     return _then(_$PaymentImpl(
-      referenceNo: null == referenceNo
-          ? _value.referenceNo
-          : referenceNo // ignore: cast_nullable_to_non_nullable
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      accountNumber: null == accountNumber
+          ? _value.accountNumber
+          : accountNumber // ignore: cast_nullable_to_non_nullable
+              as String,
+      referenceNumber: null == referenceNumber
+          ? _value.referenceNumber
+          : referenceNumber // ignore: cast_nullable_to_non_nullable
               as String,
       transactionDate: null == transactionDate
           ? _value.transactionDate
           : transactionDate // ignore: cast_nullable_to_non_nullable
-              as String,
-      particulars: null == particulars
-          ? _value.particulars
-          : particulars // ignore: cast_nullable_to_non_nullable
               as String,
       reading: null == reading
           ? _value.reading
@@ -190,6 +234,18 @@ class __$$PaymentImplCopyWithImpl<$Res>
           ? _value.balance
           : balance // ignore: cast_nullable_to_non_nullable
               as double,
+      createdAt: null == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as String,
+      updatedAt: null == updatedAt
+          ? _value.updatedAt
+          : updatedAt // ignore: cast_nullable_to_non_nullable
+              as String,
+      referenceName: null == referenceName
+          ? _value.referenceName
+          : referenceName // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -198,27 +254,34 @@ class __$$PaymentImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$PaymentImpl implements _Payment {
   const _$PaymentImpl(
-      {@JsonKey(name: 'reference_no') this.referenceNo = '',
+      {this.id = 0,
+      @JsonKey(name: 'account_no') this.accountNumber = '',
+      @JsonKey(name: 'reference_no') this.referenceNumber = '',
       @JsonKey(name: 'transaction_date') this.transactionDate = '',
-      this.particulars = '',
       this.reading = 0,
       this.usage = 0,
       this.debit = 0,
       this.credit = 0,
-      this.balance = 0});
+      this.balance = 0,
+      @JsonKey(name: 'created_at') this.createdAt = '',
+      @JsonKey(name: 'updated_at') this.updatedAt = '',
+      @JsonKey(name: 'reference_name') this.referenceName = ''});
 
   factory _$PaymentImpl.fromJson(Map<String, dynamic> json) =>
       _$$PaymentImplFromJson(json);
 
   @override
+  @JsonKey()
+  final int id;
+  @override
+  @JsonKey(name: 'account_no')
+  final String accountNumber;
+  @override
   @JsonKey(name: 'reference_no')
-  final String referenceNo;
+  final String referenceNumber;
   @override
   @JsonKey(name: 'transaction_date')
   final String transactionDate;
-  @override
-  @JsonKey()
-  final String particulars;
   @override
   @JsonKey()
   final int reading;
@@ -234,10 +297,19 @@ class _$PaymentImpl implements _Payment {
   @override
   @JsonKey()
   final double balance;
+  @override
+  @JsonKey(name: 'created_at')
+  final String createdAt;
+  @override
+  @JsonKey(name: 'updated_at')
+  final String updatedAt;
+  @override
+  @JsonKey(name: 'reference_name')
+  final String referenceName;
 
   @override
   String toString() {
-    return 'Payment(referenceNo: $referenceNo, transactionDate: $transactionDate, particulars: $particulars, reading: $reading, usage: $usage, debit: $debit, credit: $credit, balance: $balance)';
+    return 'Payment(id: $id, accountNumber: $accountNumber, referenceNumber: $referenceNumber, transactionDate: $transactionDate, reading: $reading, usage: $usage, debit: $debit, credit: $credit, balance: $balance, createdAt: $createdAt, updatedAt: $updatedAt, referenceName: $referenceName)';
   }
 
   @override
@@ -245,23 +317,42 @@ class _$PaymentImpl implements _Payment {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$PaymentImpl &&
-            (identical(other.referenceNo, referenceNo) ||
-                other.referenceNo == referenceNo) &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.accountNumber, accountNumber) ||
+                other.accountNumber == accountNumber) &&
+            (identical(other.referenceNumber, referenceNumber) ||
+                other.referenceNumber == referenceNumber) &&
             (identical(other.transactionDate, transactionDate) ||
                 other.transactionDate == transactionDate) &&
-            (identical(other.particulars, particulars) ||
-                other.particulars == particulars) &&
             (identical(other.reading, reading) || other.reading == reading) &&
             (identical(other.usage, usage) || other.usage == usage) &&
             (identical(other.debit, debit) || other.debit == debit) &&
             (identical(other.credit, credit) || other.credit == credit) &&
-            (identical(other.balance, balance) || other.balance == balance));
+            (identical(other.balance, balance) || other.balance == balance) &&
+            (identical(other.createdAt, createdAt) ||
+                other.createdAt == createdAt) &&
+            (identical(other.updatedAt, updatedAt) ||
+                other.updatedAt == updatedAt) &&
+            (identical(other.referenceName, referenceName) ||
+                other.referenceName == referenceName));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, referenceNo, transactionDate,
-      particulars, reading, usage, debit, credit, balance);
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      accountNumber,
+      referenceNumber,
+      transactionDate,
+      reading,
+      usage,
+      debit,
+      credit,
+      balance,
+      createdAt,
+      updatedAt,
+      referenceName);
 
   /// Create a copy of Payment
   /// with the given fields replaced by the non-null parameter values.
@@ -281,25 +372,33 @@ class _$PaymentImpl implements _Payment {
 
 abstract class _Payment implements Payment {
   const factory _Payment(
-      {@JsonKey(name: 'reference_no') final String referenceNo,
-      @JsonKey(name: 'transaction_date') final String transactionDate,
-      final String particulars,
-      final int reading,
-      final int usage,
-      final double debit,
-      final double credit,
-      final double balance}) = _$PaymentImpl;
+          {final int id,
+          @JsonKey(name: 'account_no') final String accountNumber,
+          @JsonKey(name: 'reference_no') final String referenceNumber,
+          @JsonKey(name: 'transaction_date') final String transactionDate,
+          final int reading,
+          final int usage,
+          final double debit,
+          final double credit,
+          final double balance,
+          @JsonKey(name: 'created_at') final String createdAt,
+          @JsonKey(name: 'updated_at') final String updatedAt,
+          @JsonKey(name: 'reference_name') final String referenceName}) =
+      _$PaymentImpl;
 
   factory _Payment.fromJson(Map<String, dynamic> json) = _$PaymentImpl.fromJson;
 
   @override
+  int get id;
+  @override
+  @JsonKey(name: 'account_no')
+  String get accountNumber;
+  @override
   @JsonKey(name: 'reference_no')
-  String get referenceNo;
+  String get referenceNumber;
   @override
   @JsonKey(name: 'transaction_date')
   String get transactionDate;
-  @override
-  String get particulars;
   @override
   int get reading;
   @override
@@ -310,6 +409,15 @@ abstract class _Payment implements Payment {
   double get credit;
   @override
   double get balance;
+  @override
+  @JsonKey(name: 'created_at')
+  String get createdAt;
+  @override
+  @JsonKey(name: 'updated_at')
+  String get updatedAt;
+  @override
+  @JsonKey(name: 'reference_name')
+  String get referenceName;
 
   /// Create a copy of Payment
   /// with the given fields replaced by the non-null parameter values.
